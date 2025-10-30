@@ -74,9 +74,31 @@ DAIOF is the world's first breakthrough framework applying biological principles
 
 ---
 
+## 🎬 See DAIOF in Action
+
+<div align="center">
+
+![DAIOF Demo](assets/demo-screenshot.png)
+
+*🧬 DAIOF Framework running autonomously - generating tasks, monitoring health, and evolving in real-time*
+
+</div>
+
+### 📊 Live Dashboard
+
+Current Organism Status:
+- **Health Score**: 💚 100/100 EXCELLENT
+- **Active Workflows**: 13 autonomous systems
+- **Total Commits**: 38 (all autonomous)
+- **Status**: 🧬 LIVING & AUTONOMOUS
+
+**[View Full Dashboard →](DASHBOARD.md)**
+
+---
+
 ## ⚡ 30-Second Quick Start
 
-**See it in action RIGHT NOW:**
+**Try the organism locally:**
 
 ```bash
 # Clone and run the demo
