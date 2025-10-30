@@ -44,7 +44,27 @@ DAIOF is the world's first breakthrough framework applying biological principles
 
 ---
 
-## 🚀 Quick Start
+## ⚡ 30-Second Quick Start
+
+**See it in action RIGHT NOW:**
+
+```bash
+# Clone and run the demo
+git clone https://github.com/NguyenCuong1989/DAIOF-Framework.git
+cd DAIOF-Framework
+pip install -r requirements.txt
+python quick_start.py
+```
+
+**You'll witness:**
+- 🧬 Creating digital organisms with genetic traits
+- 🔄 Evolution through mutation
+- 🧠 Intelligent decision-making
+- 📈 Natural selection over generations
+
+**All in under 30 seconds!** ⚡
+
+---
 
 ## 📥 Installation
 
