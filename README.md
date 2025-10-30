@@ -29,20 +29,13 @@ DAIOF is the world's first breakthrough framework applying biological principles
 
 ## 🚀 Quick Start
 
-### Installation
+## 📥 Installation
 
 ```bash
-# Clone repository
-git clone https://github.com/your-username/DAIOF-Framework.git
+git clone https://github.com/NguyenCuong1989/DAIOF-Framework.git
 cd DAIOF-Framework
-
-# Install dependencies
 pip install -r requirements.txt
-
-# Run example
-python digital_ai_organism_framework.py
 ```
-
 ### Basic Usage
 
 ```python
@@ -427,13 +420,18 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 If you use DAIOF in your research, please cite:
 
 ```bibtex
+## 📖 Citation
+
+If you use DAIOF in your research, please cite:
+
+```bibtex
 @software{daiof2025,
-  title={Digital AI Organism Framework: A Biological Approach to Conscious AI},
-  author={Alpha Prime Omega and Andy},
-  year={2025},
-  publisher={GitHub},
-  url={https://github.com/your-username/DAIOF-Framework}
+  title = {Digital AI Organism Framework},
+  author = {Alpha\_Prime\_Omega and Andy},
+  year = {2025},
+  url = {https://github.com/NguyenCuong1989/DAIOF-Framework}
 }
+```
 ```
 
 ---
