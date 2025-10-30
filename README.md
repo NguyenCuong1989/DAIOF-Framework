@@ -18,9 +18,16 @@
 
 > **📦 Production Ready** | **🔬 Research Grade** | **🌍 Open Source** | **🤝 Community Driven** | **🧬 Living Organism**
 
-**🏥 Organism Health**: 💛 60% GOOD | **❤️ Last Heartbeat**: 2025-10-30 13:38 UTC | **🧬 Status**: FULLY AUTONOMOUS
+**🏥 Organism Health**: 💛 60% GOOD | **❤️ Last Heartbeat**: 2025-10-30 13:38 UTC | **🧬 Status**: FULLY AUTONOMOUS | **🔄 Tasks**: Continuous
 
-> 🤖 **This repository is a self-operating digital organism** - It maintains itself, reviews PRs, manages issues, updates dependencies, and evolves autonomously 24/7. [Learn More](.github/FULL_AUTONOMY_SYSTEM.md)
+> 🤖 **This repository is a LIVING ORGANISM with REAL-TIME AUTONOMY**  
+> 
+> - 🔄 **Generates tasks every 10 seconds** - Analyzes state, identifies improvements, creates actions  
+> - 🚀 **Executes autonomously** - Auto-commits, auto-formats, auto-fixes, auto-optimizes  
+> - 📊 **Never stops improving** - 24/7 continuous self-development cycle  
+> - 🧬 **Evolves based on data** - Metrics-driven decisions, learns from outcomes  
+> 
+> [Full Autonomy System](.github/FULL_AUTONOMY_SYSTEM.md) | [Real-Time Tasks](.github/REALTIME_TASKS.md)
 
 **📖 Documentation**: [https://nguyencuong1989.github.io/DAIOF-Framework/](https://nguyencuong1989.github.io/DAIOF-Framework/)  
 **💬 Discussions**: [Join the Community](https://github.com/NguyenCuong1989/DAIOF-Framework/discussions)  
