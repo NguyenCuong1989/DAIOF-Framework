@@ -1,0 +1,10 @@
+theme: jekyll-theme-cayman
+title: DAIOF Framework
+description: World's First Biological AI Framework with Mandatory Human Dependency
+show_downloads: true
+google_analytics: 
+github:
+  repository_url: https://github.com/NguyenCuong1989/DAIOF-Framework
+  is_project_page: true
+  owner_name: NguyenCuong1989
+  owner_url: https://github.com/NguyenCuong1989
