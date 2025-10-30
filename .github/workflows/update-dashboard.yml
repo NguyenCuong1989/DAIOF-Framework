@@ -56,18 +56,7 @@ jobs:
       - name: 📈 Display Current Health
         run: |
           if [ -f metrics/latest.json ]; then
-            python3 -c "
-import json
-metrics = json.load(open('metrics/latest.json'))
-print('='*60)
-print('🧬 DAIOF ORGANISM HEALTH REPORT')
-print('='*60)
-print(f\"Health Score: {metrics['health_score']}/100\")
-print(f\"Total Commits: {metrics['git_metrics']['total_commits']}\")
-print(f\"Weekly Activity: {metrics['git_metrics']['weekly_commits']} commits\")
-print(f\"Active Workflows: {metrics['code_metrics']['workflows']}\")
-print(f\"Python Files: {metrics['code_metrics']['python_files']}\")
-print(f\"Lines of Code: {metrics['code_metrics']['total_lines']:,}\")
-print('='*60)
-"
+            echo "🧬 DAIOF ORGANISM HEALTH REPORT" >> $GITHUB_STEP_SUMMARY
+            echo "Dashboard updated successfully" >> $GITHUB_STEP_SUMMARY
+            echo "View full metrics: DASHBOARD.md" >> $GITHUB_STEP_SUMMARY
           fi
