@@ -16,13 +16,14 @@
 [![Stars](https://img.shields.io/github/stars/NguyenCuong1989/DAIOF-Framework?style=social&logo=github)](https://github.com/NguyenCuong1989/DAIOF-Framework/stargazers)
 [![Forks](https://img.shields.io/github/forks/NguyenCuong1989/DAIOF-Framework?style=social&logo=github)](https://github.com/NguyenCuong1989/DAIOF-Framework/network/members)
 
-> **� Production Ready** | **🔬 Research Grade** | **🌍 Open Source** | **🤝 Community Driven**
+> **📦 Production Ready** | **🔬 Research Grade** | **🌍 Open Source** | **🤝 Community Driven** | **🧬 Living Organism**
 
-** Documentation**: [https://nguyencuong1989.github.io/DAIOF-Framework/](https://nguyencuong1989.github.io/DAIOF-Framework/)  
+**📖 Documentation**: [https://nguyencuong1989.github.io/DAIOF-Framework/](https://nguyencuong1989.github.io/DAIOF-Framework/)  
 **💬 Discussions**: [Join the Community](https://github.com/NguyenCuong1989/DAIOF-Framework/discussions)  
 **🐛 Issues**: [Report Bugs](https://github.com/NguyenCuong1989/DAIOF-Framework/issues)  
 **📄 Research**: [Paper Outline](research/RESEARCH_PAPER_OUTLINE.md)  
-**🤖 AI Agent**: [Autonomous Operations](.github/AI_AGENT_AUTONOMOUS.md) - *This repo is maintained by an autonomous AI*
+**🤖 AI Agent**: [Autonomous Operations](.github/AI_AGENT_AUTONOMOUS.md) - *This repo is maintained by an autonomous AI*  
+**🧬 Digital Organism**: [Living Repository](.github/DIGITAL_ORGANISM_CONCEPT.md) - *This repo IS a digital organism*
 
 ---
 
