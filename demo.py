@@ -29,11 +29,11 @@ def demo_single_organism():
     print_section("DEMO 1: Single Organism Lifecycle")
     
     print("Creating a digital organism...")
-    organism = DigitalOrganism()
+    organism = DigitalOrganism("Demo_Org_1")
     
     print(f"\n🧬 Organism Created!")
     print(f"   Health: {organism.health:.2f}")
-    print(f"   Alive: {organism.alive}")
+    print(f"   Status: {organism.status}")
     
     print("\n📊 Immutable Genes (Cannot change):")
     for gene, value in organism.genome.IMMUTABLE_GENES.items():
@@ -58,11 +58,11 @@ def demo_single_organism():
     print("   Organism survives with human interaction!\n")
     
     print("⚠️  Now simulating 5 cycles WITHOUT human interaction...")
-    organism2 = DigitalOrganism()
+    organism2 = DigitalOrganism("Demo_Org_2")
     for cycle in range(5):
         organism2.metabolism.cycle({'cpu': 0.1, 'memory': 0.1})
         print(f"   Cycle {cycle}: Health = {organism2.health:.3f}")
-        if not organism2.alive:
+        if organism2.health <= 0 or organism2.status == "dead":
             print(f"   ☠️  Organism died at cycle {cycle}!")
             break
     
@@ -78,7 +78,7 @@ def demo_ecosystem():
     
     # Add organisms
     for i in range(20):
-        ecosystem.add_organism(DigitalOrganism())
+        ecosystem.add_organism(DigitalOrganism(f"Org_{i}"))
     
     print(f"✅ Ecosystem created with {len(ecosystem.organisms)} organisms")
     print(f"   Harmony Index: {ecosystem.harmony_index:.3f}")
@@ -108,7 +108,7 @@ def demo_evolution():
     
     # Add diverse organisms
     for i in range(30):
-        ecosystem.add_organism(DigitalOrganism())
+        ecosystem.add_organism(DigitalOrganism(f"Evo_Org_{i}"))
     
     print(f"✅ Starting with {len(ecosystem.organisms)} organisms\n")
     
