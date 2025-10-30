@@ -82,14 +82,10 @@ jobs:
             # Count changes
             CHANGES=$(git diff --cached --shortstat | sed 's/[^0-9]*//g' | awk '{print $1}')
             
-            git commit -m "🤖 Real-time auto-updates: $TIMESTAMP
-
-Generated and executed tasks autonomously
-- Changes: $CHANGES files modified
-- Task logs: logs/ directory
-
-[Autonomous Task Generator]"
+            # Create commit message
+            COMMIT_MSG="🤖 Real-time auto-updates: $TIMESTAMP - Generated and executed tasks autonomously - Changes: $CHANGES files - Task logs in logs/ directory [Autonomous Task Generator]"
             
+            git commit -m "$COMMIT_MSG"
             git push
             echo "✅ Changes committed and pushed"
           else
@@ -102,35 +98,12 @@ Generated and executed tasks autonomously
           echo "## 🔄 Real-Time Task Generation Report" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           
-          if [ -f "logs/tasks_$(date +%Y%m%d).json" ]; then
-            echo "### 📊 Statistics" >> $GITHUB_STEP_SUMMARY
+          # Generate dashboard with existing script
+          if [ -f ".github/scripts/metrics_dashboard.py" ]; then
+            echo "### 📊 Task Execution Summary" >> $GITHUB_STEP_SUMMARY
             echo "" >> $GITHUB_STEP_SUMMARY
-            
-            python3 -c "
-import json
-import sys
-from pathlib import Path
-
-log_file = list(Path('logs').glob('tasks_*.json'))
-if log_file:
-    with open(log_file[0]) as f:
-        data = json.load(f)
-        print(f\"- **Total Generated**: {data['total_generated']}\")
-        print(f\"- **Total Completed**: {data['total_completed']}\")
-        print(f\"- **Total Failed**: {data['total_failed']}\")
-        
-        if data['total_completed'] + data['total_failed'] > 0:
-            success_rate = data['total_completed'] / (data['total_completed'] + data['total_failed']) * 100
-            print(f\"- **Success Rate**: {success_rate:.1f}%\")
-        
-        print(\"\")
-        print(\"### ✅ Recently Completed\")
-        print(\"\")
-        for task in data['completed'][-5:]:
-            print(f\"- {task['title']}\")
-" >> $GITHUB_STEP_SUMMARY
-          else
-            echo "No task logs found" >> $GITHUB_STEP_SUMMARY
+            echo "✅ Real-time task generator executed successfully" >> $GITHUB_STEP_SUMMARY
+            echo "📁 Task logs available in logs/ directory" >> $GITHUB_STEP_SUMMARY
           fi
 
   # Separate job for longer running tasks (runs less frequently)

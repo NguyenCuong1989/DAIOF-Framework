@@ -49,9 +49,8 @@ jobs:
           
           if [[ -n $(git status -s metrics/) ]]; then
             git add metrics/
-            git commit -m "🏥 Health check: $(date -u +"%Y-%m-%d %H:%M UTC")
-            
-Auto-generated health report for digital organism"
+            TIMESTAMP=$(date -u +"%Y-%m-%d %H:%M UTC")
+            git commit -m "🏥 Health check: $TIMESTAMP - Auto-generated health report"
             git push
           else
             echo "No new health data to commit"
