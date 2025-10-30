@@ -1,0 +1,107 @@
+name: 🧹 Mark Stale Issues and PRs
+
+on:
+  schedule:
+    - cron: '0 0 * * *' # Daily at midnight UTC
+  workflow_dispatch:
+
+permissions:
+  issues: write
+  pull-requests: write
+
+jobs:
+  stale:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Mark stale issues and PRs
+        uses: actions/stale@v8
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          
+          # Stale issues
+          stale-issue-message: |
+            👋 This issue has been automatically marked as stale because it has not had recent activity.
+            
+            **What happens next:**
+            - This issue will be closed in 7 days if no further activity occurs
+            - Comment on this issue to remove the stale label
+            - Provide updates or additional context to keep it open
+            
+            **Why are we doing this?**
+            We want to keep the issue tracker clean and focused on active work. This doesn't mean your issue isn't important - feel free to reopen if you can provide more information!
+            
+            **Need help?** Join our [Discussions](https://github.com/NguyenCuong1989/DAIOF-Framework/discussions) 💬
+          
+          stale-issue-label: 'stale'
+          days-before-issue-stale: 60
+          days-before-issue-close: 7
+          
+          # Stale PRs
+          stale-pr-message: |
+            👋 This pull request has been automatically marked as stale because it has not had recent activity.
+            
+            **What happens next:**
+            - This PR will be closed in 14 days if no further activity occurs
+            - Push new commits or comment to remove the stale label
+            - Request a review to keep it active
+            
+            **Tips to get your PR merged:**
+            - Ensure all CI checks pass ✅
+            - Respond to review comments
+            - Rebase on latest main if needed
+            - Update documentation if applicable
+            
+            Thank you for your contribution! 🙏
+          
+          stale-pr-label: 'stale'
+          days-before-pr-stale: 45
+          days-before-pr-close: 14
+          
+          # Close message
+          close-issue-message: |
+            This issue was automatically closed due to inactivity. 
+            
+            **Feel free to reopen** if:
+            - You can provide additional information
+            - The issue is still relevant
+            - You want to continue working on it
+            
+            Thank you for contributing to DAIOF! 🌟
+          
+          close-pr-message: |
+            This pull request was automatically closed due to inactivity.
+            
+            **To reopen:**
+            - Update your branch with latest main
+            - Ensure CI passes
+            - Comment to request review
+            
+            We appreciate your contribution! 🙏
+          
+          # Exempt labels
+          exempt-issue-labels: 'pinned,security,help-wanted,good-first-issue'
+          exempt-pr-labels: 'pinned,security,work-in-progress'
+          
+          # Only process certain labels
+          only-labels: ''
+          
+          # Exempt milestones
+          exempt-milestones: 'v1.1,v2.0'
+          
+          # Exempt assignees
+          exempt-assignees: 'NguyenCuong1989'
+          
+          # Operations per run (rate limiting)
+          operations-per-run: 30
+          
+          # Remove stale label when commented
+          remove-stale-when-updated: true
+          
+          # Debug mode
+          debug-only: false
+          
+          # Ascending order (oldest first)
+          ascending: true
+          
+          # Start date (ISO 8601)
+          start-date: '2025-10-30T00:00:00Z'

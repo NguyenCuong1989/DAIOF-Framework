@@ -1,0 +1,63 @@
+version: 2
+updates:
+  # GitHub Actions updates
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    labels:
+      - "dependencies"
+      - "github-actions"
+    commit-message:
+      prefix: "⬆️"
+      include: "scope"
+    open-pull-requests-limit: 5
+    reviewers:
+      - "NguyenCuong1989"
+    
+  # Python dependencies
+  - package-ecosystem: "pip"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    labels:
+      - "dependencies"
+      - "python"
+    commit-message:
+      prefix: "⬆️"
+      include: "scope"
+    open-pull-requests-limit: 10
+    reviewers:
+      - "NguyenCuong1989"
+    # Group minor and patch updates
+    groups:
+      development-dependencies:
+        patterns:
+          - "pytest*"
+          - "black"
+          - "flake8"
+          - "mypy"
+      production-dependencies:
+        patterns:
+          - "numpy"
+          - "*"
+    # Ignore major version updates for stability
+    ignore:
+      - dependency-name: "numpy"
+        update-types: ["version-update:semver-major"]
+    
+  # Allow security updates
+  - package-ecosystem: "pip"
+    directory: "/"
+    schedule:
+      interval: "daily"
+    labels:
+      - "security"
+      - "dependencies"
+    commit-message:
+      prefix: "🔒"
+    open-pull-requests-limit: 5
+    reviewers:
+      - "NguyenCuong1989"
