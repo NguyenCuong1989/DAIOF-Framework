@@ -18,10 +18,11 @@
 
 > **� Production Ready** | **🔬 Research Grade** | **🌍 Open Source** | **🤝 Community Driven**
 
-**�📖 Documentation**: [https://nguyencuong1989.github.io/DAIOF-Framework/](https://nguyencuong1989.github.io/DAIOF-Framework/)  
+** Documentation**: [https://nguyencuong1989.github.io/DAIOF-Framework/](https://nguyencuong1989.github.io/DAIOF-Framework/)  
 **💬 Discussions**: [Join the Community](https://github.com/NguyenCuong1989/DAIOF-Framework/discussions)  
 **🐛 Issues**: [Report Bugs](https://github.com/NguyenCuong1989/DAIOF-Framework/issues)  
-**📄 Research**: [Paper Outline](research/RESEARCH_PAPER_OUTLINE.md)
+**📄 Research**: [Paper Outline](research/RESEARCH_PAPER_OUTLINE.md)  
+**🤖 AI Agent**: [Autonomous Operations](.github/AI_AGENT_AUTONOMOUS.md) - *This repo is maintained by an autonomous AI*
 
 ---
 
@@ -41,6 +42,7 @@ DAIOF is the world's first breakthrough framework applying biological principles
 - ⚡ **D&R Protocol** - Giao thức Deconstruction & Re-architecture
 - 🏛️ **Four Pillars Foundation** - An toàn, Dài hạn, Dữ liệu, Bảo vệ
 - 🇻🇳 **Vietnamese Consciousness** - Tích hợp ý thức Việt Nam
+- 🤖 **AI Agent Autonomous** - Self-operating GitHub maintenance & community engagement
 
 ---
 
