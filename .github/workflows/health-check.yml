@@ -1,0 +1,75 @@
+name: Digital Organism Health Check
+
+on:
+  schedule:
+    # Kiểm tra sức khỏe mỗi 12 giờ
+    - cron: '0 */12 * * *'
+  workflow_dispatch:
+    inputs:
+      generate_report:
+        description: 'Generate detailed health report'
+        required: false
+        type: boolean
+        default: true
+
+permissions:
+  contents: write
+  issues: write
+
+jobs:
+  health-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🧬 Checkout Digital Organism
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: 🐍 Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: 📦 Install Dependencies
+        run: |
+          pip install PyGithub pyyaml
+
+      - name: 🏥 Run Health Monitor
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO_NAME: ${{ github.repository }}
+        run: |
+          chmod +x .github/scripts/health_monitor.py
+          python .github/scripts/health_monitor.py
+
+      - name: 💾 Commit Health Report
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "Digital Organism 🧬"
+          
+          if [[ -n $(git status -s metrics/) ]]; then
+            git add metrics/
+            git commit -m "🏥 Health check: $(date -u +"%Y-%m-%d %H:%M UTC")
+            
+Auto-generated health report for digital organism"
+            git push
+          else
+            echo "No new health data to commit"
+          fi
+
+      - name: 📊 Health Summary
+        if: always()
+        run: |
+          echo "## 🧬 Digital Organism Health Check" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          
+          if [ -f metrics/health_report_*.json ]; then
+            LATEST_REPORT=$(ls -t metrics/health_report_*.json | head -1)
+            HEALTH=$(python -c "import json; print(json.load(open('$LATEST_REPORT'))['overall_health'])")
+            
+            echo "**Overall Health**: $HEALTH" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "✅ Health monitoring completed" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "⚠️ No health report generated" >> $GITHUB_STEP_SUMMARY
+          fi
