@@ -1,0 +1,9 @@
+# Code Owners - Auto-assign reviewers
+# These owners will be requested for review when someone opens a PR
+
+* @NguyenCuong1989
+
+# Specific paths
+/.github/ @NguyenCuong1989
+/docs/ @NguyenCuong1989
+/.github/workflows/ @NguyenCuong1989
