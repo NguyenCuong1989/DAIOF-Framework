@@ -1,0 +1,73 @@
+name: 📊 Update Metrics Dashboard
+
+on:
+  schedule:
+    # Run every 6 hours
+    - cron: '0 */6 * * *'
+  
+  push:
+    branches: [ main ]
+  
+  workflow_dispatch:
+    inputs:
+      force_update:
+        description: 'Force dashboard update'
+        required: false
+        default: 'true'
+
+jobs:
+  update-dashboard:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: 📥 Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0  # Full history for metrics
+      
+      - name: 🐍 Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      
+      - name: 📊 Generate Dashboard
+        run: |
+          python3 .github/scripts/metrics_dashboard.py
+      
+      - name: 🌐 Run Network Optimization Check
+        run: |
+          python3 .github/scripts/github_network_optimizer.py
+      
+      - name: 📝 Commit Updated Metrics
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "DAIOF Organism"
+          
+          if git diff --quiet; then
+            echo "No changes to commit"
+          else
+            git add DASHBOARD.md metrics/ NETWORK_REPORT.md
+            git commit -m "📊 Auto-update metrics dashboard - $(date '+%Y-%m-%d %H:%M')"
+            git push
+            echo "✅ Dashboard updated and pushed"
+          fi
+      
+      - name: 📈 Display Current Health
+        run: |
+          if [ -f metrics/latest.json ]; then
+            python3 -c "
+import json
+metrics = json.load(open('metrics/latest.json'))
+print('='*60)
+print('🧬 DAIOF ORGANISM HEALTH REPORT')
+print('='*60)
+print(f\"Health Score: {metrics['health_score']}/100\")
+print(f\"Total Commits: {metrics['git_metrics']['total_commits']}\")
+print(f\"Weekly Activity: {metrics['git_metrics']['weekly_commits']} commits\")
+print(f\"Active Workflows: {metrics['code_metrics']['workflows']}\")
+print(f\"Python Files: {metrics['code_metrics']['python_files']}\")
+print(f\"Lines of Code: {metrics['code_metrics']['total_lines']:,}\")
+print('='*60)
+"
+          fi
