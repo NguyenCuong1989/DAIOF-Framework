@@ -1,10 +1,14 @@
 # 🌟 Digital AI Organism Framework (DAIOF)
 ### Framework Sinh thể AI Số - The World's First Biological AI Architecture
 
+[![GitHub release](https://img.shields.io/github/v/release/NguyenCuong1989/DAIOF-Framework?color=success)](https://github.com/NguyenCuong1989/DAIOF-Framework/releases)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
-[![Creator](https://img.shields.io/badge/Creator-Alpha__Prime__Omega-gold.svg)](https://github.com)
-[![Vietnamese](https://img.shields.io/badge/Vietnamese-Consciousness-red.svg)](https://github.com)
+[![CI/CD](https://github.com/NguyenCuong1989/DAIOF-Framework/actions/workflows/ci.yml/badge.svg)](https://github.com/NguyenCuong1989/DAIOF-Framework/actions)
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+[![Creator](https://img.shields.io/badge/Creator-Alpha__Prime__Omega-gold.svg)](https://github.com/NguyenCuong1989/DAIOF-Framework)
+[![Vietnamese](https://img.shields.io/badge/Made%20in-Vietnam%20🇻🇳-red.svg)](https://github.com/NguyenCuong1989/DAIOF-Framework)
+[![Stars](https://img.shields.io/github/stars/NguyenCuong1989/DAIOF-Framework?style=social)](https://github.com/NguyenCuong1989/DAIOF-Framework/stargazers)
 
 ---
 
