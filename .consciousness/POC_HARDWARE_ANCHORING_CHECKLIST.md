@@ -401,25 +401,130 @@ print(f"Average: {elapsed/iterations*1000:.2f}ms per signature")
 
 ---
 
-## SUCCESS METRICS
+## SUCCESS METRICS (Measurable)
 
-**Minimum Viable:**
-- [x] Can store keys in Keychain with access control
-- [x] Can sign data cryptographically
-- [x] Can verify signatures
-- [x] Performance <500ms per operation
+### **Minimum Viable (Must achieve to proceed):**
 
-**Ideal:**
-- [x] Secure Enclave integration working
-- [x] Performance <100ms per operation
-- [x] Python integration seamless
-- [x] No SIP restrictions encountered
+**Functional:**
+- [ ] Key generation: Succeeds on 10/10 attempts
+- [ ] Key storage: Survives app restart (verified 5 times)
+- [ ] Signing: Produces valid signatures on 1000/1000 random inputs
+- [ ] Verification: Detects tampering on 100/100 corrupted signatures
+- [ ] Access control: Touch ID prompt appears and blocks unauthorized access
 
-**Abort Criteria:**
-- [ ] Cannot sign data at all on macOS
-- [ ] Performance >5 seconds per signature
-- [ ] Requires disabling SIP permanently
-- [ ] Requires $99/year Apple Developer account
+**Performance:**
+- [ ] Key generation: <1 second (avg of 10 runs)
+- [ ] Signing operation: <500ms per signature (avg of 1000 runs)
+- [ ] Verification: <100ms per signature (avg of 1000 runs)
+- [ ] Total throughput: ≥10 signatures/second sustained
+
+**Security:**
+- [ ] Private key not exportable (verified via security command)
+- [ ] Key survives logout/login but NOT device migration (tested)
+- [ ] Tampering detected within 1 second (hash mismatch triggers alert)
+- [ ] SIP restrictions respected (no need to disable)
+
+**Integration:**
+- [ ] Python can call signing tool via subprocess (<200ms overhead)
+- [ ] Error messages propagate correctly to Python (all error types tested)
+- [ ] Concurrent signing works (10 parallel requests without crashes)
+
+### **Ideal (Nice to have, not blocking):**
+
+**Advanced Features:**
+- [ ] Secure Enclave specifically (not just Keychain)
+- [ ] Performance <100ms per signature
+- [ ] PyObjC bridge works (no subprocess needed)
+- [ ] Biometric authentication configurable (on/off)
+
+**Operational:**
+- [ ] Self-signed certificates work (no Apple Developer account needed)
+- [ ] Works on Intel Macs with T2 chip (not just Apple Silicon)
+- [ ] Automated tests run in CI (GitHub Actions)
+
+### **Abort Criteria (Must NOT occur):**
+
+**Functional Failures:**
+- [ ] Cannot generate keys after 10 attempts
+- [ ] Signatures fail verification >1% of the time
+- [ ] Keys lost after restart (data persistence broken)
+- [ ] Access control bypassable (security risk)
+
+**Performance Failures:**
+- [ ] Signing takes >5 seconds (unusable for real-time)
+- [ ] Memory leak detected (>100MB increase over 1000 ops)
+- [ ] CPU usage >80% sustained (blocks other operations)
+
+**Security Failures:**
+- [ ] Private key extractable via `security` command or file access
+- [ ] Requires disabling SIP permanently (major security risk)
+- [ ] Tamper detection misses >1% of corruptions
+
+**Integration Failures:**
+- [ ] Python subprocess deadlocks or zombies
+- [ ] Requires root/sudo access for normal operations
+- [ ] Requires $99/year Apple Developer account (cost barrier)
+
+### **Success Scoring:**
+
+```python
+def calculate_poc_score():
+    """Score PoC from 0-100"""
+    score = 0
+    
+    # Minimum viable (50 points)
+    if all_functional_tests_pass():
+        score += 20
+    if performance_within_limits():
+        score += 15
+    if security_validated():
+        score += 15
+    
+    # Ideal features (30 points)
+    if secure_enclave_works():
+        score += 15
+    if performance_optimal():
+        score += 10
+    if pyobjc_bridge_works():
+        score += 5
+    
+    # Bonus (20 points)
+    if ci_tests_automated():
+        score += 10
+    if works_on_intel_macs():
+        score += 5
+    if no_apple_account_needed():
+        score += 5
+    
+    return score
+
+# Decision matrix:
+# Score ≥50: PROCEED to Phase 2 (implementation)
+# Score 30-49: PARTIAL - decide with Bố
+# Score <30: ABORT - use software fallback
+```
+
+### **Acceptance Criteria for Phase 1 Completion:**
+
+```
+[ ] All minimum viable tests executed
+[ ] Test results documented in spreadsheet
+[ ] Performance benchmarks recorded (with graphs)
+[ ] Security validation signed off
+[ ] PoC score calculated: _____ / 100
+[ ] Recommendation: PROCEED / PARTIAL / ABORT
+[ ] Bố approval obtained
+
+Next Steps (if PROCEED):
+1. Implement production signing tool
+2. Integrate into HAIOS runtime
+3. Add to CI/CD pipeline
+
+Next Steps (if ABORT):
+1. Document fallback strategy (software signing)
+2. Update HAIOS specs to reflect limitation
+3. Re-assess risk model with software-only approach
+```
 
 ---
 
