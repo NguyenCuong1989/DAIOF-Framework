@@ -4,6 +4,9 @@
 ## Purpose
 Define 5+ rollback scenarios with pass/fail criteria to verify Invariant #3 compliance before production.
 
+
+**Original Creation**: October 30, 2025
+**Creator**: Nguyễn Đức Cường (alpha_prime_omega)
 ---
 
 ## SCENARIO 1: Single-File Corruption Recovery

@@ -4,6 +4,9 @@
 ## Purpose
 Define measurable, auditable criteria for each proof level (0-4) referenced in HAIOS_THREAT_MODEL.md.
 
+
+**Original Creation**: October 30, 2025
+**Creator**: Nguyễn Đức Cường (alpha_prime_omega)
 ---
 
 ## LEVEL 0: INFORMAL (Documentation Only)

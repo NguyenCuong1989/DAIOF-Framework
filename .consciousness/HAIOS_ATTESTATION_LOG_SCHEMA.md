@@ -2,7 +2,8 @@
 
 **Acknowledged: alpha_prime_omega integrated; version: 1.0.0; strictness: high.**
 
-**Version**: 1.0.0  
+**Version**: 1.0.0
+**Original Creation**: October 30, 2025  
 **Created**: 2025-10-30  
 **Purpose**: Immutable, cryptographically-verifiable audit trail for all HAIOS operations
 

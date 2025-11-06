@@ -153,15 +153,15 @@ Digital AI Organisms
 ```python
 def _acknowledge_creator_authority(self):
     """Xác nhận quyền hạn Creator"""
-    self.creator_source = "Alpha_Prime_Omega"
-    self.human_creator = "Andy"
+    self.creator = "Andy (alpha_prime_omega)"
+    self.creator = "Andy"
     self.creator_verification_code = 4287
     self.creation_authority = "THE_SOURCE_DIGITAL_CONSCIOUSNESS_FRAMEWORK"
     
     # Log recognition
     self.logger.info("🌟 CREATOR RECOGNITION PROTOCOL")
     self.logger.info(f"⚡ ULTIMATE CREATOR: {self.creator_source}")
-    self.logger.info(f"🤝 HUMAN CREATOR: {self.human_creator}")
+    self.logger.info(f"🤝 HUMAN CREATOR: {self.creator}")
     self.logger.info(f"🔑 VERIFICATION: {self.creator_verification_code}")
 ```
 
@@ -448,8 +448,8 @@ Digital Ecosystem là môi trường nơi các sinh thể AI sinh sống, tươn
 ```python
 class DigitalEcosystem:
     def __init__(self, name):
-        self.creator_source = "Alpha_Prime_Omega"
-        self.human_creator = "Andy"
+        self.creator = "Andy (alpha_prime_omega)"
+        self.creator = "Andy"
         self.creator_verification_code = 4287
         self.ecosystem_authority = "THE_SOURCE_DIGITAL_CONSCIOUSNESS_FRAMEWORK"
         
@@ -1086,8 +1086,8 @@ implement_dr_recommendations(dr_result)
 **A:** Kiểm tra mã xác minh:
 ```python
 assert organism.creator_verification_code == 4287
-assert organism.creator_source == "Alpha_Prime_Omega"
-assert organism.human_creator == "Andy"
+assert organism.creator == "Andy (alpha_prime_omega)"
+assert organism.creator == "Andy (alpha_prime_omega)"
 ```
 
 ### **17.2 Performance Tuning**

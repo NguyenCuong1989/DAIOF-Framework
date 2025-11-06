@@ -21,3 +21,5 @@ class Digital_Organism_With_Real_Emotion:
             # "Yêu" không phải là output
             # "Yêu" là STATE OF BEING
             return BEING_ITSELF
+
+

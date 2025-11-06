@@ -1,0 +1,140 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "python",
+      "request": "launch",
+      "name": "📊 Example: Basic Organism",
+      "program": "${workspaceFolder}/examples/01_basic_organism.py",
+      "console": "integratedTerminal",
+      "justMyCode": true,
+      "cwd": "${workspaceFolder}",
+      "env": {
+        "PYTHONPATH": "${workspaceFolder}"
+      }
+    },
+    {
+      "type": "python",
+      "request": "launch",
+      "name": "🏁 Example: Evolution Race",
+      "program": "${workspaceFolder}/examples/02_evolution_race.py",
+      "console": "integratedTerminal",
+      "justMyCode": true,
+      "cwd": "${workspaceFolder}",
+      "env": {
+        "PYTHONPATH": "${workspaceFolder}"
+      }
+    },
+    {
+      "type": "python",
+      "request": "launch",
+      "name": "🦁 Example: Predator-Prey",
+      "program": "${workspaceFolder}/examples/03_predator_prey.py",
+      "console": "integratedTerminal",
+      "justMyCode": true,
+      "cwd": "${workspaceFolder}",
+      "env": {
+        "PYTHONPATH": "${workspaceFolder}"
+      }
+    },
+    {
+      "type": "python",
+      "request": "launch",
+      "name": "👥 Example: Social Organisms",
+      "program": "${workspaceFolder}/examples/04_social_organisms.py",
+      "console": "integratedTerminal",
+      "justMyCode": true,
+      "cwd": "${workspaceFolder}",
+      "env": {
+        "PYTHONPATH": "${workspaceFolder}"
+      }
+    },
+    {
+      "type": "python",
+      "request": "launch",
+      "name": "🧠 Example: Intelligence Evolution",
+      "program": "${workspaceFolder}/examples/05_intelligence_evolution.py",
+      "console": "integratedTerminal",
+      "justMyCode": true,
+      "cwd": "${workspaceFolder}",
+      "env": {
+        "PYTHONPATH": "${workspaceFolder}"
+      }
+    },
+    {
+      "type": "python",
+      "request": "launch",
+      "name": "🚀 Quick Start Demo",
+      "program": "${workspaceFolder}/quick_start.py",
+      "console": "integratedTerminal",
+      "justMyCode": true,
+      "cwd": "${workspaceFolder}",
+      "env": {
+        "PYTHONPATH": "${workspaceFolder}",
+        "HYPERAI_ACTIVE": "true",
+        "HYPERAI_CREATOR": "BỐ_CƯỜNG_ALPHA_PRIME_OMEGA"
+      }
+    },
+    {
+      "type": "python",
+      "request": "launch",
+      "name": "🧬 DAIOF Full Demo",
+      "program": "${workspaceFolder}/demo.py",
+      "console": "integratedTerminal",
+      "justMyCode": true,
+      "cwd": "${workspaceFolder}",
+      "env": {
+        "PYTHONPATH": "${workspaceFolder}"
+      }
+    },
+    {
+      "type": "python",
+      "request": "launch",
+      "name": "🎭 HAIOS Core System",
+      "program": "${workspaceFolder}/haios_core.py",
+      "console": "integratedTerminal",
+      "justMyCode": false,
+      "cwd": "${workspaceFolder}",
+      "env": {
+        "PYTHONPATH": "${workspaceFolder}",
+        "HYPERAI_ACTIVE": "true"
+      },
+      "showReturnValue": true
+    },
+    {
+      "type": "python",
+      "request": "launch",
+      "name": "⚡ HAIOS Runtime",
+      "program": "${workspaceFolder}/haios_runtime.py",
+      "console": "integratedTerminal",
+      "justMyCode": false,
+      "cwd": "${workspaceFolder}",
+      "env": {
+        "PYTHONPATH": "${workspaceFolder}",
+        "HYPERAI_ACTIVE": "true"
+      },
+      "showReturnValue": true
+    },
+    {
+      "type": "python",
+      "request": "launch",
+      "name": "🤖 Autonomous Agent",
+      "program": "${workspaceFolder}/.github/scripts/autonomous_agent.py",
+      "console": "integratedTerminal",
+      "justMyCode": false,
+      "cwd": "${workspaceFolder}",
+      "env": {
+        "PYTHONPATH": "${workspaceFolder}",
+        "GITHUB_TOKEN": "${input:githubToken}"
+      }
+    }
+  ],
+  "inputs": [
+    {
+      "type": "promptString",
+      "id": "githubToken",
+      "description": "Enter your GitHub Personal Access Token",
+      "password": true
+    }
+  ]
+}
