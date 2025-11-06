@@ -5,11 +5,13 @@ Demonstrates fundamental organism capabilities: genome, metabolism, decision-mak
 
 This is the SIMPLEST example to understand DAIOF Framework.
 Perfect for: First-time users, tutorials, quick demos
+
+Creator: Nguyễn Đức Cường (alpha_prime_omega)
+Framework: DAIOF (Digital Autonomous Intelligent Organism Framework)
+Original Creation: October 30, 2025
 """
 
-from daiof.core.digital_organism import DigitalOrganism
-from daiof.core.digital_genome import DigitalGenome
-from daiof.core.digital_metabolism import DigitalMetabolism
+from src.digital_organism import DigitalOrganism, DigitalGenome
 
 
 def main():
@@ -33,22 +35,25 @@ def main():
     print("Step 1: Creating Genome (DNA)...")
     print("-" * 60)
     
-    genome = DigitalGenome()
+    genome = DigitalGenome(
+        traits={
+            'learning_rate': 0.5,           # How fast it learns
+            'exploration_factor': 0.3,      # How much it explores
+            'energy_efficiency': 0.7,       # How well it uses energy
+            'memory_retention': 0.8,        # How well it remembers
+            'social_tendency': 0.5,         # Social behavior
+            'adaptation_speed': 0.6,        # How fast it adapts
+            'risk_tolerance': 0.4,          # Risk-taking behavior
+            'reproduction_rate': 0.5        # Reproduction capability
+        },
+        mutation_rate=0.1
+    )
     
-    # Set basic traits
-    genome.set_gene('learning_rate', 0.5)          # How fast it learns
-    genome.set_gene('exploration_factor', 0.3)     # How much it explores
-    genome.set_gene('energy_efficiency', 0.7)      # How well it uses energy
-    
-    # Immutable genes (cannot be changed)
-    genome.set_immutable_gene('human_dependency_coefficient', 1.0)
-    genome.set_immutable_gene('symbiotic_existence_required', True)
-    
-    print(f"✅ Genome created with {len(genome.genes)} genes")
-    print(f"   - Learning Rate: {genome.get_gene('learning_rate')}")
-    print(f"   - Exploration: {genome.get_gene('exploration_factor')}")
-    print(f"   - Energy Efficiency: {genome.get_gene('energy_efficiency')}")
-    print(f"   - Human Dependency: {genome.get_gene('human_dependency_coefficient')} (immutable)")
+    print(f"✅ Genome created with {len(genome.traits)} traits")
+    print(f"   - Learning Rate: {genome.traits['learning_rate']}")
+    print(f"   - Exploration: {genome.traits['exploration_factor']}")
+    print(f"   - Energy Efficiency: {genome.traits['energy_efficiency']}")
+    print(f"   - Memory Retention: {genome.traits['memory_retention']}")
     print()
     
     # Step 2: Create the Organism
@@ -56,33 +61,36 @@ def main():
     print("-" * 60)
     
     organism = DigitalOrganism(
-        genome=genome,
         organism_id="basic_001",
-        name="Alpha"
+        genome=genome,
+        initial_resources={
+            'cpu_cycles': 100,
+            'memory_units': 50,
+            'network_bandwidth': 30,
+            'storage_space': 20,
+            'knowledge_points': 10
+        }
     )
     
-    print(f"✅ Organism '{organism.name}' created (ID: {organism.organism_id})")
-    print(f"   - Initial Health: {organism.get_health():.1%}")
-    print(f"   - Initial Energy: {organism.metabolism.get_energy_level():.1f}")
+    print(f"✅ Organism '{organism.organism_id}' created")
+    print(f"   - Initial Energy: {organism.energy:.1f}")
+    print(f"   - Fitness: {organism.fitness:.2f}")
+    print(f"   - Generation: {organism.generation}")
     print()
     
     # Step 3: Demonstrate Metabolism
     print("Step 3: Testing Metabolism (Energy Management)...")
     print("-" * 60)
     
-    # Consume resources (like thinking or processing)
-    print("🔥 Organism consuming energy for processing...")
-    organism.metabolism.consume_resource('cpu_cycles', 10)
-    organism.metabolism.consume_resource('memory_units', 5)
+    print(f"🔥 Organism performing actions (consuming energy)...")
     
-    print(f"   Energy after consumption: {organism.metabolism.get_energy_level():.1f}")
-    print()
+    # Simulate thinking/processing (costs energy)
+    initial_energy = organism.energy
+    organism.consume_energy(10)
     
-    # Regenerate resources (like resting or recharging)
-    print("🔋 Organism regenerating energy...")
-    organism.metabolism.regenerate(amount=20)
-    
-    print(f"   Energy after regeneration: {organism.metabolism.get_energy_level():.1f}")
+    print(f"   Energy before: {initial_energy:.1f}")
+    print(f"   Energy consumed: 10")
+    print(f"   Energy after: {organism.energy:.1f}")
     print()
     
     # Step 4: Make Decisions
@@ -91,6 +99,9 @@ def main():
     
     # Simulate environmental input
     environment_data = {
+        'challenge_level': 0.6,
+        'resource_availability': 0.7,
+        'threat_level': 0.3,
         'temperature': 25.0,
         'complexity': 0.6,
         'urgency': 0.8
@@ -98,12 +109,13 @@ def main():
     
     print(f"📊 Environment: {environment_data}")
     
-    # Organism decides based on genome and environment
-    decision = organism.decide(environment_data)
+    # Organism perceives and decides
+    decision = organism.perceive_and_decide(environment_data)
     
-    print(f"🧠 Decision made: {decision}")
-    print(f"   - Action: {decision.get('action', 'process')}")
+    print(f"🧠 Decision made:")
+    print(f"   - Action: {decision.get('action', 'unknown')}")
     print(f"   - Confidence: {decision.get('confidence', 0.0):.1%}")
+    print(f"   - Reasoning: {decision.get('reasoning', 'N/A')}")
     print()
     
     # Step 5: Learn from Experience
@@ -111,41 +123,68 @@ def main():
     print("-" * 60)
     
     experience = {
-        'input': environment_data,
-        'output': decision,
-        'reward': 0.8  # How good was the decision
+        'state': environment_data,
+        'action': decision.get('action', 'process'),
+        'reward': 0.8,  # How good was the decision
+        'next_state': {
+            'challenge_level': 0.5,
+            'resource_availability': 0.8,
+            'threat_level': 0.2
+        }
     }
     
-    organism.learn(experience)
+    organism.learn_from_experience(experience)
     
     print(f"✅ Organism learned from experience (reward: {experience['reward']:.1%})")
-    print(f"   - Learning buffer size: {len(organism.nervous_system.learning_buffer)}")
+    print(f"   - Memory size: {len(organism.nervous_system.memory)}")
     print()
     
-    # Step 6: Check Final Health
-    print("Step 6: Final Health Check...")
+    # Step 6: Evolution - Create Offspring
+    print("Step 6: Evolution (Creating Offspring)...")
     print("-" * 60)
     
-    final_health = organism.get_health()
-    final_energy = organism.metabolism.get_energy_level()
+    offspring = organism.reproduce()
     
-    print(f"🏥 Organism Health Report:")
-    print(f"   - Overall Health: {final_health:.1%}")
-    print(f"   - Energy Level: {final_energy:.1f}")
-    print(f"   - Age: {organism.age} cycles")
-    print(f"   - Experiences: {len(organism.nervous_system.learning_buffer)}")
+    print(f"👶 Offspring created: {offspring.organism_id}")
+    print(f"   - Parent generation: {organism.generation}")
+    print(f"   - Offspring generation: {offspring.generation}")
+    print(f"   - Genome mutated: {offspring.genome != organism.genome}")
+    print()
+    
+    # Compare traits
+    print("🔬 Trait comparison (Parent → Offspring):")
+    for trait_name in ['learning_rate', 'exploration_factor', 'energy_efficiency']:
+        parent_val = organism.genome.traits[trait_name]
+        offspring_val = offspring.genome.traits[trait_name]
+        change = offspring_val - parent_val
+        print(f"   - {trait_name}: {parent_val:.3f} → {offspring_val:.3f} ({change:+.3f})")
+    print()
+    
+    # Step 7: Check Final Status
+    print("Step 7: Final Status Check...")
+    print("-" * 60)
+    
+    status = organism.get_status()
+    
+    print(f"🏥 Organism Status Report:")
+    print(f"   - ID: {status['organism_id']}")
+    print(f"   - Energy: {status['energy']:.1f}")
+    print(f"   - Fitness: {status['fitness']:.2f}")
+    print(f"   - Age: {status['age']} cycles")
+    print(f"   - Alive: {status['alive']}")
+    print(f"   - Generation: {status['generation']}")
     
     # Health assessment
-    if final_health >= 0.8:
-        status = "💚 EXCELLENT"
-    elif final_health >= 0.6:
-        status = "💛 GOOD"
-    elif final_health >= 0.4:
-        status = "🧡 FAIR"
+    if status['energy'] >= 80:
+        health_status = "💚 EXCELLENT"
+    elif status['energy'] >= 60:
+        health_status = "💛 GOOD"
+    elif status['energy'] >= 40:
+        health_status = "🧡 FAIR"
     else:
-        status = "❤️ NEEDS ATTENTION"
+        health_status = "❤️ NEEDS ATTENTION"
     
-    print(f"   - Status: {status}")
+    print(f"   - Status: {health_status}")
     print()
     
     # Summary
@@ -154,16 +193,23 @@ def main():
     print("="*60)
     print()
     print("Key Takeaways:")
-    print("1. Genomes define organism characteristics (like DNA)")
-    print("2. Metabolism manages energy (like eating/resting)")
-    print("3. Organisms make decisions based on genome + environment")
+    print("1. Genomes define organism characteristics (8 core traits)")
+    print("2. Organisms consume energy when performing actions")
+    print("3. Decisions are made based on genome + environment")
     print("4. Learning improves decision-making over time")
-    print("5. Health depends on energy, age, and experiences")
+    print("5. Reproduction creates mutated offspring (evolution!)")
     print()
     print("Next Steps:")
     print("- Try: examples/02_evolution_race.py (see organisms evolve)")
     print("- Try: examples/03_predator_prey.py (ecosystem simulation)")
+    print("- Try: examples/04_multi_species.py (complex ecosystems)")
     print("- Read: docs/ for detailed documentation")
+    print()
+    print("---")
+    print("Powered by HYPERAI Framework")
+    print("Creator: Nguyễn Đức Cường (alpha_prime_omega)")
+    print("Original Creation: October 30, 2025")
+    print("---")
     print()
 
 

@@ -4,6 +4,9 @@
 ## Purpose
 Define measurable Key Performance Indicators for HAIOS governance, security, and operations.
 
+
+**Original Creation**: October 30, 2025
+**Creator**: Nguyễn Đức Cường (alpha_prime_omega)
 ---
 
 ## CATEGORY 1: GOVERNANCE EFFICIENCY

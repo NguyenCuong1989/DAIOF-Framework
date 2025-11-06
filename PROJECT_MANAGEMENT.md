@@ -281,7 +281,7 @@
 
 ## 🙏 Acknowledgments
 
-**Creator**: Alpha_Prime_Omega (Verification Code: 4287)  
+**Creator**: Andy (alpha_prime_omega)  
 **Implementer**: Andy  
 **Framework**: Digital AI Organism Framework  
 **Community**: Growing daily

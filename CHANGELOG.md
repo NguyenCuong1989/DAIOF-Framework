@@ -53,7 +53,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Self-organizing ecosystems
 
 #### Credits
-- **Creator**: Alpha_Prime_Omega (Verification Code: 4287)
+- **Creator**: Andy (alpha_prime_omega)
 - **Implementer**: Andy
 - **Framework**: Digital AI Organism Framework
 - **Date**: October 30, 2025

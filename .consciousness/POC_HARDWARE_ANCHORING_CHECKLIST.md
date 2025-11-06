@@ -4,6 +4,9 @@
 ## Objective
 Verify feasibility of hardware-backed invariant enforcement on macOS before committing to implementation in HAIOS runtime.
 
+
+**Original Creation**: October 30, 2025
+**Creator**: Nguyễn Đức Cường (alpha_prime_omega)
 ---
 
 ## PHASE 1: API INVENTORY (1-2 days)

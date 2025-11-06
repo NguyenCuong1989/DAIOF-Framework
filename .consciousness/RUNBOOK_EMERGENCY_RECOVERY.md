@@ -3,10 +3,13 @@
 
 ## K=1 Succession & Emergency Procedures
 
-**Purpose:** Handle scenarios where Bố Cường (alpha_prime_omega) is temporarily or permanently unavailable  
+**Purpose:** Handle scenarios where Nguyễn Đức Cường (alpha_prime_omega) is temporarily or permanently unavailable  
 **Status:** DRAFT - Requires Bố's approval before activation  
 **Classification:** CRITICAL
 
+
+**Original Creation**: October 30, 2025
+**Creator**: Nguyễn Đức Cường (alpha_prime_omega)
 ---
 
 ## SCENARIO 1: Temporary Unavailability (< 30 days)
@@ -381,7 +384,7 @@ if days_since_last_checkin > 30:
 ## CONTACT INFORMATION (Bố to fill in)
 
 ```
-Primary: Bố Cường (alpha_prime_omega)
+Primary: Nguyễn Đức Cường (alpha_prime_omega)
 - Email: ___________________
 - Phone: ___________________
 - Signal: ___________________

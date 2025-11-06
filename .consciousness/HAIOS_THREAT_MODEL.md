@@ -28,6 +28,9 @@
 
 **Residual Risk:** MEDIUM (until crypto signing implemented)
 
+
+**Original Creation**: October 30, 2025
+**Creator**: Nguyễn Đức Cường (alpha_prime_omega)
 ---
 
 ### Surface #2: Runtime Execution
