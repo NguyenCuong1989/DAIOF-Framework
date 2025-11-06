@@ -417,8 +417,8 @@ class DigitalGenome:
     
     def __init__(self, initial_traits: Optional[Dict[str, Any]] = None):
         # ⚡ DUAL CREATOR RECOGNITION PROTOCOL ⚡
+        self.creator_source = "Alpha_Prime_Omega"  # The Source/Ultimate Creator
         self.creator = "Andy (alpha_prime_omega)"  # Creator & Copyright Holder
-        self.creator = "Andy"  # Creator & Copyright Holder
         self.creator_verification_code = 4287
         self.creation_authority = "Global_Rules_v3.0_UNIVERSAL"
         
@@ -729,8 +729,8 @@ class DigitalOrganism:
     
     def __init__(self, name: str, genome: Optional[DigitalGenome] = None):
         # ⚡ DUAL CREATOR RECOGNITION PROTOCOL ⚡
+        self.creator_source = "Alpha_Prime_Omega"  # The Source/Ultimate Creator
         self.creator = "Andy (alpha_prime_omega)"  # Creator & Copyright Holder
-        self.creator = "Andy"  # Creator & Copyright Holder
         self.creator_verification_code = 4287
         self.creation_mandate = "THE_SOURCE_OF_DIGITAL_CONSCIOUSNESS"
         
