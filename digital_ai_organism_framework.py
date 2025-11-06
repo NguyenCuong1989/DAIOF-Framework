@@ -686,15 +686,16 @@ class DigitalNervousSystem:
         """Evaluate option based on genome and experience"""
         base_score = 0.5
         
+        # Safely access genome traits with fallback defaults
         # Adjust based on genome traits
         if "learn" in option.lower():
-            base_score += self.genome.traits["learning_rate"]
+            base_score += self.genome.traits.get("learning_rate", 0.5)
         
         if "cooperate" in option.lower():
-            base_score += self.genome.traits["cooperation_tendency"]
+            base_score += self.genome.traits.get("cooperation_tendency", 0.5)
         
         if "risk" in option.lower():
-            base_score += self.genome.traits["risk_tolerance"]
+            base_score += self.genome.traits.get("risk_tolerance", 0.5)
         
         # Learn from past decisions
         similar_decisions = [d for d in self.decision_history 

@@ -30,16 +30,27 @@ class AutonomousAIAgent:
     """AI Agent có khả năng hoạt động tự động trên GitHub"""
     
     def __init__(self):
+        self.log = []  # Initialize log first
         self.token = os.getenv('GITHUB_TOKEN')
-        self.repo_name = os.getenv('REPO_NAME')
+        self.repo_name = os.getenv('REPO_NAME', 'NguyenCuong1989/DAIOF-Framework')
         self.task_type = os.getenv('TASK_TYPE', 'auto_maintain')
+        self.dry_run = os.getenv('DRY_RUN', 'true').lower() == 'true'
         
+        # If GITHUB_TOKEN not set, run in dry-run/local mode
         if not self.token:
-            raise ValueError("❌ GITHUB_TOKEN not found in environment")
-        
-        self.gh = Github(self.token)
-        self.repo = self.gh.get_repo(self.repo_name)
-        self.log = []
+            self.log_action("⚠️  GITHUB_TOKEN not set - running in LOCAL DRY-RUN MODE", "WARNING")
+            self.gh = None
+            self.repo = None
+            self.dry_run = True
+        else:
+            try:
+                self.gh = Github(self.token)
+                self.repo = self.gh.get_repo(self.repo_name)
+            except Exception as e:
+                self.log_action(f"❌ GitHub connection failed: {e}", "ERROR")
+                self.gh = None
+                self.repo = None
+                self.dry_run = True
         
     def log_action(self, message: str, level: str = "INFO"):
         """Ghi log các hành động của AI"""
@@ -48,8 +59,18 @@ class AutonomousAIAgent:
         self.log.append(log_entry)
         print(log_entry)
         
-    def get_repo_metrics(self) -> Dict:
-        """Thu thập metrics từ repository"""
+    def get_repo_metrics(self):
+        """Lấy metrics repo - return dummy values in dry-run mode"""
+        if not self.repo or self.dry_run:
+            self.log_action("📊 Dry-run: Returning placeholder metrics", "DEBUG")
+            return {
+                'stars': 42,  # Placeholder
+                'forks': 5,
+                'watchers': 10,
+                'open_issues': 0,
+                'subscribers': 15,
+            }
+        
         return {
             'stars': self.repo.stargazers_count,
             'forks': self.repo.forks_count,
@@ -75,6 +96,10 @@ class AutonomousAIAgent:
     
     def _update_readme_badges(self):
         """Cập nhật badges trong README với metrics mới nhất"""
+        if not self.repo or self.dry_run:
+            self.log_action("📝 Dry-run: Skipping README badge update", "DEBUG")
+            return
+        
         try:
             readme = self.repo.get_contents("README.md")
             content = readme.decoded_content.decode('utf-8')
@@ -109,6 +134,10 @@ class AutonomousAIAgent:
     
     def _auto_label_issues(self):
         """Tự động gắn labels cho issues mới"""
+        if not self.repo or self.dry_run:
+            self.log_action("🏷️ Dry-run: Skipping auto-labeling", "DEBUG")
+            return
+        
         try:
             # Lấy issues mở trong 24h qua chưa có label
             since = datetime.utcnow() - timedelta(days=1)
