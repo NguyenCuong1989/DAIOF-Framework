@@ -1353,7 +1353,7 @@ class AutonomousGitWorkflow:
                 self._save_workflow_log(results)
 
                 # Wait for next cycle
-                elapsed = (datetime.utcnow() - cycle_start).total_seconds()
+                elapsed = (datetime.now(UTC) - cycle_start).total_seconds()
                 sleep_time = max(0, interval - elapsed)
 
                 if sleep_time > 0:
