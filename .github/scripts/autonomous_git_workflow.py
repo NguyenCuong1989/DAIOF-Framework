@@ -186,17 +186,20 @@ class AutonomousGitWorkflow:
     def _parse_branch_info(self, branch_line: str) -> Dict[str, Any]:
         """Parse git branch information"""
         # ## branch-name...origin/branch-name [ahead 1, behind 2]
-        parts = branch_line.replace('## ', '').split()
-
-        if not parts:
+        branch_line = branch_line.replace('## ', '')
+        
+        if not branch_line:
             return {'name': 'unknown'}
-
-        branch_name = parts[0].split('...')[0]
-
-        info = {'name': branch_name}
-
-        if len(parts) > 1:
-            status_part = parts[1].strip('[]')
+        
+        # Split on [ to separate branch from status
+        if '[' in branch_line:
+            branch_part, status_part = branch_line.split('[', 1)
+            branch_name = branch_part.split('...')[0].strip()
+            status_part = status_part.rstrip(']').strip()
+            
+            info = {'name': branch_name}
+            
+            # Parse ahead/behind info
             if 'ahead' in status_part or 'behind' in status_part:
                 status_items = status_part.split(', ')
                 for item in status_items:
@@ -204,6 +207,10 @@ class AutonomousGitWorkflow:
                         info['ahead'] = int(item.split()[1])
                     elif 'behind' in item:
                         info['behind'] = int(item.split()[1])
+        else:
+            # No status info, just branch name
+            branch_name = branch_line.split('...')[0].strip()
+            info = {'name': branch_name}
 
         return info
 
