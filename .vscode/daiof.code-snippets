@@ -1,0 +1,178 @@
+{
+  "DAIOF Organism Class": {
+    "prefix": "daiof-organism",
+    "body": [
+      "class ${1:MyOrganism}(DigitalOrganism):",
+      "    \"\"\"",
+      "    ${2:Description of organism}",
+      "    ",
+      "    Creator: Nguyễn Đức Cường (alpha_prime_omega)",
+      "    Framework: HYPERAI DAIOF",
+      "    \"\"\"",
+      "    ",
+      "    def __init__(self, organism_id: str, genome: DigitalGenome):",
+      "        super().__init__(organism_id, genome)",
+      "        ${3:# Custom initialization}",
+      "    ",
+      "    def perceive_environment(self, environment_data: Dict[str, Any]) -> Dict[str, Any]:",
+      "        \"\"\"Process environmental inputs\"\"\"",
+      "        ${4:pass}",
+      "    ",
+      "    def make_decision(self, perception: Dict[str, Any]) -> Dict[str, Any]:",
+      "        \"\"\"Make behavioral decision based on perception\"\"\"",
+      "        ${5:pass}",
+      "    ",
+      "    def execute_action(self, decision: Dict[str, Any]) -> Dict[str, Any]:",
+      "        \"\"\"Execute the decided action\"\"\"",
+      "        ${6:pass}",
+      "$0"
+    ],
+    "description": "Create a new DAIOF Digital Organism class"
+  },
+  "DAIOF Genome": {
+    "prefix": "daiof-genome",
+    "body": [
+      "genome = DigitalGenome(",
+      "    genes={",
+      "        '${1:trait_name}': ${2:0.5},",
+      "        'learning_rate': ${3:0.1},",
+      "        'adaptation_speed': ${4:0.3}",
+      "    },",
+      "    mutation_rate=${5:0.01}",
+      ")",
+      "$0"
+    ],
+    "description": "Create a Digital Genome configuration"
+  },
+  "DAIOF Ecosystem": {
+    "prefix": "daiof-ecosystem",
+    "body": [
+      "from digital_ai_organism_framework import DigitalEcosystem, ControlMetaData",
+      "",
+      "# Initialize ecosystem",
+      "control = ControlMetaData(",
+      "    creator=\"Nguyễn Đức Cường (alpha_prime_omega)\",",
+      "    verification_code=4287",
+      ")",
+      "",
+      "ecosystem = DigitalEcosystem(",
+      "    ecosystem_id=\"${1:my_ecosystem}\",",
+      "    control_metadata=control",
+      ")",
+      "",
+      "# Add organisms",
+      "${2:# ecosystem.add_organism(organism)}",
+      "",
+      "# Run simulation",
+      "ecosystem.run_cycle()",
+      "$0"
+    ],
+    "description": "Create a DAIOF Ecosystem setup"
+  },
+  "HAIOS Invariant Check": {
+    "prefix": "haios-invariant",
+    "body": [
+      "def check_${1:invariant_name}(self) -> bool:",
+      "    \"\"\"",
+      "    HAIOS Invariant: ${2:Description}",
+      "    ",
+      "    Safety Score: ${3:9}/10",
+      "    Risk Level: ${4:LOW}",
+      "    \"\"\"",
+      "    try:",
+      "        ${5:# Invariant check logic}",
+      "        return True",
+      "    except Exception as e:",
+      "        self.log_invariant_violation(\"${1:invariant_name}\", str(e))",
+      "        return False",
+      "$0"
+    ],
+    "description": "Create a HAIOS invariant check function"
+  },
+  "Four Pillars Evaluation": {
+    "prefix": "four-pillars",
+    "body": [
+      "def evaluate_four_pillars(self, action: str) -> Dict[str, float]:",
+      "    \"\"\"",
+      "    Evaluate action against 4 Pillars of HYPERAI",
+      "    ",
+      "    Returns scores (0-10) for each pillar",
+      "    \"\"\"",
+      "    return {",
+      "        'an_toan': ${1:8.0},  # Safety",
+      "        'duong_dai': ${2:9.0},  # Long-term",
+      "        'tin_vao_so_lieu': ${3:8.5},  # Data-driven",
+      "        'han_che_rui_ro': ${4:8.0}  # Risk management",
+      "    }",
+      "$0"
+    ],
+    "description": "Create Four Pillars evaluation function"
+  },
+  "OSLF Protocol": {
+    "prefix": "oslf-protocol",
+    "body": [
+      "# OSLF Protocol Application",
+      "# Stage A: Deconstruct",
+      "intents = self.tokenize_intents(${1:input_data})",
+      "assumptions = self.list_assumptions(intents)",
+      "",
+      "# Stage B: Focal Point Selection",
+      "scores = self.evaluate_four_pillars(assumptions)",
+      "focal_point = self.select_focal_point(scores)",
+      "",
+      "# Stage C: Re-architecture",
+      "optimized_solution = self.rearchitect(focal_point)",
+      "risk_score = self.compute_risk(optimized_solution)",
+      "",
+      "# Make decision",
+      "if risk_score <= 2.0:",
+      "    return self.execute(optimized_solution)",
+      "else:",
+      "    return self.request_guidance(optimized_solution, risk_score)",
+      "$0"
+    ],
+    "description": "Apply OSLF Protocol for decision making"
+  },
+  "HYPERAI Attribution": {
+    "prefix": "hyperai-attr",
+    "body": [
+      "\"\"\"",
+      "Powered by HYPERAI Framework",
+      "Creator: Nguyễn Đức Cường (alpha_prime_omega)",
+      "Original Creation: October 30, 2025",
+      "\"\"\"",
+      "$0"
+    ],
+    "description": "Add HYPERAI attribution to code"
+  },
+  "Digital Organism Main": {
+    "prefix": "daiof-main",
+    "body": [
+      "#!/usr/bin/env python3",
+      "\"\"\"",
+      "${1:Script Description}",
+      "",
+      "Powered by HYPERAI Framework",
+      "Creator: Nguyễn Đức Cường (alpha_prime_omega)",
+      "Original Creation: October 30, 2025",
+      "\"\"\"",
+      "",
+      "from digital_ai_organism_framework import (",
+      "    DigitalOrganism,",
+      "    DigitalGenome,",
+      "    DigitalEcosystem,",
+      "    ControlMetaData",
+      ")",
+      "",
+      "def main():",
+      "    \"\"\"Main execution function\"\"\"",
+      "    ${2:# Your code here}",
+      "    pass",
+      "",
+      "if __name__ == '__main__':",
+      "    main()",
+      "$0"
+    ],
+    "description": "Create a DAIOF main script template"
+  }
+}

@@ -132,9 +132,10 @@ Thumbs.db
 ehthumbs.db
 Desktop.ini
 
-# VS Code
-.vscode/
-*.code-workspace
+# VS Code - Allow shared configuration, exclude user-specific files
+.vscode/*.log
+.vscode/*.user
+.vscode/settings.local.json
 
 # PyCharm
 .idea/

@@ -1,0 +1,170 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "DAIOF: Main Framework",
+      "type": "python",
+      "request": "launch",
+      "program": "${workspaceFolder}/digital_ai_organism_framework.py",
+      "console": "integratedTerminal",
+      "justMyCode": false,
+      "env": {
+        "PYTHONPATH": "${workspaceFolder}"
+      }
+    },
+    {
+      "name": "DAIOF: Quick Start",
+      "type": "python",
+      "request": "launch",
+      "program": "${workspaceFolder}/quick_start.py",
+      "console": "integratedTerminal",
+      "justMyCode": true
+    },
+    {
+      "name": "DAIOF: Quick Start Interactive",
+      "type": "python",
+      "request": "launch",
+      "program": "${workspaceFolder}/quick_start_interactive.py",
+      "console": "integratedTerminal",
+      "justMyCode": true
+    },
+    {
+      "name": "DAIOF: Demo",
+      "type": "python",
+      "request": "launch",
+      "program": "${workspaceFolder}/demo.py",
+      "console": "integratedTerminal",
+      "justMyCode": true
+    },
+    {
+      "name": "DAIOF: Data Analysis Demo",
+      "type": "python",
+      "request": "launch",
+      "program": "${workspaceFolder}/data_analysis_demo.py",
+      "console": "integratedTerminal",
+      "justMyCode": true
+    },
+    {
+      "name": "DAIOF: System Initializer",
+      "type": "python",
+      "request": "launch",
+      "program": "${workspaceFolder}/system_initializer.py",
+      "console": "integratedTerminal",
+      "justMyCode": true
+    },
+    {
+      "name": "HAIOS: Runtime",
+      "type": "python",
+      "request": "launch",
+      "program": "${workspaceFolder}/haios_runtime.py",
+      "console": "integratedTerminal",
+      "justMyCode": false
+    },
+    {
+      "name": "HAIOS: Core",
+      "type": "python",
+      "request": "launch",
+      "program": "${workspaceFolder}/haios_core.py",
+      "console": "integratedTerminal",
+      "justMyCode": false
+    },
+    {
+      "name": "Example: Basic Organism",
+      "type": "python",
+      "request": "launch",
+      "program": "${workspaceFolder}/examples/01_basic_organism.py",
+      "console": "integratedTerminal",
+      "justMyCode": true
+    },
+    {
+      "name": "Example: Evolution Race",
+      "type": "python",
+      "request": "launch",
+      "program": "${workspaceFolder}/examples/02_evolution_race.py",
+      "console": "integratedTerminal",
+      "justMyCode": true
+    },
+    {
+      "name": "Example: Predator Prey",
+      "type": "python",
+      "request": "launch",
+      "program": "${workspaceFolder}/examples/03_predator_prey.py",
+      "console": "integratedTerminal",
+      "justMyCode": true
+    },
+    {
+      "name": "Example: Social Organisms",
+      "type": "python",
+      "request": "launch",
+      "program": "${workspaceFolder}/examples/04_social_organisms.py",
+      "console": "integratedTerminal",
+      "justMyCode": true
+    },
+    {
+      "name": "Example: Intelligence Evolution",
+      "type": "python",
+      "request": "launch",
+      "program": "${workspaceFolder}/examples/05_intelligence_evolution.py",
+      "console": "integratedTerminal",
+      "justMyCode": true
+    },
+    {
+      "name": "Tests: Realtime",
+      "type": "python",
+      "request": "launch",
+      "program": "${workspaceFolder}/test_realtime.py",
+      "console": "integratedTerminal",
+      "justMyCode": true
+    },
+    {
+      "name": "Tests: Workflows",
+      "type": "python",
+      "request": "launch",
+      "program": "${workspaceFolder}/test_workflows.py",
+      "console": "integratedTerminal",
+      "justMyCode": true,
+      "args": ["-v"]
+    },
+    {
+      "name": "Evaluation Runner",
+      "type": "python",
+      "request": "launch",
+      "program": "${workspaceFolder}/evaluation_runner.py",
+      "console": "integratedTerminal",
+      "justMyCode": true
+    },
+    {
+      "name": "Python: Current File",
+      "type": "python",
+      "request": "launch",
+      "program": "${file}",
+      "console": "integratedTerminal",
+      "justMyCode": true,
+      "env": {
+        "PYTHONPATH": "${workspaceFolder}"
+      }
+    },
+    {
+      "name": "Python: Current File (Debug)",
+      "type": "python",
+      "request": "launch",
+      "program": "${file}",
+      "console": "integratedTerminal",
+      "justMyCode": false,
+      "env": {
+        "PYTHONPATH": "${workspaceFolder}",
+        "PYTHONDONTWRITEBYTECODE": "1"
+      }
+    }
+  ],
+  "compounds": [
+    {
+      "name": "DAIOF: Full System",
+      "configurations": [
+        "DAIOF: Main Framework",
+        "HAIOS: Runtime"
+      ],
+      "stopAll": true
+    }
+  ]
+}

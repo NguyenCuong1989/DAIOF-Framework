@@ -1,0 +1,51 @@
+{
+  "folders": [
+    {
+      "name": "🧬 DAIOF Framework (Root)",
+      "path": "."
+    },
+    {
+      "name": "📚 Examples",
+      "path": "./examples"
+    },
+    {
+      "name": "📦 Source Code",
+      "path": "./src"
+    },
+    {
+      "name": "🧪 Tests",
+      "path": "./tests"
+    },
+    {
+      "name": "📖 Documentation",
+      "path": "./docs"
+    },
+    {
+      "name": "🎯 Planning & Launch",
+      "path": "./launch"
+    },
+    {
+      "name": "🧠 Consciousness Core",
+      "path": "./.consciousness"
+    }
+  ],
+  "settings": {
+    "files.exclude": {
+      "**/__pycache__": true,
+      "**/*.pyc": true,
+      "**/node_modules": true
+    }
+  },
+  "launch": {
+    "version": "0.2.0",
+    "configurations": [],
+    "compounds": []
+  },
+  "extensions": {
+    "recommendations": [
+      "ms-python.python",
+      "ms-python.vscode-pylance",
+      "github.copilot"
+    ]
+  }
+}
