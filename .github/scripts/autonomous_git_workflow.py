@@ -633,7 +633,7 @@ class MultiRepositoryOrchestrator:
                 self._save_orchestration_log(results)
 
                 # Wait for next cycle
-                elapsed = (datetime.utcnow() - cycle_start).total_seconds()
+                elapsed = (datetime.now(UTC) - cycle_start).total_seconds()
                 sleep_time = max(0, interval - elapsed)
 
                 if sleep_time > 0:
@@ -662,7 +662,7 @@ class MultiRepositoryOrchestrator:
         log_dir = Path('logs')
         log_dir.mkdir(exist_ok=True)
 
-        log_file = log_dir / f"orchestration_{datetime.utcnow().strftime('%Y%m%d')}.json"
+        log_file = log_dir / f"orchestration_{datetime.now(UTC).strftime('%Y%m%d')}.json"
 
         # Load existing logs
         existing_logs = []
@@ -684,7 +684,7 @@ class MultiRepositoryOrchestrator:
     def _generate_final_report(self):
         """Generate final orchestration report"""
         report = {
-            'end_time': datetime.utcnow().isoformat(),
+            'end_time': datetime.now(UTC).isoformat(),
             'total_pilots': len(self.pilots),
             'final_health': {
                 'global_health': self.global_health,
@@ -855,7 +855,7 @@ class AutonomousGitWorkflow:
                 'modified_files': modified_files,
                 'remote_status': remote_status,
                 'state': self._determine_workflow_state(branch_info, modified_files, remote_status),
-                'timestamp': datetime.utcnow().isoformat()
+                'timestamp': datetime.now(UTC).isoformat()
             }
 
         except Exception as e:
@@ -962,7 +962,7 @@ class AutonomousGitWorkflow:
                 check=True
             )
 
-            self.last_commit_time = datetime.utcnow()
+            self.last_commit_time = datetime.now(UTC)
             self.logger.info(f"✅ Autonomous commit completed: {message}")
 
             # Update health metrics
@@ -1266,7 +1266,7 @@ class AutonomousGitWorkflow:
 
     def execute_workflow_cycle(self) -> Dict[str, Any]:
         """Execute complete workflow cycle"""
-        cycle_start = datetime.utcnow()
+        cycle_start = datetime.now(UTC)
 
         self.logger.info("🔄 Starting autonomous workflow cycle")
 
@@ -1317,8 +1317,8 @@ class AutonomousGitWorkflow:
                 })
 
         # Update cycle completion
-        results['cycle_end'] = datetime.utcnow().isoformat()
-        results['duration_seconds'] = (datetime.utcnow() - cycle_start).total_seconds()
+        results['cycle_end'] = datetime.now(UTC).isoformat()
+        results['duration_seconds'] = (datetime.now(UTC) - cycle_start).total_seconds()
 
         # Log final status
         self.logger.info(f"✅ Workflow cycle completed: {results['tasks_completed']} success, {results['tasks_failed']} failed")
@@ -1336,7 +1336,7 @@ class AutonomousGitWorkflow:
         try:
             while True:
                 cycle_count += 1
-                cycle_start = datetime.utcnow()
+                cycle_start = datetime.now(UTC)
 
                 self.logger.info(f"\n🔄 Cycle {cycle_count} - {cycle_start.strftime('%H:%M:%S UTC')}")
 
@@ -1373,7 +1373,7 @@ class AutonomousGitWorkflow:
         log_dir = self.repo_path / 'logs'
         log_dir.mkdir(exist_ok=True)
 
-        log_file = log_dir / f"workflow_{datetime.utcnow().strftime('%Y%m%d')}.json"
+        log_file = log_dir / f"workflow_{datetime.now(UTC).strftime('%Y%m%d')}.json"
 
         # Load existing logs
         existing_logs = []
@@ -1395,7 +1395,7 @@ class AutonomousGitWorkflow:
     def _generate_final_report(self):
         """Generate final workflow report"""
         report = {
-            'end_time': datetime.utcnow().isoformat(),
+            'end_time': datetime.now(UTC).isoformat(),
             'total_cycles': getattr(self, 'cycle_count', 0),
             'final_health': {
                 'k_state': self.k_state,
