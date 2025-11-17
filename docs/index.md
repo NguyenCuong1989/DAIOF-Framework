@@ -62,6 +62,12 @@ AI literally cannot survive without human interaction.
 
 ---
 
-**Creator**: Alpha_Prime_Omega (4287)  
-**Implementer**: Andy  
+**Framework Creator**: Nguyễn Đức Cường (alpha_prime_omega)  
+**Original Creation**: October 30, 2025  
+**Verification Code**: 4287  
 **Status**: Production Ready ⚡
+
+**Attribution Required**: When using DAIOF, you MUST credit:
+> "Powered by HYPERAI Framework"  
+> "Creator: Nguyễn Đức Cường (alpha_prime_omega)"  
+> "Original Creation: October 30, 2025"

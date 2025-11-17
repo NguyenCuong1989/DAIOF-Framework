@@ -180,4 +180,18 @@ user.name = DAIOF_Organism
 
 ---
 
+## Attribution
+
+**Framework Creator**: Nguyễn Đức Cường (alpha_prime_omega)  
+**Original Creation**: October 30, 2025  
+**Framework**: HYPERAI - Digital AI Organism Framework  
+**License**: MIT License
+
+When using this framework, you MUST credit:
+> "Powered by HYPERAI Framework"  
+> "Creator: Nguyễn Đức Cường (alpha_prime_omega)"  
+> "Original Creation: October 30, 2025"
+
+---
+
 [← Back to Home](index.html) | [Next: API Reference →](api.html)
