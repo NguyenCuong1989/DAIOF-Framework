@@ -23,10 +23,10 @@ import time
 import yaml
 import subprocess
 import threading
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, UTC
 from pathlib import Path
 from typing import Dict, List, Any, Optional, Tuple
-from github import Github, Repository, Issue, PullRequest
+from github import Github, Auth, Repository, Issue, PullRequest
 import logging
 import requests
 
@@ -48,7 +48,7 @@ class AuxiliaryPilot:
         self.repo_name = repo.full_name
         self.logger = main_controller.logger
         self.health_score = 100
-        self.last_activity = datetime.utcnow()
+        self.last_activity = datetime.now(UTC)
         self.active_issues = []
         self.pending_fixes = []
 
@@ -92,7 +92,7 @@ class AuxiliaryPilot:
         """Scan for new issues requiring attention"""
         try:
             # Get recent issues (last 24 hours)
-            since = datetime.utcnow() - timedelta(hours=24)
+            since = datetime.now(UTC) - timedelta(hours=24)
             issues = self.repo.get_issues(state='open', since=since)
 
             urgent_issues = []
@@ -360,7 +360,7 @@ This issue requires human review and cannot be auto-resolved by the auxiliary pi
             base_score -= workflow_penalty
 
             # Bonus for recent activity
-            days_since_push = (datetime.utcnow() - self.repo.pushed_at).days if self.repo.pushed_at else 30
+            days_since_push = (datetime.now(UTC) - self.repo.pushed_at).days if self.repo.pushed_at else 30
             activity_bonus = max(0, 10 - days_since_push)
             base_score += activity_bonus
 
@@ -466,7 +466,7 @@ class MultiRepositoryOrchestrator:
         self.logger.info("🔍 Starting multi-repository monitoring cycle")
 
         results = {
-            'timestamp': datetime.utcnow().isoformat(),
+            'timestamp': datetime.now(UTC).isoformat(),
             'total_repositories': len(self.pilots),
             'healthy_repositories': 0,
             'issues_detected': 0,
@@ -615,7 +615,7 @@ class MultiRepositoryOrchestrator:
         try:
             while True:
                 cycle_count += 1
-                cycle_start = datetime.utcnow()
+                cycle_start = datetime.now(UTC)
 
                 self.logger.info(f"\n🔄 Orchestration Cycle {cycle_count} - {cycle_start.strftime('%H:%M:%S UTC')}")
 
@@ -741,7 +741,7 @@ class AutonomousGitWorkflow:
 
         # Initialize GitHub API
         if self.github_token:
-            self.gh = Github(self.github_token)
+            self.gh = Github(auth=Auth.Token(self.github_token))
             self.repo = self.gh.get_repo(os.environ.get('GITHUB_REPOSITORY', 'NguyenCuong1989/DAIOF-Framework'))
 
         # State tracking
