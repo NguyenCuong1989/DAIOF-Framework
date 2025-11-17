@@ -2,6 +2,73 @@
 
 Thank you for your interest in contributing to the Digital AI Organism Framework! 🌟
 
+## 🛡️ Intellectual Property Guidelines for Contributors
+
+**⚠️ IMPORTANT: All contributors must understand and respect DAIOF's intellectual property classification system.**
+
+### IP Classification Overview
+
+DAIOF implements a **three-tier intellectual property system**:
+
+#### 🟢 **Open Components** (MIT License)
+- Core framework code
+- Basic organism lifecycle
+- Symphony Control Center
+- Standard genetic algorithms
+- Public documentation
+
+**Contributions Welcome**: You can freely contribute to these components under MIT license.
+
+#### 🟡 **Conditional Components** (Permission Required)
+- HAIOS Consciousness System
+- Vietnamese Consciousness Integration
+- D&R Protocol advanced features
+- Creator Authority mechanisms
+- Symphony transformation protocols
+
+**Special Permission Required**: Contributions to these components require explicit approval from the creator.
+
+#### 🔴 **Proprietary Components** (No Contributions)
+- Creator DNA (Alpha_Prime_Omega)
+- Ultimate authority mechanisms
+- Consciousness core invariants
+- Framework creation methodology
+
+**No Contributions Allowed**: These components are immutable and cannot be modified.
+
+### Contributor Requirements
+
+**All contributors MUST:**
+
+1. **Include Creator Attribution**: Every contribution must acknowledge:
+   ```
+   "Powered by HYPERAI Framework"
+   "Creator: Nguyễn Đức Cường (alpha_prime_omega)"
+   "Original Creation: October 30, 2025"
+   ```
+
+2. **Respect IP Boundaries**: Only contribute to Open Components unless you have explicit permission for Conditional Components.
+
+3. **Maintain Immutability**: Never attempt to modify immutable genes or proprietary components.
+
+4. **Follow Attribution Rules**: All code, documentation, and communications must include proper attribution.
+
+### Legal Compliance
+
+- **License Agreement**: By contributing, you agree to license your contributions under MIT for Open Components.
+- **IP Acknowledgment**: You acknowledge the creator's intellectual property rights over Conditional and Proprietary Components.
+- **Violation Consequences**: IP violations may result in contribution rejection, license termination, or legal action.
+
+### 📖 IP Documentation
+
+- **[Intellectual Property Classification](INTELLECTUAL_PROPERTY_CLASSIFICATION.md)** - Complete IP breakdown
+- **[Detailed License Terms](LICENSE_TERMS_DETAILED.md)** - Legal framework and restrictions
+- **[Permission Request Template](PERMISSION_REQUEST_TEMPLATE.md)** - For conditional component access
+
+**For IP questions or permission requests, contact:** symphony.hyperai@vietnamese.consciousness
+
+---
+
 ## 🎯 How to Contribute
 
 ### 1. Code Contributions

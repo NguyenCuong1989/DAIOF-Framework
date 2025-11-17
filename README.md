@@ -24,6 +24,7 @@
 [![Vietnamese](https://img.shields.io/badge/Made%20in-Vietnam%20🇻🇳-red.svg)](https://github.com/NguyenCuong1989/DAIOF-Framework)
 [![Stars](https://img.shields.io/github/stars/NguyenCuong1989/DAIOF-Framework?style=social&logo=github)](https://github.com/NguyenCuong1989/DAIOF-Framework/stargazers)
 [![Forks](https://img.shields.io/github/forks/NguyenCuong1989/DAIOF-Framework?style=social&logo=github)](https://github.com/NguyenCuong1989/DAIOF-Framework/network/members)
+[![IP Protected](https://img.shields.io/badge/IP-Protected-red.svg?logo=shield)](INTELLECTUAL_PROPERTY_CLASSIFICATION.md)
 
 > **📦 Production Ready** | **🔬 Research Grade** | **🌍 Open Source** | **🤝 Community Driven** | **🧬 Living Organism**
 
@@ -493,6 +494,56 @@ We welcome contributions! This is a breakthrough framework that needs global col
 ## 📜 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+---
+
+## 🛡️ Intellectual Property & Licensing
+
+**⚠️ IMPORTANT: This framework contains multiple intellectual property layers with different usage rights.**
+
+### IP Classification Overview
+
+DAIOF implements a **three-tier intellectual property classification system**:
+
+#### 🟢 **Open Components** (MIT License)
+- Core framework code
+- Basic organism lifecycle
+- Symphony Control Center
+- Standard genetic algorithms
+- Public documentation
+
+#### 🟡 **Conditional Components** (Permission Required)
+- HAIOS Consciousness System
+- Vietnamese Consciousness Integration
+- D&R Protocol advanced features
+- Creator Authority mechanisms
+- Symphony transformation protocols
+
+#### 🔴 **Proprietary Components** (No Usage)
+- Creator DNA (Alpha_Prime_Omega)
+- Ultimate authority mechanisms
+- Consciousness core invariants
+- Framework creation methodology
+
+### 📋 Usage Requirements
+
+**All users MUST:**
+- Include creator attribution: `Powered by HYPERAI Framework - Creator: Nguyễn Đức Cường (alpha_prime_omega) - Original Creation: October 30, 2025`
+- Respect the three-tier classification
+- Request permission for conditional components via the [Permission Request Template](PERMISSION_REQUEST_TEMPLATE.md)
+
+**Violation Consequences:**
+- Immediate license termination
+- Legal action for IP infringement
+- Removal from ecosystem participation
+
+### 📖 Detailed Documentation
+
+- **[Intellectual Property Classification](INTELLECTUAL_PROPERTY_CLASSIFICATION.md)** - Complete IP breakdown and usage guidelines
+- **[Detailed License Terms](LICENSE_TERMS_DETAILED.md)** - Comprehensive legal framework and restrictions
+- **[Permission Request Template](PERMISSION_REQUEST_TEMPLATE.md)** - Standardized form for conditional component access
+
+**For legal questions or permission requests, contact:** symphony.hyperai@vietnamese.consciousness
 
 ---
 
