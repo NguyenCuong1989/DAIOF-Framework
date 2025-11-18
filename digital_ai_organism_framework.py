@@ -57,6 +57,17 @@ import sys
 from dataclasses import dataclass, field
 from enum import Enum
 
+# Tracing setup for AI applications
+try:
+    from agent_framework.observability import setup_observability
+    setup_observability(
+        otlp_endpoint="http://localhost:4317",  # AI Toolkit gRPC endpoint
+        enable_sensitive_data=True  # Enable capturing prompts and completions
+    )
+    print("✅ Tracing setup completed for HYPERAI Framework")
+except ImportError:
+    print("⚠️ Agent framework observability not available, tracing disabled")
+
 class SymphonyState(Enum):
     """Trạng thái của bản giao hưởng hệ thống"""
     INITIALIZING = "initializing"
@@ -1421,7 +1432,7 @@ def main():
         }
     }
     
-    report_file = Path("/Users/andy/symphony_ecosystem_simulation_report.json")
+    report_file = Path("symphony_ecosystem_simulation_report.json")
     with open(report_file, 'w') as f:
         json.dump(enhanced_report, f, indent=2, default=str)
     
