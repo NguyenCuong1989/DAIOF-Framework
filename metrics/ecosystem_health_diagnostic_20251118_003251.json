@@ -1,0 +1,57 @@
+{
+  "timestamp": "2025-11-18T00:32:51.754862",
+  "health_score": 88.0,
+  "total_issues": 6,
+  "issues_by_severity": {
+    "critical": 0,
+    "high": 0,
+    "medium": 0,
+    "low": 6
+  },
+  "issues": [
+    {
+      "severity": "LOW",
+      "category": "code_quality",
+      "description": "Found 1 __pycache__ directories in repository",
+      "fix": "Add __pycache__/ to .gitignore and remove from git",
+      "timestamp": "2025-11-18T00:32:51.744764"
+    },
+    {
+      "severity": "LOW",
+      "category": "security",
+      "description": "Potential sensitive data reference in digital_ai_organism_framework.py",
+      "fix": "Review file to ensure no secrets are hardcoded",
+      "timestamp": "2025-11-18T00:32:51.747015"
+    },
+    {
+      "severity": "LOW",
+      "category": "security",
+      "description": "Potential sensitive data reference in system_initializer.py",
+      "fix": "Review file to ensure no secrets are hardcoded",
+      "timestamp": "2025-11-18T00:32:51.747625"
+    },
+    {
+      "severity": "LOW",
+      "category": "security",
+      "description": "Potential sensitive data reference in complete_workspace_scan.py",
+      "fix": "Review file to ensure no secrets are hardcoded",
+      "timestamp": "2025-11-18T00:32:51.748079"
+    },
+    {
+      "severity": "LOW",
+      "category": "security",
+      "description": "Potential sensitive data reference in update_github_repo.py",
+      "fix": "Review file to ensure no secrets are hardcoded",
+      "timestamp": "2025-11-18T00:32:51.749004"
+    },
+    {
+      "severity": "LOW",
+      "category": "security",
+      "description": "Potential sensitive data reference in 01_basic_organism.py",
+      "fix": "Review file to ensure no secrets are hardcoded",
+      "timestamp": "2025-11-18T00:32:51.751936"
+    }
+  ],
+  "attribution": "Nguy\u1ec5n \u0110\u1ee9c C\u01b0\u1eddng (alpha_prime_omega)",
+  "framework": "HYPERAI"
+}
