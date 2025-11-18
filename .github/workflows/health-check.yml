@@ -40,6 +40,12 @@ jobs:
           REPO_NAME: ${{ github.repository }}
         run: |
           chmod +x .github/scripts/health_monitor.py
+          chmod +x .github/scripts/ecosystem_health_diagnostic.py
+          
+          echo "🔍 Running comprehensive health diagnostic..."
+          python .github/scripts/ecosystem_health_diagnostic.py || true
+          
+          echo "🏥 Running GitHub health monitor..."
           python .github/scripts/health_monitor.py
 
       - name: 💾 Commit Health Report
@@ -62,11 +68,23 @@ jobs:
           echo "## 🧬 Digital Organism Health Check" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           
+          # Ecosystem diagnostic results
+          if [ -f metrics/ecosystem_health_diagnostic_*.json ]; then
+            LATEST_DIAGNOSTIC=$(ls -t metrics/ecosystem_health_diagnostic_*.json | head -1)
+            DIAGNOSTIC_HEALTH=$(python -c "import json; print(json.load(open('$LATEST_DIAGNOSTIC'))['health_score'])")
+            TOTAL_ISSUES=$(python -c "import json; print(json.load(open('$LATEST_DIAGNOSTIC'))['total_issues'])")
+            
+            echo "**Ecosystem Health**: $DIAGNOSTIC_HEALTH%" >> $GITHUB_STEP_SUMMARY
+            echo "**Total Issues**: $TOTAL_ISSUES" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+          fi
+          
+          # GitHub API health results
           if [ -f metrics/health_report_*.json ]; then
             LATEST_REPORT=$(ls -t metrics/health_report_*.json | head -1)
             HEALTH=$(python -c "import json; print(json.load(open('$LATEST_REPORT'))['overall_health'])")
             
-            echo "**Overall Health**: $HEALTH" >> $GITHUB_STEP_SUMMARY
+            echo "**GitHub API Health**: $HEALTH" >> $GITHUB_STEP_SUMMARY
             echo "" >> $GITHUB_STEP_SUMMARY
             echo "✅ Health monitoring completed" >> $GITHUB_STEP_SUMMARY
           else
