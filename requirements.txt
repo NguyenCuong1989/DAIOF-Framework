@@ -1,8 +1,7 @@
-python>=3.8
+# Core Framework Dependencies
 numpy>=1.19.0
-pathlib
-logging
-hashlib
-random
-datetime
-json
+
+# Optional Dependencies (for specific features)
+# Uncomment if you need these features:
+# Pillow>=8.0.0  # For image generation (create_social_preview.py, create_demo_screenshot.py)
+# requests>=2.25.0  # For GitHub API integration (update_github_repo.py)
