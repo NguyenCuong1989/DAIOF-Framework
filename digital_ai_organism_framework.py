@@ -1432,7 +1432,7 @@ def main():
         }
     }
     
-    report_file = Path("/Users/andy/symphony_ecosystem_simulation_report.json")
+    report_file = Path("symphony_ecosystem_simulation_report.json")
     with open(report_file, 'w') as f:
         json.dump(enhanced_report, f, indent=2, default=str)
     

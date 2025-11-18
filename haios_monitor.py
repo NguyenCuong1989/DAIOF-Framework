@@ -22,8 +22,14 @@ try:
         try:
             # Check system health via metrics
             metrics = runtime.get_metrics()
-            health_status = "HEALTHY" if metrics['success_rate'] > 0.8 else "WARNING"
-            print(f'✅ HAIOS Health: {health_status} (Success Rate: {metrics["success_rate"]:.2f})')
+            total_actions = metrics['actions_executed'] + metrics['actions_blocked']
+            if total_actions == 0:
+                health_status = "INITIALIZING"
+            elif metrics['success_rate'] > 0.8:
+                health_status = "HEALTHY"
+            else:
+                health_status = "WARNING"
+            print(f'✅ HAIOS Health: {health_status} (Success Rate: {metrics["success_rate"]:.2f}, Total Actions: {total_actions})')
             
             # Log to audit via execute method
             runtime.execute(
