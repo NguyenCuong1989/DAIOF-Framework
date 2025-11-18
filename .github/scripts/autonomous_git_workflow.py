@@ -629,8 +629,8 @@ class MultiRepositoryOrchestrator:
                 self.logger.info(f"   Emergency Mode: {'ACTIVE' if self.emergency_mode else 'INACTIVE'}")
                 self.logger.info(f"   HAIOS Compliance: {self._check_haios_compliance()}")
 
-                # Save orchestration log
-                self._save_orchestration_log(results)
+                # Removed file saving to eliminate timing disruptions - data flows to unified orchestrator only
+                # self._save_orchestration_log(results)
 
                 # Wait for next cycle
                 elapsed = (datetime.now(UTC) - cycle_start).total_seconds()
@@ -642,11 +642,13 @@ class MultiRepositoryOrchestrator:
 
         except KeyboardInterrupt:
             self.logger.info("\n\n⏹️  Multi-repository orchestration stopped")
-            self._generate_final_report()
+            # Removed final report to eliminate file creation - data centralized in orchestrator
+            # self._generate_final_report()
 
         except Exception as e:
             self.logger.error(f"❌ Critical error in orchestration: {e}")
-            self._generate_final_report()
+            # Removed final report to eliminate file creation - data centralized in orchestrator
+            # self._generate_final_report()
 
     def _check_haios_compliance(self) -> bool:
         """Check HAIOS invariants compliance"""
@@ -1349,8 +1351,8 @@ class AutonomousGitWorkflow:
                 self.logger.info(f"   Tasks: {results['tasks_completed']}/{results['tasks_generated']} completed")
                 self.logger.info(f"   Health: K={self.k_state}, Safety={min(self.pillars_scores.values()):.1f}")
 
-                # Save cycle log
-                self._save_workflow_log(results)
+                # Removed file saving to eliminate timing disruptions - data flows to unified orchestrator only
+                # self._save_workflow_log(results)
 
                 # Wait for next cycle
                 elapsed = (datetime.now(UTC) - cycle_start).total_seconds()
@@ -1362,11 +1364,13 @@ class AutonomousGitWorkflow:
 
         except KeyboardInterrupt:
             self.logger.info("\n\n⏹️  Autonomous workflow stopped by user")
-            self._generate_final_report()
+            # Removed final report to eliminate file creation - data centralized in orchestrator
+            # self._generate_final_report()
 
         except Exception as e:
             self.logger.error(f"❌ Critical error in workflow: {e}")
-            self._generate_final_report()
+            # Removed final report to eliminate file creation - data centralized in orchestrator
+            # self._generate_final_report()
 
     def _save_workflow_log(self, results: Dict):
         """Save workflow execution log"""
