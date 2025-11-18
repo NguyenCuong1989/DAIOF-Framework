@@ -1,0 +1,78 @@
+{
+  "timestamp": "2025-11-18T00:29:33.018902",
+  "health_score": 79.0,
+  "total_issues": 9,
+  "issues_by_severity": {
+    "critical": 0,
+    "high": 0,
+    "medium": 1,
+    "low": 8
+  },
+  "issues": [
+    {
+      "severity": "MEDIUM",
+      "category": "dependencies",
+      "description": "No testing framework in requirements.txt",
+      "fix": "Add pytest or unittest to requirements.txt",
+      "timestamp": "2025-11-18T00:29:33.005161"
+    },
+    {
+      "severity": "LOW",
+      "category": "dependencies",
+      "description": "Built-in modules listed in requirements.txt: pathlib, logging, hashlib, random, datetime, json",
+      "fix": "Remove built-in modules from requirements.txt (they are always available)",
+      "timestamp": "2025-11-18T00:29:33.005188"
+    },
+    {
+      "severity": "LOW",
+      "category": "code_quality",
+      "description": "Found 1 __pycache__ directories in repository",
+      "fix": "Add __pycache__/ to .gitignore and remove from git",
+      "timestamp": "2025-11-18T00:29:33.008914"
+    },
+    {
+      "severity": "LOW",
+      "category": "git_hygiene",
+      "description": ".gitignore missing important patterns: *.pyc, node_modules/",
+      "fix": "Add missing patterns to .gitignore",
+      "timestamp": "2025-11-18T00:29:33.009925"
+    },
+    {
+      "severity": "LOW",
+      "category": "security",
+      "description": "Potential sensitive data reference in digital_ai_organism_framework.py",
+      "fix": "Review file to ensure no secrets are hardcoded",
+      "timestamp": "2025-11-18T00:29:33.011297"
+    },
+    {
+      "severity": "LOW",
+      "category": "security",
+      "description": "Potential sensitive data reference in system_initializer.py",
+      "fix": "Review file to ensure no secrets are hardcoded",
+      "timestamp": "2025-11-18T00:29:33.011882"
+    },
+    {
+      "severity": "LOW",
+      "category": "security",
+      "description": "Potential sensitive data reference in complete_workspace_scan.py",
+      "fix": "Review file to ensure no secrets are hardcoded",
+      "timestamp": "2025-11-18T00:29:33.012377"
+    },
+    {
+      "severity": "LOW",
+      "category": "security",
+      "description": "Potential sensitive data reference in update_github_repo.py",
+      "fix": "Review file to ensure no secrets are hardcoded",
+      "timestamp": "2025-11-18T00:29:33.013298"
+    },
+    {
+      "severity": "LOW",
+      "category": "security",
+      "description": "Potential sensitive data reference in 01_basic_organism.py",
+      "fix": "Review file to ensure no secrets are hardcoded",
+      "timestamp": "2025-11-18T00:29:33.016217"
+    }
+  ],
+  "attribution": "Nguy\u1ec5n \u0110\u1ee9c C\u01b0\u1eddng (alpha_prime_omega)",
+  "framework": "HYPERAI"
+}

@@ -1,0 +1,50 @@
+{
+  "timestamp": "2025-11-18T00:30:01.245598",
+  "health_score": 90.0,
+  "total_issues": 5,
+  "issues_by_severity": {
+    "critical": 0,
+    "high": 0,
+    "medium": 0,
+    "low": 5
+  },
+  "issues": [
+    {
+      "severity": "LOW",
+      "category": "security",
+      "description": "Potential sensitive data reference in digital_ai_organism_framework.py",
+      "fix": "Review file to ensure no secrets are hardcoded",
+      "timestamp": "2025-11-18T00:30:01.237892"
+    },
+    {
+      "severity": "LOW",
+      "category": "security",
+      "description": "Potential sensitive data reference in system_initializer.py",
+      "fix": "Review file to ensure no secrets are hardcoded",
+      "timestamp": "2025-11-18T00:30:01.238504"
+    },
+    {
+      "severity": "LOW",
+      "category": "security",
+      "description": "Potential sensitive data reference in complete_workspace_scan.py",
+      "fix": "Review file to ensure no secrets are hardcoded",
+      "timestamp": "2025-11-18T00:30:01.238959"
+    },
+    {
+      "severity": "LOW",
+      "category": "security",
+      "description": "Potential sensitive data reference in update_github_repo.py",
+      "fix": "Review file to ensure no secrets are hardcoded",
+      "timestamp": "2025-11-18T00:30:01.239915"
+    },
+    {
+      "severity": "LOW",
+      "category": "security",
+      "description": "Potential sensitive data reference in 01_basic_organism.py",
+      "fix": "Review file to ensure no secrets are hardcoded",
+      "timestamp": "2025-11-18T00:30:01.242839"
+    }
+  ],
+  "attribution": "Nguy\u1ec5n \u0110\u1ee9c C\u01b0\u1eddng (alpha_prime_omega)",
+  "framework": "HYPERAI"
+}

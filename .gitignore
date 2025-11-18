@@ -1,6 +1,7 @@
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
+*.pyc
 *$py.class
 
 # C extensions
@@ -161,3 +162,6 @@ ecosystem_data/
 simulation_results/
 *.pkl
 *.pickle
+
+# Node modules (if present)
+node_modules/
