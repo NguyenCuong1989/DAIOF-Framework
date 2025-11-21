@@ -4,3 +4,6 @@
 [submodule "vscode"]
 	path = vscode
 	url = https://github.com/NguyenCuong1989/vscode
+[submodule "vscode-python-environments"]
+	path = vscode-python-environments
+	url = https://github.com/NguyenCuong1989/vscode-python-environments
