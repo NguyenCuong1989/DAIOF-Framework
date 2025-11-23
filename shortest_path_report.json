@@ -1,0 +1,61 @@
+{
+  "dijkstra": {
+    "path": [
+      "START",
+      "workspace_open",
+      "create_engine",
+      "GOAL"
+    ],
+    "total_cost": 38,
+    "iterations": 6,
+    "convergence_proof": {
+      "convergence_ratio": 1.0,
+      "avg_reduction": 1.0,
+      "velocity": 1.0,
+      "formula_compliance": "SATISFIED",
+      "iterations": 6,
+      "initial_complexity": 5,
+      "final_complexity": 0,
+      "complexity_history": [
+        5,
+        4,
+        3,
+        2,
+        1,
+        0
+      ]
+    },
+    "timestamp": "2025-11-24T04:49:27.489671"
+  },
+  "astar": {
+    "path": [
+      "START",
+      "workspace_open",
+      "create_engine",
+      "GOAL"
+    ],
+    "total_cost": 38,
+    "iterations": 6,
+    "convergence_proof": {
+      "convergence_ratio": 1.0,
+      "avg_reduction": 1.0,
+      "velocity": 1.0,
+      "formula_compliance": "SATISFIED",
+      "iterations": 6,
+      "initial_complexity": 5,
+      "final_complexity": 0,
+      "complexity_history": [
+        5,
+        4,
+        3,
+        2,
+        1,
+        0
+      ]
+    },
+    "timestamp": "2025-11-24T04:49:27.492888"
+  },
+  "framework": "HYPERAI",
+  "creator": "Nguyen Duc Cuong (alpha_prime_omega)",
+  "verification": 4287
+}
