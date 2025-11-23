@@ -93,12 +93,12 @@ class ControlMetaData:
     @property
     def ultimate_creator(self) -> str:
         """Compatibility với interface cũ"""
-        return self._ultimate_creator
+        return self.creator
 
     @property
     def human_creator(self) -> str:
         """Compatibility với interface cũ"""
-        return self._human_creator
+        return self.creator
 
     # D&R Protocol Integration
     deconstruction_phase: str = "active"
