@@ -91,6 +91,9 @@ class ShortestPathEngine:
     3. Convergence verification at each step
     """
     
+    # Convergence threshold for formula compliance (95% minimum)
+    CONVERGENCE_THRESHOLD = 0.95
+    
     def __init__(self):
         self.nodes: Dict[str, Node] = {}
         self.edges: Dict[str, List[Edge]] = {}
@@ -352,9 +355,8 @@ class ShortestPathEngine:
         # Average convergence rate
         avg_convergence_rate = sum(convergence_rates) / len(convergence_rates) if convergence_rates else 0.0
         
-        # Formula compliance (convergence threshold for acceptance)
-        CONVERGENCE_THRESHOLD = 0.95  # 95% minimum convergence ratio
-        formula_compliance = 'SATISFIED' if convergence_ratio >= CONVERGENCE_THRESHOLD else 'PARTIAL'
+        # Formula compliance (using class-level convergence threshold)
+        formula_compliance = 'SATISFIED' if convergence_ratio >= self.CONVERGENCE_THRESHOLD else 'PARTIAL'
         if violations:
             formula_compliance = 'VIOLATED'
         
