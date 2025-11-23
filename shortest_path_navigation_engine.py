@@ -352,8 +352,9 @@ class ShortestPathEngine:
         # Average convergence rate
         avg_convergence_rate = sum(convergence_rates) / len(convergence_rates) if convergence_rates else 0.0
         
-        # Formula compliance
-        formula_compliance = 'SATISFIED' if convergence_ratio >= 0.95 else 'PARTIAL'
+        # Formula compliance (convergence threshold for acceptance)
+        CONVERGENCE_THRESHOLD = 0.95  # 95% minimum convergence ratio
+        formula_compliance = 'SATISFIED' if convergence_ratio >= CONVERGENCE_THRESHOLD else 'PARTIAL'
         if violations:
             formula_compliance = 'VIOLATED'
         
