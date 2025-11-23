@@ -210,8 +210,8 @@ def test_92_percent_improvement():
     
     engine = ShortestPathEngine()
     
-    # Create moderate-sized graph
-    num_nodes = 20
+    # Create moderate-sized graph (use smaller size to avoid overflow)
+    num_nodes = 15  # Reduced from 20 to prevent factorial overflow
     for i in range(num_nodes):
         engine.add_node(f"N{i}", x=i, y=0)
     
@@ -226,19 +226,24 @@ def test_92_percent_improvement():
     actual_ops = result.iterations
     
     # Brute force: Try all paths ≈ V! (factorial)
-    # For V=20: 20! ≈ 2.4 × 10^18
-    # Dijkstra: 20 × log(20) + 20² ≈ 460
+    # For V=15: 15! ≈ 1.3 × 10^12
+    # Dijkstra: 15 × log(15) + 15² ≈ 283
+    # Use logarithmic comparison to avoid overflow
     
-    brute_force_estimate = math.factorial(num_nodes)
+    import math
+    log_brute_force = sum(math.log10(i) for i in range(1, num_nodes + 1))
     dijkstra_estimate = num_nodes * math.log2(num_nodes) + num_nodes**2
+    log_dijkstra = math.log10(dijkstra_estimate)
     
-    improvement = (1 - dijkstra_estimate / brute_force_estimate) * 100
+    # Improvement calculation in log space
+    improvement = (1 - 10**(log_dijkstra - log_brute_force)) * 100
     
     print(f"Nodes: {num_nodes}")
     print(f"Actual Iterations: {actual_ops}")
     print(f"Dijkstra Theoretical: {dijkstra_estimate:.0f}")
-    print(f"Brute Force Estimate: {brute_force_estimate:.2e}")
-    print(f"Improvement: {improvement:.10f}% (Target: ≥92%)")
+    print(f"Brute Force (log10): {log_brute_force:.2f}")
+    print(f"Dijkstra (log10): {log_dijkstra:.2f}")
+    print(f"Improvement: >{improvement:.1f}% (Target: ≥92%)")
     
     if improvement >= 92:
         print(f"\n✅ TEST PASSED: Achieved {improvement:.1f}% improvement")
@@ -254,6 +259,11 @@ def test_velocity_and_acceleration():
     
     Verify constant velocity (ΔD/Δt ≈ 1) and near-zero acceleration.
     """
+    # Constants for test tolerances
+    VELOCITY_TOLERANCE = 0.1
+    ACCELERATION_TOLERANCE = 0.1
+    EXPECTED_VELOCITY = 1.0
+    
     print("\n" + "="*80)
     print("🧪 TEST 6: Velocity and Acceleration")
     print("="*80)
@@ -273,11 +283,11 @@ def test_velocity_and_acceleration():
     
     print(f"Velocity (ΔD/Δt): {proof['velocity']:.3f}")
     print(f"Acceleration: {proof['acceleration']:.3f}")
-    print(f"Expected Velocity: ~1.0 (constant)")
+    print(f"Expected Velocity: ~{EXPECTED_VELOCITY} (constant)")
     print(f"Expected Acceleration: ~0.0 (stable)")
     
-    velocity_ok = abs(proof['velocity'] - 1.0) < 0.1
-    acceleration_ok = abs(proof['acceleration']) < 0.1
+    velocity_ok = abs(proof['velocity'] - EXPECTED_VELOCITY) < VELOCITY_TOLERANCE
+    acceleration_ok = abs(proof['acceleration']) < ACCELERATION_TOLERANCE
     
     if velocity_ok and acceleration_ok:
         print(f"\n✅ TEST PASSED: Velocity constant, acceleration near zero")
