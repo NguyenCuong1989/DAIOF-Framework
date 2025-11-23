@@ -13,6 +13,11 @@ import sys
 import math
 from shortest_path_navigation_engine import ShortestPathEngine, PathResult
 
+# Test tolerance constants
+VELOCITY_TOLERANCE = 0.1
+ACCELERATION_TOLERANCE = 0.1
+EXPECTED_VELOCITY = 1.0
+
 
 def test_convergence_monotonicity():
     """
@@ -229,8 +234,6 @@ def test_92_percent_improvement():
     # For V=15: 15! ≈ 1.3 × 10^12
     # Dijkstra: 15 × log(15) + 15² ≈ 283
     # Use logarithmic comparison to avoid overflow
-    
-    import math
     log_brute_force = sum(math.log10(i) for i in range(1, num_nodes + 1))
     dijkstra_estimate = num_nodes * math.log2(num_nodes) + num_nodes**2
     log_dijkstra = math.log10(dijkstra_estimate)
@@ -259,11 +262,6 @@ def test_velocity_and_acceleration():
     
     Verify constant velocity (ΔD/Δt ≈ 1) and near-zero acceleration.
     """
-    # Constants for test tolerances
-    VELOCITY_TOLERANCE = 0.1
-    ACCELERATION_TOLERANCE = 0.1
-    EXPECTED_VELOCITY = 1.0
-    
     print("\n" + "="*80)
     print("🧪 TEST 6: Velocity and Acceleration")
     print("="*80)
