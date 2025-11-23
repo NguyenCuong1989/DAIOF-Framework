@@ -215,8 +215,8 @@ def test_92_percent_improvement():
     
     engine = ShortestPathEngine()
     
-    # Create moderate-sized graph (use smaller size to avoid overflow)
-    num_nodes = 15  # Reduced from 20 to prevent factorial overflow
+    # Create moderate-sized graph (15 nodes chosen to avoid factorial overflow)
+    num_nodes = 15  # 15! ≈ 1.3×10^12 is safe; larger values cause numerical issues
     for i in range(num_nodes):
         engine.add_node(f"N{i}", x=i, y=0)
     
