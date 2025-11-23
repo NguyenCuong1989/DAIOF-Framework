@@ -365,6 +365,9 @@ class ShortestPathEngine:
         if convergence_ratio == 1.0:
             proof_summary += " (100% - PERFECT CONVERGENCE)"
         
+        # Calculate complexity reduction once
+        complexity_reduction = self.complexity_history[0] - self.complexity_history[-1]
+        
         return {
             'convergence_ratio': convergence_ratio,
             'avg_reduction': avg_reduction,
@@ -375,8 +378,8 @@ class ShortestPathEngine:
             'iterations': len(self.complexity_history),
             'initial_complexity': self.complexity_history[0],
             'final_complexity': self.complexity_history[-1],
-            'complexity_reduction': self.complexity_history[0] - self.complexity_history[-1],
-            'complexity_reduction_percent': ((self.complexity_history[0] - self.complexity_history[-1]) / self.complexity_history[0] * 100) if self.complexity_history[0] > 0 else 0.0,
+            'complexity_reduction': complexity_reduction,
+            'complexity_reduction_percent': (complexity_reduction / self.complexity_history[0] * 100) if self.complexity_history[0] > 0 else 0.0,
             'complexity_history': self.complexity_history,
             'violations': violations,
             'mathematical_proof': proof_summary
