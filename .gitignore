@@ -161,3 +161,7 @@ ecosystem_data/
 simulation_results/
 *.pkl
 *.pickle
+
+
+#Ignore vscode AI rules
+.github/instructions/codacy.instructions.md
