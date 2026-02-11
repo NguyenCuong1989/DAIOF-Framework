@@ -18,7 +18,7 @@ services:
       interval: 30s
       timeout: 10s
       retries: 3
-    command: ["python3", "unified_ai_orchestrator.py"]
+    command: ["python3", ".github/scripts/autonomous_git_workflow.py"]
 
   # HAIOS Runtime Monitor
   haios-monitor:

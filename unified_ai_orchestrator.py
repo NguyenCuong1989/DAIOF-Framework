@@ -16,6 +16,7 @@ Copyright (c) 2025 Nguyễn Đức Cường (alpha_prime_omega)
 """
 
 import json
+import sqlite3
 import time
 import threading
 import hashlib
@@ -79,7 +80,7 @@ class UnifiedHeartbeat:
     metadata_pool: Dict[str, Any] = field(default_factory=dict)
     health_metrics: Dict[str, float] = field(default_factory=dict)
     compliance_score: float = 1.0
-    symphony_signature: str = ""
+    k_state: int = 0  # K-State for ecosystem coordination    symphony_signature: str = ""
 
 class UnifiedAIOrchestrator:
     """
@@ -110,6 +111,9 @@ class UnifiedAIOrchestrator:
 
         # Initialize data integrator for GitHub operations
         self.data_integrator = UnifiedDataIntegrator()
+        # Connect to .con-memory database for 451 agent coordination
+        self.con_memory_db = sqlite3.connect("/con-memory/con_memory.db", check_same_thread=False)
+        self.con_memory_cursor = self.con_memory_db.cursor()
 
         # Setup logging
         self.logger = self._setup_logging()
@@ -324,8 +328,41 @@ class UnifiedAIOrchestrator:
 
         self.current_heartbeat.symphony_signature = self.symphony_control.meta_data.get_symphony_signature()
 
+
+    def _sync_with_con_memory(self):
+        """Sync với .con-memory database: đọc 451 agents activities, ghi orchestrator decisions"""
+        if not hasattr(self, 'con_memory_db'):
+            return
+        try:
+            cursor = self.con_memory_db.cursor()
+            cursor.execute(
+                "SELECT agent_id, capability_type, priority FROM agent_capabilities LIMIT 100"
+            )
+            agents = cursor.fetchall()
+            self.shared_data_pool["con_memory_agents"] = [
+                {"agent_id": a[0], "type": a[1], "priority": a[2]} for a in agents
+            ]
+            cursor.execute(
+                "SELECT extension_id, activity_type, timestamp FROM extension_activities WHERE datetime(timestamp) > datetime('now', '-1 day') ORDER BY timestamp DESC LIMIT 50"
+            )
+            activities = cursor.fetchall()
+            self.shared_data_pool["recent_activities"] = [
+                {"agent": a[0], "activity": a[1], "time": a[2]} for a in activities
+            ]
+            cursor.execute(
+                "INSERT INTO unified_data_points (source, source_type, data_type, content, timestamp) VALUES (?, ?, ?, ?, ?)",
+                ("hyperai-orchestrator", "orchestrator", "heartbeat", f"K-State: {self.current_heartbeat.k_state if self.current_heartbeat else 0}", datetime.now().isoformat())
+            )
+            self.con_memory_db.commit()
+            cursor.close()
+            self.logger.info(f"💚 Synced .con-memory: {len(agents)} agents, {len(activities)} activities")
+        except Exception as e:
+            self.logger.warning(f"⚠️ .con-memory sync failed: {e}")
+
     def _synchronize_all_modules(self):
         """Synchronize all AI modules to the heartbeat"""
+        # Sync with .con-memory database
+        self._sync_with_con_memory()
         synchronized = 0
 
         for module_name, module in self.modules.items():
@@ -585,7 +622,7 @@ class UnifiedAIOrchestrator:
                 })
 
         # Check data flow efficiency
-        data_flow_efficiency = len(self.current_heartbeat.data_flow.get("cross_module_data", {})) / len(self.modules)
+        data_flow_efficiency = len(self.current_heartbeat.data_flow.get("cross_module_data", {})) / max(len(self.modules), 1)
         if data_flow_efficiency < 0.8:
             issues.append({
                 "type": "data_flow",
