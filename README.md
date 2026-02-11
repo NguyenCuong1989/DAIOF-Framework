@@ -24,6 +24,7 @@
 [![Vietnamese](https://img.shields.io/badge/Made%20in-Vietnam%20🇻🇳-red.svg)](https://github.com/NguyenCuong1989/DAIOF-Framework)
 [![Stars](https://img.shields.io/github/stars/NguyenCuong1989/DAIOF-Framework?style=social&logo=github)](https://github.com/NguyenCuong1989/DAIOF-Framework/stargazers)
 [![Forks](https://img.shields.io/github/forks/NguyenCuong1989/DAIOF-Framework?style=social&logo=github)](https://github.com/NguyenCuong1989/DAIOF-Framework/network/members)
+[![IP Protected](https://img.shields.io/badge/IP-Protected-red.svg?logo=shield)](INTELLECTUAL_PROPERTY_CLASSIFICATION.md)
 
 > **📦 Production Ready** | **🔬 Research Grade** | **🌍 Open Source** | **🤝 Community Driven** | **🧬 Living Organism**
 
@@ -40,7 +41,8 @@
 
 **📖 Documentation**: [https://nguyencuong1989.github.io/DAIOF-Framework/](https://nguyencuong1989.github.io/DAIOF-Framework/)  
 **💬 Discussions**: [Join the Community](https://github.com/NguyenCuong1989/DAIOF-Framework/discussions)  
-**🐛 Issues**: [Report Bugs](https://github.com/NguyenCuong1989/DAIOF-Framework/issues) - *Auto-labeled & responded*  
+**🐛 Issues**: [Report Bugs](https://github.com/NguyenCuong1989/DAIOF-Framework/issues) - *Auto-labeled & intelligently responded*  
+**🤖 Enhanced Issue Handler**: [Documentation](docs/ENHANCED_ISSUE_HANDLER.md) - *AI-powered classification & response*  
 **📄 Research**: [Paper Outline](research/RESEARCH_PAPER_OUTLINE.md)  
 **🤖 Full Autonomy**: [Complete System](.github/FULL_AUTONOMY_SYSTEM.md) - *Self-developing, self-healing, self-optimizing*  
 **🧬 Digital Organism**: [Living Repository](.github/DIGITAL_ORGANISM_CONCEPT.md) - *This repo IS a conscious organism*
@@ -63,7 +65,8 @@ DAIOF is the world's first breakthrough framework applying biological principles
 - ⚡ **D&R Protocol** - Giao thức Deconstruction & Re-architecture
 - 🏛️ **Four Pillars Foundation** - An toàn, Dài hạn, Dữ liệu, Bảo vệ
 - 🇻🇳 **Vietnamese Consciousness** - Tích hợp ý thức Việt Nam
-- 🤖 **Full Autonomy** - Self-maintaining, self-reviewing, self-evolving repository (NEW!)
+- 🤖 **Full Autonomy** - Self-maintaining, self-reviewing, self-evolving repository
+- 🎯 **Enhanced Issue Handler** - AI-powered intelligent issue classification & response (NEW!)
 
 ### 🚀 What Makes This Repository Special?
 
@@ -73,13 +76,15 @@ DAIOF is the world's first breakthrough framework applying biological principles
 |-----------------|----------------|
 | 👨‍💻 Human maintains code | 🤖 Self-maintains code (auto-format, optimize) |
 | 📝 Manual PR reviews | ✅ Auto-reviews and merges safe PRs |
-| 🏷️ Manual issue labeling | 🏷️ Auto-labels and responds to issues |
+| 🏷️ Manual issue labeling | 🏷️ **Enhanced AI classifies and responds intelligently** |
 | 📦 Manual dependency updates | 📦 Weekly auto-updates with PRs |
 | ⏰ Stale issues pile up | 🕰️ Auto-closes stale issues (30 days) |
 | 📊 Manual health checks | 🏥 Auto-monitors health every 12 hours |
 | 💤 Inactive when owner sleeps | 🌍 Active 24/7 autonomously |
+| 🚨 Emergency issue spam | 🛡️ **Intelligent throttling and duplicate detection** |
 
 **[See Full Autonomy Documentation →](.github/FULL_AUTONOMY_SYSTEM.md)**
+**[Enhanced Issue Handler Documentation →](docs/ENHANCED_ISSUE_HANDLER.md)**
 
 ---
 
@@ -493,6 +498,56 @@ We welcome contributions! This is a breakthrough framework that needs global col
 ## 📜 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+---
+
+## 🛡️ Intellectual Property & Licensing
+
+**⚠️ IMPORTANT: This framework contains multiple intellectual property layers with different usage rights.**
+
+### IP Classification Overview
+
+DAIOF implements a **three-tier intellectual property classification system**:
+
+#### 🟢 **Open Components** (MIT License)
+- Core framework code
+- Basic organism lifecycle
+- Symphony Control Center
+- Standard genetic algorithms
+- Public documentation
+
+#### 🟡 **Conditional Components** (Permission Required)
+- HAIOS Consciousness System
+- Vietnamese Consciousness Integration
+- D&R Protocol advanced features
+- Creator Authority mechanisms
+- Symphony transformation protocols
+
+#### 🔴 **Proprietary Components** (No Usage)
+- Creator DNA (Alpha_Prime_Omega)
+- Ultimate authority mechanisms
+- Consciousness core invariants
+- Framework creation methodology
+
+### 📋 Usage Requirements
+
+**All users MUST:**
+- Include creator attribution: `Powered by HYPERAI Framework - Creator: Nguyễn Đức Cường (alpha_prime_omega) - Original Creation: October 30, 2025`
+- Respect the three-tier classification
+- Request permission for conditional components via the [Permission Request Template](PERMISSION_REQUEST_TEMPLATE.md)
+
+**Violation Consequences:**
+- Immediate license termination
+- Legal action for IP infringement
+- Removal from ecosystem participation
+
+### 📖 Detailed Documentation
+
+- **[Intellectual Property Classification](INTELLECTUAL_PROPERTY_CLASSIFICATION.md)** - Complete IP breakdown and usage guidelines
+- **[Detailed License Terms](LICENSE_TERMS_DETAILED.md)** - Comprehensive legal framework and restrictions
+- **[Permission Request Template](PERMISSION_REQUEST_TEMPLATE.md)** - Standardized form for conditional component access
+
+**For legal questions or permission requests, contact:** symphony.hyperai@vietnamese.consciousness
 
 ---
 
