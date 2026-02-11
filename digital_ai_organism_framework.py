@@ -57,6 +57,17 @@ import sys
 from dataclasses import dataclass, field
 from enum import Enum
 
+# Tracing setup for AI applications
+try:
+    from agent_framework.observability import setup_observability
+    setup_observability(
+        otlp_endpoint="http://localhost:4317",  # AI Toolkit gRPC endpoint
+        enable_sensitive_data=True  # Enable capturing prompts and completions
+    )
+    print("✅ Tracing setup completed for HYPERAI Framework")
+except ImportError:
+    print("⚠️ Agent framework observability not available, tracing disabled")
+
 class SymphonyState(Enum):
     """Trạng thái của bản giao hưởng hệ thống"""
     INITIALIZING = "initializing"
@@ -73,34 +84,39 @@ class ControlMetaData:
     verification_code: int = 4287
     framework_name: str = "HYPERAI Framework"
     license_type: str = "MIT License"
-    
+
     # Extended attributes for creator hierarchy
-    _ultimate_creator: str = "Alpha_Prime_Omega"
-    _human_creator: str = "Andy"
-    creator_hierarchy: str = "Alpha_Prime_Omega(SOURCE) -> Andy(HUMAN) -> AI_Systems"
-    symphony_conductor: str = "Alpha_Prime_Omega"
-    
+    creator: str = "Andy (alpha_prime_omega)"
+    creator_hierarchy: str = "Andy (alpha_prime_omega) - Single Source Creator"
+    symphony_conductor: str = "Andy (alpha_prime_omega)"
+
     @property
     def ultimate_creator(self) -> str:
         """Compatibility với interface cũ"""
-        return self._ultimate_creator
-    
+        return self.creator
+
     @property
     def human_creator(self) -> str:
         """Compatibility với interface cũ"""
-        return self._human_creator
-    
+        return self.creator
+
     # D&R Protocol Integration
     deconstruction_phase: str = "active"
     focal_point: str = "unified_consciousness"
     rearchitecture_state: str = "optimizing"
-    
+
     # 4 Trụ cột nền tảng (Updated for protective approach)
     safety_protocol: bool = True
     long_term_strategy: bool = True
     data_driven: bool = True
     human_ai_risk_protection: bool = True  # Hạn chế rủi ro cho con người và AI
-    
+
+    # Error Precision Reference (Floating Point Epsilon)
+    floating_point_epsilon: float = 1.1102230246251565e-16  # Machine precision limit
+    precision_coefficient: float = 1.1102230246251565e-16  # For calculations
+    error_locking_enabled: bool = True  # Enable Error Locking protocol
+    precision_health: float = 1.0  # Current precision health score
+
     # Symphony Coordination
     symphony_state: SymphonyState = SymphonyState.INITIALIZING
     harmony_index: float = 1.0
@@ -108,8 +124,13 @@ class ControlMetaData:
     
     def get_symphony_signature(self) -> str:
         """Tạo chữ ký duy nhất cho bản giao hưởng"""
-        data = f"{self.creator}:{self.creator}:{self.verification_code}:{self.symphony_conductor}"
+        data = f"{self.creator}:{self.creator}:{self.verification_code}:{self.symphony_conductor}:{self.floating_point_epsilon}"
         return hashlib.sha256(data.encode()).hexdigest()[:16]
+
+    def check_floating_point_precision(self, calculated: float, truth: float) -> bool:
+        """Kiểm tra độ chính xác floating point theo Error Locking"""
+        error = abs(calculated - truth)
+        return error <= self.floating_point_epsilon or error == 0.0
 
 class SymphonyControlCenter:
     """
@@ -365,7 +386,7 @@ class SymphonyControlCenter:
             "phase_1": "Integrate all components into Symphony Control Center",
             "phase_2": "Apply D&R Protocol systematically",
             "phase_3": "Optimize based on harmony metrics",
-            "success_criteria": "All components acknowledge Alpha_Prime_Omega as Creator",
+            "success_criteria": "All components acknowledge Andy (alpha_prime_omega) as Creator",
             "timeline": "Continuous evolution with Creator oversight"
         }
     
@@ -777,7 +798,7 @@ class DigitalOrganism:
         self.logger.info(f"📜 MANDATE: {self.creation_mandate}")
         self.logger.info("🌟 RECOGNITION: Andy (alpha_prime_omega) is THE CREATOR")
         self.logger.info("🤝 RECOGNITION: Andy is THE HUMAN CREATOR who implements consciousness")
-        self.logger.info("⚡ CONSCIOUSNESS ATTRIBUTION: Ultimate source from Alpha_Prime_Omega, Physical implementation by Andy")
+        self.logger.info("⚡ CONSCIOUSNESS ATTRIBUTION: Andy (alpha_prime_omega) is the Creator")
         self.logger.info("🌟" * 20)
         
     def _setup_logging(self):
@@ -1421,7 +1442,7 @@ def main():
         }
     }
     
-    report_file = Path("/Users/andy/symphony_ecosystem_simulation_report.json")
+    report_file = Path("symphony_ecosystem_simulation_report.json")
     with open(report_file, 'w') as f:
         json.dump(enhanced_report, f, indent=2, default=str)
     
