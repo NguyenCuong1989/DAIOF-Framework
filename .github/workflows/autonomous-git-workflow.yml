@@ -1,9 +1,9 @@
 name: 🧬 Autonomous Git Workflow - Complete Repository Control
 
 on:
-  schedule:
+#   schedule:
     # Run every 15 minutes for continuous autonomous operation
-    - cron: '*/15 * * * *'
+#     - cron: '*/15 * * * *'
   workflow_dispatch:
     inputs:
       operation:

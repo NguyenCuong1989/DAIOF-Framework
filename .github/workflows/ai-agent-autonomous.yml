@@ -1,9 +1,9 @@
 name: AI Agent Autonomous Operations
 
 on:
-  schedule:
+#   schedule:
     # Chạy mỗi 6 giờ để kiểm tra và thực hiện tác vụ
-    - cron: '0 */6 * * *'
+#     - cron: '0 */6 * * *'
   workflow_dispatch:
     inputs:
       task_type:
