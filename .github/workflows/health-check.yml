@@ -1,9 +1,9 @@
 name: Digital Organism Health Check
 
 on:
-  schedule:
+#   schedule:
     # Kiểm tra sức khỏe mỗi 12 giờ
-    - cron: '0 */12 * * *'
+#     - cron: '0 */12 * * *'
   workflow_dispatch:
     inputs:
       generate_report:
