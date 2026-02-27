@@ -18,6 +18,8 @@ import gitCompletionSpec from './completions/git';
 import ghCompletionSpec from './completions/gh';
 import npxCompletionSpec from './completions/npx';
 import setLocationSpec from './completions/set-location';
+import haiosSpec from './completions/upstream/haios';
+
 import { upstreamSpecs } from './constants';
 import { ITerminalEnvironment, PathExecutableCache } from './env/pathExecutableCache';
 import { executeCommand, executeCommandTimeout, IFigExecuteExternals } from './fig/execute';

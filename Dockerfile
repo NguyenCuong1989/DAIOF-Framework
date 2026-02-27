@@ -1,31 +1,10 @@
-FROM python:3.11-slim
-
-# Set working directory
-WORKDIR /app
-
-# Install system dependencies
-RUN apt-get update && apt-get install -y \
-    git \
-    curl \
-    && rm -rf /var/lib/apt/lists/*
-
-# Copy requirements first for better caching
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
-
-# Copy source code
+FROM node:lts-alpine
+ENV NODE_ENV=production
+WORKDIR /usr/src/app
+COPY ["package.json", "package-lock.json*", "npm-shrinkwrap.json*", "./"]
+RUN npm install --production --silent && mv node_modules ../
 COPY . .
-
-# Create logs directory
-RUN mkdir -p logs
-
-# Set environment variables
-ENV PYTHONPATH=/app
-ENV GITHUB_TOKEN=${GITHUB_TOKEN}
-
-# Health check
-HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
-    CMD python3 -c "import haios_core; print('AI Systems Healthy')" || exit 1
-
-# Default command - run continuous orchestration
-CMD ["python3", ".github/scripts/autonomous_git_workflow.py"]
+EXPOSE 3000
+RUN chown -R node /usr/src/app
+USER node
+CMD ["node", "index.js"]
