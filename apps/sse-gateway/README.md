@@ -3,7 +3,6 @@
 ## Run
 
 ```bash
-npm i express
 node apps/sse-gateway/server.mjs
 ```
 
