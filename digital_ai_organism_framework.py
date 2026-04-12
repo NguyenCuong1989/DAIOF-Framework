@@ -321,7 +321,6 @@ class SymphonyControlCenter:
         Kiểm tra tuân thủ 4 trụ cột nền tảng.
         Returns a dict with boolean compliance flags AND numeric scores (0.0–1.0).
         """
-        solution_str = str(solution).lower()
         components = self._extract_components(solution)
         total = max(len(components), 1)
 

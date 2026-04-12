@@ -17,6 +17,9 @@ jobs:
     
     strategy:
       matrix:
+        # Reduced to ubuntu-only to cut CI cost; framework is pure Python with no
+        # platform-specific code.  Re-add macos-latest/windows-latest if native
+        # extensions are introduced.
         os: [ubuntu-latest]
         python-version: ['3.9', '3.10', '3.11', '3.12']
     
