@@ -151,6 +151,9 @@ black .
 
 # Lint with flake8 (critical errors only)
 flake8 . --select=E9,F63,F7,F82 --show-source --statistics
+
+# Type-check with mypy (optional)
+mypy digital_ai_organism_framework.py
 ```
 
 For complete contribution guidelines, see [CONTRIBUTING.md](../CONTRIBUTING.md).
