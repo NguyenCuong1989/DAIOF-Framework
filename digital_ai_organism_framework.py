@@ -61,12 +61,12 @@ from enum import Enum
 try:
     from agent_framework.observability import setup_observability
     setup_observability(
-        otlp_endpoint="http://localhost:4317",  # AI Toolkit gRPC endpoint
-        enable_sensitive_data=True  # Enable capturing prompts and completions
+        otlp_endpoint=os.environ.get("OTLP_ENDPOINT", "http://localhost:4317"),
+        enable_sensitive_data=False  # SECURITY: Never capture prompts/completions
     )
     print("✅ Tracing setup completed for HYPERAI Framework")
 except ImportError:
-    print("⚠️ Agent framework observability not available, tracing disabled")
+    pass  # Tracing is optional — silently skip when unavailable
 
 class SymphonyState(Enum):
     """Trạng thái của bản giao hưởng hệ thống"""
