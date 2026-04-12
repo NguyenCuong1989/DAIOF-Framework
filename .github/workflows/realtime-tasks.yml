@@ -1,9 +1,9 @@
 name: 🔄 Real-Time Autonomous Task Generation
 
 on:
-#   schedule:
-    # Every minute - continuous operation
-#     - cron: '* * * * *'
+  schedule:
+    # Every 6 hours - autonomous task generation
+    - cron: '0 */6 * * *'
   workflow_dispatch:
     inputs:
       interval:

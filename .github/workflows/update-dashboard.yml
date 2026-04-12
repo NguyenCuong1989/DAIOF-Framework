@@ -1,9 +1,9 @@
 name: 📊 Update Metrics Dashboard
 
 on:
-#   schedule:
-    # Run every 6 hours
-#     - cron: '0 */6 * * *'
+  schedule:
+    # Run every 12 hours
+    - cron: '0 */12 * * *'
   
   push:
     branches: [ main ]

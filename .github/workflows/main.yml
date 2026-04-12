@@ -1,1 +1,64 @@
+name: 🧬 DAIOF Main Pipeline
 
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  lint-and-test:
+    name: Lint & Test
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ['3.9', '3.11']
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install pytest
+
+      - name: Verify core imports
+        run: |
+          python -c "import digital_ai_organism_framework; print('✅ Core framework OK')"
+          python -c "import haios_core; print('✅ HAIOS Core OK')"
+          python -c "import haios_runtime; print('✅ HAIOS Runtime OK')"
+
+      - name: Run tests
+        run: |
+          python -m pytest tests/ -v --tb=short
+
+      - name: Health check
+        run: python verify_health.py
+
+  node-check:
+    name: Node.js SSE Gateway Check
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Verify SSE gateway syntax
+        run: node --check apps/sse-gateway/server.mjs

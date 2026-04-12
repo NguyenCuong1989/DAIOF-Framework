@@ -1,9 +1,9 @@
 name: 🧬 DAIOF Multi-Repository Orchestration - Auxiliary Pilots Control
 
 on:
-#   schedule:
-    # Run every 5 minutes for continuous ecosystem monitoring
-#     - cron: '*/5 * * * *'
+  schedule:
+    # Run every 12 hours for ecosystem monitoring
+    - cron: '0 */12 * * *'
   workflow_dispatch:
     inputs:
       operation:

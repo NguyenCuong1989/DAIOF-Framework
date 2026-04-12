@@ -1,9 +1,9 @@
 name: 🧬 Autonomous Development - Self-Evolving Organism
 
 on:
-#   schedule:
-    # Every 4 hours - organism actively develops itself
-#     - cron: '0 */4 * * *'
+  schedule:
+    # Every 12 hours - organism actively develops itself
+    - cron: '0 */12 * * *'
   workflow_dispatch:
     inputs:
       task_type:

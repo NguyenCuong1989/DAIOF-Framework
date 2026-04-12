@@ -13,7 +13,7 @@ Just run: python quick_start.py
 No configuration needed!
 """
 
-from src.digital_organism import DigitalOrganism, DigitalGenome
+from digital_ai_organism_framework import DigitalOrganism, DigitalGenome
 import random
 
 def print_separator(title=""):
