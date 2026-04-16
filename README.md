@@ -573,18 +573,13 @@ DAIOF implements a **three-tier intellectual property classification system**:
 If you use DAIOF in your research, please cite:
 
 ```bibtex
-## 📖 Citation
-
-If you use DAIOF in your research, please cite:
-
-```bibtex
 @software{daiof2025,
   title = {Digital AI Organism Framework},
-  author = {Alpha\_Prime\_Omega and Andy},
+  author = {Nguyễn Đức Cường (alpha\_prime\_omega)},
   year = {2025},
-  url = {https://github.com/NguyenCuong1989/DAIOF-Framework}
+  url = {https://github.com/NguyenCuong1989/DAIOF-Framework},
+  note = {The world's first biological AI architecture}
 }
-```
 ```
 
 ---
