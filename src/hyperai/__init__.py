@@ -17,24 +17,27 @@ __author__ = "Nguyễn Đức Cường (alpha_prime_omega)"
 __copyright__ = "Copyright (c) 2025 Nguyễn Đức Cường"
 
 # Core imports
-from .core.haios_core import HAIOSCore
-from .core.haios_runtime import HAIOSRuntime
+from .core import HAIOSCore, HAIOSRuntime
 
 # Component imports
-from .components.genome import DigitalGenome
-from .components.metabolism import DigitalMetabolism
-from .components.nervous_system import DigitalNervousSystem
-from .components.organism import DigitalOrganism
+from .components import (
+    DigitalGenome,
+    DigitalMetabolism,
+    DigitalNervousSystem,
+    DigitalOrganism
+)
 
 # Ecosystem imports
-from .ecosystem.ecosystem import DigitalEcosystem
+from .ecosystem import DigitalEcosystem
 
 # Protocol imports
-from .protocols.symphony import SymphonyControlCenter, ControlMetaData
-from .protocols.dr_protocol import DRProtocol
-
-# Metadata imports
-from .protocols.metadata import HAIOSInvariants, CreatorHierarchy
+from .protocols import (
+    SymphonyControlCenter,
+    ControlMetaData,
+    DRProtocol,
+    HAIOSInvariants,
+    CreatorHierarchy
+)
 
 __all__ = [
     # Core
