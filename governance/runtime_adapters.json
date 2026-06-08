@@ -1,0 +1,116 @@
+{
+  "schema_version": "1.0.0",
+  "default_timeout_seconds": 3.0,
+  "ttl_seconds": 300,
+  "components": [
+    {
+      "id": "openclaw_gateway",
+      "required": true,
+      "adapter": {
+        "type": "http_json",
+        "url_env": "OPENCLAW_HEALTH_URL",
+        "bearer_token_env": "OPENCLAW_HEALTH_TOKEN",
+        "identity_path": "identity",
+        "expected_identity": "openclaw_gateway",
+        "version_path": "version",
+        "health_path": "status",
+        "healthy_values": [
+          "healthy",
+          "ok",
+          "ready"
+        ]
+      }
+    },
+    {
+      "id": "planner_service",
+      "required": true,
+      "adapter": {
+        "type": "http_json",
+        "url_env": "PLANNER_HEALTH_URL",
+        "bearer_token_env": "PLANNER_HEALTH_TOKEN",
+        "identity_path": "identity",
+        "expected_identity": "planner_service",
+        "version_path": "version",
+        "health_path": "status",
+        "healthy_values": [
+          "healthy",
+          "ok",
+          "ready"
+        ]
+      }
+    },
+    {
+      "id": "phoenix_council",
+      "required": true,
+      "adapter": {
+        "type": "http_json",
+        "url_env": "PHOENIX_HEALTH_URL",
+        "bearer_token_env": "PHOENIX_HEALTH_TOKEN",
+        "identity_path": "identity",
+        "expected_identity": "phoenix_council",
+        "version_path": "version",
+        "health_path": "status",
+        "healthy_values": [
+          "healthy",
+          "ok",
+          "ready"
+        ]
+      }
+    },
+    {
+      "id": "factory_executor",
+      "required": true,
+      "adapter": {
+        "type": "http_json",
+        "url_env": "FACTORY_HEALTH_URL",
+        "bearer_token_env": "FACTORY_HEALTH_TOKEN",
+        "identity_path": "identity",
+        "expected_identity": "factory_executor",
+        "version_path": "version",
+        "health_path": "status",
+        "healthy_values": [
+          "healthy",
+          "ok",
+          "ready"
+        ]
+      }
+    },
+    {
+      "id": "axcontrol",
+      "required": true,
+      "adapter": {
+        "type": "http_json",
+        "url_env": "AXCONTROL_HEALTH_URL",
+        "bearer_token_env": "AXCONTROL_HEALTH_TOKEN",
+        "identity_path": "identity",
+        "expected_identity": "axcontrol",
+        "version_path": "version",
+        "health_path": "status",
+        "healthy_values": [
+          "healthy",
+          "ok",
+          "ready"
+        ]
+      }
+    },
+    {
+      "id": "deployment_runtime",
+      "required": true,
+      "adapter": {
+        "type": "file_json",
+        "path_env": "DEPLOYMENT_RUNTIME_EVIDENCE_FILE",
+        "identity_path": "identity",
+        "expected_identity": "deployment_runtime",
+        "version_path": "version",
+        "health_path": "status",
+        "healthy_values": [
+          "healthy",
+          "ok",
+          "ready"
+        ]
+      }
+    }
+  ],
+  "attestation_hmac_key_env": "RUNTIME_ATTESTATION_HMAC_KEY",
+  "attestation_key_id_env": "RUNTIME_ATTESTATION_KEY_ID"
+}

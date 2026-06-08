@@ -23,8 +23,7 @@ import time
 import yaml
 import subprocess
 import threading
-from datetime import datetime, timedelta, UTC
-from datetime import datetime, timedelta, timezone
+from datetime import UTC, datetime, timedelta, timezone
 from pathlib import Path
 from typing import Dict, List, Any, Optional, Tuple
 from github import Github, Auth, Repository, Issue, PullRequest
@@ -859,7 +858,6 @@ class AutonomousGitWorkflow:
                 'remote_status': remote_status,
                 'state': self._determine_workflow_state(branch_info, modified_files, remote_status),
                 'timestamp': datetime.now(UTC).isoformat()
-                'timestamp': datetime.now(timezone.utc).isoformat()
             }
 
         except Exception as e:
@@ -1439,25 +1437,31 @@ class AutonomousGitWorkflow:
 
 
 def main():
-    """Main entry point"""
-    if len(sys.argv) > 1 and sys.argv[1] == 'single':
-        # Run single repository autonomous workflow
-        workflow = AutonomousGitWorkflow()
+    """Main entry point."""
+    args = sys.argv[1:]
+    single_mode = bool(args and args[0] == 'single')
 
-        if len(sys.argv) > 2:
-            command = sys.argv[2]
-            if command == 'status':
-                status = workflow.get_git_status()
-                print(json.dumps(status, indent=2))
-            elif command == 'cycle':
-                results = workflow.execute_workflow_cycle()
-                print(json.dumps(results, indent=2))
+    # Preserve the documented ``single <command>`` form while accepting the
+    # direct ``status`` command used by health checks and tests.
+    if single_mode:
+        args = args[1:]
+
+    if args and args[0] in {'status', 'cycle'}:
+        workflow = AutonomousGitWorkflow()
+        if args[0] == 'status':
+            print(json.dumps(workflow.get_git_status(), indent=2))
         else:
-            workflow.run_continuous_workflow(interval=60)
-    else:
-        # Run multi-repository orchestration
-        orchestrator = MultiRepositoryOrchestrator()
-        orchestrator.run_continuous_orchestration(interval=300)  # Check every 5 minutes
+            print(json.dumps(workflow.execute_workflow_cycle(), indent=2))
+        return
+
+    if single_mode:
+        AutonomousGitWorkflow().run_continuous_workflow(interval=60)
+        return
+
+    # Run multi-repository orchestration when no single-repository command was
+    # requested.
+    orchestrator = MultiRepositoryOrchestrator()
+    orchestrator.run_continuous_orchestration(interval=300)  # Check every 5 minutes
 
 
 if __name__ == '__main__':

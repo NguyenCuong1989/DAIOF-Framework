@@ -1,131 +1,75 @@
-name: 🔄 Auto PR Review & Merge
+name: 🔍 PR Governance Review
 
 on:
   pull_request:
-    types: [opened, synchronize, reopened]
-  pull_request_review:
-    types: [submitted]
+    types: [opened, synchronize, reopened, ready_for_review]
 
 permissions:
-  contents: write
+  contents: read
   pull-requests: write
-  checks: write
+  issues: write
 
 jobs:
-  auto_review:
+  governance-review:
     runs-on: ubuntu-latest
-    name: Autonomous PR Review
-    
+    name: Governance risk assessment
+
     steps:
-      - name: 🧬 Checkout Repository
-        uses: actions/checkout@v4
-      
-      - name: 🐍 Setup Python
-        uses: actions/setup-python@v5
+      - name: Checkout repository
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+
+      - name: Set up Python
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5.6.0
         with:
-          python-version: '3.9'
-      
-      - name: 🤖 Auto Review PR
-        uses: actions/github-script@v7
+          python-version: '3.11'
+
+      - name: Install governance dependencies
+        run: python -m pip install pyyaml
+
+      - name: Validate governance evidence
+        run: python tools/governance/governance_gate.py validate
+
+      - name: Assess PR risk without approving or merging
+        uses: actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea # v7.0.1
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             const pr = context.payload.pull_request;
-            
-            // Skip if PR is from organism itself
-            if (pr.user.login === 'github-actions[bot]') {
-              console.log('Skipping organism self-PR');
-              return;
-            }
-            
-            // Get PR details
             const { data: files } = await github.rest.pulls.listFiles({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              pull_number: pr.number
+              pull_number: pr.number,
+              per_page: 100
             });
-            
-            // Auto-review criteria
-            let autoApprove = true;
-            let comments = [];
-            
-            // Check file changes
-            for (const file of files) {
-              // Check for large files
-              if (file.additions > 500) {
-                autoApprove = false;
-                comments.push(`⚠️ Large change in ${file.filename}: ${file.additions} additions`);
-              }
-              
-              // Check for sensitive files
-              if (file.filename.includes('secret') || file.filename.includes('.env')) {
-                autoApprove = false;
-                comments.push(`🔒 Sensitive file detected: ${file.filename}`);
-              }
-            }
-            
-            // Auto-comment
-            if (comments.length > 0) {
-              await github.rest.issues.createComment({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                issue_number: pr.number,
-                body: `🧬 **Organism Auto-Review**\n\n${comments.join('\n')}\n\n*Automated review by Digital Organism*`
-              });
-            }
-            
-            // Auto-approve if criteria met
-            if (autoApprove && files.length < 10 && pr.additions < 200) {
-              await github.rest.pulls.createReview({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                pull_number: pr.number,
-                event: 'APPROVE',
-                body: '✅ **Auto-approved by Organism**\n\nChanges look good! Small, focused PR. Safe to merge.\n\n*Automated approval by Digital Organism*'
-              });
-              
-              // Add merge label
-              await github.rest.issues.addLabels({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                issue_number: pr.number,
-                labels: ['auto-approved', 'ready-to-merge']
-              });
-            }
-  
-  auto_merge:
-    needs: auto_review
-    runs-on: ubuntu-latest
-    name: Auto Merge PR
-    if: github.event_name == 'pull_request_review' && github.event.review.state == 'approved'
-    
-    steps:
-      - name: 🔀 Auto Merge
-        uses: actions/github-script@v7
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          script: |
-            const pr = context.payload.pull_request;
-            
-            // Check if PR has auto-approved label
-            const { data: labels } = await github.rest.issues.listLabelsOnIssue({
+
+            const protectedPrefixes = [
+              '.github/workflows/',
+              'governance/',
+              'tools/governance/',
+              'src/hyperai/core/',
+              'tools/runtime/'
+            ];
+            const protectedFiles = files
+              .map(file => file.filename)
+              .filter(name => protectedPrefixes.some(prefix => name.startsWith(prefix)));
+            const largeFiles = files
+              .filter(file => file.additions + file.deletions > 500)
+              .map(file => file.filename);
+            const risk = protectedFiles.length || largeFiles.length ? 'HIGH' : 'STANDARD';
+            const body = [
+              '## Governance review',
+              `- Risk class: **${risk}**`,
+              `- Protected surfaces changed: ${protectedFiles.length ? protectedFiles.join(', ') : 'none'}`,
+              `- Large files changed: ${largeFiles.length ? largeFiles.join(', ') : 'none'}`,
+              '- Human approval: **required**',
+              '- Automated approval/merge: **disabled by governance policy**',
+              '',
+              'Required checks and branch protection remain the authority for merge readiness.'
+            ].join('\n');
+
+            await github.rest.issues.createComment({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              issue_number: pr.number
+              issue_number: pr.number,
+              body
             });
-            
-            const hasAutoApproved = labels.some(l => l.name === 'auto-approved');
-            
-            if (hasAutoApproved) {
-              // Enable auto-merge
-              await github.rest.pulls.merge({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                pull_number: pr.number,
-                merge_method: 'squash',
-                commit_title: `🧬 ${pr.title}`,
-                commit_message: `${pr.body}\n\n*Auto-merged by Digital Organism*`
-              });
-              
-              console.log('✅ PR auto-merged successfully');
-            }
