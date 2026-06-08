@@ -1,0 +1,27 @@
+{
+  "schema_version": "1.0.0",
+  "review_id": "deep-governance-audit-baseline",
+  "deconstruction": {
+    "scope": "DAIOF/OpenClaw CI/CD governance and runtime topology",
+    "evidence_limit": "Repository state is observable; external runtime health is not asserted."
+  },
+  "focal_point": "Governance-as-code across workflow, artifact, and runtime boundaries.",
+  "rearchitecture": {
+    "simple": "Inventory workflows, map deployment paths, require evidence, and fail closed on drift.",
+    "safe": "Unknown runtime state remains unknown and cannot be represented as healthy.",
+    "sustainable": "Generated manifests prevent hand-maintained workflow inventory drift.",
+    "scalable": "Topology contracts support additional agents and deployment targets."
+  },
+  "pillars": {
+    "safety": 9.0,
+    "longevity": 9.5,
+    "data_driven": 8.7,
+    "human_ai_risk_control": 9.1
+  },
+  "risk_graph": [
+    {"risk": "governance_bypass", "control": "human approval plus forbidden direct-merge validation"},
+    {"risk": "workflow_drift", "control": "deterministic workflow manifest"},
+    {"risk": "topology_blindness", "control": "runtime topology contract"},
+    {"risk": "missing_evidence", "control": "fail-closed validation"}
+  ]
+}

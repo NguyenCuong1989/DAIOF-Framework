@@ -1,0 +1,987 @@
+{
+  "deploy_workflows": [
+    ".github/workflows/ci.yml",
+    ".github/workflows/docker-publish.yml",
+    ".github/workflows/pypi-publish.yml",
+    ".github/workflows/release.yml"
+  ],
+  "metrics": {
+    "deploy_workflow_count": 4,
+    "explicit_permission_coverage": 0.7692,
+    "pinned_action_rate": 0.2564,
+    "workflow_drift_rate": 0.0
+  },
+  "schema_version": "1.0.0",
+  "source": ".github/workflows",
+  "workflow_count": 26,
+  "workflows": [
+    {
+      "action_references": 2,
+      "deploy_capable": false,
+      "explicit_permissions": true,
+      "jobs": [
+        {
+          "actions": [
+            "actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
+            "actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065"
+          ],
+          "environment": null,
+          "id": "autonomous-agent",
+          "needs": [],
+          "permissions": null
+        }
+      ],
+      "name": "AI Agent Autonomous Operations",
+      "path": ".github/workflows/ai-agent-autonomous.yml",
+      "permissions": {
+        "contents": "write",
+        "pull-requests": "write"
+      },
+      "pinned_action_references": 2,
+      "sha256": "004a7ca997538bfb6430887bb914aec6d16b81eb98d777b5b53950d592a9574f",
+      "triggers": [
+        "workflow_dispatch"
+      ],
+      "unpinned_actions": []
+    },
+    {
+      "action_references": 1,
+      "deploy_capable": false,
+      "explicit_permissions": false,
+      "jobs": [
+        {
+          "actions": [
+            "actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683"
+          ],
+          "environment": null,
+          "id": "health",
+          "needs": [],
+          "permissions": null
+        }
+      ],
+      "name": "APO Health Check",
+      "path": ".github/workflows/apo-health-check.yml",
+      "permissions": null,
+      "pinned_action_references": 1,
+      "sha256": "ba1d7fb6bb74275eb1648b7e2cdb3e0415f0a4f93a98329477156d7a8cda027e",
+      "triggers": [
+        "schedule",
+        "workflow_dispatch"
+      ],
+      "unpinned_actions": []
+    },
+    {
+      "action_references": 3,
+      "deploy_capable": false,
+      "explicit_permissions": true,
+      "jobs": [
+        {
+          "actions": [
+            "actions/checkout@v4",
+            "actions/setup-python@v5",
+            "peter-evans/create-pull-request@v6"
+          ],
+          "environment": null,
+          "id": "update_dependencies",
+          "needs": [],
+          "permissions": null
+        }
+      ],
+      "name": "\ud83d\udce6 Auto Dependency Updates",
+      "path": ".github/workflows/auto-dependency-updates.yml",
+      "permissions": {
+        "contents": "write",
+        "pull-requests": "write"
+      },
+      "pinned_action_references": 0,
+      "sha256": "238a26ffd4248933334258b28c3fbb4a6af7588149dc72c4013ce6f090a58896",
+      "triggers": [
+        "workflow_dispatch"
+      ],
+      "unpinned_actions": [
+        "actions/checkout@v4",
+        "actions/setup-python@v5",
+        "peter-evans/create-pull-request@v6"
+      ]
+    },
+    {
+      "action_references": 3,
+      "deploy_capable": false,
+      "explicit_permissions": true,
+      "jobs": [
+        {
+          "actions": [
+            "actions/github-script@v7"
+          ],
+          "environment": null,
+          "id": "auto_label",
+          "needs": [],
+          "permissions": null
+        },
+        {
+          "actions": [
+            "actions/github-script@v7"
+          ],
+          "environment": null,
+          "id": "auto_respond",
+          "needs": [],
+          "permissions": null
+        },
+        {
+          "actions": [
+            "actions/stale@v9"
+          ],
+          "environment": null,
+          "id": "stale_check",
+          "needs": [],
+          "permissions": null
+        }
+      ],
+      "name": "\ud83e\udd16 Auto Issue Management",
+      "path": ".github/workflows/auto-issue-management.yml",
+      "permissions": {
+        "contents": "read",
+        "issues": "write"
+      },
+      "pinned_action_references": 0,
+      "sha256": "50cb2ded3d86d08006b817ff1a9edca5899712bd5dc12ccccf0d0378bb6c91db",
+      "triggers": [
+        "issue_comment",
+        "issues"
+      ],
+      "unpinned_actions": [
+        "actions/github-script@v7",
+        "actions/github-script@v7",
+        "actions/stale@v9"
+      ]
+    },
+    {
+      "action_references": 3,
+      "deploy_capable": false,
+      "explicit_permissions": true,
+      "jobs": [
+        {
+          "actions": [
+            "actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
+            "actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea",
+            "actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065"
+          ],
+          "environment": null,
+          "id": "governance-review",
+          "needs": [],
+          "permissions": null
+        }
+      ],
+      "name": "\ud83d\udd0d PR Governance Review",
+      "path": ".github/workflows/auto-pr-review.yml",
+      "permissions": {
+        "contents": "read",
+        "issues": "write",
+        "pull-requests": "write"
+      },
+      "pinned_action_references": 3,
+      "sha256": "acee8780dbf418d525297e40bd1ed3e2814fa207016ca849d4ca744017f8e06e",
+      "triggers": [
+        "pull_request"
+      ],
+      "unpinned_actions": []
+    },
+    {
+      "action_references": 2,
+      "deploy_capable": false,
+      "explicit_permissions": true,
+      "jobs": [
+        {
+          "actions": [
+            "actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
+            "actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065"
+          ],
+          "environment": null,
+          "id": "autonomous_development",
+          "needs": [],
+          "permissions": null
+        }
+      ],
+      "name": "\ud83e\uddec Autonomous Development - Self-Evolving Organism",
+      "path": ".github/workflows/autonomous-development.yml",
+      "permissions": {
+        "contents": "write",
+        "pull-requests": "write"
+      },
+      "pinned_action_references": 2,
+      "sha256": "69c947f2a03ada18ff5a30cb02eb6e706d8db179263f7cd34162efea25cb846b",
+      "triggers": [
+        "workflow_dispatch"
+      ],
+      "unpinned_actions": []
+    },
+    {
+      "action_references": 3,
+      "deploy_capable": false,
+      "explicit_permissions": true,
+      "jobs": [
+        {
+          "actions": [
+            "actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
+            "actions/setup-python@v5",
+            "actions/upload-artifact@v4"
+          ],
+          "environment": null,
+          "id": "autonomous_git_workflow",
+          "needs": [],
+          "permissions": null
+        }
+      ],
+      "name": "\ud83e\uddec Autonomous Git Workflow - Complete Repository Control",
+      "path": ".github/workflows/autonomous-git-workflow.yml",
+      "permissions": {
+        "contents": "write",
+        "pull-requests": "write"
+      },
+      "pinned_action_references": 1,
+      "sha256": "526801b9d3e5c808d37b0a31e8fe61069aa62c8ff421b953186275b00bc0d749",
+      "triggers": [
+        "workflow_dispatch"
+      ],
+      "unpinned_actions": [
+        "actions/setup-python@v5",
+        "actions/upload-artifact@v4"
+      ]
+    },
+    {
+      "action_references": 4,
+      "deploy_capable": false,
+      "explicit_permissions": true,
+      "jobs": [
+        {
+          "actions": [
+            "actions/checkout@v4",
+            "actions/setup-node@v4",
+            "actions/setup-python@v5",
+            "peter-evans/create-pull-request@v5"
+          ],
+          "environment": null,
+          "id": "autonomous_security_fix",
+          "needs": [],
+          "permissions": null
+        }
+      ],
+      "name": "\ud83d\udee1\ufe0f Autonomous Security Fix & Maintenance",
+      "path": ".github/workflows/autonomous-security-fix.yml",
+      "permissions": {
+        "contents": "write",
+        "pull-requests": "write"
+      },
+      "pinned_action_references": 0,
+      "sha256": "81e29a4d9615e6da286e0056aedfdb858589b24e6fb88d450ffc6fade0834273",
+      "triggers": [
+        "push",
+        "workflow_dispatch"
+      ],
+      "unpinned_actions": [
+        "actions/checkout@v4",
+        "actions/setup-node@v4",
+        "actions/setup-python@v5",
+        "peter-evans/create-pull-request@v5"
+      ]
+    },
+    {
+      "action_references": 9,
+      "deploy_capable": true,
+      "explicit_permissions": true,
+      "jobs": [
+        {
+          "actions": [
+            "actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
+            "softprops/action-gh-release@v2"
+          ],
+          "environment": null,
+          "id": "release",
+          "needs": [
+            "test",
+            "validate"
+          ],
+          "permissions": {
+            "contents": "write"
+          }
+        },
+        {
+          "actions": [
+            "actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
+            "actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065"
+          ],
+          "environment": null,
+          "id": "security",
+          "needs": [],
+          "permissions": null
+        },
+        {
+          "actions": [
+            "actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
+            "actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065",
+            "codecov/codecov-action@18283e04ce6e62d37312384ff67ab1fd11d9025a"
+          ],
+          "environment": null,
+          "id": "test",
+          "needs": [],
+          "permissions": null
+        },
+        {
+          "actions": [
+            "actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
+            "actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065"
+          ],
+          "environment": null,
+          "id": "validate",
+          "needs": [],
+          "permissions": null
+        }
+      ],
+      "name": "DAIOF CI/CD",
+      "path": ".github/workflows/ci.yml",
+      "permissions": {
+        "contents": "read"
+      },
+      "pinned_action_references": 8,
+      "sha256": "520818c6e3a99457988a0a4c05eebc59d81909b2ebb8e79aa1f18b20275d1ed5",
+      "triggers": [
+        "pull_request",
+        "push"
+      ],
+      "unpinned_actions": [
+        "softprops/action-gh-release@v2"
+      ]
+    },
+    {
+      "action_references": 5,
+      "deploy_capable": false,
+      "explicit_permissions": true,
+      "jobs": [
+        {
+          "actions": [
+            "actions/checkout@v4",
+            "actions/github-script@v7"
+          ],
+          "environment": null,
+          "id": "daily_engagement",
+          "needs": [],
+          "permissions": null
+        },
+        {
+          "actions": [
+            "actions/github-script@v7"
+          ],
+          "environment": null,
+          "id": "encourage_newcomers",
+          "needs": [],
+          "permissions": null
+        },
+        {
+          "actions": [
+            "actions/github-script@v7",
+            "actions/github-script@v7"
+          ],
+          "environment": null,
+          "id": "recognize_contributions",
+          "needs": [],
+          "permissions": null
+        }
+      ],
+      "name": "\u2b50 Community Recognition & Engagement",
+      "path": ".github/workflows/community-engagement.yml",
+      "permissions": {
+        "contents": "write",
+        "discussions": "write",
+        "issues": "write",
+        "pull-requests": "write"
+      },
+      "pinned_action_references": 0,
+      "sha256": "c9de8dda0973da66ecabf86661cd31bface42a88fa5eb5cc10fa687333253fc0",
+      "triggers": [
+        "discussion",
+        "issues",
+        "pull_request",
+        "workflow_dispatch"
+      ],
+      "unpinned_actions": [
+        "actions/checkout@v4",
+        "actions/github-script@v7",
+        "actions/github-script@v7",
+        "actions/github-script@v7",
+        "actions/github-script@v7"
+      ]
+    },
+    {
+      "action_references": 5,
+      "deploy_capable": true,
+      "explicit_permissions": true,
+      "jobs": [
+        {
+          "actions": [
+            "actions/checkout@v4",
+            "docker/build-push-action@v6",
+            "docker/login-action@v3",
+            "docker/metadata-action@v5",
+            "docker/setup-buildx-action@v3"
+          ],
+          "environment": null,
+          "id": "build-and-push",
+          "needs": [],
+          "permissions": {
+            "contents": "read",
+            "packages": "write"
+          }
+        }
+      ],
+      "name": "Docker Build & Publish",
+      "path": ".github/workflows/docker-publish.yml",
+      "permissions": null,
+      "pinned_action_references": 0,
+      "sha256": "dd5e03591854a090e2034e36534d1ca3267293f83e5754ea2ec9b3eec3b9e8ca",
+      "triggers": [
+        "pull_request",
+        "push"
+      ],
+      "unpinned_actions": [
+        "actions/checkout@v4",
+        "docker/build-push-action@v6",
+        "docker/login-action@v3",
+        "docker/metadata-action@v5",
+        "docker/setup-buildx-action@v3"
+      ]
+    },
+    {
+      "action_references": 2,
+      "deploy_capable": false,
+      "explicit_permissions": true,
+      "jobs": [
+        {
+          "actions": [
+            "actions/checkout@v4",
+            "actions/setup-python@v4"
+          ],
+          "environment": null,
+          "id": "update-docs",
+          "needs": [],
+          "permissions": null
+        }
+      ],
+      "name": "\ud83d\udcda Update Documentation",
+      "path": ".github/workflows/docs.yml",
+      "permissions": {
+        "contents": "write"
+      },
+      "pinned_action_references": 0,
+      "sha256": "b3a6cd48d8c96d7a6072210b9432e165ef757d1792fc47773525bdf8ea975407",
+      "triggers": [
+        "push",
+        "workflow_dispatch"
+      ],
+      "unpinned_actions": [
+        "actions/checkout@v4",
+        "actions/setup-python@v4"
+      ]
+    },
+    {
+      "action_references": 2,
+      "deploy_capable": false,
+      "explicit_permissions": true,
+      "jobs": [
+        {
+          "actions": [
+            "actions/checkout@v4",
+            "actions/setup-python@v5"
+          ],
+          "environment": null,
+          "id": "process-issue",
+          "needs": [],
+          "permissions": null
+        }
+      ],
+      "name": "\ud83e\udd16 Enhanced Issue Automation",
+      "path": ".github/workflows/enhanced-issue-automation.yml",
+      "permissions": {
+        "contents": "read",
+        "issues": "write"
+      },
+      "pinned_action_references": 0,
+      "sha256": "ff271ce8edaec0dd03d0a0c39b2bf9f66798387b5c62ea28d08cd9aa7317defe",
+      "triggers": [
+        "issues",
+        "workflow_dispatch"
+      ],
+      "unpinned_actions": [
+        "actions/checkout@v4",
+        "actions/setup-python@v5"
+      ]
+    },
+    {
+      "action_references": 2,
+      "deploy_capable": false,
+      "explicit_permissions": true,
+      "jobs": [
+        {
+          "actions": [
+            "actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
+            "actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065"
+          ],
+          "environment": null,
+          "id": "governance",
+          "needs": [],
+          "permissions": null
+        }
+      ],
+      "name": "Governance and Runtime Topology Gate",
+      "path": ".github/workflows/governance-gate.yml",
+      "permissions": {
+        "contents": "read"
+      },
+      "pinned_action_references": 2,
+      "sha256": "c4d281b24735104c024e78c430adad74c4053de7d517875403479cd832d63163",
+      "triggers": [
+        "pull_request",
+        "push",
+        "workflow_dispatch"
+      ],
+      "unpinned_actions": []
+    },
+    {
+      "action_references": 1,
+      "deploy_capable": false,
+      "explicit_permissions": true,
+      "jobs": [
+        {
+          "actions": [
+            "actions/first-interaction@v1"
+          ],
+          "environment": null,
+          "id": "greeting",
+          "needs": [],
+          "permissions": null
+        }
+      ],
+      "name": "\ud83c\udf89 Greet New Contributors",
+      "path": ".github/workflows/greetings.yml",
+      "permissions": {
+        "issues": "write",
+        "pull-requests": "write"
+      },
+      "pinned_action_references": 0,
+      "sha256": "09253aa06f68871472097595fa6f5d1a6e59255bf6271b1bb8a59fb33ae78d5d",
+      "triggers": [
+        "issues",
+        "pull_request_target"
+      ],
+      "unpinned_actions": [
+        "actions/first-interaction@v1"
+      ]
+    },
+    {
+      "action_references": 2,
+      "deploy_capable": false,
+      "explicit_permissions": true,
+      "jobs": [
+        {
+          "actions": [
+            "actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
+            "actions/setup-python@v5"
+          ],
+          "environment": null,
+          "id": "health-check",
+          "needs": [],
+          "permissions": null
+        }
+      ],
+      "name": "Digital Organism Health Check",
+      "path": ".github/workflows/health-check.yml",
+      "permissions": {
+        "contents": "write"
+      },
+      "pinned_action_references": 1,
+      "sha256": "7beab917135a0a56b35de510e2598f51f1f7d140a5998cb9612a8142cb6431e6",
+      "triggers": [
+        "workflow_dispatch"
+      ],
+      "unpinned_actions": [
+        "actions/setup-python@v5"
+      ]
+    },
+    {
+      "action_references": 2,
+      "deploy_capable": false,
+      "explicit_permissions": true,
+      "jobs": [
+        {
+          "actions": [
+            "actions/labeler@v4",
+            "codelytv/pr-size-labeler@v1"
+          ],
+          "environment": null,
+          "id": "label",
+          "needs": [],
+          "permissions": null
+        }
+      ],
+      "name": "\ud83c\udff7\ufe0f Auto Label PRs",
+      "path": ".github/workflows/labeler.yml",
+      "permissions": {
+        "contents": "read",
+        "pull-requests": "write"
+      },
+      "pinned_action_references": 0,
+      "sha256": "30e30f5047aea9235e404c84792941f2856476b6104b820bb598ce99673ffce3",
+      "triggers": [
+        "pull_request"
+      ],
+      "unpinned_actions": [
+        "actions/labeler@v4",
+        "codelytv/pr-size-labeler@v1"
+      ]
+    },
+    {
+      "action_references": 2,
+      "deploy_capable": false,
+      "explicit_permissions": false,
+      "jobs": [
+        {
+          "actions": [
+            "actions/checkout@v4",
+            "actions/upload-artifact@v4"
+          ],
+          "environment": null,
+          "id": "build-latex-alpha",
+          "needs": [],
+          "permissions": null
+        }
+      ],
+      "name": "Build Alpha Omega PDF",
+      "path": ".github/workflows/latex-build.yml",
+      "permissions": null,
+      "pinned_action_references": 0,
+      "sha256": "ec01765c2e982a447f4cdce03baf30c8b514ae7611a92a0b888d48f8b0e88f84",
+      "triggers": [
+        "pull_request",
+        "push"
+      ],
+      "unpinned_actions": [
+        "actions/checkout@v4",
+        "actions/upload-artifact@v4"
+      ]
+    },
+    {
+      "action_references": 5,
+      "deploy_capable": false,
+      "explicit_permissions": false,
+      "jobs": [
+        {
+          "actions": [
+            "actions/checkout@v4",
+            "actions/setup-python@v5"
+          ],
+          "environment": null,
+          "id": "lint",
+          "needs": [],
+          "permissions": null
+        },
+        {
+          "actions": [
+            "actions/checkout@v4",
+            "actions/setup-python@v5",
+            "codecov/codecov-action@v4"
+          ],
+          "environment": null,
+          "id": "test",
+          "needs": [
+            "lint"
+          ],
+          "permissions": null
+        }
+      ],
+      "name": "DAIOF Main CI",
+      "path": ".github/workflows/main.yml",
+      "permissions": null,
+      "pinned_action_references": 0,
+      "sha256": "28fa723e3b6b0920e465824762fb930ffaee4c61a66285416571dccb0c0794c1",
+      "triggers": [
+        "pull_request",
+        "push"
+      ],
+      "unpinned_actions": [
+        "actions/checkout@v4",
+        "actions/checkout@v4",
+        "actions/setup-python@v5",
+        "actions/setup-python@v5",
+        "codecov/codecov-action@v4"
+      ]
+    },
+    {
+      "action_references": 2,
+      "deploy_capable": false,
+      "explicit_permissions": true,
+      "jobs": [
+        {
+          "actions": [
+            "actions/setup-python@v5",
+            "actions/upload-artifact@v4"
+          ],
+          "environment": null,
+          "id": "multi_repo_orchestration",
+          "needs": [],
+          "permissions": null
+        }
+      ],
+      "name": "\ud83e\uddec DAIOF Multi-Repository Orchestration - Auxiliary Pilots Control",
+      "path": ".github/workflows/multi-repo-orchestration.yml",
+      "permissions": {
+        "actions": "read",
+        "contents": "read",
+        "pull-requests": "read"
+      },
+      "pinned_action_references": 0,
+      "sha256": "0d6361fdf4f761aa6572d2fa6d3527980ca5ed548f922b311ec52d9ab092ff96",
+      "triggers": [
+        "workflow_dispatch"
+      ],
+      "unpinned_actions": [
+        "actions/setup-python@v5",
+        "actions/upload-artifact@v4"
+      ]
+    },
+    {
+      "action_references": 7,
+      "deploy_capable": true,
+      "explicit_permissions": false,
+      "jobs": [
+        {
+          "actions": [
+            "actions/checkout@v4",
+            "actions/setup-python@v5",
+            "actions/upload-artifact@v4"
+          ],
+          "environment": null,
+          "id": "build",
+          "needs": [],
+          "permissions": null
+        },
+        {
+          "actions": [
+            "actions/download-artifact@v4.1.3",
+            "pypa/gh-action-pypi-publish@release/v1"
+          ],
+          "environment": {
+            "name": "pypi",
+            "url": "https://pypi.org/p/hyperai-framework"
+          },
+          "id": "publish-to-pypi",
+          "needs": [
+            "build"
+          ],
+          "permissions": {
+            "id-token": "write"
+          }
+        },
+        {
+          "actions": [
+            "actions/download-artifact@v4.1.3",
+            "pypa/gh-action-pypi-publish@release/v1"
+          ],
+          "environment": {
+            "name": "testpypi",
+            "url": "https://test.pypi.org/p/hyperai-framework"
+          },
+          "id": "publish-to-testpypi",
+          "needs": [
+            "build"
+          ],
+          "permissions": {
+            "id-token": "write"
+          }
+        }
+      ],
+      "name": "Publish to PyPI",
+      "path": ".github/workflows/pypi-publish.yml",
+      "permissions": null,
+      "pinned_action_references": 0,
+      "sha256": "3466f11c29a6795d1173123c8b7b74841be006108353cc845b530fd63532edad",
+      "triggers": [
+        "push",
+        "workflow_dispatch"
+      ],
+      "unpinned_actions": [
+        "actions/checkout@v4",
+        "actions/download-artifact@v4.1.3",
+        "actions/download-artifact@v4.1.3",
+        "actions/setup-python@v5",
+        "actions/upload-artifact@v4",
+        "pypa/gh-action-pypi-publish@release/v1",
+        "pypa/gh-action-pypi-publish@release/v1"
+      ]
+    },
+    {
+      "action_references": 2,
+      "deploy_capable": false,
+      "explicit_permissions": false,
+      "jobs": [
+        {
+          "actions": [
+            "actions/checkout@v4",
+            "actions/setup-python@v5"
+          ],
+          "environment": null,
+          "id": "build",
+          "needs": [],
+          "permissions": null
+        }
+      ],
+      "name": "Python package",
+      "path": ".github/workflows/python-package.yml",
+      "permissions": null,
+      "pinned_action_references": 0,
+      "sha256": "7d4188d6a94cac0e4c96c318c7910f181a24025c33daab3a17c21f78591dc61a",
+      "triggers": [
+        "pull_request",
+        "push"
+      ],
+      "unpinned_actions": [
+        "actions/checkout@v4",
+        "actions/setup-python@v5"
+      ]
+    },
+    {
+      "action_references": 4,
+      "deploy_capable": false,
+      "explicit_permissions": true,
+      "jobs": [
+        {
+          "actions": [
+            "actions/checkout@v4"
+          ],
+          "environment": null,
+          "id": "deep_analysis",
+          "needs": [],
+          "permissions": null
+        },
+        {
+          "actions": [
+            "actions/checkout@v4",
+            "actions/setup-python@v5",
+            "actions/upload-artifact@v4"
+          ],
+          "environment": null,
+          "id": "realtime_tasks",
+          "needs": [],
+          "permissions": null
+        }
+      ],
+      "name": "\ud83d\udd04 Real-Time Autonomous Task Generation",
+      "path": ".github/workflows/realtime-tasks.yml",
+      "permissions": {
+        "contents": "write",
+        "issues": "write",
+        "pull-requests": "write"
+      },
+      "pinned_action_references": 0,
+      "sha256": "812ddc63bddfc8fccbfbe7692c549be7f45f2429551ef1dc1e1f7075d971ecb3",
+      "triggers": [
+        "workflow_dispatch"
+      ],
+      "unpinned_actions": [
+        "actions/checkout@v4",
+        "actions/checkout@v4",
+        "actions/setup-python@v5",
+        "actions/upload-artifact@v4"
+      ]
+    },
+    {
+      "action_references": 2,
+      "deploy_capable": true,
+      "explicit_permissions": true,
+      "jobs": [
+        {
+          "actions": [
+            "actions/checkout@v4",
+            "softprops/action-gh-release@v2"
+          ],
+          "environment": null,
+          "id": "release",
+          "needs": [],
+          "permissions": null
+        }
+      ],
+      "name": "Create GitHub Release",
+      "path": ".github/workflows/release.yml",
+      "permissions": {
+        "contents": "write"
+      },
+      "pinned_action_references": 0,
+      "sha256": "a22af1cc7293959d0035e7038ccbd7add2278bee7a86044e0bbf4e392b565dcc",
+      "triggers": [
+        "push"
+      ],
+      "unpinned_actions": [
+        "actions/checkout@v4",
+        "softprops/action-gh-release@v2"
+      ]
+    },
+    {
+      "action_references": 1,
+      "deploy_capable": false,
+      "explicit_permissions": true,
+      "jobs": [
+        {
+          "actions": [
+            "actions/stale@v8"
+          ],
+          "environment": null,
+          "id": "stale",
+          "needs": [],
+          "permissions": null
+        }
+      ],
+      "name": "\ud83e\uddf9 Mark Stale Issues and PRs",
+      "path": ".github/workflows/stale.yml",
+      "permissions": {
+        "issues": "write",
+        "pull-requests": "write"
+      },
+      "pinned_action_references": 0,
+      "sha256": "7cb0c5e96bdf50fd6c7d9ed7e22ce5b57921aa4f4412d2ad46565d1595482a76",
+      "triggers": [
+        "workflow_dispatch"
+      ],
+      "unpinned_actions": [
+        "actions/stale@v8"
+      ]
+    },
+    {
+      "action_references": 2,
+      "deploy_capable": false,
+      "explicit_permissions": false,
+      "jobs": [
+        {
+          "actions": [
+            "actions/checkout@v4",
+            "actions/setup-python@v5"
+          ],
+          "environment": null,
+          "id": "update-dashboard",
+          "needs": [],
+          "permissions": null
+        }
+      ],
+      "name": "\ud83d\udcca Update Metrics Dashboard",
+      "path": ".github/workflows/update-dashboard.yml",
+      "permissions": null,
+      "pinned_action_references": 0,
+      "sha256": "ab886a766b08671af1074223e89c197339f777c184008b875ba537e77ac84f50",
+      "triggers": [
+        "push",
+        "workflow_dispatch"
+      ],
+      "unpinned_actions": [
+        "actions/checkout@v4",
+        "actions/setup-python@v5"
+      ]
+    }
+  ]
+}
