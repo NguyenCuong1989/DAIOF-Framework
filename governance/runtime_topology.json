@@ -1,0 +1,182 @@
+{
+  "schema_version": "1.0.0",
+  "enforcement_stage": "runtime_reality_contract",
+  "components": [
+    {
+      "id": "github_actions",
+      "kind": "workflow_control_plane",
+      "evidence_state": "repository_observed"
+    },
+    {
+      "id": "openclaw_gateway",
+      "kind": "gateway_runtime",
+      "evidence_state": "external_evidence_required"
+    },
+    {
+      "id": "planner_service",
+      "kind": "planning_runtime",
+      "evidence_state": "external_evidence_required"
+    },
+    {
+      "id": "phoenix_council",
+      "kind": "multi_agent_governance",
+      "evidence_state": "external_evidence_required"
+    },
+    {
+      "id": "factory_executor",
+      "kind": "execution_runtime",
+      "evidence_state": "external_evidence_required"
+    },
+    {
+      "id": "axcontrol",
+      "kind": "control_runtime",
+      "evidence_state": "external_evidence_required"
+    },
+    {
+      "id": "ril",
+      "kind": "attestation_control",
+      "evidence_state": "repository_declared"
+    },
+    {
+      "id": "hypercore",
+      "kind": "validation_control",
+      "evidence_state": "repository_declared"
+    },
+    {
+      "id": "the_choice",
+      "kind": "governance_control",
+      "evidence_state": "contract_defined"
+    },
+    {
+      "id": "dr_protocol",
+      "kind": "review_control",
+      "evidence_state": "contract_defined"
+    },
+    {
+      "id": "artifact_chain",
+      "kind": "provenance_control",
+      "evidence_state": "contract_defined"
+    },
+    {
+      "id": "deployment_runtime",
+      "kind": "deployment_target",
+      "evidence_state": "external_evidence_required"
+    }
+  ],
+  "relations": [
+    {
+      "from": "dr_protocol",
+      "to": "the_choice",
+      "type": "review_precedes_decision"
+    },
+    {
+      "from": "the_choice",
+      "to": "planner_service",
+      "type": "approved_intent"
+    },
+    {
+      "from": "planner_service",
+      "to": "factory_executor",
+      "type": "execution_graph"
+    },
+    {
+      "from": "openclaw_gateway",
+      "to": "deployment_runtime",
+      "type": "gateway_runtime"
+    },
+    {
+      "from": "ril",
+      "to": "artifact_chain",
+      "type": "attests"
+    },
+    {
+      "from": "hypercore",
+      "to": "deployment_runtime",
+      "type": "validates"
+    },
+    {
+      "from": "artifact_chain",
+      "to": "deployment_runtime",
+      "type": "authorizes_artifact"
+    },
+    {
+      "from": "phoenix_council",
+      "to": "planner_service",
+      "type": "governance_input"
+    },
+    {
+      "from": "factory_executor",
+      "to": "deployment_runtime",
+      "type": "executes"
+    },
+    {
+      "from": "axcontrol",
+      "to": "deployment_runtime",
+      "type": "controls"
+    }
+  ],
+  "deployment_paths": [
+    {
+      "workflow": ".github/workflows/ci.yml",
+      "required_components": [
+        "dr_protocol",
+        "the_choice",
+        "ril",
+        "hypercore",
+        "artifact_chain"
+      ],
+      "missing_evidence_policy": "block"
+    },
+    {
+      "workflow": ".github/workflows/docker-publish.yml",
+      "required_components": [
+        "dr_protocol",
+        "the_choice",
+        "openclaw_gateway",
+        "planner_service",
+        "phoenix_council",
+        "factory_executor",
+        "axcontrol",
+        "deployment_runtime",
+        "ril",
+        "hypercore",
+        "artifact_chain"
+      ],
+      "missing_evidence_policy": "block"
+    },
+    {
+      "workflow": ".github/workflows/pypi-publish.yml",
+      "required_components": [
+        "dr_protocol",
+        "the_choice",
+        "openclaw_gateway",
+        "planner_service",
+        "phoenix_council",
+        "factory_executor",
+        "axcontrol",
+        "deployment_runtime",
+        "ril",
+        "hypercore",
+        "artifact_chain"
+      ],
+      "missing_evidence_policy": "block"
+    },
+    {
+      "workflow": ".github/workflows/release.yml",
+      "required_components": [
+        "dr_protocol",
+        "the_choice",
+        "openclaw_gateway",
+        "planner_service",
+        "phoenix_council",
+        "factory_executor",
+        "axcontrol",
+        "deployment_runtime",
+        "ril",
+        "hypercore",
+        "artifact_chain"
+      ],
+      "missing_evidence_policy": "block"
+    }
+  ]
+}

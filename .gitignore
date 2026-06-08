@@ -170,6 +170,7 @@ autonomous_todo.db
 node_modules/
 
 # Generated reports & runtime artifacts
+.runtime/
 haios_audit.jsonl
 haios_minimal.log
 logs/
