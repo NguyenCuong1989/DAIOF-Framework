@@ -1,0 +1,81 @@
+name: Runtime Reality Attestation
+
+on:
+  workflow_dispatch:
+    inputs:
+      deployment_workflow:
+        description: Deployment workflow whose runtime path will be verified
+        required: true
+        type: choice
+        options:
+          - .github/workflows/docker-publish.yml
+          - .github/workflows/pypi-publish.yml
+          - .github/workflows/release.yml
+      environment:
+        description: Runtime environment identity
+        required: true
+        type: string
+  workflow_call:
+    inputs:
+      deployment_workflow:
+        required: true
+        type: string
+      environment:
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  attest:
+    name: Observe and attest runtime reality
+    runs-on: [self-hosted, daiof-runtime]
+    timeout-minutes: 10
+    env:
+      OPENCLAW_HEALTH_URL: ${{ secrets.OPENCLAW_HEALTH_URL }}
+      OPENCLAW_HEALTH_TOKEN: ${{ secrets.OPENCLAW_HEALTH_TOKEN }}
+      PLANNER_HEALTH_URL: ${{ secrets.PLANNER_HEALTH_URL }}
+      PLANNER_HEALTH_TOKEN: ${{ secrets.PLANNER_HEALTH_TOKEN }}
+      PHOENIX_HEALTH_URL: ${{ secrets.PHOENIX_HEALTH_URL }}
+      PHOENIX_HEALTH_TOKEN: ${{ secrets.PHOENIX_HEALTH_TOKEN }}
+      FACTORY_HEALTH_URL: ${{ secrets.FACTORY_HEALTH_URL }}
+      FACTORY_HEALTH_TOKEN: ${{ secrets.FACTORY_HEALTH_TOKEN }}
+      AXCONTROL_HEALTH_URL: ${{ secrets.AXCONTROL_HEALTH_URL }}
+      AXCONTROL_HEALTH_TOKEN: ${{ secrets.AXCONTROL_HEALTH_TOKEN }}
+      DEPLOYMENT_RUNTIME_EVIDENCE_FILE: ${{ vars.DEPLOYMENT_RUNTIME_EVIDENCE_FILE }}
+      RUNTIME_ATTESTATION_HMAC_KEY: ${{ secrets.RUNTIME_ATTESTATION_HMAC_KEY }}
+      RUNTIME_ATTESTATION_KEY_ID: ${{ vars.RUNTIME_ATTESTATION_KEY_ID }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+
+      - name: Set up Python
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5.6.0
+        with:
+          python-version: '3.11'
+
+      - name: Validate governance and adapter contracts
+        run: python tools/governance/governance_gate.py validate
+
+      - name: Observe runtime components
+        run: |
+          python tools/governance/runtime_evidence.py probe \
+            --environment "${{ inputs.environment }}" \
+            --output .runtime/runtime_attestation.json
+
+      - name: Verify runtime evidence for deployment path
+        run: |
+          python tools/governance/runtime_evidence.py verify \
+            --attestation .runtime/runtime_attestation.json \
+            --workflow "${{ inputs.deployment_workflow }}" \
+            --environment "${{ inputs.environment }}"
+
+      - name: Upload runtime attestation
+        uses: actions/upload-artifact@65462800fd760344b1a7b4382951275a0abb4808 # v4.3.3
+        with:
+          name: runtime-attestation-${{ github.run_id }}
+          path: .runtime/runtime_attestation.json
+          if-no-files-found: error
+          retention-days: 7

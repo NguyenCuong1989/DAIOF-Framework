@@ -31,6 +31,7 @@ Fixes #(issue_number)
 - [ ] D&R review is present or not required for this change
 - [ ] THE CHOICE intent/risk/override fields are complete
 - [ ] Runtime topology impact is documented
+- [ ] Runtime attestation is fresh, environment-bound, and signature-verified when deployment is in scope
 - [ ] Artifact provenance and rollback path are documented
 - [ ] Human approval is requested for protected surfaces
 

@@ -74,3 +74,15 @@ implemented, `external_evidence_required` must never be translated to `healthy`.
 Overrides require an actor, reason, scope, expiry, and incident reference. An
 override may bypass availability policy only; it may not bypass artifact origin,
 identity, or signature validation.
+
+## Runtime reality contract
+
+The topology contract is now paired with `governance/runtime_adapters.json`,
+`governance/runtime_attestation.schema.json`, and
+`tools/governance/runtime_evidence.py`.
+
+This layer does not convert `external_evidence_required` into a static healthy
+claim. It observes each external component from a trusted runtime-visible host,
+records identity/version/health/reachability, binds the observation to the
+current topology digest and environment, applies a short expiry, and signs the
+result. See `RUNTIME_EVIDENCE_ADAPTERS.md` for the operational contract.
