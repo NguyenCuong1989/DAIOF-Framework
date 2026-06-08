@@ -81,3 +81,26 @@ test("diagnostics endpoint returns schema-shaped output", async () => {
     assert.equal(body.output.gate.status, "ACCEPT");
   });
 });
+
+
+test("prompt rearchitect endpoint returns structured prompt and schema", async () => {
+  await withServer(async (baseUrl) => {
+    const response = await fetch(`${baseUrl}/prompt/rearchitect`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        DeconstructedModel: {
+          entities: [{ name: "os" }, { name: "vendor" }, { name: "vscode_extensions" }],
+          focal_points: [{ id: "fp_1" }],
+        },
+      }),
+    });
+
+    const body = await response.json();
+    assert.equal(response.status, 200);
+    assert.equal(body.ok, true);
+    assert.equal(body.prompt.output_mode, "structured_report_only");
+    assert.equal(body.schema.type, "object");
+    assert.ok(Array.isArray(body.prompt.required_report_sections));
+  });
+});

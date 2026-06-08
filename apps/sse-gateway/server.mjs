@@ -2,6 +2,7 @@ import http from "node:http";
 import { pathToFileURL } from "node:url";
 import { createAuthService, hasScope } from "./auth.mjs";
 import { analyzeDeploymentBug } from "./diagnostics.mjs";
+import { buildPromptFromDeconstruction, buildPromptSchema } from "./prompt-builder.mjs";
 
 const PORT = Number(process.env.PORT) || 5000;
 const MAX_JSON_BODY_BYTES = Number(process.env.MAX_JSON_BODY_BYTES) || 64 * 1024;
@@ -89,6 +90,19 @@ export function createGatewayServer(options = {}) {
       try {
         const body = await readJsonBody(req);
         writeJson(res, 200, { ok: true, output: analyzeDeploymentBug(body.input || body) });
+      } catch (error) {
+        writeJson(res, 400, { ok: false, error: error.message });
+      }
+      return;
+    }
+
+
+    if (req.method === "POST" && url.pathname === "/prompt/rearchitect") {
+      try {
+        const body = await readJsonBody(req);
+        const model = body.DeconstructedModel || body.deconstructedModel || {};
+        const prompt = buildPromptFromDeconstruction(model);
+        writeJson(res, 200, { ok: true, prompt, schema: buildPromptSchema() });
       } catch (error) {
         writeJson(res, 400, { ok: false, error: error.message });
       }

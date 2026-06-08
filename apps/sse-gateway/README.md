@@ -73,6 +73,36 @@ Use the `output.root_cause_branch` field to route work:
 | `RUNTIME` | App Runtime team | Reproduce with commands, logs, status codes, and SSE frame capture. |
 | `SILENT` | Observability team | Add logs/metrics/traces before changing behavior. |
 
+
+## Tái kiến trúc prompt JSON từ D&R
+
+Gateway hỗ trợ tái kiến trúc trực tiếp từ `DeconstructedModel` qua endpoint `POST /prompt/rearchitect`.
+
+```bash
+curl -s -X POST \
+  -H "Content-Type: application/json" \
+  http://localhost:5000/prompt/rearchitect \
+  -d '{
+    "DeconstructedModel": {
+      "entities": [
+        {"name": "os"},
+        {"name": "vendor"},
+        {"name": "vscode_extensions"},
+        {"name": "telemetry"},
+        {"name": "process"},
+        {"name": "network_footprint"},
+        {"name": "storage_and_workspace"},
+        {"name": "risks_and_conflicts"}
+      ],
+      "focal_points": [{"id": "fp_1"}, {"id": "fp_2"}, {"id": "fp_3"}]
+    }
+  }'
+```
+
+Kết quả trả về gồm:
+- `prompt`: JSON prompt tối ưu theo cấu trúc `structured_report_only`
+- `schema`: JSON Schema để cắm vào workflow Copilot/agent nội bộ
+
 ## Test
 
 ```bash
