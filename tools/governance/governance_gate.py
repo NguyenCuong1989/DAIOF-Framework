@@ -19,6 +19,8 @@ DEFAULT_MANIFEST = Path("governance/workflow_manifest.json")
 DEFAULT_RUNTIME_TOPOLOGY = Path("governance/runtime_topology.json")
 DEFAULT_CHOICE_REVIEW = Path("governance/choice_review.json")
 DEFAULT_DR_REVIEW = Path("governance/dr_review.json")
+DEFAULT_RUNTIME_ADAPTERS = Path("governance/runtime_adapters.json")
+DEFAULT_RUNTIME_ATTESTATION_SCHEMA = Path("governance/runtime_attestation.schema.json")
 DEPLOY_TERMS = ("deploy", "publish", "release", "pypi", "docker")
 FULL_SHA = re.compile(r"^[0-9a-fA-F]{40}$")
 
@@ -27,7 +29,9 @@ class WorkflowLoader(yaml.SafeLoader):
     """YAML loader that keeps the key ``on`` as a string under YAML 1.1."""
 
 
-WorkflowLoader.yaml_implicit_resolvers = copy.deepcopy(yaml.SafeLoader.yaml_implicit_resolvers)
+WorkflowLoader.yaml_implicit_resolvers = copy.deepcopy(
+    yaml.SafeLoader.yaml_implicit_resolvers
+)
 for first_char, resolvers in list(WorkflowLoader.yaml_implicit_resolvers.items()):
     WorkflowLoader.yaml_implicit_resolvers[first_char] = [
         resolver for resolver in resolvers if resolver[0] != "tag:yaml.org,2002:bool"
@@ -45,7 +49,9 @@ def load_json(path: Path) -> dict[str, Any]:
 
 def dump_json(path: Path, payload: dict[str, Any]) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    path.write_text(
+        json.dumps(payload, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
 
 
 def sha256(path: Path) -> str:
@@ -130,7 +136,9 @@ def workflow_record(path: Path, root: Path) -> dict[str, Any]:
         "explicit_permissions": explicit_permissions,
         "action_references": len(action_refs),
         "pinned_action_references": pinned_count,
-        "unpinned_actions": sorted(ref for ref in action_refs if not is_pinned_action(ref)),
+        "unpinned_actions": sorted(
+            ref for ref in action_refs if not is_pinned_action(ref)
+        ),
     }
 
 
@@ -148,8 +156,12 @@ def build_manifest(root: Path) -> dict[str, Any]:
         "source": ".github/workflows",
         "workflow_count": len(workflows),
         "metrics": {
-            "explicit_permission_coverage": round(explicit / len(workflows), 4) if workflows else 1.0,
-            "pinned_action_rate": round(pinned_actions / total_actions, 4) if total_actions else 1.0,
+            "explicit_permission_coverage": (
+                round(explicit / len(workflows), 4) if workflows else 1.0
+            ),
+            "pinned_action_rate": (
+                round(pinned_actions / total_actions, 4) if total_actions else 1.0
+            ),
             "deploy_workflow_count": len(deploy_workflows),
             "workflow_drift_rate": 0.0,
         },
@@ -179,7 +191,13 @@ def validate_choice_review(review: dict[str, Any], errors: list[str]) -> None:
 
 
 def validate_dr_review(review: dict[str, Any], errors: list[str]) -> None:
-    required = {"deconstruction", "focal_point", "rearchitecture", "pillars", "risk_graph"}
+    required = {
+        "deconstruction",
+        "focal_point",
+        "rearchitecture",
+        "pillars",
+        "risk_graph",
+    }
     missing = sorted(required - review.keys())
     if missing:
         errors.append(f"dr_review missing fields: {', '.join(missing)}")
@@ -192,7 +210,9 @@ def validate_dr_review(review: dict[str, Any], errors: list[str]) -> None:
             errors.append(f"dr_review pillar {pillar} must be >= 7.0")
 
 
-def validate_runtime_topology(topology: dict[str, Any], manifest: dict[str, Any], errors: list[str]) -> None:
+def validate_runtime_topology(
+    topology: dict[str, Any], manifest: dict[str, Any], errors: list[str]
+) -> None:
     if topology.get("schema_version") != SCHEMA_VERSION:
         errors.append("runtime_topology schema_version mismatch")
     components = topology.get("components") or []
@@ -216,18 +236,110 @@ def validate_runtime_topology(topology: dict[str, Any], manifest: dict[str, Any]
         errors.append(f"runtime_topology missing components: {', '.join(missing)}")
 
     paths = topology.get("deployment_paths") or []
-    mapped_workflows = {path.get("workflow") for path in paths if isinstance(path, dict)}
+    mapped_workflows = {
+        path.get("workflow") for path in paths if isinstance(path, dict)
+    }
     for workflow in manifest.get("deploy_workflows", []):
         if workflow not in mapped_workflows:
-            errors.append(f"deploy workflow is not mapped to runtime topology: {workflow}")
+            errors.append(
+                f"deploy workflow is not mapped to runtime topology: {workflow}"
+            )
     for path in paths:
         if not path.get("required_components"):
-            errors.append(f"deployment path has no required components: {path.get('workflow')}")
+            errors.append(
+                f"deployment path has no required components: {path.get('workflow')}"
+            )
         if path.get("missing_evidence_policy") != "block":
-            errors.append(f"deployment path must block on missing evidence: {path.get('workflow')}")
+            errors.append(
+                f"deployment path must block on missing evidence: {path.get('workflow')}"
+            )
 
 
-def validate_workflow_safety(root: Path, manifest: dict[str, Any], errors: list[str]) -> None:
+def validate_runtime_adapters(
+    adapters: dict[str, Any], topology: dict[str, Any], errors: list[str]
+) -> None:
+    if adapters.get("schema_version") != SCHEMA_VERSION:
+        errors.append("runtime_adapters schema_version mismatch")
+    if (
+        not isinstance(adapters.get("ttl_seconds"), int)
+        or adapters.get("ttl_seconds", 0) <= 0
+    ):
+        errors.append("runtime_adapters ttl_seconds must be a positive integer")
+    for field in ("attestation_hmac_key_env", "attestation_key_id_env"):
+        if not adapters.get(field):
+            errors.append(f"runtime_adapters missing signing field: {field}")
+    supported_types = {"http_json", "file_json"}
+    configured: set[str] = set()
+    for component in adapters.get("components", []):
+        if not isinstance(component, dict) or not component.get("id"):
+            errors.append("runtime_adapters contains an invalid component")
+            continue
+        component_id = str(component["id"])
+        if component_id in configured:
+            errors.append(
+                f"runtime_adapters contains duplicate component: {component_id}"
+            )
+        configured.add(component_id)
+        adapter = component.get("adapter") or {}
+        if adapter.get("type") not in supported_types:
+            errors.append(f"runtime adapter type is unsupported for {component_id}")
+        for field in (
+            "identity_path",
+            "expected_identity",
+            "version_path",
+            "health_path",
+        ):
+            if not adapter.get(field):
+                errors.append(f"runtime adapter {component_id} missing field: {field}")
+        if not adapter.get("healthy_values"):
+            errors.append(f"runtime adapter {component_id} has no healthy_values")
+        if adapter.get("type") == "http_json" and not adapter.get("url_env"):
+            errors.append(f"HTTP runtime adapter {component_id} must use url_env")
+        if adapter.get("type") == "file_json" and not adapter.get("path_env"):
+            errors.append(f"file runtime adapter {component_id} must use path_env")
+        if any(key in adapter for key in ("url", "token", "path")):
+            errors.append(
+                f"runtime adapter {component_id} must not embed endpoint paths or secrets"
+            )
+
+    external = {
+        str(component.get("id"))
+        for component in topology.get("components", [])
+        if isinstance(component, dict)
+        and component.get("evidence_state") == "external_evidence_required"
+    }
+    missing = sorted(external - configured)
+    if missing:
+        errors.append(
+            f"external runtime components lack evidence adapters: {', '.join(missing)}"
+        )
+
+
+def validate_attestation_schema(schema: dict[str, Any], errors: list[str]) -> None:
+    required = set(schema.get("required", []))
+    expected = {
+        "schema_version",
+        "attestation_type",
+        "environment",
+        "generated_at",
+        "expires_at",
+        "topology_sha256",
+        "adapter_config_sha256",
+        "components",
+        "summary",
+        "attestation_sha256",
+        "signing",
+    }
+    missing = sorted(expected - required)
+    if missing:
+        errors.append(
+            f"runtime attestation schema missing required fields: {', '.join(missing)}"
+        )
+
+
+def validate_workflow_safety(
+    root: Path, manifest: dict[str, Any], errors: list[str]
+) -> None:
     for workflow in manifest.get("workflows", []):
         path = root / workflow["path"]
         content = path.read_text(encoding="utf-8")
@@ -239,7 +351,9 @@ def validate_workflow_safety(root: Path, manifest: dict[str, Any], errors: list[
         if any(pattern in content for pattern in merge_patterns):
             errors.append(f"direct merge API bypass is forbidden: {workflow['path']}")
         if "event: 'APPROVE'" in content or 'event: "APPROVE"' in content:
-            errors.append(f"workflow-generated PR approval is forbidden: {workflow['path']}")
+            errors.append(
+                f"workflow-generated PR approval is forbidden: {workflow['path']}"
+            )
 
 
 def validate(root: Path, write_manifest: bool = False) -> list[str]:
@@ -252,13 +366,27 @@ def validate(root: Path, write_manifest: bool = False) -> list[str]:
         try:
             committed = load_json(manifest_path)
             if committed != generated:
-                errors.append("workflow_manifest.json drift detected; run governance_gate.py generate")
+                errors.append(
+                    "workflow_manifest.json drift detected; run governance_gate.py generate"
+                )
         except ValueError as exc:
             errors.append(str(exc))
 
+    runtime: dict[str, Any] | None = None
     try:
         runtime = load_json(root / DEFAULT_RUNTIME_TOPOLOGY)
         validate_runtime_topology(runtime, generated, errors)
+    except ValueError as exc:
+        errors.append(str(exc))
+    if runtime is not None:
+        try:
+            adapters = load_json(root / DEFAULT_RUNTIME_ADAPTERS)
+            validate_runtime_adapters(adapters, runtime, errors)
+        except ValueError as exc:
+            errors.append(str(exc))
+    try:
+        schema = load_json(root / DEFAULT_RUNTIME_ATTESTATION_SCHEMA)
+        validate_attestation_schema(schema, errors)
     except ValueError as exc:
         errors.append(str(exc))
     try:

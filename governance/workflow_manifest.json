@@ -7,13 +7,13 @@
   ],
   "metrics": {
     "deploy_workflow_count": 4,
-    "explicit_permission_coverage": 0.7692,
-    "pinned_action_rate": 0.2564,
+    "explicit_permission_coverage": 0.7778,
+    "pinned_action_rate": 0.284,
     "workflow_drift_rate": 0.0
   },
   "schema_version": "1.0.0",
   "source": ".github/workflows",
-  "workflow_count": 26,
+  "workflow_count": 27,
   "workflows": [
     {
       "action_references": 2,
@@ -922,6 +922,36 @@
         "actions/checkout@v4",
         "softprops/action-gh-release@v2"
       ]
+    },
+    {
+      "action_references": 3,
+      "deploy_capable": false,
+      "explicit_permissions": true,
+      "jobs": [
+        {
+          "actions": [
+            "actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
+            "actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065",
+            "actions/upload-artifact@65462800fd760344b1a7b4382951275a0abb4808"
+          ],
+          "environment": null,
+          "id": "attest",
+          "needs": [],
+          "permissions": null
+        }
+      ],
+      "name": "Runtime Reality Attestation",
+      "path": ".github/workflows/runtime-attestation.yml",
+      "permissions": {
+        "contents": "read"
+      },
+      "pinned_action_references": 3,
+      "sha256": "2716ceb24c703f2e531cf7d930cc0668a2ff467fc9555cc079d2934f0309beaa",
+      "triggers": [
+        "workflow_call",
+        "workflow_dispatch"
+      ],
+      "unpinned_actions": []
     },
     {
       "action_references": 1,

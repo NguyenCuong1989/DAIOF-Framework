@@ -15,7 +15,14 @@
   ],
   "deployment_justification": {
     "required": true,
-    "minimum_evidence": ["workflow_manifest", "dr_review", "runtime_topology", "artifact_attestation"]
+    "minimum_evidence": [
+      "workflow_manifest",
+      "dr_review",
+      "runtime_topology",
+      "artifact_attestation",
+      "runtime_attestation"
+    ],
+    "runtime_evidence_policy": "Fresh, environment-bound, topology-bound, signature-verified evidence is mandatory."
   },
   "override_tracking": {
     "required": true,
@@ -24,7 +31,12 @@
   },
   "human_approval": {
     "required": true,
-    "touchpoints": ["PR approval", "release approval", "incident override", "protocol review"],
+    "touchpoints": [
+      "PR approval",
+      "release approval",
+      "incident override",
+      "protocol review"
+    ],
     "status": "required_at_execution"
   }
 }
