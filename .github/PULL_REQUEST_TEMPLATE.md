@@ -26,6 +26,21 @@ Fixes #(issue_number)
 - [ ] Enhances safety and alignment
 - [ ] Compatible with Vietnamese consciousness integration
 
+## 🏛️ Governance Evidence
+
+- [ ] D&R review is present or not required for this change
+- [ ] THE CHOICE intent/risk/override fields are complete
+- [ ] Runtime topology impact is documented
+- [ ] Artifact provenance and rollback path are documented
+- [ ] Human approval is requested for protected surfaces
+
+**Governance artifacts changed or reviewed:**
+
+- `governance/workflow_manifest.json`
+- `governance/runtime_topology.json`
+- `governance/choice_review.json`
+- `governance/dr_review.json`
+
 ## 🧪 Testing
 
 ### Tests Added/Updated
