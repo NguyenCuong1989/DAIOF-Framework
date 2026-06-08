@@ -1,31 +1,24 @@
 FROM python:3.11-slim
 
-# Set working directory
 WORKDIR /app
 
 # Install system dependencies
-RUN apt-get update && apt-get install -y \
-    git \
-    curl \
-    && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    gcc \
+ && rm -rf /var/lib/apt/lists/*
 
-# Copy requirements first for better caching
+# Install Python dependencies first (layer cache)
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy source code
 COPY . .
 
-# Create logs directory
-RUN mkdir -p logs
-
-# Set environment variables
 ENV PYTHONPATH=/app
-ENV GITHUB_TOKEN=${GITHUB_TOKEN}
+ENV PYTHONUNBUFFERED=1
 
-# Health check
-HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
-    CMD python3 -c "import haios_core; print('AI Systems Healthy')" || exit 1
+# Create non-root user
+RUN useradd -m -u 1000 appuser && chown -R appuser /app
+USER appuser
 
-# Default command - run continuous orchestration
-CMD ["python3", ".github/scripts/autonomous_git_workflow.py"]
+CMD ["python3", "unified_ai_orchestrator.py"]

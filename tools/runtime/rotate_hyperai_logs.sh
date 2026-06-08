@@ -36,6 +36,9 @@ rotate_one() {
   local file_size threshold_bytes
   file_size="$(stat_size "$file")"
   threshold_bytes=$((threshold_mb * 1024 * 1024))
+  local file_size
+  file_size="$(stat -f%z "$file")"
+  local threshold_bytes=$((threshold_mb * 1024 * 1024))
 
   if (( file_size <= threshold_bytes )); then
     return 0
@@ -55,6 +58,7 @@ rotate_one() {
 cleanup_old_archives() {
   local pattern="$1"
   local days="$2"
+
   find "$LOG_DIR" -type f -name "$pattern" -mtime "+$days" -print -delete
 }
 
@@ -67,6 +71,7 @@ main() {
   while IFS= read -r -d '' file; do
     [[ -f "$file" ]] || continue
     if [[ "$file" == *error* ]]; then
+    if [[ "$file" == *.error.log ]]; then
       rotate_one "$file" "$MAX_ERROR_MB"
     else
       rotate_one "$file" "$MAX_STANDARD_MB"
