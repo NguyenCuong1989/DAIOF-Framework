@@ -37,6 +37,10 @@ curl -s -X POST \
 curl -N \
   -H "Authorization: Bearer <gatewayToken>" \
   "http://localhost:5000/sse?q=email"
+## Test
+
+```bash
+curl -N "http://localhost:5000/sse?q=email"
 ```
 
 You should receive:

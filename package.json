@@ -9,6 +9,7 @@
   },
   "scripts": {
     "test": "node --test apps/sse-gateway/*.test.mjs",
+    "test": "echo \"Error: no test specified\" && exit 1",
     "sse:gateway": "node apps/sse-gateway/server.mjs"
   },
   "repository": {
@@ -23,6 +24,7 @@
   },
   "homepage": "https://github.com/NguyenCuong1989/DAIOF-Framework#readme",
   "dependencies": {
-    "@playwright/test": "^1.56.1"
+    "@playwright/test": "^1.56.1",
+    "express": "^4.21.2"
   }
 }

@@ -30,6 +30,7 @@ def test_convergence_with_tasks():
     # Add sample tasks
     tasks = [
         Task(
+            id="",
             title="Fix VSCode V8 crash",
             description="Resolve V8 fatal error in CLI mode",
             action="debug_vscode_cli",
@@ -38,6 +39,7 @@ def test_convergence_with_tasks():
             dependencies=[]
         ),
         Task(
+            id="",
             title="Add unit tests",
             description="Create test_autonomous_todo_system.py with 100% coverage",
             action="write_unit_tests",
@@ -46,6 +48,7 @@ def test_convergence_with_tasks():
             dependencies=[]
         ),
         Task(
+            id="",
             title="Integrate with GitHub Actions",
             description="Modify autonomous-git-workflow.yml to call convergence system",
             action="update_workflow",
@@ -54,6 +57,7 @@ def test_convergence_with_tasks():
             dependencies=[]
         ),
         Task(
+            id="",
             title="Documentation",
             description="Create AUTONOMOUS_TODO_SYSTEM.md with architecture",
             action="write_docs",
@@ -62,6 +66,7 @@ def test_convergence_with_tasks():
             dependencies=[]
         ),
         Task(
+            id="",
             title="ML predictor",
             description="Implement completion probability predictor",
             action="train_ml_model",
