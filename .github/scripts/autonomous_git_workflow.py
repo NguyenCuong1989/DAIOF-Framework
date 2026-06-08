@@ -24,6 +24,7 @@ import yaml
 import subprocess
 import threading
 from datetime import datetime, timedelta, UTC
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from typing import Dict, List, Any, Optional, Tuple
 from github import Github, Auth, Repository, Issue, PullRequest
@@ -858,6 +859,7 @@ class AutonomousGitWorkflow:
                 'remote_status': remote_status,
                 'state': self._determine_workflow_state(branch_info, modified_files, remote_status),
                 'timestamp': datetime.now(UTC).isoformat()
+                'timestamp': datetime.now(timezone.utc).isoformat()
             }
 
         except Exception as e:
@@ -867,17 +869,20 @@ class AutonomousGitWorkflow:
     def _parse_branch_info(self, branch_line: str) -> Dict[str, Any]:
         """Parse git branch information"""
         # ## branch-name...origin/branch-name [ahead 1, behind 2]
-        parts = branch_line.replace('## ', '').split()
-
-        if not parts:
+        branch_line = branch_line.replace('## ', '')
+        
+        if not branch_line:
             return {'name': 'unknown'}
-
-        branch_name = parts[0].split('...')[0]
-
-        info = {'name': branch_name}
-
-        if len(parts) > 1:
-            status_part = parts[1].strip('[]')
+        
+        # Split on [ to separate branch from status
+        if '[' in branch_line:
+            branch_part, status_part = branch_line.split('[', 1)
+            branch_name = branch_part.split('...')[0].strip()
+            status_part = status_part.rstrip(']').strip()
+            
+            info = {'name': branch_name}
+            
+            # Parse ahead/behind info
             if 'ahead' in status_part or 'behind' in status_part:
                 status_items = status_part.split(', ')
                 for item in status_items:
@@ -885,6 +890,10 @@ class AutonomousGitWorkflow:
                         info['ahead'] = int(item.split()[1])
                     elif 'behind' in item:
                         info['behind'] = int(item.split()[1])
+        else:
+            # No status info, just branch name
+            branch_name = branch_line.split('...')[0].strip()
+            info = {'name': branch_name}
 
         return info
 
@@ -965,6 +974,7 @@ class AutonomousGitWorkflow:
             )
 
             self.last_commit_time = datetime.now(UTC)
+            self.last_commit_time = datetime.now(timezone.utc)
             self.logger.info(f"✅ Autonomous commit completed: {message}")
 
             # Update health metrics
@@ -1268,7 +1278,7 @@ class AutonomousGitWorkflow:
 
     def execute_workflow_cycle(self) -> Dict[str, Any]:
         """Execute complete workflow cycle"""
-        cycle_start = datetime.now(UTC)
+        cycle_start = datetime.now(timezone.utc)
 
         self.logger.info("🔄 Starting autonomous workflow cycle")
 
@@ -1321,6 +1331,8 @@ class AutonomousGitWorkflow:
         # Update cycle completion
         results['cycle_end'] = datetime.now(UTC).isoformat()
         results['duration_seconds'] = (datetime.now(UTC) - cycle_start).total_seconds()
+        results['cycle_end'] = datetime.now(timezone.utc).isoformat()
+        results['duration_seconds'] = (datetime.now(timezone.utc) - cycle_start).total_seconds()
 
         # Log final status
         self.logger.info(f"✅ Workflow cycle completed: {results['tasks_completed']} success, {results['tasks_failed']} failed")
@@ -1339,6 +1351,7 @@ class AutonomousGitWorkflow:
             while True:
                 cycle_count += 1
                 cycle_start = datetime.now(UTC)
+                cycle_start = datetime.now(timezone.utc)
 
                 self.logger.info(f"\n🔄 Cycle {cycle_count} - {cycle_start.strftime('%H:%M:%S UTC')}")
 
@@ -1356,6 +1369,7 @@ class AutonomousGitWorkflow:
 
                 # Wait for next cycle
                 elapsed = (datetime.now(UTC) - cycle_start).total_seconds()
+                elapsed = (datetime.now(timezone.utc) - cycle_start).total_seconds()
                 sleep_time = max(0, interval - elapsed)
 
                 if sleep_time > 0:
@@ -1378,6 +1392,7 @@ class AutonomousGitWorkflow:
         log_dir.mkdir(exist_ok=True)
 
         log_file = log_dir / f"workflow_{datetime.now(UTC).strftime('%Y%m%d')}.json"
+        log_file = log_dir / f"workflow_{datetime.now(timezone.utc).strftime('%Y%m%d')}.json"
 
         # Load existing logs
         existing_logs = []
@@ -1400,6 +1415,7 @@ class AutonomousGitWorkflow:
         """Generate final workflow report"""
         report = {
             'end_time': datetime.now(UTC).isoformat(),
+            'end_time': datetime.now(timezone.utc).isoformat(),
             'total_cycles': getattr(self, 'cycle_count', 0),
             'final_health': {
                 'k_state': self.k_state,
