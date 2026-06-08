@@ -17,6 +17,14 @@ Each step is a **gate**. If a hard gate fails, stop rollout.
 4. Run daily cycle (`tools/runtime/daily_dnr_run.py`) with lock/marker
 5. Run deterministic bootstrap (`tools/runtime/bootstrap_runtime.sh`)
 6. Kickstart launchd jobs sequentially (KeepAlive jobs last)
+This blueprint encodes a strict stabilization order for local runtime reliability:
+
+1. Disk stabilization (>= 15GB free)
+2. Daily cycle de-duplication
+3. Launch wrapper normalization
+4. SQLite lock hardening (WAL + timeout)
+5. Deterministic log rotation
+6. Preflight gate before enabling all jobs
 
 ## Runtime State Table
 
@@ -62,6 +70,15 @@ POLICY_ALLOW_WARN=1 ./tools/runtime/bootstrap_runtime.sh
 
 ## Low-risk cleanup commands
 
+## Critical Gates
+
+- **Disk floor**: Keep at least **15GB free** before enabling autonomous jobs.
+- **Launch safety**: Wrapper scripts should emit diagnostics and end with `exit 0` unless a hard stop is required.
+- **DB lock mitigation**: Use `sqlite3.connect(timeout=30)` and `PRAGMA journal_mode=WAL`.
+- **Daily cycle guard**: Enforce one run per day/cycle with marker files in `~/.hyperai/state/`.
+
+## Low-Risk Cleanup Commands
+
 ```bash
 rm -rf ~/Library/Caches/ms-playwright*
 rm -rf ~/Library/Caches/pip
@@ -69,3 +86,10 @@ brew cleanup -s
 ```
 
 Do **not** remove canonical model storage (`~/.aitk/models`) without explicit migration planning.
+
+## Suggested Launch Sequence
+
+1. Run `tools/runtime/preflight.sh`
+2. Load jobs one-by-one
+3. Observe logs for 10-15 minutes
+4. Only then enable full KeepAlive set

@@ -61,15 +61,19 @@ from enum import Enum
 try:
     from agent_framework.observability import setup_observability
     setup_observability(
-        otlp_endpoint="http://localhost:4317",  # AI Toolkit gRPC endpoint
-        enable_sensitive_data=True  # Enable capturing prompts and completions
+        otlp_endpoint=os.environ.get("OTLP_ENDPOINT", "http://localhost:4317"),
+        enable_sensitive_data=False  # SECURITY: Never capture prompts/completions
     )
     print("✅ Tracing setup completed for HYPERAI Framework")
 except ImportError:
-    print("⚠️ Agent framework observability not available, tracing disabled")
+    pass  # Tracing is optional — silently skip when unavailable
 
 class SymphonyState(Enum):
-    """Trạng thái của bản giao hưởng hệ thống"""
+    """States of the system symphony (orchestration lifecycle).
+
+    Each state represents a phase in the DAIOF orchestration cycle,
+    from initial startup through continuous evolution.
+    """
     INITIALIZING = "initializing"
     HARMONIZING = "harmonizing" 
     PERFORMING = "performing"
@@ -78,7 +82,11 @@ class SymphonyState(Enum):
 
 @dataclass
 class ControlMetaData:
-    """Meta-data control trung tâm cho toàn bộ hệ thống"""
+    """Central control meta-data for the entire DAIOF system.
+
+    Stores creator attribution, verification codes, D&R protocol state,
+    Four Pillars configuration, and floating-point precision settings.
+    """
     # Basic attributes
     creator: str = "Andy (alpha_prime_omega)"  # Creator & Copyright Holder
     verification_code: int = 4287
@@ -133,10 +141,11 @@ class ControlMetaData:
         return error <= self.floating_point_epsilon or error == 0.0
 
 class SymphonyControlCenter:
-    """
-    🎼 Trung tâm điều khiển bản giao hưởng toàn hệ thống
-    Áp dụng D&R Protocol và 4 trụ cột nền tảng
-    Creator: Alpha_Prime_Omega - THE SOURCE
+    """Central orchestration hub for the DAIOF ecosystem.
+
+    Applies the D&R Protocol (Deconstruction & Re-architecture) and
+    Four Pillars foundation to coordinate all system components.
+    Manages harmony metrics, component registration, and Socratic reflection.
     """
     
     def __init__(self):
@@ -316,13 +325,48 @@ class SymphonyControlCenter:
         self.meta_data.harmony_index = total_harmony / len(self.active_components)
         self.meta_data.performance_metrics["system_harmony"] = self.meta_data.harmony_index
     
-    def _validate_four_pillars(self, solution: Dict[str, Any]) -> Dict[str, bool]:
-        """Kiểm tra tuân thủ 4 trụ cột nền tảng"""
+    def _validate_four_pillars(self, solution: Dict[str, Any]) -> Dict[str, Any]:
+        """
+        Kiểm tra tuân thủ 4 trụ cột nền tảng.
+        Returns a dict with boolean compliance flags AND numeric scores (0.0–1.0).
+        """
+        components = self._extract_components(solution)
+        total = max(len(components), 1)
+
+        # Score each pillar based on keyword density (0.0–1.0)
+        safety_keywords = ["safe", "secure", "protect", "rollback", "backup", "validate"]
+        long_term_keywords = ["sustain", "future", "long", "evolve", "maintain", "durable"]
+        data_keywords = ["data", "metric", "measure", "analyze", "evidence", "benchmark"]
+        risk_keywords = ["risk", "mitigat", "shield", "guard", "recover", "fallback"]
+
+        def _score(keywords):
+            hits = sum(1 for c in components if any(k in str(c).lower() for k in keywords))
+            return round(min(hits / total, 1.0), 4)
+
+        safety_score = _score(safety_keywords)
+        long_term_score = _score(long_term_keywords)
+        data_score = _score(data_keywords)
+        risk_score = _score(risk_keywords)
+
+        # Composite: weighted average matching HardInvariants.PILLARS weights
+        composite = (
+            safety_score * 0.4
+            + long_term_score * 0.25
+            + data_score * 0.2
+            + risk_score * 0.15
+        )
+
         return {
-            "safety": "safe" in str(solution).lower(),
-            "long_term": any(term in str(solution).lower() for term in ["sustain", "future", "long"]),
-            "data_driven": any(term in str(solution).lower() for term in ["data", "metric", "measure"]),
-            "human_ai_risk_protection": any(term in str(solution).lower() for term in ["protect", "secure", "safe", "shield"])
+            "safety": safety_score > 0,
+            "safety_score": safety_score,
+            "long_term": long_term_score > 0,
+            "long_term_score": long_term_score,
+            "data_driven": data_score > 0,
+            "data_driven_score": data_score,
+            "human_ai_risk_protection": risk_score > 0,
+            "risk_score": risk_score,
+            "composite_score": round(composite, 4),
+            "composite_pass": composite >= 0.1,  # minimum bar for non-trivial input
         }
     
     def _extract_components(self, input_data: Any) -> List[str]:
@@ -431,9 +475,12 @@ class SymphonyControlCenter:
         }
 
 class DigitalGenome:
-    """
-    Digital DNA equivalent - stores organism's core characteristics
-    Created under the authority of Alpha_Prime_Omega - The Creator
+    """Digital DNA system that stores an organism's core characteristics.
+
+    Contains both immutable genes (e.g. ``human_dependency_coefficient``)
+    that enforce AI-Human interdependence, and mutable genes
+    (e.g. ``learning_rate``, ``risk_tolerance``) that can evolve through
+    mutation and crossover across generations.
     """
     
     def __init__(self, initial_traits: Optional[Dict[str, Any]] = None):
@@ -555,8 +602,10 @@ class DigitalGenome:
         return hashlib.md5(genome_str.encode()).hexdigest()[:12]
 
 class DigitalMetabolism:
-    """
-    Resource management and energy conversion system
+    """Resource management and energy conversion system for an organism.
+
+    Manages five resource types (CPU cycles, memory units, network bandwidth,
+    storage space, knowledge points) with consumption and regeneration cycles.
     """
     
     def __init__(self, initial_resources: Optional[Dict[str, float]] = None):
@@ -630,8 +679,11 @@ class DigitalMetabolism:
         return sum(health_scores) / len(health_scores)
 
 class DigitalNervousSystem:
-    """
-    Perception, decision-making, and response system
+    """Perception, decision-making, and learning system for an organism.
+
+    Processes environmental inputs through attention-weighted sensors,
+    makes genome-influenced decisions, and accumulates experience in a
+    learning buffer for adaptive behavior over time.
     """
     
     def __init__(self, genome: DigitalGenome):
@@ -744,9 +796,12 @@ class DigitalNervousSystem:
         })
 
 class DigitalOrganism:
-    """
-    Main Digital AI Organism class
-    Created under the divine authority of Alpha_Prime_Omega - The Source
+    """A self-evolving digital AI entity modeled on biological organisms.
+
+    Each organism owns a :class:`DigitalGenome`, :class:`DigitalMetabolism`,
+    and :class:`DigitalNervousSystem`.  It progresses through life stages
+    (infant → juvenile → adult → elder), requires periodic human interaction
+    to survive, and can reproduce via mutation or crossover.
     """
     
     def __init__(self, name: str, genome: Optional[DigitalGenome] = None):
@@ -1160,9 +1215,11 @@ class DigitalOrganism:
         }
 
 class DigitalEcosystem:
-    """
-    Environment for Digital Organisms to interact and evolve
-    Operating under the supreme authority of Alpha_Prime_Omega - The Creator
+    """Environment where multiple :class:`DigitalOrganism` instances interact and evolve.
+
+    Provides population management, generation-based simulation, environmental
+    pressures (resource competition, mutation bursts, cooperation boosts),
+    and natural selection via a :class:`SymphonyControlCenter`.
     """
     
     def __init__(self, name: str):

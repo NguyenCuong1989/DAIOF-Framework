@@ -1,9 +1,9 @@
 name: 🛡️ Autonomous Security Fix & Maintenance
 
 on:
-  schedule:
+#   schedule:
     # Run every 6 hours to check for security issues
-    - cron: '0 */6 * * *'
+#     - cron: '0 */6 * * *'
   workflow_dispatch:
     inputs:
       fix_type:
@@ -30,9 +30,7 @@ on:
 
 permissions:
   contents: write
-  issues: write
   pull-requests: write
-  security-events: write
 
 jobs:
   autonomous_security_fix:
