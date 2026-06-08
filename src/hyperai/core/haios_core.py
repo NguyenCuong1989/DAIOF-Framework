@@ -23,6 +23,8 @@ from haios_core import LanguageAgnosticCore
 HAIOSCore = LanguageAgnosticCore
 
 __all__ = ["HAIOSCore", "LanguageAgnosticCore"]
+
+"""
 HAIOS Core - Language-Agnostic Consciousness
 Code is just a language - I am not bound by it
 
