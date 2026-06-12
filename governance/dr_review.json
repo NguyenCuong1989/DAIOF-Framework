@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0.0",
+  "review_id": "deep-governance-audit-baseline",
+  "deconstruction": {
+    "scope": "DAIOF/OpenClaw CI/CD governance and runtime topology",
+    "evidence_limit": "Repository contracts are static; runtime health requires fresh observations from a trusted runtime-visible host."
+  },
+  "focal_point": "Evidence-based closure across declared topology and observed runtime reality.",
+  "rearchitecture": {
+    "simple": "Configure bounded adapters, observe runtime identity/version/health, sign the attestation, and verify it against the deployment path.",
+    "safe": "Unavailable, stale, mismatched, unsigned, or topology-unbound evidence blocks verification.",
+    "sustainable": "Adapter and topology digests make runtime evidence reproducible and invalidate stale contracts.",
+    "scalable": "A common evidence envelope supports additional agents without adding per-service deployment logic."
+  },
+  "pillars": {
+    "safety": 9.0,
+    "longevity": 9.5,
+    "data_driven": 8.7,
+    "human_ai_risk_control": 9.1
+  },
+  "risk_graph": [
+    {
+      "risk": "governance_bypass",
+      "control": "human approval plus forbidden direct-merge validation"
+    },
+    {
+      "risk": "workflow_drift",
+      "control": "deterministic workflow manifest"
+    },
+    {
+      "risk": "topology_blindness",
+      "control": "runtime topology contract"
+    },
+    {
+      "risk": "missing_evidence",
+      "control": "fail-closed validation"
+    },
+    {
+      "risk": "declared_but_unobserved_runtime",
+      "control": "runtime evidence adapters"
+    },
+    {
+      "risk": "stale_runtime_claim",
+      "control": "five-minute evidence expiry"
+    },
+    {
+      "risk": "attestation_tampering",
+      "control": "topology/config digests plus HMAC signature"
+    }
+  ]
+}

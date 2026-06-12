@@ -1,15 +1,11 @@
 import http from "node:http";
+import { pathToFileURL } from "node:url";
+import { createAuthService, hasScope } from "./auth.mjs";
+import { analyzeDeploymentBug } from "./diagnostics.mjs";
+import { buildPromptFromDeconstruction, buildPromptSchema } from "./prompt-builder.mjs";
 
 const PORT = Number(process.env.PORT) || 5000;
-
-import express from "express";
-
-const app = express();
-const PORT = Number(process.env.PORT) || 5000;
-
-app.get("/", (_req, res) => {
-  res.json({ ok: true, service: "sse-gateway" });
-});
+const MAX_JSON_BODY_BYTES = Number(process.env.MAX_JSON_BODY_BYTES) || 64 * 1024;
 
 function detectIntent(q = "") {
   const s = String(q).toLowerCase();
@@ -29,85 +25,130 @@ function writeSseEvent(res, event, data) {
   res.write(`data: ${JSON.stringify(data)}\n\n`);
 }
 
-const server = http.createServer((req, res) => {
-  const url = new URL(req.url || "/", `http://${req.headers.host || "localhost"}`);
+function writeJson(res, status, payload) {
+  res.writeHead(status, { "Content-Type": "application/json; charset=utf-8" });
+  res.end(JSON.stringify(payload));
+}
 
-  if (req.method === "GET" && url.pathname === "/") {
-    res.writeHead(200, { "Content-Type": "application/json; charset=utf-8" });
-    res.end(JSON.stringify({ ok: true, service: "sse-gateway" }));
-    return;
-  }
+function readJsonBody(req) {
+  return new Promise((resolve, reject) => {
+    let body = "";
 
-  if (req.method === "GET" && url.pathname === "/sse") {
-    const q = String(url.searchParams.get("q") || "");
-    const [intent, tools] = detectIntent(q);
-
-    res.writeHead(200, {
-      "Content-Type": "text/event-stream; charset=utf-8",
-      "Cache-Control": "no-cache",
-      Connection: "keep-alive",
+    req.setEncoding("utf8");
+    req.on("data", (chunk) => {
+      body += chunk;
+      if (Buffer.byteLength(body, "utf8") > MAX_JSON_BODY_BYTES) {
+        reject(new Error("JSON body exceeds limit"));
+        req.destroy();
+      }
     });
+    req.on("end", () => {
+      if (!body.trim()) {
+        resolve({});
+        return;
+      }
 
-    writeSseEvent(res, "status", { status: "processing" });
-
-    const resultTimer = setTimeout(() => {
-      writeSseEvent(res, "result", { query: q, intent, tools });
-    }, 300);
-
-    const heartbeat = setInterval(() => {
-      res.write(": keep-alive\n\n");
-    }, 15000);
-
-    req.on("close", () => {
-      clearTimeout(resultTimer);
-      clearInterval(heartbeat);
-      res.end();
+      try {
+        resolve(JSON.parse(body));
+      } catch {
+        reject(new Error("Invalid JSON body"));
+      }
     });
-    return;
-  }
-
-  res.writeHead(404, { "Content-Type": "application/json; charset=utf-8" });
-  res.end(JSON.stringify({ ok: false, error: "Not found" }));
-});
-
-server.listen(PORT, "0.0.0.0", () => {
-app.get("/sse", (req, res) => {
-  const q = String(req.query.q || "");
-  const [intent, tools] = detectIntent(q);
-
-  res.setHeader("Content-Type", "text/event-stream; charset=utf-8");
-  res.setHeader("Cache-Control", "no-cache");
-  res.setHeader("Connection", "keep-alive");
-
-  if (typeof res.flushHeaders === "function") {
-    res.flushHeaders();
-  }
-
-  res.write("event: status\n");
-  res.write(`data: ${JSON.stringify({ status: "processing" })}\n\n`);
-
-  const resultTimer = setTimeout(() => {
-    res.write("event: result\n");
-    res.write(
-      `data: ${JSON.stringify({
-        query: q,
-        intent,
-        tools,
-      })}\n\n`,
-    );
-  }, 300);
-
-  const heartbeat = setInterval(() => {
-    res.write(": keep-alive\n\n");
-  }, 15000);
-
-  req.on("close", () => {
-    clearTimeout(resultTimer);
-    clearInterval(heartbeat);
-    res.end();
+    req.on("error", reject);
   });
-});
+}
 
-app.listen(PORT, "0.0.0.0", () => {
-  console.log(`SSE server running on ${PORT}`);
-});
+export function createGatewayServer(options = {}) {
+  const auth = options.authService || createAuthService(options.auth || {});
+
+  return http.createServer(async (req, res) => {
+    const url = new URL(req.url || "/", `http://${req.headers.host || "localhost"}`);
+
+    if (req.method === "GET" && url.pathname === "/") {
+      writeJson(res, 200, { ok: true, service: "sse-gateway" });
+      return;
+    }
+
+    if (req.method === "POST" && url.pathname === "/auth/exchange") {
+      const claims = await auth.authenticateRequest(req);
+      if (!claims) {
+        writeJson(res, 401, { ok: false, error: "Unauthorized" });
+        return;
+      }
+
+      const gatewayToken = auth.signGatewayToken({
+        sub: claims.sub,
+        tenant: claims.tenant || "close-beta",
+        scope: claims.scope || ["sse:read"],
+      });
+
+      writeJson(res, 200, { ok: true, gatewayToken, expiresIn: auth.tokenTtlSeconds });
+      return;
+    }
+
+    if (req.method === "POST" && url.pathname === "/diagnostics") {
+      try {
+        const body = await readJsonBody(req);
+        writeJson(res, 200, { ok: true, output: analyzeDeploymentBug(body.input || body) });
+      } catch (error) {
+        writeJson(res, 400, { ok: false, error: error.message });
+      }
+      return;
+    }
+
+
+    if (req.method === "POST" && url.pathname === "/prompt/rearchitect") {
+      try {
+        const body = await readJsonBody(req);
+        const model = body.DeconstructedModel || body.deconstructedModel || {};
+        const prompt = buildPromptFromDeconstruction(model);
+        writeJson(res, 200, { ok: true, prompt, schema: buildPromptSchema() });
+      } catch (error) {
+        writeJson(res, 400, { ok: false, error: error.message });
+      }
+      return;
+    }
+
+    if (req.method === "GET" && url.pathname === "/sse") {
+      const claims = await auth.authenticateRequest(req);
+      if (!claims || !hasScope(claims, "sse:read")) {
+        writeJson(res, 401, { ok: false, error: "Unauthorized" });
+        return;
+      }
+
+      const q = String(url.searchParams.get("q") || "");
+      const [intent, tools] = detectIntent(q);
+
+      res.writeHead(200, {
+        "Content-Type": "text/event-stream; charset=utf-8",
+        "Cache-Control": "no-cache",
+        Connection: "keep-alive",
+      });
+
+      writeSseEvent(res, "status", { status: "processing", sub: claims.sub });
+
+      const resultTimer = setTimeout(() => {
+        writeSseEvent(res, "result", { query: q, intent, tools });
+      }, 300);
+
+      const heartbeat = setInterval(() => {
+        res.write(": keep-alive\n\n");
+      }, 15000);
+
+      req.on("close", () => {
+        clearTimeout(resultTimer);
+        clearInterval(heartbeat);
+        res.end();
+      });
+      return;
+    }
+
+    writeJson(res, 404, { ok: false, error: "Not found" });
+  });
+}
+
+if (import.meta.url === pathToFileURL(process.argv[1]).href) {
+  createGatewayServer().listen(PORT, "0.0.0.0", () => {
+    console.log(`SSE server running on ${PORT}`);
+  });
+}
