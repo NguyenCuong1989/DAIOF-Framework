@@ -1,0 +1,42 @@
+{
+  "schema_version": "1.0.0",
+  "review_id": "baseline-governance-contract",
+  "intent_validation": {
+    "intent": "Close the CI/CD-to-runtime governance gap without asserting unobserved runtime health.",
+    "status": "validated"
+  },
+  "risk_forecast": [
+    "workflow recursion",
+    "governance bypass",
+    "topology blindness",
+    "artifact provenance loss",
+    "runtime drift",
+    "supply-chain compromise"
+  ],
+  "deployment_justification": {
+    "required": true,
+    "minimum_evidence": [
+      "workflow_manifest",
+      "dr_review",
+      "runtime_topology",
+      "artifact_attestation",
+      "runtime_attestation"
+    ],
+    "runtime_evidence_policy": "Fresh, environment-bound, topology-bound, signature-verified evidence is mandatory."
+  },
+  "override_tracking": {
+    "required": true,
+    "records": [],
+    "policy": "Every override requires actor, reason, scope, expiry, and incident reference."
+  },
+  "human_approval": {
+    "required": true,
+    "touchpoints": [
+      "PR approval",
+      "release approval",
+      "incident override",
+      "protocol review"
+    ],
+    "status": "required_at_execution"
+  }
+}

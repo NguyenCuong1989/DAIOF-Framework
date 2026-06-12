@@ -6,6 +6,17 @@ RETENTION_DAYS_STANDARD="${RETENTION_DAYS_STANDARD:-14}"
 RETENTION_DAYS_ERROR="${RETENTION_DAYS_ERROR:-7}"
 MAX_STANDARD_MB="${MAX_STANDARD_MB:-20}"
 MAX_ERROR_MB="${MAX_ERROR_MB:-10}"
+MIN_AGE_SECONDS="${MIN_AGE_SECONDS:-60}"
+
+stat_size() {
+  local file="$1"
+  stat -f%z "$file" 2>/dev/null || stat -c%s "$file"
+}
+
+stat_mtime() {
+  local file="$1"
+  stat -f%m "$file" 2>/dev/null || stat -c%Y "$file"
+}
 
 rotate_one() {
   local file="$1"
@@ -13,6 +24,18 @@ rotate_one() {
 
   [[ -f "$file" ]] || return 0
 
+  local now mtime age_seconds
+  now="$(date +%s)"
+  mtime="$(stat_mtime "$file")"
+  age_seconds=$((now - mtime))
+  if (( age_seconds <= MIN_AGE_SECONDS )); then
+    printf 'SKIP_RECENT: %s (%ss old)\n' "$file" "$age_seconds"
+    return 0
+  fi
+
+  local file_size threshold_bytes
+  file_size="$(stat_size "$file")"
+  threshold_bytes=$((threshold_mb * 1024 * 1024))
   local file_size
   file_size="$(stat -f%z "$file")"
   local threshold_bytes=$((threshold_mb * 1024 * 1024))
@@ -46,6 +69,8 @@ main() {
   fi
 
   while IFS= read -r -d '' file; do
+    [[ -f "$file" ]] || continue
+    if [[ "$file" == *error* ]]; then
     if [[ "$file" == *.error.log ]]; then
       rotate_one "$file" "$MAX_ERROR_MB"
     else
