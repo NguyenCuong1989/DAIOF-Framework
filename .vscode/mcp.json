@@ -1,0 +1,24 @@
+{
+    "servers": {
+        "postman": {
+            "type": "stdio",
+            "command": "npx",
+            "args": [
+                "-y",
+                "@postman/postman-mcp-server",
+                "--minimal",
+                "--region us"
+            ],
+            "env": {
+                "POSTMAN_API_KEY": "${input:postman-api-key}"
+            }
+        }
+    },
+    "inputs": [
+        {
+            "id": "postman-api-key",
+            "type": "promptString",
+            "description": "Enter your Postman API key"
+        }
+    ]
+}
