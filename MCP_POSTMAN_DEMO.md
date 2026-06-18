@@ -21,6 +21,7 @@ The server is started by your MCP host using the configuration in:
 - `.vscode/mcp.json`
 
 It uses:
+
 - `npx -y @postman/postman-mcp-server --minimal --region us`
 
 ## 3) Demonstrate a tool capability
