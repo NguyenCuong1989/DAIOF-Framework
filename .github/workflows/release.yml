@@ -14,10 +14,13 @@ jobs:
 
     steps:
       - name: 📥 Checkout code
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git init -q .
+          git remote add origin "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          git fetch -q --depth 1 origin "${GITHUB_REF}"
+          git checkout -q FETCH_HEAD
       - name: 📝 Extract changelog for this version
         id: changelog
         run: |
@@ -32,13 +35,16 @@ jobs:
           # Write to file to handle multi-line content
           echo "$NOTES" > /tmp/release_notes.md
 
-      - name: 🎉 Create GitHub Release
-        uses: softprops/action-gh-release@v2
-        with:
-          name: "DAIOF ${{ github.ref_name }}"
-          body_path: /tmp/release_notes.md
-          draft: false
-          prerelease: ${{ contains(github.ref_name, '-rc') || contains(github.ref_name, '-beta') || contains(github.ref_name, '-alpha') }}
-          generate_release_notes: true
+      - name: 🎉 Create GitHub Release (gh CLI, no external action)
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          PRERELEASE=""
+          case "${GITHUB_REF_NAME}" in
+            *-rc*|*-beta*|*-alpha*) PRERELEASE="--prerelease" ;;
+          esac
+          gh release create "${GITHUB_REF_NAME}" \
+            --title "DAIOF ${GITHUB_REF_NAME}" \
+            --notes-file /tmp/release_notes.md \
+            --generate-notes \
+            ${PRERELEASE}
