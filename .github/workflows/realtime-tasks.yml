@@ -30,17 +30,15 @@ jobs:
     
     steps:
       - name: 🧬 Checkout Repository
-        uses: actions/checkout@v4
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          fetch-depth: 0
-      
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git init -q .
+          git remote add origin "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          git fetch -q --depth 1 origin "${GITHUB_REF}"
+          git checkout -q FETCH_HEAD
       - name: 🐍 Setup Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.9'
-          cache: 'pip'
-      
+        run: python3 --version
       - name: 📦 Install Dependencies
         run: |
           pip install --upgrade pip
@@ -59,14 +57,6 @@ jobs:
           timeout ${DURATION}m python3 .github/scripts/realtime_task_generator.py || {
             echo "✅ Task generator completed normally"
           }
-      
-      - name: 📊 Upload Task Logs
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: task-logs-${{ github.run_id }}
-          path: logs/*.json
-          retention-days: 7
       
       - name: 💾 Commit Generated Changes
         if: success()
@@ -114,8 +104,13 @@ jobs:
     
     steps:
       - name: 🧬 Checkout Repository
-        uses: actions/checkout@v4
-      
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git init -q .
+          git remote add origin "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          git fetch -q --depth 1 origin "${GITHUB_REF}"
+          git checkout -q FETCH_HEAD
       - name: 🔍 Deep Code Analysis
         run: |
           echo "🔬 Running deep analysis..."
