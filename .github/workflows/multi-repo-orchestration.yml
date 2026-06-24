@@ -47,11 +47,7 @@ jobs:
           echo "="*80
 
       - name: 🐍 Setup Python Environment
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.9'
-          cache: 'pip'
-
+        run: python3 --version
       - name: 📦 Install Orchestration Dependencies
         run: |
           pip install --upgrade pip
@@ -210,17 +206,6 @@ jobs:
           # Attempt global recovery
           echo "🔧 Initiating global ecosystem recovery..."
           echo "📞 Creator notification: Emergency situation requires attention"
-
-      - name: 📁 Upload Orchestration Logs
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: multi-repo-orchestration-logs-${{ github.run_id }}
-          path: |
-            logs/
-            analytics/
-            global_emergency_log.json
-          retention-days: 7
 
       - name: 🌐 Cross-Repository Synchronization
         if: success()

@@ -33,17 +33,15 @@ jobs:
     
     steps:
       - name: 🧬 Clone Repository with Full History
-        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
-        with:
-          fetch-depth: 0
-          token: ${{ secrets.GITHUB_TOKEN }}
-      
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git init -q .
+          git remote add origin "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          git fetch -q --depth 1 origin "${GITHUB_REF}"
+          git checkout -q FETCH_HEAD
       - name: 🐍 Setup Python Environment
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.9'
-          cache: 'pip'
-      
+        run: python3 --version
       - name: 📦 Install Workflow Dependencies
         run: |
           pip install --upgrade pip
@@ -220,13 +218,3 @@ jobs:
           
           echo "📞 Emergency recovery initiated - manual intervention may be required"
       
-      - name: 📁 Upload Workflow Logs
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: autonomous-git-workflow-logs-${{ github.run_id }}
-          path: |
-            logs/
-            analytics/
-            emergency_log.json
-          retention-days: 7
