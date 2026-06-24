@@ -21,14 +21,15 @@ jobs:
     
     steps:
       - name: 📥 Checkout Repository
-        uses: actions/checkout@v4
-      
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git init -q .
+          git remote add origin "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          git fetch -q --depth 1 origin "${GITHUB_REF}"
+          git checkout -q FETCH_HEAD
       - name: 🐍 Setup Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.11'
-          cache: 'pip'
-      
+        run: python3 --version
       - name: 📦 Install Dependencies
         run: |
           pip install PyGithub
@@ -41,7 +42,7 @@ jobs:
           ISSUE_NUMBER: ${{ github.event.issue.number }}
           DRY_RUN: 'false'
         run: |
-          python .github/scripts/enhanced_issue_handler.py
+          python3 .github/scripts/enhanced_issue_handler.py
       
       - name: 🔄 Process All Issues
         if: github.event_name == 'workflow_dispatch' && github.event.inputs.process_all == 'true'
@@ -50,7 +51,7 @@ jobs:
           GITHUB_REPOSITORY: ${{ github.repository }}
           DRY_RUN: 'false'
         run: |
-          python .github/scripts/enhanced_issue_handler.py
+          python3 .github/scripts/enhanced_issue_handler.py
       
       - name: 📊 Report Results
         if: always()
