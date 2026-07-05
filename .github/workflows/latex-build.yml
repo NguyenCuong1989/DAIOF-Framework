@@ -20,7 +20,8 @@ jobs:
       - name: Install LaTeX packages
         run: |
           sudo apt-get update -y
-          sudo apt-get install -y texlive-xetex texlive-latex-extra texlive-fonts-recommended texlive-lang-vietnamese latexmk
+          sudo apt-get install -y texlive-xetex texlive-latex-extra texlive-fonts-recommended latexmk fonts-noto fonts-noto-cjk
+          sudo apt-get install -y texlive-lang-vietnamese || sudo apt-get install -y texlive-lang-other || echo "Optional Vietnamese TeX language package unavailable; continuing with XeLaTeX/font fallback"
       - name: Build PDF
         working-directory: docs
         run: |
