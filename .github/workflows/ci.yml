@@ -14,7 +14,7 @@ jobs:
   test:
     name: Test on Python ${{ matrix.python-version }}
     runs-on: ${{ matrix.os }}
-    
+
     strategy:
       matrix:
         # Reduced to ubuntu-only to cut CI cost; framework is pure Python with no
@@ -22,7 +22,7 @@ jobs:
         # extensions are introduced.
         os: [ubuntu-latest]
         python-version: ['3.9', '3.10', '3.11', '3.12']
-    
+
     steps:
     - name: 📥 Checkout code
       env:
@@ -39,11 +39,11 @@ jobs:
         python3 -m pip install --upgrade pip
         pip install -r requirements.txt
         pip install pytest pytest-cov flake8
-    
+
     - name: 🔍 Lint with flake8 (critical errors only)
       run: |
-        flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
-    
+        flake8 . --exclude=.git,__pycache__,.pytest_cache,.mypy_cache,.venv,venv,build,dist,.consciousness,vscode-merged --count --select=E9,F63,F7,F82 --show-source --statistics
+
     - name: 🧬 Verify immutable genes
       run: |
         python3 -c "
@@ -62,11 +62,11 @@ jobs:
     - name: 🧪 Run tests
       run: |
         pytest tests/ -v --cov=digital_ai_organism_framework --cov-report=xml --cov-report=term
-    
+
   validate:
     name: Validate Framework
     runs-on: ubuntu-latest
-    
+
     steps:
     - name: 📥 Checkout code
       env:
@@ -82,7 +82,7 @@ jobs:
       run: |
         python3 -m pip install --upgrade pip
         pip install -r requirements.txt
-    
+
     - name: 🎼 Test Symphony Control Center
       run: |
         python3 -c "
@@ -90,25 +90,25 @@ jobs:
         symphony = SymphonyControlCenter()
         print('✅ Symphony Control Center functional')
         "
-    
+
     - name: 🧬 Test Digital Organism lifecycle
       run: |
         python3 -c "
         from digital_ai_organism_framework import DigitalOrganism
-        organism = DigitalOrganism()
+        organism = DigitalOrganism(name="ci_lifecycle")
         for _ in range(10):
             organism.metabolism.cycle({'cpu': 0.1, 'memory': 0.1})
         assert organism.health > 0
         print(f'✅ Organism lifecycle working (health: {organism.health:.2f})')
         "
-    
+
     - name: 🌍 Test Ecosystem
       run: |
         python3 -c "
         from digital_ai_organism_framework import DigitalEcosystem, DigitalOrganism
         ecosystem = DigitalEcosystem()
         for i in range(5):
-            ecosystem.add_organism(DigitalOrganism())
+            ecosystem.add_organism(DigitalOrganism(name=f"ci_org_{i}"))
         ecosystem.simulate_generation()
         print(f'✅ Ecosystem functional with {len(ecosystem.organisms)} organisms')
         "
@@ -116,7 +116,7 @@ jobs:
   security:
     name: Security Scan
     runs-on: ubuntu-latest
-    
+
     steps:
     - name: 📥 Checkout code
       env:
@@ -142,7 +142,7 @@ jobs:
     if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v')
     permissions:
       contents: write
-    
+
     steps:
     - name: 📥 Checkout code
       env:
