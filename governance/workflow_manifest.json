@@ -153,7 +153,7 @@
         "pull-requests": "write"
       },
       "pinned_action_references": 0,
-      "sha256": "277ebae38e25852ac17253083f3e9ac6a9fa451ad7a3d592e2ff5863f5cc0ab9",
+      "sha256": "3aa3ee43a67b2d9863f57596ff96e4643548238e53bfe4a6c958fa21cc0f1ec4",
       "triggers": [
         "pull_request"
       ],
@@ -283,7 +283,7 @@
         "contents": "read"
       },
       "pinned_action_references": 0,
-      "sha256": "ec1589da62d2b17e461cfb8f5fc848591a24ffb89a429d9da35bd1d94693f404",
+      "sha256": "7c9f67a385ddae35a977c6b56e0032f29145aa049e150e9317ef52066b0707ca",
       "triggers": [
         "pull_request",
         "push"
@@ -434,7 +434,7 @@
         "contents": "read"
       },
       "pinned_action_references": 0,
-      "sha256": "2e093d5c6114b395182bdba340a4d1944287543c0499ed9f42bc614b1dc67a94",
+      "sha256": "16d1b9fa13565babf8d8ee0297677aada51c9787e69329687b1103d3e9af6490",
       "triggers": [
         "pull_request",
         "push",
@@ -662,7 +662,7 @@
       "path": ".github/workflows/python-package.yml",
       "permissions": null,
       "pinned_action_references": 0,
-      "sha256": "9b07eccb9954a7f76e800d16c03f30f6e8f3af8b175cbe37ece10b867e5c0594",
+      "sha256": "60ef8ec8716faf2b8979577795b841a2a41ac53fbe610b05982f2e75fc49e576",
       "triggers": [
         "pull_request",
         "push"

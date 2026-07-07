@@ -30,7 +30,12 @@ jobs:
       run: |
         git init -q .
         git remote add origin "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
-        git fetch -q --depth 1 origin "${GITHUB_REF}"
+        # DAIOF_PHASE4_PR_HEAD_CHECKOUT
+        if [ -n "${GITHUB_HEAD_REF:-}" ]; then
+          git fetch -q --depth 1 origin "refs/heads/${GITHUB_HEAD_REF}"
+        else
+          git fetch -q --depth 1 origin "${GITHUB_REF}"
+        fi
         git checkout -q FETCH_HEAD
     - name: 🐍 Set up Python ${{ matrix.python-version }}
       run: python3 --version
@@ -74,7 +79,12 @@ jobs:
       run: |
         git init -q .
         git remote add origin "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
-        git fetch -q --depth 1 origin "${GITHUB_REF}"
+        # DAIOF_PHASE4_PR_HEAD_CHECKOUT
+        if [ -n "${GITHUB_HEAD_REF:-}" ]; then
+          git fetch -q --depth 1 origin "refs/heads/${GITHUB_HEAD_REF}"
+        else
+          git fetch -q --depth 1 origin "${GITHUB_REF}"
+        fi
         git checkout -q FETCH_HEAD
     - name: 🐍 Set up Python
       run: python3 --version
@@ -97,9 +107,10 @@ jobs:
         from digital_ai_organism_framework import DigitalOrganism
         organism = DigitalOrganism(name='ci_lifecycle')
         for _ in range(10):
-            organism.metabolism.cycle({'cpu': 0.1, 'memory': 0.1})
-        assert organism.health > 0
-        print(f'✅ Organism lifecycle working (health: {organism.health:.2f})')
+            organism.metabolism.consume_resources('ci_cycle', 0.1)
+            organism.metabolism.regenerate_resources(0.1)
+        assert organism.metabolism.get_resource_health() > 0
+        print(f'✅ Organism lifecycle working (resource health: {organism.metabolism.get_resource_health():.2f})')
         "
 
     - name: 🌍 Test Ecosystem
@@ -124,7 +135,12 @@ jobs:
       run: |
         git init -q .
         git remote add origin "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
-        git fetch -q --depth 1 origin "${GITHUB_REF}"
+        # DAIOF_PHASE4_PR_HEAD_CHECKOUT
+        if [ -n "${GITHUB_HEAD_REF:-}" ]; then
+          git fetch -q --depth 1 origin "refs/heads/${GITHUB_HEAD_REF}"
+        else
+          git fetch -q --depth 1 origin "${GITHUB_REF}"
+        fi
         git checkout -q FETCH_HEAD
     - name: 🐍 Set up Python
       run: python3 --version
@@ -150,7 +166,12 @@ jobs:
       run: |
         git init -q .
         git remote add origin "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
-        git fetch -q --depth 1 origin "${GITHUB_REF}"
+        # DAIOF_PHASE4_PR_HEAD_CHECKOUT
+        if [ -n "${GITHUB_HEAD_REF:-}" ]; then
+          git fetch -q --depth 1 origin "refs/heads/${GITHUB_HEAD_REF}"
+        else
+          git fetch -q --depth 1 origin "${GITHUB_REF}"
+        fi
         git checkout -q FETCH_HEAD
     - name: 🎉 Create Release (gh CLI, no external action)
       env:
