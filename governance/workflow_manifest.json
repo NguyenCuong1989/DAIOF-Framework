@@ -153,7 +153,7 @@
         "pull-requests": "write"
       },
       "pinned_action_references": 0,
-      "sha256": "b9cc6f654db7d71edddde7798e18355a7a7eed90e2cf7025442f01c9db65030c",
+      "sha256": "277ebae38e25852ac17253083f3e9ac6a9fa451ad7a3d592e2ff5863f5cc0ab9",
       "triggers": [
         "pull_request"
       ],
@@ -283,7 +283,7 @@
         "contents": "read"
       },
       "pinned_action_references": 0,
-      "sha256": "98c0cafba415431790dc735ef9f51a931ece98b57c8c1fc063d9c4f634e7661a",
+      "sha256": "ec1589da62d2b17e461cfb8f5fc848591a24ffb89a429d9da35bd1d94693f404",
       "triggers": [
         "pull_request",
         "push"
@@ -434,7 +434,7 @@
         "contents": "read"
       },
       "pinned_action_references": 0,
-      "sha256": "7690650f0e60e001ff72d1138d9650aab694832e8d122af134faf38fb84c9e66",
+      "sha256": "2e093d5c6114b395182bdba340a4d1944287543c0499ed9f42bc614b1dc67a94",
       "triggers": [
         "pull_request",
         "push",
@@ -537,7 +537,7 @@
       "path": ".github/workflows/latex-build.yml",
       "permissions": null,
       "pinned_action_references": 0,
-      "sha256": "127463747afb2e696946dd3cd1972bbaf1dfd370f3aaa0ded7197e20c6fb9435",
+      "sha256": "be3b792b04db80713c338292bf383e44a0519af42bc7cc1d06fb11362b22428c",
       "triggers": [
         "pull_request",
         "push"
@@ -662,7 +662,7 @@
       "path": ".github/workflows/python-package.yml",
       "permissions": null,
       "pinned_action_references": 0,
-      "sha256": "66b5adc745036c8d5e49ee1aefa0aa69d5f3d309d76b3cc4e02ab952eb12bdc6",
+      "sha256": "9b07eccb9954a7f76e800d16c03f30f6e8f3af8b175cbe37ece10b867e5c0594",
       "triggers": [
         "pull_request",
         "push"

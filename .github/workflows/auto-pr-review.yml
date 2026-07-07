@@ -21,7 +21,8 @@ jobs:
         run: |
           git init -q .
           git remote add origin "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
-          git fetch -q --depth 1 origin "${GITHUB_REF}"
+          REF="${GITHUB_HEAD_REF:-${GITHUB_REF}}"
+          git fetch -q --depth 1 origin "$REF"
           git checkout -q FETCH_HEAD
       - name: Set up Python
         run: python3 --version

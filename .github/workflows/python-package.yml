@@ -42,4 +42,4 @@ jobs:
         flake8 . --exclude=.git,__pycache__,.pytest_cache,.mypy_cache,.venv,venv,build,dist,.consciousness,vscode-merged --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
     - name: Test with pytest
       run: |
-        pytest
+        PYTHONPATH="$GITHUB_WORKSPACE:${PYTHONPATH:-}" pytest tests/ -q

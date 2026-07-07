@@ -61,7 +61,7 @@ jobs:
 
     - name: 🧪 Run tests
       run: |
-        pytest tests/ -v --cov=digital_ai_organism_framework --cov-report=xml --cov-report=term
+        PYTHONPATH="$GITHUB_WORKSPACE:${PYTHONPATH:-}" pytest tests/ -v --cov=digital_ai_organism_framework --cov-report=xml --cov-report=term
 
   validate:
     name: Validate Framework
@@ -95,7 +95,7 @@ jobs:
       run: |
         python3 -c "
         from digital_ai_organism_framework import DigitalOrganism
-        organism = DigitalOrganism(name="ci_lifecycle")
+        organism = DigitalOrganism(name='ci_lifecycle')
         for _ in range(10):
             organism.metabolism.cycle({'cpu': 0.1, 'memory': 0.1})
         assert organism.health > 0
@@ -108,7 +108,7 @@ jobs:
         from digital_ai_organism_framework import DigitalEcosystem, DigitalOrganism
         ecosystem = DigitalEcosystem()
         for i in range(5):
-            ecosystem.add_organism(DigitalOrganism(name=f"ci_org_{i}"))
+            ecosystem.add_organism(DigitalOrganism(name=f'ci_org_{i}'))
         ecosystem.simulate_generation()
         print(f'✅ Ecosystem functional with {len(ecosystem.organisms)} organisms')
         "
