@@ -7,8 +7,8 @@
   ],
   "metrics": {
     "deploy_workflow_count": 4,
-    "explicit_permission_coverage": 0.7778,
-    "pinned_action_rate": 0.284,
+    "explicit_permission_coverage": 0.8148,
+    "pinned_action_rate": 1.0,
     "workflow_drift_rate": 0.0
   },
   "schema_version": "1.0.0",
@@ -16,15 +16,12 @@
   "workflow_count": 27,
   "workflows": [
     {
-      "action_references": 2,
+      "action_references": 0,
       "deploy_capable": false,
       "explicit_permissions": true,
       "jobs": [
         {
-          "actions": [
-            "actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
-            "actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065"
-          ],
+          "actions": [],
           "environment": null,
           "id": "autonomous-agent",
           "needs": [],
@@ -37,22 +34,20 @@
         "contents": "write",
         "pull-requests": "write"
       },
-      "pinned_action_references": 2,
-      "sha256": "004a7ca997538bfb6430887bb914aec6d16b81eb98d777b5b53950d592a9574f",
+      "pinned_action_references": 0,
+      "sha256": "5c8de8a1c9852d027aad944a58a979c21e1953201424dacd96eff9aeb9e0294a",
       "triggers": [
         "workflow_dispatch"
       ],
       "unpinned_actions": []
     },
     {
-      "action_references": 1,
+      "action_references": 0,
       "deploy_capable": false,
       "explicit_permissions": false,
       "jobs": [
         {
-          "actions": [
-            "actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683"
-          ],
+          "actions": [],
           "environment": null,
           "id": "health",
           "needs": [],
@@ -62,8 +57,8 @@
       "name": "APO Health Check",
       "path": ".github/workflows/apo-health-check.yml",
       "permissions": null,
-      "pinned_action_references": 1,
-      "sha256": "ba1d7fb6bb74275eb1648b7e2cdb3e0415f0a4f93a98329477156d7a8cda027e",
+      "pinned_action_references": 0,
+      "sha256": "11bb57d8f8da9296d53bd246929efce6dd3be14b62591c029b11bb9126a45b92",
       "triggers": [
         "schedule",
         "workflow_dispatch"
@@ -71,16 +66,12 @@
       "unpinned_actions": []
     },
     {
-      "action_references": 3,
+      "action_references": 0,
       "deploy_capable": false,
       "explicit_permissions": true,
       "jobs": [
         {
-          "actions": [
-            "actions/checkout@v4",
-            "actions/setup-python@v5",
-            "peter-evans/create-pull-request@v6"
-          ],
+          "actions": [],
           "environment": null,
           "id": "update_dependencies",
           "needs": [],
@@ -94,43 +85,33 @@
         "pull-requests": "write"
       },
       "pinned_action_references": 0,
-      "sha256": "238a26ffd4248933334258b28c3fbb4a6af7588149dc72c4013ce6f090a58896",
+      "sha256": "44fdb51e9ad53ff206525b77c9ce3051b95b1241f0850e60cb5c2b8c9d61beda",
       "triggers": [
         "workflow_dispatch"
       ],
-      "unpinned_actions": [
-        "actions/checkout@v4",
-        "actions/setup-python@v5",
-        "peter-evans/create-pull-request@v6"
-      ]
+      "unpinned_actions": []
     },
     {
-      "action_references": 3,
+      "action_references": 0,
       "deploy_capable": false,
       "explicit_permissions": true,
       "jobs": [
         {
-          "actions": [
-            "actions/github-script@v7"
-          ],
+          "actions": [],
           "environment": null,
           "id": "auto_label",
           "needs": [],
           "permissions": null
         },
         {
-          "actions": [
-            "actions/github-script@v7"
-          ],
+          "actions": [],
           "environment": null,
           "id": "auto_respond",
           "needs": [],
           "permissions": null
         },
         {
-          "actions": [
-            "actions/stale@v9"
-          ],
+          "actions": [],
           "environment": null,
           "id": "stale_check",
           "needs": [],
@@ -144,28 +125,20 @@
         "issues": "write"
       },
       "pinned_action_references": 0,
-      "sha256": "50cb2ded3d86d08006b817ff1a9edca5899712bd5dc12ccccf0d0378bb6c91db",
+      "sha256": "c2321f41f9d9f3cfd72f120dcd7badb75cf4e7f6d6a8351c7823c64e87c07935",
       "triggers": [
         "issue_comment",
         "issues"
       ],
-      "unpinned_actions": [
-        "actions/github-script@v7",
-        "actions/github-script@v7",
-        "actions/stale@v9"
-      ]
+      "unpinned_actions": []
     },
     {
-      "action_references": 3,
+      "action_references": 0,
       "deploy_capable": false,
       "explicit_permissions": true,
       "jobs": [
         {
-          "actions": [
-            "actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
-            "actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea",
-            "actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065"
-          ],
+          "actions": [],
           "environment": null,
           "id": "governance-review",
           "needs": [],
@@ -179,23 +152,20 @@
         "issues": "write",
         "pull-requests": "write"
       },
-      "pinned_action_references": 3,
-      "sha256": "acee8780dbf418d525297e40bd1ed3e2814fa207016ca849d4ca744017f8e06e",
+      "pinned_action_references": 0,
+      "sha256": "427f684893dcdd789653046716b860f8c2d94cae203a22e25094a2112daf0e47",
       "triggers": [
         "pull_request"
       ],
       "unpinned_actions": []
     },
     {
-      "action_references": 2,
+      "action_references": 0,
       "deploy_capable": false,
       "explicit_permissions": true,
       "jobs": [
         {
-          "actions": [
-            "actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
-            "actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065"
-          ],
+          "actions": [],
           "environment": null,
           "id": "autonomous_development",
           "needs": [],
@@ -208,24 +178,20 @@
         "contents": "write",
         "pull-requests": "write"
       },
-      "pinned_action_references": 2,
-      "sha256": "69c947f2a03ada18ff5a30cb02eb6e706d8db179263f7cd34162efea25cb846b",
+      "pinned_action_references": 0,
+      "sha256": "e1449d6c6ddbf26af0030498c01f8412c665a51f1d0b700004546e1d825f95ff",
       "triggers": [
         "workflow_dispatch"
       ],
       "unpinned_actions": []
     },
     {
-      "action_references": 3,
+      "action_references": 0,
       "deploy_capable": false,
       "explicit_permissions": true,
       "jobs": [
         {
-          "actions": [
-            "actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
-            "actions/setup-python@v5",
-            "actions/upload-artifact@v4"
-          ],
+          "actions": [],
           "environment": null,
           "id": "autonomous_git_workflow",
           "needs": [],
@@ -238,28 +204,20 @@
         "contents": "write",
         "pull-requests": "write"
       },
-      "pinned_action_references": 1,
-      "sha256": "526801b9d3e5c808d37b0a31e8fe61069aa62c8ff421b953186275b00bc0d749",
+      "pinned_action_references": 0,
+      "sha256": "1790ed23a48f38a911dcca8e2c3cdfa5da974ebc97a48aea2f3575456954cbdf",
       "triggers": [
         "workflow_dispatch"
       ],
-      "unpinned_actions": [
-        "actions/setup-python@v5",
-        "actions/upload-artifact@v4"
-      ]
+      "unpinned_actions": []
     },
     {
-      "action_references": 4,
+      "action_references": 0,
       "deploy_capable": false,
       "explicit_permissions": true,
       "jobs": [
         {
-          "actions": [
-            "actions/checkout@v4",
-            "actions/setup-node@v4",
-            "actions/setup-python@v5",
-            "peter-evans/create-pull-request@v5"
-          ],
+          "actions": [],
           "environment": null,
           "id": "autonomous_security_fix",
           "needs": [],
@@ -273,28 +231,20 @@
         "pull-requests": "write"
       },
       "pinned_action_references": 0,
-      "sha256": "81e29a4d9615e6da286e0056aedfdb858589b24e6fb88d450ffc6fade0834273",
+      "sha256": "48e350141f657c989e3bc0cd63dc2b7abecc3543c070f5913c1f077c65480948",
       "triggers": [
         "push",
         "workflow_dispatch"
       ],
-      "unpinned_actions": [
-        "actions/checkout@v4",
-        "actions/setup-node@v4",
-        "actions/setup-python@v5",
-        "peter-evans/create-pull-request@v5"
-      ]
+      "unpinned_actions": []
     },
     {
-      "action_references": 9,
+      "action_references": 0,
       "deploy_capable": true,
       "explicit_permissions": true,
       "jobs": [
         {
-          "actions": [
-            "actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
-            "softprops/action-gh-release@v2"
-          ],
+          "actions": [],
           "environment": null,
           "id": "release",
           "needs": [
@@ -306,31 +256,21 @@
           }
         },
         {
-          "actions": [
-            "actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
-            "actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065"
-          ],
+          "actions": [],
           "environment": null,
           "id": "security",
           "needs": [],
           "permissions": null
         },
         {
-          "actions": [
-            "actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
-            "actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065",
-            "codecov/codecov-action@18283e04ce6e62d37312384ff67ab1fd11d9025a"
-          ],
+          "actions": [],
           "environment": null,
           "id": "test",
           "needs": [],
           "permissions": null
         },
         {
-          "actions": [
-            "actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
-            "actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065"
-          ],
+          "actions": [],
           "environment": null,
           "id": "validate",
           "needs": [],
@@ -342,45 +282,35 @@
       "permissions": {
         "contents": "read"
       },
-      "pinned_action_references": 8,
-      "sha256": "520818c6e3a99457988a0a4c05eebc59d81909b2ebb8e79aa1f18b20275d1ed5",
+      "pinned_action_references": 0,
+      "sha256": "b1d58aaa263ab88121b797468b8d796b8f539e232b9d0e549a7ab2a79ac2f55f",
       "triggers": [
         "pull_request",
         "push"
       ],
-      "unpinned_actions": [
-        "softprops/action-gh-release@v2"
-      ]
+      "unpinned_actions": []
     },
     {
-      "action_references": 5,
+      "action_references": 0,
       "deploy_capable": false,
       "explicit_permissions": true,
       "jobs": [
         {
-          "actions": [
-            "actions/checkout@v4",
-            "actions/github-script@v7"
-          ],
+          "actions": [],
           "environment": null,
           "id": "daily_engagement",
           "needs": [],
           "permissions": null
         },
         {
-          "actions": [
-            "actions/github-script@v7"
-          ],
+          "actions": [],
           "environment": null,
           "id": "encourage_newcomers",
           "needs": [],
           "permissions": null
         },
         {
-          "actions": [
-            "actions/github-script@v7",
-            "actions/github-script@v7"
-          ],
+          "actions": [],
           "environment": null,
           "id": "recognize_contributions",
           "needs": [],
@@ -396,34 +326,22 @@
         "pull-requests": "write"
       },
       "pinned_action_references": 0,
-      "sha256": "c9de8dda0973da66ecabf86661cd31bface42a88fa5eb5cc10fa687333253fc0",
+      "sha256": "2b471ebd0950242562f0172362538ac8779b3535d2b15222e6c95c473b995f3a",
       "triggers": [
         "discussion",
         "issues",
         "pull_request",
         "workflow_dispatch"
       ],
-      "unpinned_actions": [
-        "actions/checkout@v4",
-        "actions/github-script@v7",
-        "actions/github-script@v7",
-        "actions/github-script@v7",
-        "actions/github-script@v7"
-      ]
+      "unpinned_actions": []
     },
     {
-      "action_references": 5,
+      "action_references": 0,
       "deploy_capable": true,
       "explicit_permissions": true,
       "jobs": [
         {
-          "actions": [
-            "actions/checkout@v4",
-            "docker/build-push-action@v6",
-            "docker/login-action@v3",
-            "docker/metadata-action@v5",
-            "docker/setup-buildx-action@v3"
-          ],
+          "actions": [],
           "environment": null,
           "id": "build-and-push",
           "needs": [],
@@ -437,29 +355,20 @@
       "path": ".github/workflows/docker-publish.yml",
       "permissions": null,
       "pinned_action_references": 0,
-      "sha256": "dd5e03591854a090e2034e36534d1ca3267293f83e5754ea2ec9b3eec3b9e8ca",
+      "sha256": "22bd0cbc5ac017fac429f78badcff698db1149ff2f8bc2cc9db1d7573b883be4",
       "triggers": [
         "pull_request",
         "push"
       ],
-      "unpinned_actions": [
-        "actions/checkout@v4",
-        "docker/build-push-action@v6",
-        "docker/login-action@v3",
-        "docker/metadata-action@v5",
-        "docker/setup-buildx-action@v3"
-      ]
+      "unpinned_actions": []
     },
     {
-      "action_references": 2,
+      "action_references": 0,
       "deploy_capable": false,
       "explicit_permissions": true,
       "jobs": [
         {
-          "actions": [
-            "actions/checkout@v4",
-            "actions/setup-python@v4"
-          ],
+          "actions": [],
           "environment": null,
           "id": "update-docs",
           "needs": [],
@@ -472,26 +381,20 @@
         "contents": "write"
       },
       "pinned_action_references": 0,
-      "sha256": "b3a6cd48d8c96d7a6072210b9432e165ef757d1792fc47773525bdf8ea975407",
+      "sha256": "95ac4c63be36f241f264cfaaaeee5800523c62f6dc1c7157d58cee7eeb82ef1b",
       "triggers": [
         "push",
         "workflow_dispatch"
       ],
-      "unpinned_actions": [
-        "actions/checkout@v4",
-        "actions/setup-python@v4"
-      ]
+      "unpinned_actions": []
     },
     {
-      "action_references": 2,
+      "action_references": 0,
       "deploy_capable": false,
       "explicit_permissions": true,
       "jobs": [
         {
-          "actions": [
-            "actions/checkout@v4",
-            "actions/setup-python@v5"
-          ],
+          "actions": [],
           "environment": null,
           "id": "process-issue",
           "needs": [],
@@ -505,26 +408,20 @@
         "issues": "write"
       },
       "pinned_action_references": 0,
-      "sha256": "ff271ce8edaec0dd03d0a0c39b2bf9f66798387b5c62ea28d08cd9aa7317defe",
+      "sha256": "7f8aec1a1882c97c8b2896fbedfc6c95c61efe97701f7031c368424b88bdfe69",
       "triggers": [
         "issues",
         "workflow_dispatch"
       ],
-      "unpinned_actions": [
-        "actions/checkout@v4",
-        "actions/setup-python@v5"
-      ]
+      "unpinned_actions": []
     },
     {
-      "action_references": 2,
+      "action_references": 0,
       "deploy_capable": false,
       "explicit_permissions": true,
       "jobs": [
         {
-          "actions": [
-            "actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
-            "actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065"
-          ],
+          "actions": [],
           "environment": null,
           "id": "governance",
           "needs": [],
@@ -536,8 +433,8 @@
       "permissions": {
         "contents": "read"
       },
-      "pinned_action_references": 2,
-      "sha256": "c4d281b24735104c024e78c430adad74c4053de7d517875403479cd832d63163",
+      "pinned_action_references": 0,
+      "sha256": "4a62e49d84a632d67fa4be7f62398c633797c32774c6199ae11e444edce80490",
       "triggers": [
         "pull_request",
         "push",
@@ -546,14 +443,12 @@
       "unpinned_actions": []
     },
     {
-      "action_references": 1,
+      "action_references": 0,
       "deploy_capable": false,
       "explicit_permissions": true,
       "jobs": [
         {
-          "actions": [
-            "actions/first-interaction@v1"
-          ],
+          "actions": [],
           "environment": null,
           "id": "greeting",
           "needs": [],
@@ -567,25 +462,20 @@
         "pull-requests": "write"
       },
       "pinned_action_references": 0,
-      "sha256": "09253aa06f68871472097595fa6f5d1a6e59255bf6271b1bb8a59fb33ae78d5d",
+      "sha256": "44cad7adee1407109ae846742ef754a5ed485a070838e902bc501b2a3b375b10",
       "triggers": [
         "issues",
         "pull_request_target"
       ],
-      "unpinned_actions": [
-        "actions/first-interaction@v1"
-      ]
+      "unpinned_actions": []
     },
     {
-      "action_references": 2,
+      "action_references": 0,
       "deploy_capable": false,
       "explicit_permissions": true,
       "jobs": [
         {
-          "actions": [
-            "actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
-            "actions/setup-python@v5"
-          ],
+          "actions": [],
           "environment": null,
           "id": "health-check",
           "needs": [],
@@ -597,57 +487,46 @@
       "permissions": {
         "contents": "write"
       },
-      "pinned_action_references": 1,
-      "sha256": "7beab917135a0a56b35de510e2598f51f1f7d140a5998cb9612a8142cb6431e6",
+      "pinned_action_references": 0,
+      "sha256": "e0b33095cd9b255f7473c04058a7d0ee571f75e0d9aa72a8bdf26fc9512865aa",
       "triggers": [
         "workflow_dispatch"
       ],
-      "unpinned_actions": [
-        "actions/setup-python@v5"
-      ]
+      "unpinned_actions": []
     },
     {
-      "action_references": 2,
+      "action_references": 0,
       "deploy_capable": false,
       "explicit_permissions": true,
       "jobs": [
         {
-          "actions": [
-            "actions/labeler@v4",
-            "codelytv/pr-size-labeler@v1"
-          ],
+          "actions": [],
           "environment": null,
           "id": "label",
           "needs": [],
           "permissions": null
         }
       ],
-      "name": "\ud83c\udff7\ufe0f Auto Label PRs",
+      "name": "\ud83c\udff7 Auto Label PRs",
       "path": ".github/workflows/labeler.yml",
       "permissions": {
         "contents": "read",
         "pull-requests": "write"
       },
       "pinned_action_references": 0,
-      "sha256": "30e30f5047aea9235e404c84792941f2856476b6104b820bb598ce99673ffce3",
+      "sha256": "785e2c956ec40493aaac6f628ae5417621ea9154d211f7f494826d243c14b86c",
       "triggers": [
         "pull_request"
       ],
-      "unpinned_actions": [
-        "actions/labeler@v4",
-        "codelytv/pr-size-labeler@v1"
-      ]
+      "unpinned_actions": []
     },
     {
-      "action_references": 2,
+      "action_references": 0,
       "deploy_capable": false,
       "explicit_permissions": false,
       "jobs": [
         {
-          "actions": [
-            "actions/checkout@v4",
-            "actions/upload-artifact@v4"
-          ],
+          "actions": [],
           "environment": null,
           "id": "build-latex-alpha",
           "needs": [],
@@ -658,37 +537,27 @@
       "path": ".github/workflows/latex-build.yml",
       "permissions": null,
       "pinned_action_references": 0,
-      "sha256": "ec01765c2e982a447f4cdce03baf30c8b514ae7611a92a0b888d48f8b0e88f84",
+      "sha256": "c9a81a08194b5e526f1ffba08c23b32f8388763a1e558b0721d2d257162fd3f0",
       "triggers": [
         "pull_request",
         "push"
       ],
-      "unpinned_actions": [
-        "actions/checkout@v4",
-        "actions/upload-artifact@v4"
-      ]
+      "unpinned_actions": []
     },
     {
-      "action_references": 5,
+      "action_references": 0,
       "deploy_capable": false,
       "explicit_permissions": false,
       "jobs": [
         {
-          "actions": [
-            "actions/checkout@v4",
-            "actions/setup-python@v5"
-          ],
+          "actions": [],
           "environment": null,
           "id": "lint",
           "needs": [],
           "permissions": null
         },
         {
-          "actions": [
-            "actions/checkout@v4",
-            "actions/setup-python@v5",
-            "codecov/codecov-action@v4"
-          ],
+          "actions": [],
           "environment": null,
           "id": "test",
           "needs": [
@@ -701,29 +570,20 @@
       "path": ".github/workflows/main.yml",
       "permissions": null,
       "pinned_action_references": 0,
-      "sha256": "28fa723e3b6b0920e465824762fb930ffaee4c61a66285416571dccb0c0794c1",
+      "sha256": "6bd057ab63dc11b2a0f846c6f87b6fb7e61af217492b902d7df1b1fc1c8de3fb",
       "triggers": [
         "pull_request",
         "push"
       ],
-      "unpinned_actions": [
-        "actions/checkout@v4",
-        "actions/checkout@v4",
-        "actions/setup-python@v5",
-        "actions/setup-python@v5",
-        "codecov/codecov-action@v4"
-      ]
+      "unpinned_actions": []
     },
     {
-      "action_references": 2,
+      "action_references": 0,
       "deploy_capable": false,
       "explicit_permissions": true,
       "jobs": [
         {
-          "actions": [
-            "actions/setup-python@v5",
-            "actions/upload-artifact@v4"
-          ],
+          "actions": [],
           "environment": null,
           "id": "multi_repo_orchestration",
           "needs": [],
@@ -738,61 +598,37 @@
         "pull-requests": "read"
       },
       "pinned_action_references": 0,
-      "sha256": "0d6361fdf4f761aa6572d2fa6d3527980ca5ed548f922b311ec52d9ab092ff96",
+      "sha256": "52491cc28479eb27b54d1e0f1f8c5ad56905bd2a54e1bfcce8caa947b41f35ce",
       "triggers": [
         "workflow_dispatch"
       ],
-      "unpinned_actions": [
-        "actions/setup-python@v5",
-        "actions/upload-artifact@v4"
-      ]
+      "unpinned_actions": []
     },
     {
-      "action_references": 7,
+      "action_references": 0,
       "deploy_capable": true,
-      "explicit_permissions": false,
+      "explicit_permissions": true,
       "jobs": [
         {
-          "actions": [
-            "actions/checkout@v4",
-            "actions/setup-python@v5",
-            "actions/upload-artifact@v4"
-          ],
-          "environment": null,
-          "id": "build",
-          "needs": [],
-          "permissions": null
-        },
-        {
-          "actions": [
-            "actions/download-artifact@v4.1.3",
-            "pypa/gh-action-pypi-publish@release/v1"
-          ],
+          "actions": [],
           "environment": {
             "name": "pypi",
             "url": "https://pypi.org/p/hyperai-framework"
           },
           "id": "publish-to-pypi",
-          "needs": [
-            "build"
-          ],
+          "needs": [],
           "permissions": {
             "id-token": "write"
           }
         },
         {
-          "actions": [
-            "actions/download-artifact@v4.1.3",
-            "pypa/gh-action-pypi-publish@release/v1"
-          ],
+          "actions": [],
           "environment": {
             "name": "testpypi",
             "url": "https://test.pypi.org/p/hyperai-framework"
           },
           "id": "publish-to-testpypi",
-          "needs": [
-            "build"
-          ],
+          "needs": [],
           "permissions": {
             "id-token": "write"
           }
@@ -802,31 +638,20 @@
       "path": ".github/workflows/pypi-publish.yml",
       "permissions": null,
       "pinned_action_references": 0,
-      "sha256": "3466f11c29a6795d1173123c8b7b74841be006108353cc845b530fd63532edad",
+      "sha256": "35724799b21bec19cfb8cacbd74b169180206ed5fe3f93803fa19569059dd5b1",
       "triggers": [
         "push",
         "workflow_dispatch"
       ],
-      "unpinned_actions": [
-        "actions/checkout@v4",
-        "actions/download-artifact@v4.1.3",
-        "actions/download-artifact@v4.1.3",
-        "actions/setup-python@v5",
-        "actions/upload-artifact@v4",
-        "pypa/gh-action-pypi-publish@release/v1",
-        "pypa/gh-action-pypi-publish@release/v1"
-      ]
+      "unpinned_actions": []
     },
     {
-      "action_references": 2,
+      "action_references": 0,
       "deploy_capable": false,
       "explicit_permissions": false,
       "jobs": [
         {
-          "actions": [
-            "actions/checkout@v4",
-            "actions/setup-python@v5"
-          ],
+          "actions": [],
           "environment": null,
           "id": "build",
           "needs": [],
@@ -837,36 +662,27 @@
       "path": ".github/workflows/python-package.yml",
       "permissions": null,
       "pinned_action_references": 0,
-      "sha256": "7d4188d6a94cac0e4c96c318c7910f181a24025c33daab3a17c21f78591dc61a",
+      "sha256": "c27396c7e349eefbc8c4cbe08b08adf2c6a54822debdb5fb647aa312d3c32e5b",
       "triggers": [
         "pull_request",
         "push"
       ],
-      "unpinned_actions": [
-        "actions/checkout@v4",
-        "actions/setup-python@v5"
-      ]
+      "unpinned_actions": []
     },
     {
-      "action_references": 4,
+      "action_references": 0,
       "deploy_capable": false,
       "explicit_permissions": true,
       "jobs": [
         {
-          "actions": [
-            "actions/checkout@v4"
-          ],
+          "actions": [],
           "environment": null,
           "id": "deep_analysis",
           "needs": [],
           "permissions": null
         },
         {
-          "actions": [
-            "actions/checkout@v4",
-            "actions/setup-python@v5",
-            "actions/upload-artifact@v4"
-          ],
+          "actions": [],
           "environment": null,
           "id": "realtime_tasks",
           "needs": [],
@@ -881,27 +697,19 @@
         "pull-requests": "write"
       },
       "pinned_action_references": 0,
-      "sha256": "812ddc63bddfc8fccbfbe7692c549be7f45f2429551ef1dc1e1f7075d971ecb3",
+      "sha256": "2f573908fda7d6ddcc2eee0cbb4ab96c95b675efb8c7672b78d3bfacbb0b3e47",
       "triggers": [
         "workflow_dispatch"
       ],
-      "unpinned_actions": [
-        "actions/checkout@v4",
-        "actions/checkout@v4",
-        "actions/setup-python@v5",
-        "actions/upload-artifact@v4"
-      ]
+      "unpinned_actions": []
     },
     {
-      "action_references": 2,
+      "action_references": 0,
       "deploy_capable": true,
       "explicit_permissions": true,
       "jobs": [
         {
-          "actions": [
-            "actions/checkout@v4",
-            "softprops/action-gh-release@v2"
-          ],
+          "actions": [],
           "environment": null,
           "id": "release",
           "needs": [],
@@ -914,26 +722,19 @@
         "contents": "write"
       },
       "pinned_action_references": 0,
-      "sha256": "a22af1cc7293959d0035e7038ccbd7add2278bee7a86044e0bbf4e392b565dcc",
+      "sha256": "e2efbd8dfdb862e7d7efc3faea317ecfbf0a21024bbb3480c4431fa782366098",
       "triggers": [
         "push"
       ],
-      "unpinned_actions": [
-        "actions/checkout@v4",
-        "softprops/action-gh-release@v2"
-      ]
+      "unpinned_actions": []
     },
     {
-      "action_references": 3,
+      "action_references": 0,
       "deploy_capable": false,
       "explicit_permissions": true,
       "jobs": [
         {
-          "actions": [
-            "actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
-            "actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065",
-            "actions/upload-artifact@65462800fd760344b1a7b4382951275a0abb4808"
-          ],
+          "actions": [],
           "environment": null,
           "id": "attest",
           "needs": [],
@@ -945,8 +746,8 @@
       "permissions": {
         "contents": "read"
       },
-      "pinned_action_references": 3,
-      "sha256": "2716ceb24c703f2e531cf7d930cc0668a2ff467fc9555cc079d2934f0309beaa",
+      "pinned_action_references": 0,
+      "sha256": "d5d64a4d619a5d3a74954d9952241300f4d44859960122ddbd7da43d8756145c",
       "triggers": [
         "workflow_call",
         "workflow_dispatch"
@@ -954,14 +755,12 @@
       "unpinned_actions": []
     },
     {
-      "action_references": 1,
+      "action_references": 0,
       "deploy_capable": false,
       "explicit_permissions": true,
       "jobs": [
         {
-          "actions": [
-            "actions/stale@v8"
-          ],
+          "actions": [],
           "environment": null,
           "id": "stale",
           "needs": [],
@@ -975,24 +774,19 @@
         "pull-requests": "write"
       },
       "pinned_action_references": 0,
-      "sha256": "7cb0c5e96bdf50fd6c7d9ed7e22ce5b57921aa4f4412d2ad46565d1595482a76",
+      "sha256": "4d397c698adf05ba4961580f84c74cadb513a61a043f9b15cbad2d68bdf14fbc",
       "triggers": [
         "workflow_dispatch"
       ],
-      "unpinned_actions": [
-        "actions/stale@v8"
-      ]
+      "unpinned_actions": []
     },
     {
-      "action_references": 2,
+      "action_references": 0,
       "deploy_capable": false,
       "explicit_permissions": false,
       "jobs": [
         {
-          "actions": [
-            "actions/checkout@v4",
-            "actions/setup-python@v5"
-          ],
+          "actions": [],
           "environment": null,
           "id": "update-dashboard",
           "needs": [],
@@ -1003,15 +797,12 @@
       "path": ".github/workflows/update-dashboard.yml",
       "permissions": null,
       "pinned_action_references": 0,
-      "sha256": "ab886a766b08671af1074223e89c197339f777c184008b875ba537e77ac84f50",
+      "sha256": "2b79d03e5842f6f1f4c256bd3b052ed1732f33118e8d8ba45069a24c6810a3bc",
       "triggers": [
         "push",
         "workflow_dispatch"
       ],
-      "unpinned_actions": [
-        "actions/checkout@v4",
-        "actions/setup-python@v5"
-      ]
+      "unpinned_actions": []
     }
   ]
 }
