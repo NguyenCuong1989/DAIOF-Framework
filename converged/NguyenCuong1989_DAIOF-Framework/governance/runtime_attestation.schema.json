@@ -1,0 +1,150 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://daiof.example/schemas/runtime-attestation-1.0.0.json",
+  "title": "DAIOF Runtime Reality Attestation",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "attestation_type",
+    "environment",
+    "generated_at",
+    "expires_at",
+    "topology_sha256",
+    "adapter_config_sha256",
+    "components",
+    "summary",
+    "attestation_sha256",
+    "signing"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "attestation_type": {
+      "const": "runtime_reality"
+    },
+    "environment": {
+      "type": "string",
+      "minLength": 1
+    },
+    "generated_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "expires_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "topology_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "adapter_config_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "attestation_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "components": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "status",
+          "reachable",
+          "identity",
+          "version",
+          "health",
+          "observed_at"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "status": {
+            "enum": [
+              "healthy",
+              "unverified",
+              "unavailable"
+            ]
+          },
+          "reachable": {
+            "type": "boolean"
+          },
+          "observed_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "identity": {
+            "type": "object",
+            "required": [
+              "expected",
+              "observed",
+              "matches"
+            ]
+          },
+          "version": {
+            "type": "object",
+            "required": [
+              "observed"
+            ]
+          },
+          "health": {
+            "type": "object",
+            "required": [
+              "observed",
+              "healthy_values",
+              "matches"
+            ]
+          }
+        }
+      }
+    },
+    "summary": {
+      "type": "object",
+      "required": [
+        "required_count",
+        "healthy_count",
+        "verified"
+      ],
+      "properties": {
+        "required_count": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "healthy_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "verified": {
+          "type": "boolean"
+        }
+      }
+    },
+    "signing": {
+      "type": "object",
+      "required": [
+        "algorithm",
+        "key_id",
+        "signature"
+      ],
+      "properties": {
+        "algorithm": {
+          "const": "HMAC-SHA256"
+        },
+        "key_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "signature": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      }
+    }
+  }
+}

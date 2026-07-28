@@ -1,0 +1,79 @@
+name: Publish to PyPI
+
+on:
+  push:
+    tags: [ 'v*.*.*' ]
+  workflow_dispatch:
+    inputs:
+      test_pypi:
+        description: 'Publish to TestPyPI instead of PyPI'
+        required: false
+        type: boolean
+        default: false
+
+jobs:
+  publish-to-pypi:
+    name: Build & Publish to PyPI
+    if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v')
+    runs-on: ubuntu-latest
+    environment:
+      name: pypi
+      url: https://pypi.org/p/hyperai-framework
+    permissions:
+      id-token: write  # Required for trusted publishing (OIDC)
+    steps:
+      - name: 📥 Checkout (self-contained)
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git init -q .
+          git remote add origin "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          git fetch -q --depth 1 origin "${GITHUB_REF}"
+          git checkout -q FETCH_HEAD
+
+      - name: 📦 Install build tools
+        run: python3 -m pip install --upgrade pip build twine
+
+      - name: 🏗 Build & check distributions
+        run: |
+          python3 -m build
+          twine check dist/*
+
+      - name: 🚀 Publish to PyPI (OIDC trusted publishing, no external action)
+        env:
+          PYPI_MINT_URL: https://pypi.org/_/oidc/mint-token
+          TWINE_REPOSITORY_URL: https://upload.pypi.org/legacy/
+        run: bash .github/scripts/pypi_oidc_upload.sh
+
+  publish-to-testpypi:
+    name: Build & Publish to TestPyPI
+    if: github.event_name == 'workflow_dispatch' && github.event.inputs.test_pypi == 'true'
+    runs-on: ubuntu-latest
+    environment:
+      name: testpypi
+      url: https://test.pypi.org/p/hyperai-framework
+    permissions:
+      id-token: write
+    steps:
+      - name: 📥 Checkout (self-contained)
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git init -q .
+          git remote add origin "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          git fetch -q --depth 1 origin "${GITHUB_REF}"
+          git checkout -q FETCH_HEAD
+
+      - name: 📦 Install build tools
+        run: python3 -m pip install --upgrade pip build twine
+
+      - name: 🏗 Build & check distributions
+        run: |
+          python3 -m build
+          twine check dist/*
+
+      - name: 🚀 Publish to TestPyPI (OIDC trusted publishing, no external action)
+        env:
+          PYPI_MINT_URL: https://test.pypi.org/_/oidc/mint-token
+          TWINE_REPOSITORY_URL: https://test.pypi.org/legacy/
+        run: bash .github/scripts/pypi_oidc_upload.sh

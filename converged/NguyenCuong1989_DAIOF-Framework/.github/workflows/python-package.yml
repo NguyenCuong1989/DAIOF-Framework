@@ -1,0 +1,53 @@
+# This workflow will install Python dependencies, run tests and lint with a variety of Python versions
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-python
+
+name: Python package
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.9", "3.10", "3.11"]
+
+    steps:
+    - name: Checkout (self-contained)
+      env:
+        GH_TOKEN: ${{ github.token }}
+      run: |
+        git init -q .
+        git remote add origin "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+        # DAIOF_PHASE4_PR_HEAD_CHECKOUT
+        if [ -n "${GITHUB_HEAD_REF:-}" ]; then
+          git fetch -q --depth 1 origin "refs/heads/${GITHUB_HEAD_REF}"
+        else
+          git fetch -q --depth 1 origin "${GITHUB_REF}"
+        fi
+        git checkout -q FETCH_HEAD
+    - name: Set up Python ${{ matrix.python-version }}
+      run: python3 --version
+    - name: Install dependencies
+      run: |
+        python3 -m pip install --upgrade pip
+        python3 -m pip install flake8 pytest
+        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+    - name: Lint with flake8
+      run: |
+        # stop the build if there are Python syntax errors or undefined names
+        flake8 . --exclude=.git,__pycache__,.pytest_cache,.mypy_cache,.venv,venv,build,dist,.consciousness,vscode-merged --count --select=E9,F63,F7,F82 --show-source --statistics
+        # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
+        flake8 . --exclude=.git,__pycache__,.pytest_cache,.mypy_cache,.venv,venv,build,dist,.consciousness,vscode-merged --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+        flake8 digital_ai_organism_framework.py haios_core.py haios_runtime.py scripts tools tests --count --select=E9,F63,F7,F82 --show-source --statistics
+        # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
+        flake8 digital_ai_organism_framework.py haios_core.py haios_runtime.py scripts tools tests --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+    - name: Test with pytest
+      run: |
+        PYTHONPATH="$GITHUB_WORKSPACE:${PYTHONPATH:-}" pytest tests/ -q

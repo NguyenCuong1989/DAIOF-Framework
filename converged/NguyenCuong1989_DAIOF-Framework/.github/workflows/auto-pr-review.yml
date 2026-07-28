@@ -1,0 +1,42 @@
+name: 🔍 PR Governance Review
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
+
+permissions:
+  contents: read
+  pull-requests: write
+  issues: write
+
+jobs:
+  governance-review:
+    runs-on: ubuntu-latest
+    name: Governance risk assessment
+
+    steps:
+      - name: Checkout repository
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git init -q .
+          git remote add origin "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          # DAIOF_PHASE4_PR_HEAD_CHECKOUT
+          if [ -n "${GITHUB_HEAD_REF:-}" ]; then
+            git fetch -q --depth 1 origin "refs/heads/${GITHUB_HEAD_REF}"
+          else
+            git fetch -q --depth 1 origin "${GITHUB_REF}"
+          fi
+          git checkout -q FETCH_HEAD
+      - name: Set up Python
+        run: python3 --version
+      - name: Install governance dependencies
+        run: python3 -m pip install pyyaml
+
+      - name: Validate governance evidence
+        run: python3 tools/governance/governance_gate.py validate
+
+      - name: Assess PR risk without approving or merging (no external actions)
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python3 .github/scripts/gh_bot.py pr-govreview

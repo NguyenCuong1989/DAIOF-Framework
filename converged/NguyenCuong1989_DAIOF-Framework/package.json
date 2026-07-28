@@ -1,0 +1,33 @@
+{
+  "name": "daiof-framework",
+  "version": "1.0.0",
+  "description": "> ## 🚀 **OFFICIALLY LAUNCHED - October 30, 2025!** 🎉 >  > **v1.0.0** is now live! A self-improving GitHub repository that writes code to itself autonomously. >  > 🎯 **100/100 Health Score** | 📈 **38+ Autonomous Commits** | ⚡ **7 Days Runtime** | 🤖 **14 Active Workflows** >  > [📖 Read Launch Announcement](https://github.com/NguyenCuong1989/DAIOF-Framework/releases/tag/v1.0.0-launch) | [⭐ Star This Repo](https://github.com/NguyenCuong1989/DAIOF-Framework/stargazers)",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs",
+    "example": "examples"
+  },
+  "scripts": {
+    "test": "node --test apps/sse-gateway/*.test.mjs",
+    "sse:gateway": "node apps/sse-gateway/server.mjs",
+    "local:cicd:status": "python scripts/local_cicd.py status",
+    "local:cicd:verify": "python scripts/local_cicd.py verify",
+    "local:cicd:autocommit": "python scripts/local_cicd.py autocommit",
+    "local:cicd:automerge": "python scripts/local_cicd.py automerge"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NguyenCuong1989/DAIOF-Framework.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/NguyenCuong1989/DAIOF-Framework/issues"
+  },
+  "homepage": "https://github.com/NguyenCuong1989/DAIOF-Framework#readme",
+  "dependencies": {
+    "@playwright/test": "^1.56.1",
+    "express": "^4.21.2"
+  }
+}
