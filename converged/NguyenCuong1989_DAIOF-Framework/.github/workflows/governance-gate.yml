@@ -1,0 +1,45 @@
+name: Governance and Runtime Topology Gate
+
+on:
+  pull_request:
+    branches: [main, develop]
+  push:
+    branches: [main, develop]
+    paths:
+      - '.github/workflows/**'
+      - 'governance/**'
+      - 'tools/governance/**'
+      - 'tests/governance/**'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  governance:
+    name: Validate governance evidence
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git init -q .
+          git remote add origin "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          # DAIOF_PHASE4_PR_HEAD_CHECKOUT
+          if [ -n "${GITHUB_HEAD_REF:-}" ]; then
+            git fetch -q --depth 1 origin "refs/heads/${GITHUB_HEAD_REF}"
+          else
+            git fetch -q --depth 1 origin "${GITHUB_REF}"
+          fi
+          git checkout -q FETCH_HEAD
+      - name: Set up Python
+        run: python3 --version
+      - name: Install dependencies
+        run: python3 -m pip install pytest pyyaml
+
+      - name: Validate workflow and runtime topology evidence
+        run: python3 tools/governance/governance_gate.py validate
+
+      - name: Run governance tests
+        run: python3 -m pytest tests/governance -q

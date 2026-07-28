@@ -1,0 +1,71 @@
+name: Docker Build & Publish
+
+on:
+  push:
+    branches: [ main ]
+    tags: [ 'v*.*.*' ]
+  pull_request:
+    branches: [ main ]
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
+
+jobs:
+  build-and-push:
+    name: Build and Push Docker Image
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - name: 📥 Checkout code
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git init -q .
+          git remote add origin "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          git fetch -q --depth 1 origin "${GITHUB_REF}"
+          git checkout -q FETCH_HEAD
+      - name: 🔑 Log in to GitHub Container Registry (docker CLI, no external action)
+        if: github.event_name != 'pull_request'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: echo "${GITHUB_TOKEN}" | docker login "${REGISTRY}" -u "${{ github.actor }}" --password-stdin
+
+      - name: 🏷️ Compute image tags (no external action)
+        id: meta
+        run: |
+          IMAGE="${REGISTRY}/$(echo "${IMAGE_NAME}" | tr '[:upper:]' '[:lower:]')"
+          SHORT_SHA="${GITHUB_SHA::7}"
+          TAGS=("${IMAGE}:sha-${SHORT_SHA}")
+          if [ "${GITHUB_REF_TYPE}" = "tag" ]; then
+            VERSION="${GITHUB_REF_NAME#v}"
+            MAJOR="${VERSION%%.*}"; REST="${VERSION#*.}"; MINOR="${REST%%.*}"
+            TAGS+=("${IMAGE}:${VERSION}" "${IMAGE}:${MAJOR}.${MINOR}" "${IMAGE}:${MAJOR}")
+          elif [ "${GITHUB_EVENT_NAME}" = "pull_request" ]; then
+            TAGS+=("${IMAGE}:pr-${{ github.event.number }}")
+          else
+            TAGS+=("${IMAGE}:$(echo "${GITHUB_REF_NAME}" | tr '/' '-')")
+          fi
+          # Space-separated for build, newline list for the log.
+          printf 'tags=%s\n' "${TAGS[*]}" >> "$GITHUB_OUTPUT"
+          printf '%s\n' "${TAGS[@]}"
+
+      - name: 🐳 Build and push Docker image (docker CLI, no external action)
+        env:
+          PUSH: ${{ github.event_name != 'pull_request' }}
+          ALL_TAGS: ${{ steps.meta.outputs.tags }}
+        run: |
+          TAG_ARGS=()
+          for t in ${ALL_TAGS}; do TAG_ARGS+=("-t" "$t"); done
+          docker build "${TAG_ARGS[@]}" \
+            --label "org.opencontainers.image.source=https://github.com/${GITHUB_REPOSITORY}" \
+            --label "org.opencontainers.image.revision=${GITHUB_SHA}" \
+            .
+          if [ "${PUSH}" = "true" ]; then
+            for t in ${ALL_TAGS}; do docker push "$t"; done
+          else
+            echo "PR build — skipping push."
+          fi

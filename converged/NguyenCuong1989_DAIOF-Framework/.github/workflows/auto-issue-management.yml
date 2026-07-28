@@ -1,0 +1,76 @@
+name: 🤖 Auto Issue Management
+
+on:
+  issues:
+    types: [opened, labeled]
+  issue_comment:
+    types: [created]
+#   schedule:
+    # Check stale issues every day at midnight
+#     - cron: '0 0 * * *'
+
+permissions:
+  issues: write
+  contents: read
+
+jobs:
+  auto_label:
+    runs-on: ubuntu-latest
+    name: Auto Label Issues
+    if: github.event_name == 'issues' && github.event.action == 'opened'
+    
+    steps:
+      - name: 📥 Checkout (self-contained)
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git init -q .
+          git remote add origin "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          git fetch -q --depth 1 origin "${{ github.event.repository.default_branch }}"
+          git checkout -q FETCH_HEAD
+      - name: 🏷️ Auto Label Issue (no external actions)
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python3 .github/scripts/gh_bot.py issue-label
+  
+  auto_respond:
+    runs-on: ubuntu-latest
+    name: Auto Respond to Issues
+    if: github.event_name == 'issues' && github.event.action == 'opened'
+    
+    steps:
+      - name: 📥 Checkout (self-contained)
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git init -q .
+          git remote add origin "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          git fetch -q --depth 1 origin "${{ github.event.repository.default_branch }}"
+          git checkout -q FETCH_HEAD
+      - name: 💬 Auto Response (no external actions)
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python3 .github/scripts/gh_bot.py issue-respond
+  
+  stale_check:
+    runs-on: ubuntu-latest
+    name: Check Stale Issues
+    if: github.event_name == 'schedule'
+    
+    steps:
+      - name: 📥 Checkout (self-contained)
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git init -q .
+          git remote add origin "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          git fetch -q --depth 1 origin "${{ github.event.repository.default_branch }}"
+          git checkout -q FETCH_HEAD
+      - name: 🕰️ Mark Stale Issues (no external actions)
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          DAYS_BEFORE_STALE: '30'
+          DAYS_BEFORE_CLOSE: '7'
+          EXEMPT_LABELS: 'pinned,security,priority: high'
+          OPERATIONS_PER_RUN: '30'
+        run: python3 .github/scripts/gh_bot.py stale

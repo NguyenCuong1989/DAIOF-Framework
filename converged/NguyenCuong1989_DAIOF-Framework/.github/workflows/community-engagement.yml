@@ -1,0 +1,83 @@
+name: ⭐ Community Recognition & Engagement
+
+on:
+  pull_request:
+    types: [opened, closed]
+  issues:
+    types: [opened, closed]
+  discussion:
+    types: [created, answered]
+#   schedule:
+    # Daily community engagement at 9 AM UTC
+#     - cron: '0 9 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  issues: write
+  pull-requests: write
+  discussions: write
+
+jobs:
+  recognize_contributions:
+    runs-on: ubuntu-latest
+    name: Recognize Quality Contributions
+    if: github.event_name == 'pull_request' && github.event.action == 'closed' && github.event.pull_request.merged == true
+    
+    steps:
+      - name: 📥 Checkout (self-contained)
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git init -q .
+          git remote add origin "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          git fetch -q --depth 1 origin "${{ github.event.repository.default_branch }}"
+          git checkout -q FETCH_HEAD
+      - name: 🌟 Thank Contributor & star quality PRs (no external actions)
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python3 .github/scripts/gh_bot.py community-recognize
+  
+  daily_engagement:
+    runs-on: ubuntu-latest
+    name: Daily Community Engagement
+    if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+    
+    steps:
+      - name: 🧬 Checkout Repository
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git init -q .
+          git remote add origin "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          git fetch -q --depth 1 origin "${GITHUB_REF}"
+          git checkout -q FETCH_HEAD
+      - name: 📊 Generate Community Stats (no external actions)
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python3 .github/scripts/gh_bot.py community-stats
+      
+      
+      # ⚠️ WEEKLY DISCUSSION CREATION DISABLED
+      # Reason: Complex JS template literals (backticks) cause YAML parsing errors
+      # Will re-enable post-launch with proper string escaping
+      # Feature: Auto-creates weekly community discussions on Mondays
+  
+  encourage_newcomers:
+    runs-on: ubuntu-latest
+    name: Encourage New Contributors
+    if: github.event_name == 'issues' && github.event.action == 'opened'
+    
+    steps:
+      - name: 📥 Checkout (self-contained)
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git init -q .
+          git remote add origin "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          git fetch -q --depth 1 origin "${{ github.event.repository.default_branch }}"
+          git checkout -q FETCH_HEAD
+      - name: 🌟 Welcome First-Time Contributor (no external actions)
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python3 .github/scripts/gh_bot.py community-newcomer

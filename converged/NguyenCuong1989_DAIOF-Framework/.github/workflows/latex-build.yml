@@ -1,0 +1,35 @@
+name: Build Alpha Omega PDF
+
+on:
+  push:
+    branches: ['main', 'master', 'stable']
+  pull_request:
+
+jobs:
+  build-latex-alpha:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git init -q .
+          git remote add origin "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          git fetch -q --depth 1 origin "${GITHUB_REF}"
+          git checkout -q FETCH_HEAD
+      - name: Install LaTeX packages
+        run: |
+          sudo apt-get update -y
+          sudo apt-get install -y texlive-xetex texlive-latex-extra texlive-fonts-recommended latexmk fonts-noto fonts-noto-cjk
+          sudo apt-get install -y texlive-lang-vietnamese || sudo apt-get install -y texlive-lang-other || echo "Optional Vietnamese TeX language package unavailable; continuing with XeLaTeX/font fallback"
+          sudo apt-get install -y --no-install-recommends texlive-xetex texlive-latex-extra texlive-fonts-recommended latexmk
+      - name: Build PDF
+        working-directory: docs
+        run: |
+          set -e
+          if [ ! -f alpha_omega.tex ]; then
+            echo "alpha_omega.tex not found in docs; skipping PDF build"
+            echo "alpha_omega.tex not present; skipping PDF build"
+            exit 0
+          fi
+          latexmk -xelatex -pdf -quiet alpha_omega.tex
