@@ -18,3 +18,24 @@ evidence:
     last_verified_at: 2026-05-14T23:47:26Z
     runtime_consumer: DAIOF-Framework
 
+  - id: EVID-0002
+    title: Live runtime probe receipt template (fail-closed verification)
+    path: docs/evidence/templates/live-runtime-probe-receipt.md
+    connector: GitHub
+    connector_state: ACTIVE
+    doctrine_version: 0.1.0
+    source_of_truth: github_repo
+    last_synced_from: null
+    last_verified_at: 2026-08-01T20:30:49Z
+    runtime_consumer: DAIOF-Framework
+
+  - id: EVID-0003
+    title: Socratic verification cycle snapshot 2026-08-01
+    path: docs/evidence/socratic-verification-cycle-2026-08-01.md
+    connector: GitHub
+    connector_state: ACTIVE
+    doctrine_version: 0.1.0
+    source_of_truth: github_repo
+    last_synced_from: null
+    last_verified_at: 2026-08-01T20:30:49Z
+    runtime_consumer: DAIOF-Framework

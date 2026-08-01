@@ -32,6 +32,7 @@ External planes (examples):
 1) Create a new evidence file under `docs/evidence/` using a template:
 - External artifact template: `docs/evidence/templates/external-artifact.md`
 - Decision record template: `docs/evidence/templates/decision-record.md`
+- Live runtime probe receipt template: `docs/evidence/templates/live-runtime-probe-receipt.md`
 
 2) Add an entry to `docs/registry/evidence-registry.yml` that points to the new evidence file.
 
@@ -43,4 +44,3 @@ External planes (examples):
 - Runtime permission scope decisions (least privilege changes)
 - Operational topology snapshots (Figma frames exported, high-level diagrams)
 - Backlog commitments and outcomes (Asana milestones mirrored into GitHub issues/docs)
-
