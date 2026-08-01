@@ -19,6 +19,7 @@ sys.path.insert(0, os.path.join(repo_root, '.github', 'scripts'))
 
 # Import the handler
 try:
+    import enhanced_issue_handler as enhanced_issue_handler_module
     from enhanced_issue_handler import EnhancedIssueHandler
 except ImportError:
     # Try alternative import path
@@ -29,6 +30,7 @@ except ImportError:
     )
     enhanced_issue_handler = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(enhanced_issue_handler)
+    enhanced_issue_handler_module = enhanced_issue_handler
     EnhancedIssueHandler = enhanced_issue_handler.EnhancedIssueHandler
 
 
@@ -333,6 +335,20 @@ class TestFourPillarsCompliance(unittest.TestCase):
         self.assertGreater(self.handler.config['emergency_throttle_hours'], 0)
 
 
+class TestGitHubClientFallback(unittest.TestCase):
+    """Test fallback behavior when PyGithub is unavailable"""
+
+    def test_missing_pygithub_forces_dry_run(self):
+        """Token present but missing client should still run safely in dry-run"""
+        with patch.object(enhanced_issue_handler_module, 'GITHUB_CLIENT_AVAILABLE', False):
+            with patch.dict(os.environ, {'GITHUB_TOKEN': 'test_token', 'DRY_RUN': 'false'}):
+                handler = EnhancedIssueHandler()
+
+        self.assertTrue(handler.dry_run)
+        self.assertIsNone(handler.gh)
+        self.assertIsNone(handler.repo)
+
+
 def run_tests():
     """Run all tests and return result"""
     loader = unittest.TestLoader()
@@ -345,6 +361,7 @@ def run_tests():
     suite.addTests(loader.loadTestsFromTestCase(TestResponseGeneration))
     suite.addTests(loader.loadTestsFromTestCase(TestHYPERAIAttribution))
     suite.addTests(loader.loadTestsFromTestCase(TestFourPillarsCompliance))
+    suite.addTests(loader.loadTestsFromTestCase(TestGitHubClientFallback))
     
     runner = unittest.TextTestRunner(verbosity=2)
     result = runner.run(suite)

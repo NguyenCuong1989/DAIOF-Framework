@@ -26,10 +26,14 @@ from collections import defaultdict
 
 try:
     from github import Github, GithubException
+    GITHUB_CLIENT_AVAILABLE = True
 except ImportError:
-    print("📦 Installing PyGithub...")
-    os.system("pip install -q PyGithub")
-    from github import Github, GithubException
+    Github = None
+    GITHUB_CLIENT_AVAILABLE = False
+
+    class GithubException(Exception):
+        """Fallback GitHub exception when PyGithub is unavailable."""
+        pass
 
 
 class EnhancedIssueHandler:
@@ -67,6 +71,11 @@ class EnhancedIssueHandler:
         # Initialize GitHub connection
         if not self.token:
             print("⚠️  GITHUB_TOKEN not set - running in DRY-RUN mode")
+            self.gh = None
+            self.repo = None
+            self.dry_run = True
+        elif not GITHUB_CLIENT_AVAILABLE:
+            print("⚠️  PyGithub not available - running in DRY-RUN mode")
             self.gh = None
             self.repo = None
             self.dry_run = True
