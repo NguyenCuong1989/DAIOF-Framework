@@ -50,3 +50,25 @@ evidence:
     last_synced_from: null
     last_verified_at: 2026-08-01T20:47:30Z
     runtime_consumer: DAIOF-Framework
+
+  - id: EVID-0005
+    title: Live runtime probe receipt 2026-08-01T20:54:44Z
+    path: docs/evidence/live-runtime-probe-receipt-2026-08-01T20-54-44Z.md
+    connector: GitHub
+    connector_state: ACTIVE
+    doctrine_version: 0.1.0
+    source_of_truth: github_repo
+    last_synced_from: null
+    last_verified_at: 2026-08-01T20:54:44Z
+    runtime_consumer: DAIOF-Framework
+
+  - id: EVID-0006
+    title: Socratic verification cycle live probe 2026-08-01
+    path: docs/evidence/socratic-verification-cycle-2026-08-01-live-probe.md
+    connector: GitHub
+    connector_state: ACTIVE
+    doctrine_version: 0.1.0
+    source_of_truth: github_repo
+    last_synced_from: null
+    last_verified_at: 2026-08-01T20:55:20Z
+    runtime_consumer: DAIOF-Framework
