@@ -464,6 +464,7 @@ class MultiRepositoryOrchestrator:
         self.github_token = os.environ.get('GITHUB_TOKEN')
         self.user = os.environ.get('GITHUB_ACTOR', 'NguyenCuong1989')
         self.logger = self._setup_logging()
+        self.gh = None
         self.pilots: Dict[str, AuxiliaryPilot] = {}
         self.global_health = 100
         self.emergency_mode = False
@@ -478,8 +479,12 @@ class MultiRepositoryOrchestrator:
         }
 
         if self.github_token:
-            self.gh = Github(self.github_token)
-            self._initialize_pilots()
+            try:
+                self.gh = Github(self.github_token)
+                self._initialize_pilots()
+            except Exception as e:
+                self.logger.warning(f"⚠️ GitHub initialization degraded: {e}")
+                self.gh = None
 
         self.logger.info("🧬 DAIOF Multi-Repository Orchestrator ACTIVATED")
         self.logger.info(f"👤 Creator: Nguyễn Đức Cường (alpha_prime_omega)")
@@ -804,6 +809,8 @@ class AutonomousGitWorkflow:
         self.repo_path = Path('.')
         self.github_token = os.environ.get('GITHUB_TOKEN')
         self.logger = self._setup_logging()
+        self.gh = None
+        self.repo = None
 
         # Load configurations
         self.genome = self._load_genome()
@@ -811,8 +818,13 @@ class AutonomousGitWorkflow:
 
         # Initialize GitHub API
         if self.github_token:
-            self.gh = Github(auth=Auth.Token(self.github_token))
-            self.repo = self.gh.get_repo(os.environ.get('GITHUB_REPOSITORY', 'NguyenCuong1989/DAIOF-Framework'))
+            try:
+                self.gh = Github(auth=Auth.Token(self.github_token))
+                self.repo = self.gh.get_repo(os.environ.get('GITHUB_REPOSITORY', 'NguyenCuong1989/DAIOF-Framework'))
+            except Exception as e:
+                self.logger.warning(f"⚠️ GitHub repository binding degraded: {e}")
+                self.gh = None
+                self.repo = None
 
         # State tracking
         self.last_commit_time = None

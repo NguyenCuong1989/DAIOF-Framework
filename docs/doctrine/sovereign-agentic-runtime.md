@@ -52,3 +52,17 @@ Contributions are welcome, but doctrine changes must preserve sovereign constrai
 - Connector registry: `docs/registry/connectors.yml`
 - Execution evidence registry + templates: `docs/evidence/README.md`
 
+## 5) Canonical authority path map (single source-of-truth)
+
+- Doctrine authority: `docs/doctrine/sovereign-agentic-runtime.md`
+- Metadata authority: `docs/doctrine/source-of-truth-metadata.md`
+- Runtime transition authority: `docs/runtime/state-machine.md`
+- Connector lifecycle authority: `docs/runtime/connector-lifecycle.md`
+- Connector state authority: `docs/registry/connectors.yml`
+- Evidence policy authority: `docs/evidence/README.md`
+
+Legacy or mirrored documents may exist in other folders for compatibility, but authority remains with the paths above.
+
+## 6) Verification boundary (fail-closed)
+
+Design truth is not runtime truth. A `CURRENT_VERIFIED` runtime claim is valid only when live probe evidence exists and includes a recent verification timestamp; otherwise classification must remain `STALE_REQUIRES_LIVE_VERIFY`.
