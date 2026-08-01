@@ -15,6 +15,7 @@ from pathlib import Path
 import tempfile
 import shutil
 import subprocess
+from unittest.mock import MagicMock, patch
 
 # Add parent directory to path for imports
 sys.path.insert(0, str(Path(__file__).parent.parent / '.github' / 'scripts'))
@@ -151,6 +152,23 @@ class TestAutonomousGitWorkflow(unittest.TestCase):
             self.assertIn('tin_vao_so_lieu', workflow.pillars_scores)
             self.assertIn('han_che_rui_ro', workflow.pillars_scores)
             
+        except ImportError as e:
+            self.skipTest(f"Cannot import module (missing dependencies): {e}")
+
+    def test_workflow_init_degrades_when_repo_binding_fails(self):
+        """Test constructor remains safe when GitHub repo binding fails"""
+        try:
+            from autonomous_git_workflow import AutonomousGitWorkflow
+
+            mock_gh = MagicMock()
+            mock_gh.get_repo.side_effect = RuntimeError("403 Forbidden")
+            with patch('autonomous_git_workflow.Auth.Token', return_value='token'):
+                with patch('autonomous_git_workflow.Github', return_value=mock_gh):
+                    with patch.dict(os.environ, {'GITHUB_TOKEN': 'test', 'GITHUB_REPOSITORY': 'Copilot-home/DAIOF-Framework'}):
+                        workflow = AutonomousGitWorkflow()
+
+            self.assertIsNone(workflow.gh)
+            self.assertIsNone(workflow.repo)
         except ImportError as e:
             self.skipTest(f"Cannot import module (missing dependencies): {e}")
 
