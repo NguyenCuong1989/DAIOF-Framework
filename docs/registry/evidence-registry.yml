@@ -39,3 +39,14 @@ evidence:
     last_synced_from: null
     last_verified_at: 2026-08-01T20:30:49Z
     runtime_consumer: DAIOF-Framework
+
+  - id: EVID-0004
+    title: Socratic verification cycle skill activation 2026-08-01
+    path: docs/evidence/socratic-verification-cycle-2026-08-01-skill-activation.md
+    connector: GitHub
+    connector_state: ACTIVE
+    doctrine_version: 0.1.0
+    source_of_truth: github_repo
+    last_synced_from: null
+    last_verified_at: 2026-08-01T20:47:30Z
+    runtime_consumer: DAIOF-Framework
