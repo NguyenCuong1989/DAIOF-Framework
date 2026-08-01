@@ -87,4 +87,4 @@ evidence_refs:
 - If **read** or **write** probes partially fail but authorization remains valid, transition to `DEGRADED`.
 - If policy prohibits usage, transition to `BLOCKED` regardless of technical status.
 - Recovery transitions require explicit evidence of probe success and an audit event.
-
+- Any claim of `CURRENT_VERIFIED` runtime status requires a **fresh live probe receipt** and an associated **recent `last_verified_at` timestamp**; without both, classify as `STALE_REQUIRES_LIVE_VERIFY` (fail-closed).
