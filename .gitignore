@@ -191,3 +191,8 @@ responses.json
 
 #Ignore vscode AI rules
 .github/instructions/codacy.instructions.md
+
+.fake.env.entra
+.env.entra
+
+.fake
