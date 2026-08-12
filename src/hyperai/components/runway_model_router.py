@@ -8,6 +8,7 @@ included in logs or returned by this adapter.
 from __future__ import annotations
 
 import os
+import random
 import time
 from typing import Any, Dict, Optional
 
@@ -35,7 +36,7 @@ class RunwayModelRouter:
         "audio": "/v1/generate/audio",
     }
 
-    TERMINAL_STATUSES = {"SUCCEEDED", "FAILED", "CANCELLED"}
+    TERMINAL_STATUSES = {"SUCCEEDED", "FAILED", "CANCELED"}
 
     def __init__(
         self,
@@ -49,7 +50,9 @@ class RunwayModelRouter:
         self.config_id = config_id or os.getenv(
             "RUNWAY_MODEL_ROUTER_CONFIG_ID", self.DEFAULT_CONFIG_ID
         )
-        self.base_url = (base_url or os.getenv("RUNWAY_API_BASE_URL", self.DEFAULT_BASE_URL)).rstrip("/")
+        self.base_url = (
+            base_url or os.getenv("RUNWAY_API_BASE_URL", self.DEFAULT_BASE_URL)
+        ).rstrip("/")
         self.api_version = api_version or os.getenv(
             "RUNWAY_API_VERSION", self.DEFAULT_API_VERSION
         )
@@ -82,21 +85,9 @@ class RunwayModelRouter:
         response.raise_for_status()
         return response.json()
 
-    def dry_run(self, modality: str, input_payload: Dict[str, Any]) -> Dict[str, Any]:
-        """Validate routing without generating or charging credits."""
-        payload = {
-            "configId": self.config_id,
-            "dryRun": True,
-            "input": input_payload,
-        }
-        return self._post(modality, payload)
-
     def create_task(self, modality: str, input_payload: Dict[str, Any]) -> Dict[str, Any]:
         """Create a live generation task and return the provider response."""
-        payload = {
-            "configId": self.config_id,
-            "input": input_payload,
-        }
+        payload = {"configId": self.config_id, "input": input_payload}
         return self._post(modality, payload)
 
     def get_task(self, task_id: str) -> Dict[str, Any]:
@@ -112,15 +103,26 @@ class RunwayModelRouter:
     def wait_for_task_output(
         self,
         task_id: str,
-        poll_interval: float = 2.0,
-        timeout: float = 900.0,
+        poll_interval: float = 5.0,
+        timeout: float = 600.0,
+        jitter: float = 1.0,
     ) -> Dict[str, Any]:
-        """Poll until the task reaches a terminal state."""
+        """Poll until the task reaches a terminal state with jitter/backoff."""
         started = time.monotonic()
-        while True:
-            task = self.get_task(task_id)
-            status = str(task.get("status", "")).upper()
+        backoff = max(5.0, poll_interval)
 
+        while True:
+            try:
+                task = self.get_task(task_id)
+                backoff = max(5.0, poll_interval)
+            except requests.RequestException:
+                if time.monotonic() - started >= timeout:
+                    raise
+                time.sleep(backoff + random.uniform(0, jitter))
+                backoff = min(backoff * 2.0, 60.0)
+                continue
+
+            status = str(task.get("status", "")).upper()
             if status in self.TERMINAL_STATUSES:
                 if status != "SUCCEEDED":
                     raise RunwayTaskError(
@@ -129,9 +131,11 @@ class RunwayModelRouter:
                 return task
 
             if time.monotonic() - started >= timeout:
-                raise TimeoutError("Runway task %s exceeded %.1fs timeout" % (task_id, timeout))
+                raise TimeoutError(
+                    "Runway task %s exceeded %.1fs timeout" % (task_id, timeout)
+                )
 
-            time.sleep(poll_interval)
+            time.sleep(backoff + random.uniform(0, jitter))
 
     def generate(
         self,
@@ -139,8 +143,9 @@ class RunwayModelRouter:
         input_payload: Dict[str, Any],
         *,
         wait: bool = True,
-        poll_interval: float = 2.0,
-        timeout: float = 900.0,
+        poll_interval: float = 5.0,
+        timeout: float = 600.0,
+        jitter: float = 1.0,
     ) -> Dict[str, Any]:
         """Create a routed generation and optionally wait for completion."""
         task = self.create_task(modality, input_payload)
@@ -151,7 +156,10 @@ class RunwayModelRouter:
         if not task_id:
             raise RunwayTaskError("Runway create response did not contain a task id.")
         return self.wait_for_task_output(
-            str(task_id), poll_interval=poll_interval, timeout=timeout
+            str(task_id),
+            poll_interval=poll_interval,
+            timeout=timeout,
+            jitter=jitter,
         )
 
     def generate_video(self, prompt_text: str, **input_options: Any) -> Dict[str, Any]:
