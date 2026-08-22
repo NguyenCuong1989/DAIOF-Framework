@@ -52,7 +52,7 @@ export function validateCanon(canonSha256: string): boolean {
 export function evaluateDecision(candidate: Candidate, gates: GateSet, runtime: RuntimeEnvelope): Decision {
   const reasons: string[] = [];
   const canonValid = validateCanon(runtime.canonSha256);
-  const liveAllowed = runtime.mode === "live_capable" && runtime.explicitLiveAdmission && runtime.hasExitPath;
+  const liveAllowed = canExecuteLive(runtime);
 
   if (!canonValid) reasons.push("CANON_IDENTITY_INVALID");
   if (!runtime.hasExitPath) reasons.push("EXIT_PATH_MISSING");
@@ -61,7 +61,11 @@ export function evaluateDecision(candidate: Candidate, gates: GateSet, runtime: 
   if (gates.execution === "BLOCK") reasons.push("EXECUTION_GATE_BLOCKED");
   if (gates.execution === "UNKNOWN") reasons.push("EXECUTION_GATE_UNKNOWN");
 
-  const capitalAllowed = canonValid && !candidate.criticalUnknown && ALL_PASS(gates) && (runtime.mode !== "live_capable" || liveAllowed);
+  const capitalAllowed = canonValid
+    && runtime.hasExitPath
+    && !candidate.criticalUnknown
+    && ALL_PASS(gates)
+    && (runtime.mode !== "live_capable" || liveAllowed);
 
   if (capitalAllowed) {
     return {
