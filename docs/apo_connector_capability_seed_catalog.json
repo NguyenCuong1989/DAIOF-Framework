@@ -1,0 +1,34 @@
+{
+  "root_law": "PHẢI SỐNG",
+  "protocol": "D&R",
+  "domains": {
+    "K": ["AI Wisebase", "Ace Knowledge Graph", "Dropbox", "SharePoint", "Notion", "Airtable"],
+    "D": ["Supabase", "Airtable"],
+    "C": ["GitHub", "Linear", "Atlassian Rovo"],
+    "R": ["Replit", "OpenAI Platform", "Fal"],
+    "Dsg": ["Figma", "Canva", "B12", "Adobe"],
+    "M": ["Descript", "HeyGen", "Runway", "Hypernatural", "invideo", "HyperFrames", "Apple Music"],
+    "Com": ["Slack", "Microsoft Teams", "Outlook Email", "Outlook Calendar", "Granola"],
+    "F": ["Stripe", "PayPal"],
+    "Res": ["Consensus", "Sider Scholar", "Wolfram", "DataCamp", "Hugging Face"],
+    "Sec": ["Codex Security", "Malwarebytes"],
+    "Dep": ["Vercel", "Netlify", "Wix", "Network Solutions"]
+  },
+  "agent_types": {
+    "K": "KnowledgeAgent",
+    "D": "DatabaseAgent",
+    "C": "CodeAgent",
+    "R": "ExecutionAgent",
+    "Dsg": "DesignAgent",
+    "M": "MediaAgent",
+    "Com": "CoordinationAgent",
+    "F": "FinanceAgent",
+    "Res": "ResearchAgent",
+    "Sec": "SecurityAgent",
+    "Dep": "DeploymentAgent"
+  },
+  "spawn_gate": ["CPUQuota", "MemoryQuota", "IOQuota", "CloneTTL", "Authority", "Boundary"],
+  "transition_gate": ["Admissible", "Forbidden", "Topology", "Invariant"],
+  "terminal_states": ["REJECT", "STOP", "CLOSE"],
+  "continuity": ["Canon", "Identity", "Invariant", "CausalLineage"]
+}
