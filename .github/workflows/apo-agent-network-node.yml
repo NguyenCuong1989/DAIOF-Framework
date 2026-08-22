@@ -1,0 +1,27 @@
+name: APΩ Agent Network Node Tests
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [apo-agent-network]
+
+permissions:
+  contents: read
+
+jobs:
+  node-runtime:
+    name: APΩ runtime tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - name: Install dependencies
+        run: npm ci
+      - name: Run APΩ runtime tests
+        run: node --test apps/apo-agent-network/*.test.mjs apps/sse-gateway/apo-agent-network.test.mjs
