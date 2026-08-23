@@ -4,6 +4,14 @@ Creator: alpha_prime_omega — Nguyễn Đức Cường
 System: APΩ / WC-DM Evidence-First Boundary-Squeezing Protocol  
 Checkpoint: 2026-08-24
 
+## 0. HARD READING GATE
+
+Before reading or executing downstream research content:
+
+`LOAD RULES → VERIFY RULE STATE → GATE PASS → READ CONTENT`
+
+The operational resume file is `00_TODO_RESUME.md`. If the rule state is unavailable, ambiguous, or failed: **HALT**.
+
 ## Canonical identity
 
 Unknown: `x = g_dark/g_crit`.
@@ -13,6 +21,27 @@ Current full survivor: `(0.3928,0.4107)`.
 Current conservative envelope: `(0.3870,0.4167)`.
 
 State: `SURVIVE / NOT CONCLUDED`.
+
+## File hierarchy
+
+### Operational control
+
+`00_TODO_RESUME.md` — single resume/checkpoint continuation file.
+
+### Canonical framework
+
+`01_canonical_checkpoint.md`  
+`02_domain_object_ontology.md`  
+`03_evidence_gate_and_rules.md`  
+`04_domain_search_matrix.md`
+
+### Execution / discovery
+
+`05_execution_record.md`  
+`06_domain_discovery_round1.md`  
+`07_domain_candidate_register.md`
+
+`README.md` is the navigation index; `MANIFEST.md` is the integrity/state manifest.
 
 ## Lineage
 
@@ -24,9 +53,9 @@ State: `SURVIVE / NOT CONCLUDED`.
 6. Local `K_z` execution did not narrow the RC survivor.
 7. Gaia-3D endpoint execution did not narrow the RC survivor.
 8. Double-counting prohibition remains active.
-9. Domain ontology is now the gate before new domain searches.
+9. Domain ontology is the gate before new domain searches.
 10. Next phase: discover independent empirical domains capable of lower/upper/interior constraints.
-11. Domain discovery is explicitly system-wide: astronomical and non-astronomical real physical systems are equally admissible candidates.
+11. Domain discovery is system-wide: astronomical and non-astronomical real physical systems are equally admissible candidates.
 
 ## System-wide domain principle
 
@@ -52,10 +81,11 @@ A computational environment may reproduce controlled conditions for analysis, bu
 - Quietly changing `q(x)` or other canonical mappings to preserve survival.
 - Restricting domain discovery to astronomy merely because the current constraints are astronomical.
 - Treating simulation output as empirical evidence without a real-world measurement anchor.
+- Reading downstream content before the hard reading gate passes.
 
 ## Continuation rule
 
-Before any new numerical squeeze:
+After the hard reading gate passes, before any new numerical squeeze:
 
 `candidate domain → provenance audit → coupling audit → constraint construction → falsification test → independence audit → intersection`.
 
