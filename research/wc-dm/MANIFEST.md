@@ -26,6 +26,21 @@ State: `SURVIVE / NOT CONCLUDED`.
 8. Double-counting prohibition remains active.
 9. Domain ontology is now the gate before new domain searches.
 10. Next phase: discover independent empirical domains capable of lower/upper/interior constraints.
+11. Domain discovery is explicitly system-wide: astronomical and non-astronomical real physical systems are equally admissible candidates.
+
+## System-wide domain principle
+
+`g_dark` is not assigned an astronomical-only existence domain.
+
+Candidate physical systems include:
+
+`astronomical ∪ laboratory ∪ atomic ∪ molecular ∪ particle ∪ condensed-matter ∪ precision-measurement ∪ solar-system ∪ other real physical systems`.
+
+A domain enters only through:
+
+`real physical system → observable → measurement → provenance → validated coupling → falsifiable constraint`.
+
+A computational environment may reproduce controlled conditions for analysis, but computation is not evidence by itself and cannot manufacture a physical coupling absent a real measurement anchor.
 
 ## Forbidden state transitions
 
@@ -35,6 +50,8 @@ State: `SURVIVE / NOT CONCLUDED`.
 - Combining correlated datasets as independent likelihoods.
 - Calling interval half-width a statistical sigma without derivation.
 - Quietly changing `q(x)` or other canonical mappings to preserve survival.
+- Restricting domain discovery to astronomy merely because the current constraints are astronomical.
+- Treating simulation output as empirical evidence without a real-world measurement anchor.
 
 ## Continuation rule
 
