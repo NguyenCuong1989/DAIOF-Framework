@@ -1,5 +1,7 @@
 # APΩ — Canonical Evidence Laws
 
+> **FLOW NODE 6/12** — entered from [`02_domain_object_ontology.md`](02_domain_object_ontology.md); exits to [`LAW_UNIVERSAL_ROOT_CAUSE_INFERENCE.md`](LAW_UNIVERSAL_ROOT_CAUSE_INFERENCE.md).
+
 **Creator:** `alpha_prime_omega — Nguyễn Đức Cường`  
 **System:** `APΩ / WC-DM Evidence-First Boundary-Squeezing Protocol`  
 **Status:** `HARD / FAIL-CLOSED / CANONICAL`
@@ -154,7 +156,7 @@ The gate applies to canonical files, domain candidates, source material, executi
 
 ## LAW 18 — LLM EPISTEMIC CONTAINMENT
 
-The complete hard containment law is canonicalized in `LAW-LLM-EPISTEMIC-CONTAINMENT.md`.
+The complete hard containment law is canonicalized in [`LAW-LLM-EPISTEMIC-CONTAINMENT.md`](LAW-LLM-EPISTEMIC-CONTAINMENT.md).
 
 Core invariants:
 
@@ -183,3 +185,5 @@ Any context drift, prior contamination, unauthorized theory injection, or proven
 Empirical evidence does not serve theory. Theory serves empirical evidence.
 
 `g_dark` must submit to all admissible empirical boundaries; no boundary may be altered to serve `g_dark`.
+
+**NEXT NODE:** [`LAW_UNIVERSAL_ROOT_CAUSE_INFERENCE.md`](LAW_UNIVERSAL_ROOT_CAUSE_INFERENCE.md).
