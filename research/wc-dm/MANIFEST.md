@@ -1,16 +1,16 @@
 # APΩ — WC-DM Checkpoint Manifest
 
-Creator: alpha_prime_omega — Nguyễn Đức Cường  
-System: APΩ / WC-DM Evidence-First Boundary-Squeezing Protocol  
-Checkpoint: 2026-08-24
+Creator: `alpha_prime_omega — Nguyễn Đức Cường`  
+System: `APΩ / WC-DM Evidence-First Boundary-Squeezing Protocol`  
+Checkpoint: `2026-08-24`
 
-## 0. HARD READING GATE
+## 0. HARD LAW GATE
 
 Before reading or executing downstream research content:
 
-`LOAD RULES → VERIFY RULE STATE → GATE PASS → READ CONTENT`
+`LOAD LAWS → VERIFY LAW STATE → EXPLICIT GATE PASS → READ CONTENT`
 
-The operational resume file is `00_TODO_RESUME.md`. If the rule state is unavailable, ambiguous, or failed: **HALT**.
+The operational resume file is `00_TODO_RESUME.md`. If the Law state is unavailable, ambiguous, or failed: **HALT**.
 
 ## Canonical identity
 
@@ -21,6 +21,14 @@ Current full survivor: `(0.3928,0.4107)`.
 Current conservative envelope: `(0.3870,0.4167)`.
 
 State: `SURVIVE / NOT CONCLUDED`.
+
+## Canonical law hierarchy
+
+`03_evidence_gate_and_rules.md` — canonical Evidence Laws.
+
+`LAW-LLM-EPISTEMIC-CONTAINMENT.md` — hard LLM epistemic containment Law.
+
+The second file is subordinate to and interpreted under the full canonical Law set; it does not replace empirical evidence Laws.
 
 ## File hierarchy
 
@@ -33,7 +41,8 @@ State: `SURVIVE / NOT CONCLUDED`.
 `01_canonical_checkpoint.md`  
 `02_domain_object_ontology.md`  
 `03_evidence_gate_and_rules.md`  
-`04_domain_search_matrix.md`
+`04_domain_search_matrix.md`  
+`LAW-LLM-EPISTEMIC-CONTAINMENT.md`
 
 ### Execution / discovery
 
@@ -56,6 +65,7 @@ State: `SURVIVE / NOT CONCLUDED`.
 9. Domain ontology is the gate before new domain searches.
 10. Next phase: discover independent empirical domains capable of lower/upper/interior constraints.
 11. Domain discovery is system-wide: astronomical and non-astronomical real physical systems are equally admissible candidates.
+12. Hard LLM epistemic containment Law added: training prior, context completion, and model familiarity cannot become canonical evidence without an admissible evidence path.
 
 ## System-wide domain principle
 
@@ -81,11 +91,12 @@ A computational environment may reproduce controlled conditions for analysis, bu
 - Quietly changing `q(x)` or other canonical mappings to preserve survival.
 - Restricting domain discovery to astronomy merely because the current constraints are astronomical.
 - Treating simulation output as empirical evidence without a real-world measurement anchor.
-- Reading downstream content before the hard reading gate passes.
+- Promoting LLM training prior or context completion into canonical evidence.
+- Reading downstream content before the hard Law gate passes.
 
-## Continuation rule
+## Continuation law
 
-After the hard reading gate passes, before any new numerical squeeze:
+After the hard Law gate passes, before any new numerical squeeze:
 
 `candidate domain → provenance audit → coupling audit → constraint construction → falsification test → independence audit → intersection`.
 
