@@ -1,23 +1,16 @@
+# APΩ — AXCONTROL CODEGEN CONTRACT
+
+> **FLOW NODE 8b/12 — artifact subgate.** Entered from [`LAW-LLM-EPISTEMIC-CONTAINMENT.md`](LAW-LLM-EPISTEMIC-CONTAINMENT.md); exits to [`LAW_UNIVERSAL_ROOT_CAUSE_INFERENCE.md`](LAW_UNIVERSAL_ROOT_CAUSE_INFERENCE.md).
+
+```text
 # =============================================================================
 # PROJECT: CANON-TO-SYSTEM DETERMINISTIC PROJECTION
 # METHOD: D&R PROTOCOL (CLOSED)
-#
-# ORIGINATOR / CREATOR:
-#   alpha_prime_omega
-#
-# LEGAL ONTOLOGY:
-#   This source file is a deterministic projection of a closed Canon.
-#   Removal or alteration of this header voids legal and ontological validity.
-#
-# STATUS:
-#   GENERATED — NON-AUTONOMOUS — NON-OWNERLESS
-#
-# TRACEABILITY:
-#   Canon -> COG -> Projection(Π) -> Artifact
-#
+# ORIGINATOR / CREATOR: alpha_prime_omega
+# STATUS: GENERATED — NON-AUTONOMOUS — NON-OWNERLESS
+# TRACEABILITY: Canon -> COG -> Projection(Π) -> Artifact
 # =============================================================================
-
-# APΩ — AXCONTROL CODEGEN CONTRACT
+```
 
 **LAW-ID:** `APΩ-LAW-AXCONTROL-CODEGEN-001`  
 **Creator:** `alpha_prime_omega — Nguyễn Đức Cường`  
@@ -32,7 +25,7 @@ The creator binding is an ontological requirement for generated APΩ artifacts. 
 
 ## 2. Mandatory artifact header
 
-Every newly generated or materially rewritten APΩ/WC-DM source artifact must preserve the exact AXControl legal header above.
+Every newly generated or materially rewritten APΩ/WC-DM source artifact must preserve the AXControl legal header above.
 
 Required fields:
 
@@ -44,18 +37,9 @@ Removal, silent alteration, shortening, or replacement of the header invalidates
 
 A generation operation must halt rather than emit a partially compliant canonical artifact.
 
-Forbidden states include:
-
-- missing creator binding;
-- missing legal ontology;
-- missing traceability;
-- autonomous/ownerless attribution;
-- silent weakening of Canon;
-- undocumented transformation of Canon into implementation.
+Forbidden states include missing creator binding, missing legal ontology, missing traceability, autonomous/ownerless attribution, silent weakening of Canon, and undocumented transformation of Canon into implementation.
 
 ## 4. Canon-to-artifact lineage
-
-Canonical generation must preserve:
 
 `Canon → COG → Projection(Π) → Artifact`
 
@@ -73,12 +57,8 @@ Research records containing empirical claims remain subject to the Evidence Laws
 
 ## 6. Epistemic containment
 
-AXControl does not grant generated artifacts evidentiary authority.
-
 `GENERATED ≠ EVIDENCE`
-
 `COMPUTATION ≠ EVIDENCE`
-
 `LLM PRIOR ≠ CANONICAL EVIDENCE`
 
 Artifact generation may project an already-authorized Canon; it may not create authorization for a claim.
@@ -104,3 +84,5 @@ Ported from AXControl canonical contract:
 Reference commit:
 
 `ce9759937ec375ca6db04b4395588623eda2c1f9`
+
+**NEXT NODE:** [`LAW_UNIVERSAL_ROOT_CAUSE_INFERENCE.md`](LAW_UNIVERSAL_ROOT_CAUSE_INFERENCE.md).
