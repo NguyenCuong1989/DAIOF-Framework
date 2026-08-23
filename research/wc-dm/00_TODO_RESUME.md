@@ -4,38 +4,34 @@
 
 ## 0. Canonical navigation chain
 
-**START → `00_TODO_RESUME.md` → `LAW-DRIFT-PREVENTION.md` → `MANIFEST.md` → `01_canonical_checkpoint.md` → `02_domain_object_ontology.md` → `03_evidence_gate_and_rules.md` → `LAW_UNIVERSAL_ROOT_CAUSE_INFERENCE.md` → `04_domain_search_matrix.md` → active GAP audit → `05_execution_record.md` → checkpoint update → return here.**
+**START → `00_TODO_RESUME.md` → `LAW-DRIFT-PREVENTION.md` → `MANIFEST.md` → `01_canonical_checkpoint.md` → `02_domain_object_ontology.md` → `03_evidence_gate_and_rules.md` → `LAW-LLM-EPISTEMIC-CONTAINMENT.md` → `LAW-AXCONTROL-CODEGEN-CONTRACT.md` → `LAW_UNIVERSAL_ROOT_CAUSE_INFERENCE.md` → `04_domain_search_matrix.md` → ACTIVE GAP → `05_execution_record.md` → checkpoint → return here.**
 
 Production entrypoints:
-- [README](README.md)
-- [LAW — Drift Prevention](LAW-DRIFT-PREVENTION.md)
-- [MANIFEST](MANIFEST.md)
-- [Canonical Checkpoint](01_canonical_checkpoint.md)
+- [`README`](README.md)
+- [`LAW — Drift Prevention`](LAW-DRIFT-PREVENTION.md)
+- [`MANIFEST`](MANIFEST.md)
+- [`Canonical Checkpoint`](01_canonical_checkpoint.md)
 
 ## 1. Resume authority
 
 This file is the operational resume authority. It does not override LAW or canonical state.
 
 **Required startup:**
-1. Read `LAW-DRIFT-PREVENTION.md`.
-2. Read `MANIFEST.md`.
-3. Verify `01_canonical_checkpoint.md`.
-4. Read ontology and evidence gates.
-5. Execute only the first open GAP.
+1. Read [`LAW-DRIFT-PREVENTION.md`](LAW-DRIFT-PREVENTION.md).
+2. Read [`MANIFEST.md`](MANIFEST.md).
+3. Verify [`01_canonical_checkpoint.md`](01_canonical_checkpoint.md).
+4. Read [`02_domain_object_ontology.md`](02_domain_object_ontology.md) and [`03_evidence_gate_and_rules.md`](03_evidence_gate_and_rules.md).
+5. Pass [`LAW-LLM-EPISTEMIC-CONTAINMENT.md`](LAW-LLM-EPISTEMIC-CONTAINMENT.md) and [`LAW-AXCONTROL-CODEGEN-CONTRACT.md`](LAW-AXCONTROL-CODEGEN-CONTRACT.md).
+6. Pass [`LAW_UNIVERSAL_ROOT_CAUSE_INFERENCE.md`](LAW_UNIVERSAL_ROOT_CAUSE_INFERENCE.md).
+7. Execute only the first open GAP.
 
 ## 2. Locked state
 
-\[
-x=g_{dark}/g_{crit}
-\]
+`x = g_dark / g_crit`
 
-\[
-G_{full}=(0.3928,0.4107)g_{crit}
-\]
+`G_full=(0.3928,0.4107) g_crit`
 
-\[
-G_{cons}=(0.3870,0.4167)g_{crit}
-\]
+`G_cons=(0.3870,0.4167) g_crit`
 
 **SURVIVE — `g_dark` not concluded.**
 
@@ -59,10 +55,10 @@ If the required object does not exist in admissible sources, record a DATA/COUPL
 
 ## 5. Historical / supporting records
 
-- `06_domain_discovery_round1.md` — historical discovery.
-- `07_domain_candidate_register.md` — candidate register.
-- `08_domain_discovery_round2.md` — historical discovery.
-- `10_G6_external_source_coupling_audit.md` — closed G6 coupling audit.
+- [`06_domain_discovery_round1.md`](06_domain_discovery_round1.md) — historical discovery.
+- [`07_domain_candidate_register.md`](07_domain_candidate_register.md) — candidate register.
+- [`08_domain_discovery_round2.md`](08_domain_discovery_round2.md) — historical discovery.
+- [`10_G6_external_source_coupling_audit.md`](10_G6_external_source_coupling_audit.md) — closed G6 coupling audit.
 
 These cannot override the current GAP or canonical state.
 
