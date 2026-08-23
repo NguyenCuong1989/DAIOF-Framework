@@ -1,5 +1,7 @@
 # APΩ — WC-DM 2.1 — DOMAIN CANDIDATE REGISTER
 
+> **DISCOVERY SUBGRAPH** — entered from [`04_domain_search_matrix.md`](04_domain_search_matrix.md); candidate records never override [`00_TODO_RESUME.md`](00_TODO_RESUME.md) or [`01_canonical_checkpoint.md`](01_canonical_checkpoint.md).
+
 Creator: alpha_prime_omega — Nguyễn Đức Cường
 System: APΩ / WC-DM Evidence-First Boundary-Squeezing Protocol
 Status: **DISCOVERY / NO TARGET FITTING**
@@ -107,3 +109,5 @@ Current envelope:
 `G_cons=(0.3870,0.4167)`
 
 These are constraint intervals, **not target values**.
+
+**NEXT:** return to [`04_domain_search_matrix.md`](04_domain_search_matrix.md) and obey [`00_TODO_RESUME.md`](00_TODO_RESUME.md) for the actual first-open gap.
