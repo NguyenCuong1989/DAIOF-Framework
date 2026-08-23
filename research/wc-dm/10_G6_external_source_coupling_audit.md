@@ -1,5 +1,7 @@
 # APΩ — G6 EXTERNAL SOURCE / COUPLING AUDIT
 
+> **ACTIVE-AUDIT HISTORY NODE** — entered from the G6 gap path; exits to [`01_canonical_checkpoint.md`](01_canonical_checkpoint.md) and [`00_TODO_RESUME.md`](00_TODO_RESUME.md). G6 is closed as unresolved coupling/model-identification gap; it does not control the current resume point.
+
 Creator: **alpha_prime_omega**  
 System: **APΩ / WC-DM Evidence-First Boundary-Squeezing Protocol**  
 Execution date: **2026-08-24**  
@@ -26,7 +28,7 @@ Forbidden:
 
 The existing codebase record had already established that no source-locked canonical relation was present in the accessible WC-DM records. This execution extended the search to external scientific literature for two distinct questions:
 
-1. Do empirical/validated limits on dark-matter self-interaction exist?  
+1. Do empirical/validated limits on dark-matter self-interaction exist?
 2. Do those limits define the required WC-DM-specific map `x → σ_self(x,v,m)` or `x → S_max(x)`?
 
 ## 3. What external literature does establish
@@ -35,10 +37,10 @@ Published SIDM work does provide empirical/observational constraints on self-int
 
 Examples include:
 
-- Bullet Cluster analyses deriving limits around `σ/m < 1 cm²/g` from the observed separation of gas, galaxies and lensing mass. citeturn0academia12
-- Numerical Bullet Cluster analyses deriving limits such as `σ/m < 1.25 cm²/g` (68% CL), with stronger limits under additional assumptions. citeturn0academia13
-- Group/cluster analyses reporting velocity-scale-dependent constraints, including a cluster upper limit `σ/m < 0.35 cm²/g` at 95% confidence. citeturn0academia14
-- Recent merging-cluster work reporting `σ/m < 0.22 cm²/g` for a specified sample and analysis framework. citeturn0academia15
+- Bullet Cluster analyses deriving limits around `σ/m < 1 cm²/g` from the observed separation of gas, galaxies and lensing mass.
+- Numerical Bullet Cluster analyses deriving limits such as `σ/m < 1.25 cm²/g` (68% CL), with stronger limits under additional assumptions.
+- Group/cluster analyses reporting velocity-scale-dependent constraints, including a cluster upper limit `σ/m < 0.35 cm²/g` at 95% confidence.
+- Recent merging-cluster work reporting `σ/m < 0.22 cm²/g` for a specified sample and analysis framework.
 
 These are real external constraints on SIDM/self-interaction parameters. They are **not automatically constraints on `x = g_dark/g_crit`**.
 
@@ -48,9 +50,7 @@ The literature expresses the physical interaction in model-specific quantities s
 
 `σ/m`, `σ_T/m`, mediator mass, particle mass, coupling strength, velocity scale, or a specified particle model.
 
-For example, velocity-dependent SIDM calculations explicitly define a transfer cross section `σ_T` from a differential scattering cross section and introduce particle-model parameters controlling its velocity dependence. citeturn1search0turn1search1
-
-A representative particle model can give an explicit relation such as a cross section depending on a coupling, DM mass, mediator mass and velocity. citeturn1search7
+A representative particle model can give an explicit relation such as a cross section depending on a coupling, DM mass, mediator mass and velocity.
 
 However, none of the audited sources supplies the required WC-DM-specific identity:
 
@@ -78,11 +78,11 @@ The evidence branch exists:
 
 but the required WC-DM coupling branch does not:
 
-`σ_self/m constraint → σ_self(x,v,m)`  **MISSING**
+`σ_self/m constraint → σ_self(x,v,m)` **MISSING**
 
 and:
 
-`S_max observable/criterion → S_max(x)`  **MISSING**
+`S_max observable/criterion → S_max(x)` **MISSING**
 
 Therefore:
 
@@ -161,3 +161,5 @@ Forbidden target inputs remain:
 `G3 — FULL K_z(R,z) SOURCE / RELATION / PROVENANCE AUDIT`
 
 Only source/provenance/coupling audit first. No new numerical constraint until the G3 coupling gate passes.
+
+**NEXT:** [`00_TODO_RESUME.md`](00_TODO_RESUME.md) → current first-open gap G3.
