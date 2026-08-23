@@ -1,5 +1,7 @@
 # APΩ — 360° Domain Search Matrix
 
+> **FLOW NODE 8/12** — entered from [`LAW_UNIVERSAL_ROOT_CAUSE_INFERENCE.md`](LAW_UNIVERSAL_ROOT_CAUSE_INFERENCE.md); exits to the **ACTIVE GAP AUDIT** identified by [`00_TODO_RESUME.md`](00_TODO_RESUME.md). Discovery has no constraint authority.
+
 ## Objective
 
 Do not add domains for decoration or for target confirmation. Find real observables that can produce admissible lower, upper, or interior constraints on `x = g_dark/g_crit`.
@@ -75,3 +77,5 @@ The objective is not merely a narrow interval. It is a provenance-locked interse
 `G_360 = intersection_i G_i`
 
 where each newly admitted constraint has demonstrated exclusion power and its correlation structure is explicitly accounted for.
+
+**NEXT NODE:** [`00_TODO_RESUME.md`](00_TODO_RESUME.md) → execute the **FIRST OPEN GAP only**.
