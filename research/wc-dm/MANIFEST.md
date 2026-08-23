@@ -1,136 +1,114 @@
-# =============================================================================
-# PROJECT: CANON-TO-SYSTEM DETERMINISTIC PROJECTION
-# METHOD: D&R PROTOCOL (CLOSED)
-# ORIGINATOR / CREATOR: alpha_prime_omega
-# STATUS: GENERATED — NON-AUTONOMOUS — NON-OWNERLESS
-# TRACEABILITY: Canon -> COG -> Projection(Π) -> Artifact
-# =============================================================================
-# APΩ — WC-DM CHECKPOINT MANIFEST
+# APΩ — WC-DM PRODUCTION MANIFEST
 
-Creator: `alpha_prime_omega — Nguyễn Đức Cường`  
-System: `APΩ / WC-DM Evidence-First Boundary-Squeezing Protocol`  
-Checkpoint: `2026-08-24`
+**System:** APΩ / WC-DM Evidence-First Boundary-Squeezing Protocol  
+**Status:** `CANONICAL / FAIL-CLOSED / SURVIVE — NOT CONCLUDED`  
+**Checkpoint:** `2026-08-24`
 
-## 0. HARD LAW GATE
+## 0. HARD ENTRY GATE
 
-`LOAD LAWS → VERIFY LAW STATE → EXPLICIT GATE PASS → READ CONTENT`
+`LOAD LAW-DRIFT-PREVENTION → LOAD LAWS → VERIFY LAW STATE → EXPLICIT GATE PASS → READ CONTENT`
 
-If Law state is unavailable, ambiguous, or failed: **HALT**.
+If law state is unavailable, ambiguous, contradictory, or unknown: `HALT`.
 
-## Canonical identity
+Operational resume authority: `00_TODO_RESUME.md`  
+Integrity/authority map: `MANIFEST.md`
 
-Unknown: `x = g_dark/g_crit`.
+## 1. CANONICAL STATE
 
-Current full survivor: `(0.3928,0.4107)`.
+Unknown: `x = g_dark / g_crit`  
+`G_full=(0.3928,0.4107)`  
+`G_cons=(0.3870,0.4167)`  
+State: `SURVIVE / g_dark NOT CONCLUDED`
 
-Current conservative envelope: `(0.3870,0.4167)`.
+Forbidden target inputs: `x=0.4`, `0.4018`, `0.4019`.
 
-State: `SURVIVE / NOT CONCLUDED`.
+## 2. LAW HIERARCHY
 
-## Canonical law hierarchy
-
-1. `03_evidence_gate_and_rules.md` — Evidence Laws.
+1. `03_evidence_gate_and_rules.md` — evidence admissibility.
 2. `LAW-LLM-EPISTEMIC-CONTAINMENT.md` — LLM epistemic containment.
-3. `LAW-AXCONTROL-CODEGEN-CONTRACT.md` — artifact identity / deterministic projection.
-4. `LAW_UNIVERSAL_ROOT_CAUSE_INFERENCE.md` — universal root-cause inference.
-5. `07_codebase_maturity_and_gap_closure.md` — method-hardening work program.
+3. `LAW-AXCONTROL-CODEGEN-CONTRACT.md` — artifact/projection integrity.
+4. `LAW_UNIVERSAL_ROOT_CAUSE_INFERENCE.md` — root-cause and inference execution.
+5. `LAW-DRIFT-PREVENTION.md` — hard transition/resume anti-drift.
 
-Evidence Laws govern epistemic admissibility. AXControl governs artifact/projection integrity. Universal Root-Cause and Gap-First laws govern execution. No governance artifact can promote generated content into evidence.
+Laws are procedural governance and do not constitute physical evidence.
 
-## Operational entry point
+## 3. UNIVERSAL EXECUTION ORDER
 
-`00_TODO_RESUME.md` — single resume/checkpoint continuation file.
+`GAP → REQUIRED OBJECT → SOURCE → PROVENANCE → COUPLING → ADMISSION → COMPUTATION → FALSIFICATION → DEPENDENCY → INTERSECTION → VERIFY → SAVE → COMMIT`
 
-## Canonical framework
+Hard invariants:
 
-`01_canonical_checkpoint.md`  
-`02_domain_object_ontology.md`  
-`03_evidence_gate_and_rules.md`  
-`04_domain_search_matrix.md`  
-`LAW-LLM-EPISTEMIC-CONTAINMENT.md`  
-`LAW-AXCONTROL-CODEGEN-CONTRACT.md`  
-`LAW_UNIVERSAL_ROOT_CAUSE_INFERENCE.md`
+`NO_NEW_GAP → NO_NEW_BRANCH`  
+`NO_NEW_EVIDENCE → NO_NEW_CONSTRAINT`  
+`NO_NEW_VALIDATED_RELATION → NO_NEW_COMPUTATION`  
+`UNKNOWN → HALT`
 
-## Execution / discovery / hardening
+## 4. CURRENT RESUME
 
-`05_execution_record.md`  
-`06_domain_discovery_round1.md`  
-`07_domain_candidate_register.md`  
-`07_codebase_maturity_and_gap_closure.md`
+`FIRST OPEN GAP = G3`
 
-`README.md` is the navigation index; `MANIFEST.md` is the integrity/state manifest.
+G3: full `K_z(R,z)` source, units, sign, normalization, validated relation, WC-DM coupling, and constraint audit.
 
-## Methodological hardening target
+G6: `COUPLING_GAP / MODEL-IDENTIFICATION_GAP`; no WC-DM constraint admitted. Reopen only if genuinely new source evidence addresses the missing coupling.
 
-The codebase must close or formally defer the following weaknesses:
+No physical computation is permitted until G3 coupling passes.
 
-`W1` falsification contract  
-`W2` dependency/covariance operation  
-`W3` uniform provenance artifact  
-`W4` enforceable admissibility state machine  
-`W5` deterministic computation manifest  
-`W6` unit/dimensional gate  
-`W7` machine-readable E/I/M/A/C separation  
-`W8` robustness classification  
-`W9` negative-result schema  
-`W10` checkpoint integrity verification  
-`W11` source-lock equation/parameter capture  
-`W12` DATA/COUPLING/MODEL gap taxonomy  
-`W13` 360° boundary coverage metric  
-`W14` execution/evidence separation  
-`W15` authoritative LAW registry
+## 5. CANONICAL REASONING RECORDS
 
-No closure may weaken an Evidence Law or manufacture a physical coupling.
+- `01_canonical_checkpoint.md`
+- `02_domain_object_ontology.md`
+- `04_domain_search_matrix.md`
+- `05_execution_record.md`
+- `06_domain_discovery_round1.md` — historical.
+- `07_domain_candidate_register.md`
+- `08_domain_discovery_round2.md` — historical.
+- `10_G6_external_source_coupling_audit.md`
 
-## Lineage
+## 6. PRODUCTION ARCHITECTURE
 
-1. Iron-law evidence protocol locked.
-2. Physical gate recorded: `(0.387,0.795)`.
-3. TF/local-density gate recorded; density contrast `≈4.34`.
-4. 903-Cepheid 12-bin rotation curve produced the strongest current interval.
-5. Removal of `10<R<16 kpc` survived as a robustness test.
-6. Local `K_z` execution did not narrow the RC survivor.
-7. Gaia-3D endpoint execution did not narrow the RC survivor.
-8. Double-counting prohibition remains active.
-9. Domain ontology is the gate before new domain searches.
-10. Domain discovery is system-wide: astronomical and non-astronomical real physical systems are equally admissible candidates.
-11. Hard LLM epistemic containment Law added.
-12. AXControl artifact contract ported and activated.
-13. Universal Root-Cause Inference Law activated.
-14. G6 external audit resolved G6 as an unresolved WC-DM coupling/model-identification gap; no G6 constraint admitted.
-15. Current physical resume point is G3 full `K_z(R,z)` source/relation/provenance audit.
-16. Method-hardening program added; it does not alter the physical survivor or resume point.
+### Active surface
 
-## System-wide domain principle
+`00_TODO_RESUME.md` → resume/state  
+`MANIFEST.md` → authority/integrity  
+`LAW-*` / `LAW_*` → governance  
+`01–05,07,10` → canonical research objects and audits
 
-`g_dark` is not assigned an astronomical-only existence domain.
+### Historical surface
 
-Candidate physical systems include:
+`06_*` and `08_*` remain lineage records. They cannot change current state.
 
-`astronomical ∪ laboratory ∪ atomic ∪ molecular ∪ particle ∪ condensed-matter ∪ precision-measurement ∪ solar-system ∪ other real physical systems`.
+### Superseded / redundant records
 
-A computational environment may reproduce controlled conditions for analysis, but computation is not evidence by itself and cannot manufacture a physical coupling absent a real measurement anchor.
+`09_gap_first_G6_mass_self_interaction_audit.md` is superseded by `10_G6_external_source_coupling_audit.md` and is not part of the active production surface.
 
-## Forbidden transitions
+`07_codebase_maturity_and_gap_closure.md` is a historical hardening workplan, not a runtime/canonical state authority.
 
-- `x=0.4` as an input target.
-- Model output → evidence.
-- Robustness → independent evidence.
-- Correlated datasets → independent likelihoods.
-- Interval half-width → statistical sigma without derivation.
-- Silent canonical mapping changes.
-- Astronomy-only domain restriction.
-- Simulation → empirical evidence without measurement anchor.
-- LLM training prior/context completion → canonical evidence.
-- Downstream content before Law gate.
-- Generated canonical artifact without AXControl traceability contract.
-- Missing coupling → invented coupling.
-- Empty intersection → silent rescue by model/data mutation.
+## 7. SYSTEM-WIDE DOMAIN PRINCIPLE
 
-## Continuation law
+`g_dark` is not restricted a priori to astronomy.
 
-After the hard Law gate passes:
+Candidate physical systems may include astronomical, laboratory, atomic, molecular, particle, condensed-matter, precision-measurement, solar-system, and other real physical systems. A computational environment may reproduce controlled conditions for analysis, but computation cannot manufacture physical evidence or a missing coupling.
 
-`GAP → REQUIRED OBJECT → SOURCE → PROVENANCE → COUPLING → ADMISSION → COMPUTATION → FALSIFICATION → DEPENDENCY → INTERSECTION → VERIFY → SAVE → COMMIT`.
+## 8. FORBIDDEN TRANSITIONS
 
-If a candidate fails, record the failure and classify the gap; do not replace it with a target-friendly alternative.
+- target → input;
+- theory/model/code/computation → evidence;
+- robustness → independent evidence;
+- correlation → independence;
+- half-width → `1σ` without derivation;
+- missing coupling → invented coupling;
+- empty intersection → silent rescue;
+- LLM prior/context completion → canonical evidence;
+- downstream content before law gate;
+- reopening resolved G6 without new relevant evidence;
+- skipping the first open gap because a later domain is attractive.
+
+## 9. CHECKPOINT INTEGRITY
+
+Every completed action must preserve:
+
+`ontology + GAP_SET + provenance + coupling + computation + falsification + dependency + exact resume object`.
+
+`SPECIFIED ≠ IMPLEMENTED ≠ VERIFIED ≠ CLOSED`.
+
+Conversation state is never canonical. Canonical work must be committed to Git.
