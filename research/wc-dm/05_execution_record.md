@@ -1,5 +1,7 @@
 # WC-DM 2.1 — Execution Record
 
+> **FLOW NODE 10/12 — execution evidence boundary.** Entered from the active GAP audit; exits to [`01_canonical_checkpoint.md`](01_canonical_checkpoint.md). This file records execution and can never by itself promote a result to evidence.
+
 ## Classification
 
 This file preserves the computational results supplied in the research checkpoint. It is **not** a substitute for raw source files or independent source verification.
@@ -51,3 +53,13 @@ Recorded variation is below the stated observational error in the supplied run. 
 5. Keep model-constructed baryonic/DM decomposition separate from empirical observables.
 6. Do not promote the interval center to `g_dark`.
 7. Do not label interval half-width as `1 sigma` without a likelihood/coverage derivation.
+
+## Execution boundary
+
+`EXECUTION_RECORD ≠ EVIDENCE`.
+
+Only a separately admitted chain may promote an execution result into a constraint:
+
+`SOURCE → PROVENANCE → VALIDATED RELATION → COUPLING → ADMISSION → COMPUTATION → FALSIFICATION → DEPENDENCY`.
+
+**NEXT NODE:** [`01_canonical_checkpoint.md`](01_canonical_checkpoint.md) → then [`00_TODO_RESUME.md`](00_TODO_RESUME.md).
