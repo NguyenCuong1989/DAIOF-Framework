@@ -10,6 +10,10 @@
 
 **P0.4** `g_dark` cannot appear as a preselected input before constraints act on it.
 
+**P0.5** `g_dark` is not restricted a priori to astronomical systems. Any real physical system is a candidate domain if an admissible observable has a validated coupling to `g_dark`.
+
+**P0.6** A computational environment is an analysis instrument, not a substitute for the physical system being measured. Simulation cannot manufacture evidence absent a real-world measurement anchor.
+
 ## O1 — Central unknown
 
 **O1.1** `g ≡ g_dark` is the unknown to infer.
@@ -19,6 +23,8 @@
 **O1.3** Every admissible domain must yield `G_i ⊆ R`.
 
 **O1.4** Global survivor: `G_* = intersection_i G_i`.
+
+**O1.5** The search space is the set of real physical systems, not merely the set of astronomical systems.
 
 ## P2 — Domain decomposition
 
@@ -32,9 +38,15 @@ where `E` is empirical evidence, `I` inference, `M` model relation, and `A` assu
 
 **P2.2** An inadmissible component does not invalidate the whole domain.
 
+**P2.3** A domain may be laboratory, atomic, molecular, particle, condensed-matter, precision-measurement, solar-system, stellar, galactic, cluster, or cosmological; classification does not determine admissibility.
+
 ## E3 — Observable
 
 An observable is an empirically measured quantity with a reality-to-observable path. Examples: `V_c`, `K_z`, `v_R`, `v_phi`, `v_z`, density, dispersion, flux, frequency, cross section.
+
+**E3.1** The physical system containing the observable may be astronomical or terrestrial/laboratory.
+
+**E3.2** A simulated observable is not empirical evidence unless explicitly anchored to a real measurement dataset.
 
 ## E4 — Measurement
 
@@ -113,6 +125,14 @@ Do not search for domains that support `x≈0.4`. Search for empirical observabl
 
 Do not search by target value. Do not reject a domain wholesale because one theory component is disputed. Do not retain a domain because consensus accepts it. Evaluate component-by-component.
 
+**R17.1 — System-wide domain rule:** Search every real physical system in which `g_dark` could couple to an observable. Do not impose an astronomical-only prior.
+
+**R17.2 — Cross-system rule:** A laboratory or terrestrial domain is admissible on exactly the same evidence gate as an astronomical domain; physical location is neither a privilege nor a rejection criterion.
+
+**R17.3 — Environment rule:** Code may reproduce controlled mathematical/physical conditions needed to test a relation, but the resulting computation remains non-evidence until anchored to admissible real measurements.
+
+**R17.4 — Information rule:** The existence of information/data inside a computational system does not itself establish a physical coupling. The coupling must be independently defined and testable.
+
 ## G18 — Candidate-domain families
 
 1. Galactic dynamics
@@ -127,6 +147,7 @@ Do not search by target value. Do not reject a domain wholesale because one theo
 10. Solar-system / laboratory gravity
 11. Astrophysical transients
 12. Time-domain / precision measurements
+13. Laboratory information-bearing physical systems, only where a measurable physical observable and coupling exist
 
 ## G19 — Eight-entry admission gate
 
@@ -155,3 +176,15 @@ Current full target constraint: `(0.3928,0.4107) g_crit`.
 Current conservative envelope: `(0.3870,0.4167) g_crit`.
 
 These are constraint targets, not target values. The next operation is **domain discovery first, computation second**.
+
+## G21 — System-wide search objective
+
+The next discovery pass must search for admissible constraints across the full physical-system space:
+
+`astronomical ∪ laboratory ∪ atomic ∪ molecular ∪ particle ∪ condensed-matter ∪ precision-measurement ∪ solar-system ∪ other real physical systems`.
+
+Priority is not given to a domain because it is theoretically fashionable or because it is expected to agree with the current survivor. Priority is given to domains with:
+
+`observable → measurement → provenance → validated coupling → falsifiable constraint`.
+
+The objective is to maximize independent boundary information on all sides of the current survivor while avoiding target-fitting and double-counting.
