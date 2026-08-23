@@ -101,11 +101,41 @@ A valid constraint must be able to reject some candidate `g` values. An always-p
 
 Ask: what was measured, what follows directly from measurement, and what is interpretation/model? Admit only the justified component.
 
-## 16. Locked inference order
+## 16. Conceptual integrity — no category substitution
+
+`REALITY != OBSERVABLE != MEASUREMENT != INFERENCE != MODEL != ASSUMPTION != THEORY != COMPUTATION`.
+
+No implicit type conversion is permitted. A statement must retain its original epistemic type throughout the pipeline.
+
+Forbidden substitutions include:
+
+- `THEORY → EVIDENCE`
+- `INFERENCE → MEASUREMENT`
+- `MODEL PREDICTION → OBSERVATION`
+- `CONSENSUS → TRUTH`
+- `CITATION → PROVENANCE`
+- `COMPUTATION → EVIDENCE`
+- `GOOD FIT → REALITY`
+- `ASSUMPTION → FACT`
+- `MODEL-DEPENDENT CONSTRAINT → THEORY-INDEPENDENT CONSTRAINT`
+- `CORRELATION → INDEPENDENCE`
+- `INTERVAL HALF-WIDTH → 1σ` without statistical derivation
+
+If an inference step changes epistemic type, the conversion must be explicit, justified, and provenance-traceable. Otherwise the result is a `TYPE VIOLATION`.
+
+On `TYPE VIOLATION`:
+
+1. halt the affected inference chain;
+2. trace back to the first type-changing step;
+3. restore the original evidence/model/assumption labels;
+4. quarantine downstream results dependent on the violation;
+5. resume only after the ontology and provenance are repaired.
+
+## 17. Locked inference order
 
 `REALITY → OBSERVABLE → MEASUREMENT+PROVENANCE → VALIDATED RELATION → MATHEMATICS → COMPUTATION → BOUND → G_i → intersection → g_dark`.
 
-## 17. Final rule
+## 18. Final rule
 
 Empirical evidence does not serve theory. Theory serves empirical evidence.
 
