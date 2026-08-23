@@ -76,6 +76,8 @@ Canonical evidence pipeline:
 9. **Domain Object Ontology:** `P0/O1/E3/I6/M8/A9/C10`, direction and independence objects locked.
 10. **AXControl integration:** locked.
 11. **LLM epistemic containment:** locked.
+12. **G6 internal audit:** codebase search found no source-locked WC-DM relation `x→S_max(x)` or `x→σ_self(x,v,m)`.
+13. **G6 external source audit:** literature confirms genuine SIDM self-interaction limits exist, but no audited source supplies the WC-DM-specific coupling required to convert them into an `x` constraint.
 
 Detailed lineage: `01_canonical_checkpoint.md`.
 
@@ -99,9 +101,9 @@ Every new action must follow:
 
 No GAP → no branch.
 
-Priority:
+Priority after G6 resolution:
 
-`G6 → G3 → G4 → G5 → G1 → G2 → G7`
+`G3 → G4 → G5 → G1 → G2 → G7`
 
 State machine:
 
@@ -115,52 +117,67 @@ Target fitting is forbidden: `x=0.4` is never an input.
 
 ## 5. G6 — MASS / SELF-INTERACTION COUPLING AUDIT
 
-**Execution status: BLOCKED — COUPLING GAP CONFIRMED.**
+**Execution status: RESOLVED AS UNRESOLVED COUPLING GAP.**
 
 Required objects:
 
 - `S_max(x)`
 - `σ_self(x)` or `σ_self(x,v,m)`
 
-Search performed in the accessible WC-DM codebase records for these relations and associated numerical boundary `0.795`.
+### Internal source audit
 
-Result: **no source-locked canonical forward relation was found.**
+No source-locked canonical forward relation was found in the accessible WC-DM codebase records.
+
+### External source audit
+
+External literature confirms genuine empirical/observational SIDM self-interaction limits, including Bullet Cluster and group/cluster analyses. However, those works constrain quantities such as `σ/m` or `σ_T/m` within specified SIDM models/assumptions; they do not provide the required WC-DM identity:
+
+`x = g_dark/g_crit → σ_self(x,v,m)`
+
+nor:
+
+`x → S_max(x)`.
+
+Therefore generic SIDM limits cannot be renamed into a WC-DM `x` constraint.
+
+### Formal gate
+
+`Adm_E(external SIDM evidence)` may pass for the quantity actually measured/constrained.
+
+`Adm_C(WC-DM G6) = 0`.
 
 Therefore:
 
-`CouplingValidated = FALSE`
+`¬Adm_C → ¬Computation → ¬Constraint`.
 
-`Computation = FORBIDDEN`
+No `G_G6` is admitted.
 
-`Constraint = FORBIDDEN`
+Full records:
 
-`Intersection = FORBIDDEN`
+- `09_gap_first_G6_mass_self_interaction_audit.md`
+- `10_G6_external_source_coupling_audit.md`
 
-The prior numerical statements `x>0.387` and `x<0.795` remain **creator-supplied execution records pending source audit**, not newly admitted empirical evidence.
+### No-drift decision
 
-Generic `σ_self/m ≤ 1 cm²/g` cannot be renamed into an `x` constraint without the WC-DM forward relation.
+G6 is **not** to be reopened by inventing a mapping or selecting a convenient SIDM particle model. Its root cause is now classified as:
 
-Full execution record: `09_gap_first_G6_mass_self_interaction_audit.md`.
+`COUPLING GAP / MODEL-IDENTIFICATION GAP`.
 
-### No-drift condition
-
-G6 remains the **first unresolved GAP**. Do not skip to G3 merely because G6 is blocked.
+The correct next transition is therefore G3.
 
 ---
 
 ## 6. REMAINING GAPS
 
-### G6 — FIRST OPEN GAP
-
-Lock source/equation provenance for:
-
-`S_max(x)` and `σ_self(x,v,m)`.
-
-If absent from the canonical source record, preserve **COUPLING GAP** and do not invent a relation.
-
-### G3
+### G3 — FIRST OPEN GAP
 
 `K_z(R,z)` full profile: source, units, sign, normalization, relation and full constraint.
+
+Required chain:
+
+`observable → measurement → provenance → validated relation → x-coupling → constraint`.
+
+Endpoint-only information is insufficient for a full-profile constraint.
 
 ### G4
 
@@ -204,11 +221,11 @@ Only after the above: independent lower/upper/interior boundaries from genuinely
 
 On a new session:
 
-`LOAD 00_TODO_RESUME → LAW GATE → VERIFY CANONICAL STATE → READ 09... → EXECUTE ONLY G6 → SAVE → COMMIT → UPDATE THIS FILE`
+`LOAD 00_TODO_RESUME → LAW GATE → VERIFY CANONICAL STATE → READ latest G6 audit → EXECUTE ONLY G3 → SAVE → COMMIT → UPDATE THIS FILE`
 
 Current resume point:
 
-`ROUND 3 / G6 — LOCK WC-DM MASS / SELF-INTERACTION COUPLING`
+`ROUND 3 / G3 — FULL K_z(R,z) SOURCE / RELATION / PROVENANCE AUDIT`
 
 Canonical state remains:
 
