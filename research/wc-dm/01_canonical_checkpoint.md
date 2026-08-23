@@ -1,183 +1,105 @@
 # APΩ — Canonical Checkpoint: WC-DM 2.1
 
+> **FLOW NODE 4/12** — entered from [`MANIFEST.md`](MANIFEST.md); exits to [`02_domain_object_ontology.md`](02_domain_object_ontology.md). This file is canonical physical state/lineage authority.
+
 Creator: alpha_prime_omega — Nguyễn Đức Cường  
 System: APΩ / WC-DM Evidence-First Boundary-Squeezing Protocol  
 Date: 2026-08-24
 
-## Step 1 — Iron-law protocol
+## 1. Canonical state
 
-`REALITY → OBSERVABLE → MEASUREMENT + PROVENANCE → VALIDATED RELATION → MATH → COMPUTATION → BOUND → G_i → intersection → g_dark`
+Unknown: `x = g_dark / g_crit`
 
-Invariants:
+`G_full = (0.3928,0.4107) g_crit`
 
-- Theory is not evidence.
-- Computation is not evidence.
-- A model prediction is not an observation.
-- `G = ∅` means the candidate is dead.
-- `G != ∅` means continue squeezing; survival is not proof.
-- Evidence cannot be altered to rescue a model.
+`G_cons = (0.3870,0.4167) g_crit`
 
-## Step 2 — Initial physical gate
+`SURVIVE — g_dark NOT CONCLUDED`
 
-Execution record:
+Target values are never inputs.
 
-`G_physical = (0.387, 0.795) g_crit`
+## 2. Evidence-first lineage
 
-Dependencies requiring final provenance audit: `S_max(g)` mapping and `sigma_self(g)` mapping.
+`REALITY → OBSERVABLE → MEASUREMENT + PROVENANCE → VALIDATED RELATION → MATH → COMPUTATION → BOUND → G_i → INTERSECTION → g_dark`
 
-## Step 3 — TF/local-density gate
+Invariants: theory ≠ evidence; computation ≠ evidence; model prediction ≠ observation; `G=∅` means falsification; `G≠∅` means survival only; evidence cannot be altered to rescue a model.
 
-Recorded benchmark:
+## 3. Recorded gates
 
-- `R = 15.7 kpc`
-- `rho_S = 3.43e7 M_sun kpc^-3`
-- `k = pi/R = 0.20010 kpc^-1`
-- `rho_S ≈ 1.30 GeV cm^-3`
-- `m = 0.1 GeV`
-- `n_S ≈ 13.0 cm^-3`
-- `rho_h = 0.30 GeV cm^-3`
-- `n_h = 3.0 cm^-3`
-- density contrast `n_S/n_h ≈ 4.34`
+### Physical gate
 
-Recorded density budget with `sigma_v,h = 86 km/s`:
+Execution record: `G_physical=(0.387,0.795) g_crit`.
 
-`(sigma_v,0^2 + |omega_0|) < 3.21e4 (km/s)^2`
+**Qualification:** the mappings `S_max(g)` and `sigma_self(g)` were not source-locked. G6 later established that the WC-DM coupling was unresolved; therefore this physical gate remains a **recorded execution result**, not an independently admitted constraint.
 
-This is a gate, not a direct measurement of `g_dark`.
+### TF/local-density
 
-## Step 4 — 903 Cepheids rotation curve
+Recorded benchmark: `R=15.7 kpc`, `rho_S=3.43e7 M_sun kpc^-3`, `k=pi/R=0.20010 kpc^-1`, `rho_S≈1.30 GeV cm^-3`, `m=0.1 GeV`, `n_S≈13.0 cm^-3`, `rho_h=0.30 GeV cm^-3`, `n_h=3.0 cm^-3`, density contrast `≈4.34`.
 
-Dataset recorded as:
+Recorded density budget with `sigma_v,h=86 km/s`: `(sigma_v,0^2+|omega_0|)<3.21e4 (km/s)^2`.
 
-- Gaia DR3
-- 903 Cepheids
-- `6 < R < 18 kpc`
-- 12 radial bins
+This is a gate/execution record, not a direct measurement of `g_dark`.
 
-Canonical analysis mapping used in the execution record:
+### 903 Cepheids rotation curve
 
-`q(x) = 1 - 0.6 x`
+Gaia DR3; 903 Cepheids; `6<R<18 kpc`; 12 radial bins.
 
-`V_model(R;x) = sqrt(V_bar^2 + V_DM,mean^2 * q_mean/q(x))`
+Recorded analysis mapping: `q(x)=1-0.6x`; `V_model(R;x)=sqrt(V_bar^2+V_DM,mean^2*q_mean/q(x))`.
 
-The baseline decomposition `f_DM(R)=0.25→0.75` is an analysis construction and must not be promoted to independent baryonic evidence.
+`G_RC,full=(0.3928,0.4107) g_crit`; recorded best point `x_best=0.4018`.
 
-Full 12-bin execution result:
+The `f_DM(R)=0.25→0.75` decomposition is an analysis construction, not independent baryonic evidence.
 
-`G_RC,full = (0.3928, 0.4107) g_crit`
+### Robustness exclusion
 
-Recorded best point: `x_best = 0.4018`.
+Removing `10<R<16 kpc` gives `G_RC,excl=(0.3870,0.4167) g_crit`.
 
-## Step 5 — robustness exclusion
+This is robustness information, not an independent evidence domain.
 
-Entire region `10 < R < 16 kpc` removed to test dependence on reported dip/bump features.
+### K_z local execution
 
-Execution result:
+16,269 SEGUE G dwarfs; Bovy & Rix 2013.
 
-`G_RC,excl = (0.3870, 0.4167) g_crit`
+Recorded model mapping: `K_z,DM,mean=20`, `K_z,DM,0=11.52`, `K_z,model(x)=Sigma_bar+K_z,DM,0/q(x)^2`.
 
-This is a robustness result, not an independent evidence domain.
+`G_Kz=(0.1548,0.5573) g_crit`; intersection leaves the RC survivor unchanged. `K_z^obs` remains the empirical datum; the mapping is a model component.
 
-## Step 6 — K_z local execution
+### Gaia 3D execution
 
-Recorded dataset:
+Recorded endpoints: `x=0.3928 → gradient=-1.752`; `x=0.4107 → gradient=-1.683`. The supplied execution record reports variation below observational error; endpoint checks do not constitute a full-profile likelihood.
 
-- 16,269 G dwarfs
-- SEGUE
-- Bovy & Rix 2013
+### Double-count audit
 
-Recorded model mapping:
+903 Cepheids, 16,269 SEGUE G dwarfs, and Gaia-3D stellar data cannot be assumed independent. Sample overlap, observable correlation, shared systematics, and processing dependencies require explicit audit before joint weighting.
 
-`K_z,DM,mean = 20`
+## 4. G6 root-cause resolution
 
-`K_z,DM,0 = 11.52` at `q=1`
+Internal + external source audit found no source-locked WC-DM forward relation for:
 
-`K_z,model(x) = Sigma_bar + K_z,DM,0 / q(x)^2`
+`x → S_max(x)` or `x → sigma_self(x,v,m)`.
 
-Execution result:
-
-`G_Kz = (0.1548, 0.5573) g_crit`
-
-Intersection with full RC leaves the RC survivor unchanged. The mapping is a WC-DM model component; `K_z^obs` remains the empirical datum.
-
-## Step 7 — Gaia 3D execution
-
-Recorded endpoint checks:
-
-- `x=0.3928 → gradient=-1.752`
-- `x=0.4107 → gradient=-1.683`
-- recorded variation is below the reported observational error in the supplied execution record.
-
-Execution conclusion: the tested Gaia-3D constraint contains the current full RC interval and therefore does not narrow it.
-
-## Step 8 — double-count audit
-
-Current datasets include 903 Cepheids, 16,269 SEGUE G dwarfs, and a large Gaia-3D stellar sample. Independence is **not automatically granted**. Sample overlap, observable correlation, shared systematics, and processing dependencies must be checked before joint likelihood combination.
-
-## Step 9 — current survivor
-
-Full:
-
-`G_final,full = (0.3928, 0.4107) g_crit`
-
-Conservative:
-
-`G_cons = (0.3870, 0.4167) g_crit`
-
-Widths:
-
-- full: `0.0179 g_crit`
-- conservative: `0.0297 g_crit`
-
-The values `0.4018` and `0.4019` are centers/best points of the recorded constraints, not an admissible preselected target.
-
-The half-widths must not be called `1 sigma` unless derived from an explicit statistical likelihood/coverage definition.
-
-## Step 10 — canonical verdict
-
-`G_final != empty` → **SURVIVE**.
-
-`g_dark` is **not yet authorized as a final reported value**.
-
-## Step 11 — G6 root-cause audit
-
-The original physical gate included:
-
-`G_physical = (0.387, 0.795) g_crit`.
-
-A dedicated internal codebase audit found no source-locked WC-DM forward relation for:
-
-`x → S_max(x)`
-
-or:
-
-`x → sigma_self(x,v,m)`.
-
-An external literature audit then confirmed that genuine SIDM/self-interaction limits exist, including Bullet Cluster and group/cluster constraints on quantities such as `sigma/m` or `sigma_T/m`. However, those sources are tied to their stated SIDM quantities/models and do not supply the required WC-DM-specific mapping to `x = g_dark/g_crit`.
+External SIDM limits are genuine empirical constraints on their stated quantities/models but do not supply the required mapping to `x=g_dark/g_crit`.
 
 Therefore:
 
-`Adm_C(G6) = 0`
+`Adm_C(G6)=0`; `Computation(G6)=FORBIDDEN`; `Constraint(G6)=FORBIDDEN`.
 
-`Computation(G6) = FORBIDDEN`
+G6 = `COUPLING / MODEL-IDENTIFICATION GAP`, **not falsification**.
 
-`Constraint(G6) = FORBIDDEN`
+`09_gap_first_G6_mass_self_interaction_audit.md` is superseded. Authoritative audit: [`10_G6_external_source_coupling_audit.md`](10_G6_external_source_coupling_audit.md).
 
-No new `G_i` was admitted. G6 is classified as a **COUPLING / MODEL-IDENTIFICATION GAP**, not as falsification and not as absence of empirical SIDM data.
+## 5. Current verdict
 
-Full audit records:
+`G_final != empty` → **SURVIVE**.
 
-- `09_gap_first_G6_mass_self_interaction_audit.md`
-- `10_G6_external_source_coupling_audit.md`
+`g_dark` is **not authorized as a final reported value**.
 
-## Step 12 — next authorized gate
-
-Proceed to:
+## 6. Next authorized gate
 
 **G3 — Full `K_z(R,z)` source / provenance / validated-relation audit.**
 
-Order:
-
 `SOURCE → PROVENANCE → RELATION → COUPLING → ADMISSION → COMPUTATION`
 
-No numerical `G_3` is permitted until the coupling gate passes.
+No numerical `G_3` until coupling passes.
+
+**NEXT NODE:** [`02_domain_object_ontology.md`](02_domain_object_ontology.md).
