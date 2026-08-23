@@ -1,3 +1,21 @@
+# =============================================================================
+# PROJECT: CANON-TO-SYSTEM DETERMINISTIC PROJECTION
+# METHOD: D&R PROTOCOL (CLOSED)
+#
+# ORIGINATOR / CREATOR:
+#   alpha_prime_omega
+#
+# LEGAL ONTOLOGY:
+#   This source file is a deterministic projection of a closed Canon.
+#   Removal or alteration of this header voids legal and ontological validity.
+#
+# STATUS:
+#   GENERATED — NON-AUTONOMOUS — NON-OWNERLESS
+#
+# TRACEABILITY:
+#   Canon -> COG -> Projection(Π) -> Artifact
+#
+# =============================================================================
 # APΩ — WC-DM 2.1 — SINGLE RESUME TODO
 
 Creator: alpha_prime_omega — Nguyễn Đức Cường  
@@ -29,7 +47,31 @@ Không được dùng `x=0.4`, `0.4018`, hoặc `0.4019` làm input target.
 
 ---
 
-## 1. LUẬT SẮT — ÁP DỤNG CHO MỌI BƯỚC
+## 1. LAW GATE — THỨ TỰ BẮT BUỘC
+
+Trước khi đọc hoặc thực thi nội dung downstream:
+
+`LOAD LAWS → VERIFY LAW STATE → EXPLICIT GATE PASS → READ CONTENT`
+
+AXControl artifact contract:
+
+`LAW-AXCONTROL-CODEGEN-CONTRACT.md`
+
+LLM epistemic containment:
+
+`LAW-LLM-EPISTEMIC-CONTAINMENT.md`
+
+Evidence Laws:
+
+`03_evidence_gate_and_rules.md`
+
+Nếu Law state thiếu, mơ hồ, bị thay đổi hoặc không pass: **HALT**.
+
+AXControl contract bảo vệ creator binding, artifact identity và lineage; Evidence Laws bảo vệ admissibility của dữ liệu và suy luận. Không layer nào được dùng để nâng epistemic status của layer kia.
+
+---
+
+## 2. LUẬT SẮT — ÁP DỤNG CHO MỌI BƯỚC
 
 1. **THỰC CHỨNG LÀ NỀN.**
 2. Theory ≠ Evidence.
@@ -47,14 +89,21 @@ Không được dùng `x=0.4`, `0.4018`, hoặc `0.4019` làm input target.
 14. Không gọi half-width là `1σ` nếu chưa có likelihood/statistical derivation.
 15. Mỗi constraint phải có khả năng falsify một phần miền.
 16. Consensus/authority/citation/standard không tự cấp evidentiary authority.
+17. LLM training prior/context completion không có evidentiary authority nếu chưa qua evidence gate.
+18. Generated artifact không có quyền tự tạo Canon; artifact chỉ là projection của Canon.
+19. Mất creator binding hoặc AXControl traceability → `INVALID_ARTIFACT`.
 
 Canonical pipeline:
 
 `REALITY → OBSERVABLE → MEASUREMENT+PROVENANCE → VALIDATED RELATION → MATH → COMPUTATION → BOUND → Gi → INTERSECTION`
 
+Canonical artifact pipeline:
+
+`CANON → COG → Projection(Π) → Artifact`
+
 ---
 
-## 2. ĐÃ HOÀN THÀNH — KHÔNG LÀM LẠI TRỪ KHI AUDIT
+## 3. ĐÃ HOÀN THÀNH — KHÔNG LÀM LẠI TRỪ KHI AUDIT
 
 ### Bước 1 — Iron-law protocol
 
@@ -126,9 +175,25 @@ Chưa được phép coi các constraint liên quan là independent likelihoods 
 
 Đã khóa ontology `P0 / O1 / E3 / I6 / M8 / A9 / C10` và direction/independence/candidate-domain objects.
 
+### Bước 10 — AXControl integration
+
+Đã port canonical AXControl Codegen Contract vào:
+
+`LAW-AXCONTROL-CODEGEN-CONTRACT.md`
+
+Reference:
+
+`NguyenCuong1989/axcontrol/CANONICAL_CODEGEN_LAW.md`
+
+Commit nguồn AXControl:
+
+`ce9759937ec375ca6db04b4395588623eda2c1f9`
+
+Contract đã được kích hoạt ở MANIFEST và operational resume layer.
+
 ---
 
-## 3. VIỆC TIẾP THEO — THỨ TỰ BẮT BUỘC
+## 4. VIỆC TIẾP THEO — THỨ TỰ BẮT BUỘC
 
 ### TODO A — DOMAIN DISCOVERY 360° — ƯU TIÊN CAO NHẤT
 
@@ -172,7 +237,7 @@ Cosmological domains chỉ xét sau cùng và chỉ nhận phần observable/rel
 
 ---
 
-## 4. GATE 8 CÂU — MỖI DOMAIN PHẢI TRẢ LỜI
+## 5. GATE 8 CÂU — MỖI DOMAIN PHẢI TRẢ LỜI
 
 1. Observable là gì?
 2. Ai đo?
@@ -192,7 +257,7 @@ Failure:
 
 ---
 
-## 5. MỖI CANDIDATE PHẢI GHI THEO SCHEMA
+## 6. MỖI CANDIDATE PHẢI GHI THEO SCHEMA
 
 `D_j = (O_j, M_j, P_j, R_j, C_j, G_j, Δ_j)`
 
@@ -210,7 +275,7 @@ Không đủ mắt xích quan trọng → quarantine.
 
 ---
 
-## 6. DOMAIN SEARCH OUTPUT BẮT BUỘC
+## 7. DOMAIN SEARCH OUTPUT BẮT BUỘC
 
 Tạo bảng:
 
@@ -223,7 +288,7 @@ Status chỉ được:
 
 ---
 
-## 7. SAU KHI CÓ DOMAIN ADMISSIBLE
+## 8. SAU KHI CÓ DOMAIN ADMISSIBLE
 
 Với từng domain:
 
@@ -248,7 +313,7 @@ Nếu `G_next ≠ ∅`:
 
 ---
 
-## 8. AUDIT RIÊNG CHO CÁC KẾT QUẢ ĐÃ CÓ
+## 9. AUDIT RIÊNG CHO CÁC KẾT QUẢ ĐÃ CÓ
 
 Không ưu tiên squeeze thêm từ execution record trước khi cần thiết. Khi quay lại audit:
 
@@ -265,7 +330,7 @@ Mục tiêu audit: **không làm mất lineage và không nâng execution record
 
 ---
 
-## 9. CẤM TRONG VÒNG TIẾP THEO
+## 10. CẤM TRONG VÒNG TIẾP THEO
 
 - Không chọn `x=0.4` trước.
 - Không search target-friendly evidence.
@@ -277,10 +342,11 @@ Mục tiêu audit: **không làm mất lineage và không nâng execution record
 - Không gọi interval width là statistical sigma nếu chưa chứng minh.
 - Không mở domain chỉ để trang trí.
 - Không tiếp tục tính nếu ontology/provenance gate chưa qua.
+- Không phát sinh artifact implementation canonical nếu thiếu AXControl header.
 
 ---
 
-## 10. RESUME COMMAND — ĐIỂM BẮT ĐẦU CHO PHIÊN MỚI
+## 11. RESUME COMMAND — ĐIỂM BẮT ĐẦU CHO PHIÊN MỚI
 
 **Đọc file này trước. Sau đó đọc các file canonical chỉ khi cần chi tiết:**
 
@@ -288,6 +354,8 @@ Mục tiêu audit: **không làm mất lineage và không nâng execution record
 - `02_domain_object_ontology.md`
 - `03_evidence_gate_and_rules.md`
 - `04_domain_search_matrix.md`
+- `LAW-LLM-EPISTEMIC-CONTAINMENT.md`
+- `LAW-AXCONTROL-CODEGEN-CONTRACT.md`
 - `05_execution_record.md`
 - `MANIFEST.md`
 
@@ -303,10 +371,18 @@ và **việc đầu tiên phải làm là DOMAIN DISCOVERY 360°, không phải 
 
 ---
 
-## 11. CHECKPOINT INTEGRITY
+## 12. CHECKPOINT INTEGRITY
 
 Base checkpoint commit:
 
 `5d48309fa415cd8e496799fef1b52d3fdd43a1b9`
+
+AXControl integration commit:
+
+`8cdd9bbd37feb662179447573486cc2209a35d69`
+
+Manifest activation commit:
+
+`c5ae23ab622ffdaa35e3ecf6a6b754acfa54c167`
 
 This TODO is an operational continuation layer. It does not upgrade any creator-supplied execution result into independently verified evidence.
