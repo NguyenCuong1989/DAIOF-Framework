@@ -7,29 +7,21 @@ Purpose: **Một file duy nhất để mở trước khi tiếp tục công vi�
 
 ## 0. CANONICAL STATE — LOCKED
 
-Unknown:
+Unknown: `x = g_dark / g_crit`
 
-`x = g_dark / g_crit`
+Current survivor: `G_full = (0.3928,0.4107)`; `G_cons = (0.3870,0.4167)`; `SURVIVE — g_dark CHƯA ĐƯỢC KẾT LUẬN`.
 
-Current survivor:
-
-`G_full = (0.3928,0.4107)`
-
-`G_cons = (0.3870,0.4167)`
-
-`SURVIVE — g_dark CHƯA ĐƯỢC KẾT LUẬN`
-
-Forbidden target inputs: `x=0.4`, `x=0.4018`, `x=0.4019`.
-
-Canonical object is the admissible region, not its center.
+Forbidden target inputs: `x=0.4`, `x=0.4018`, `x=0.4019`. Canonical object is the admissible region, not its center.
 
 ---
 
 ## 1. HARD LAW GATE — FIRST OPERATION
 
-Mandatory order:
+**Mandatory law load order:**
 
-`LOAD LAWS → VERIFY LAW STATE → EXPLICIT GATE PASS → READ/SEARCH → COMPUTE`
+`LOAD LAW-DRIFT-PREVENTION → LOAD LAWS → VERIFY LAW STATE → EXPLICIT GATE PASS → READ/SEARCH → COMPUTE`
+
+Authoritative drift law: `LAW-DRIFT-PREVENTION.md`.
 
 Core invariants:
 
@@ -57,9 +49,23 @@ Core invariants:
 - No target-friendly domain selection.
 - Simulation/computation is not physical evidence without measurement anchoring.
 
+**Hard drift invariants:**
+
+`NO_NEW_GAP → NO_NEW_BRANCH`
+`NO_NEW_EVIDENCE → NO_NEW_CONSTRAINT`
+`NO_NEW_VALIDATED_RELATION → NO_NEW_COMPUTATION`
+`UNKNOWN → HALT`
+`SPECIFIED ≠ IMPLEMENTED ≠ VERIFIED ≠ CLOSED`
+
 Canonical evidence pipeline:
 
 `REALITY → OBSERVABLE → MEASUREMENT+PROVENANCE → VALIDATED RELATION → MATH → COMPUTATION → BOUND → Gi → INTERSECTION`
+
+Universal transition gate:
+
+`Allowed(S_t,S_{t+1}) = LawPass ∧ GapJustified ∧ TypePreserved ∧ ProvenancePreserved ∧ NoTargetInjection ∧ DependencyHandled ∧ FalsificationHandled`.
+
+If any term is false **or unknown**: `HALT`.
 
 ---
 
@@ -97,7 +103,7 @@ No candidate may intersect until the WC-DM coupling gate is passed.
 
 Every new action must follow:
 
-`GAP → REQUIRED OBJECT → SOURCE → COUPLING → CONSTRAINT`
+`GAP → REQUIRED OBJECT → SOURCE → PROVENANCE → COUPLING → CONSTRAINT`
 
 No GAP → no branch.
 
@@ -119,84 +125,41 @@ Target fitting is forbidden: `x=0.4` is never an input.
 
 **Execution status: RESOLVED AS UNRESOLVED COUPLING GAP.**
 
-Required objects:
+Required objects: `S_max(x)` and `σ_self(x)` or `σ_self(x,v,m)`.
 
-- `S_max(x)`
-- `σ_self(x)` or `σ_self(x,v,m)`
+No source-locked canonical forward relation was found in the accessible WC-DM records. External literature confirms genuine SIDM limits but does not provide the required WC-DM identity `x→σ_self(x,v,m)` or `x→S_max(x)`.
 
-### Internal source audit
-
-No source-locked canonical forward relation was found in the accessible WC-DM codebase records.
-
-### External source audit
-
-External literature confirms genuine empirical/observational SIDM self-interaction limits, including Bullet Cluster and group/cluster analyses. However, those works constrain quantities such as `σ/m` or `σ_T/m` within specified SIDM models/assumptions; they do not provide the required WC-DM identity:
-
-`x = g_dark/g_crit → σ_self(x,v,m)`
-
-nor:
-
-`x → S_max(x)`.
-
-Therefore generic SIDM limits cannot be renamed into a WC-DM `x` constraint.
-
-### Formal gate
-
-`Adm_E(external SIDM evidence)` may pass for the quantity actually measured/constrained.
-
-`Adm_C(WC-DM G6) = 0`.
-
-Therefore:
+Therefore `Adm_C(external SIDM evidence)` may pass only for the quantity actually constrained, while `Adm_C(WC-DM G6)=0`.
 
 `¬Adm_C → ¬Computation → ¬Constraint`.
 
-No `G_G6` is admitted.
-
-Full records:
-
-- `09_gap_first_G6_mass_self_interaction_audit.md`
-- `10_G6_external_source_coupling_audit.md`
-
-### No-drift decision
-
-G6 is **not** to be reopened by inventing a mapping or selecting a convenient SIDM particle model. Its root cause is now classified as:
-
-`COUPLING GAP / MODEL-IDENTIFICATION GAP`.
-
-The correct next transition is therefore G3.
+G6 is classified `COUPLING GAP / MODEL-IDENTIFICATION GAP`. It MUST NOT be reopened without genuinely new source evidence addressing the missing coupling.
 
 ---
 
 ## 6. REMAINING GAPS
 
 ### G3 — FIRST OPEN GAP
-
 `K_z(R,z)` full profile: source, units, sign, normalization, relation and full constraint.
 
 Required chain:
-
 `observable → measurement → provenance → validated relation → x-coupling → constraint`.
 
 Endpoint-only information is insufficient for a full-profile constraint.
 
 ### G4
-
 Gaia 3D full `R,z` relation and likelihood; endpoint gradient is insufficient.
 
 ### G5
-
 Sample overlap, observable correlation, shared systematic, processing and model dependency.
 
 ### G1
-
 Exact `x → M(<r;x)` or `x → Φ(r;x)`.
 
 ### G2
-
 Exact `x → σ_SI/self` forward relation.
 
 ### G7
-
 Only after the above: independent lower/upper/interior boundaries from genuinely new evidence channels.
 
 ---
@@ -214,6 +177,8 @@ Only after the above: independent lower/upper/interior boundaries from genuinely
 - Empty intersection → rescue by changing data/model silently.
 - LLM prior → canonical fact.
 - Skipping an earlier unresolved GAP because a later domain looks promising.
+- Weakening or reinterpreting a LAW to admit a blocked result.
+- Calling `SPECIFIED`, `IMPLEMENTED`, or `VERIFIED` equivalent to `CLOSED`.
 
 ---
 
@@ -221,7 +186,7 @@ Only after the above: independent lower/upper/interior boundaries from genuinely
 
 On a new session:
 
-`LOAD 00_TODO_RESUME → LAW GATE → VERIFY CANONICAL STATE → READ latest G6 audit → EXECUTE ONLY G3 → SAVE → COMMIT → UPDATE THIS FILE`
+`LOAD LAW-DRIFT-PREVENTION → LOAD 00_TODO_RESUME → VERIFY CANONICAL STATE → READ latest G6 audit → EXECUTE ONLY G3 → SAVE → COMMIT → UPDATE THIS FILE`
 
 Current resume point:
 
@@ -230,7 +195,5 @@ Current resume point:
 Canonical state remains:
 
 `G_full=(0.3928,0.4107)`
-
 `G_cons=(0.3870,0.4167)`
-
 `SURVIVE — g_dark NOT CONCLUDED`.
