@@ -1,20 +1,9 @@
 # =============================================================================
 # PROJECT: CANON-TO-SYSTEM DETERMINISTIC PROJECTION
 # METHOD: D&R PROTOCOL (CLOSED)
-#
-# ORIGINATOR / CREATOR:
-#   alpha_prime_omega
-#
-# LEGAL ONTOLOGY:
-#   This source file is a deterministic projection of a closed Canon.
-#   Removal or alteration of this header voids legal and ontological validity.
-#
-# STATUS:
-#   GENERATED — NON-AUTONOMOUS — NON-OWNERLESS
-#
-# TRACEABILITY:
-#   Canon -> COG -> Projection(Π) -> Artifact
-#
+# ORIGINATOR / CREATOR: alpha_prime_omega
+# STATUS: GENERATED — NON-AUTONOMOUS — NON-OWNERLESS
+# TRACEABILITY: Canon -> COG -> Projection(Π) -> Artifact
 # =============================================================================
 # APΩ — WC-DM CHECKPOINT MANIFEST
 
@@ -24,13 +13,9 @@ Checkpoint: `2026-08-24`
 
 ## 0. HARD LAW GATE
 
-Before reading or executing downstream research content:
-
 `LOAD LAWS → VERIFY LAW STATE → EXPLICIT GATE PASS → READ CONTENT`
 
-The operational resume file is `00_TODO_RESUME.md`. If the Law state is unavailable, ambiguous, or failed: **HALT**.
-
-The AXControl artifact contract is `LAW-AXCONTROL-CODEGEN-CONTRACT.md`. Generated implementation artifacts must preserve the canonical AXControl header and traceability contract.
+If Law state is unavailable, ambiguous, or failed: **HALT**.
 
 ## Canonical identity
 
@@ -44,36 +29,58 @@ State: `SURVIVE / NOT CONCLUDED`.
 
 ## Canonical law hierarchy
 
-`03_evidence_gate_and_rules.md` — canonical Evidence Laws.
+1. `03_evidence_gate_and_rules.md` — Evidence Laws.
+2. `LAW-LLM-EPISTEMIC-CONTAINMENT.md` — LLM epistemic containment.
+3. `LAW-AXCONTROL-CODEGEN-CONTRACT.md` — artifact identity / deterministic projection.
+4. `LAW_UNIVERSAL_ROOT_CAUSE_INFERENCE.md` — universal root-cause inference.
+5. `07_codebase_maturity_and_gap_closure.md` — method-hardening work program.
 
-`LAW-LLM-EPISTEMIC-CONTAINMENT.md` — hard LLM epistemic containment Law.
+Evidence Laws govern epistemic admissibility. AXControl governs artifact/projection integrity. Universal Root-Cause and Gap-First laws govern execution. No governance artifact can promote generated content into evidence.
 
-`LAW-AXCONTROL-CODEGEN-CONTRACT.md` — hard artifact identity / deterministic projection Law.
-
-AXControl governs artifact integrity and projection; Evidence Laws govern epistemic admissibility. The artifact contract cannot promote generated content into evidence.
-
-## File hierarchy
-
-### Operational control
+## Operational entry point
 
 `00_TODO_RESUME.md` — single resume/checkpoint continuation file.
 
-### Canonical framework
+## Canonical framework
 
 `01_canonical_checkpoint.md`  
 `02_domain_object_ontology.md`  
 `03_evidence_gate_and_rules.md`  
 `04_domain_search_matrix.md`  
 `LAW-LLM-EPISTEMIC-CONTAINMENT.md`  
-`LAW-AXCONTROL-CODEGEN-CONTRACT.md`
+`LAW-AXCONTROL-CODEGEN-CONTRACT.md`  
+`LAW_UNIVERSAL_ROOT_CAUSE_INFERENCE.md`
 
-### Execution / discovery
+## Execution / discovery / hardening
 
 `05_execution_record.md`  
 `06_domain_discovery_round1.md`  
-`07_domain_candidate_register.md`
+`07_domain_candidate_register.md`  
+`07_codebase_maturity_and_gap_closure.md`
 
 `README.md` is the navigation index; `MANIFEST.md` is the integrity/state manifest.
+
+## Methodological hardening target
+
+The codebase must close or formally defer the following weaknesses:
+
+`W1` falsification contract  
+`W2` dependency/covariance operation  
+`W3` uniform provenance artifact  
+`W4` enforceable admissibility state machine  
+`W5` deterministic computation manifest  
+`W6` unit/dimensional gate  
+`W7` machine-readable E/I/M/A/C separation  
+`W8` robustness classification  
+`W9` negative-result schema  
+`W10` checkpoint integrity verification  
+`W11` source-lock equation/parameter capture  
+`W12` DATA/COUPLING/MODEL gap taxonomy  
+`W13` 360° boundary coverage metric  
+`W14` execution/evidence separation  
+`W15` authoritative LAW registry
+
+No closure may weaken an Evidence Law or manufacture a physical coupling.
 
 ## Lineage
 
@@ -81,15 +88,18 @@ AXControl governs artifact integrity and projection; Evidence Laws govern episte
 2. Physical gate recorded: `(0.387,0.795)`.
 3. TF/local-density gate recorded; density contrast `≈4.34`.
 4. 903-Cepheid 12-bin rotation curve produced the strongest current interval.
-5. Removal of `10<R<16 kpc` survived as a specific robustness test.
+5. Removal of `10<R<16 kpc` survived as a robustness test.
 6. Local `K_z` execution did not narrow the RC survivor.
 7. Gaia-3D endpoint execution did not narrow the RC survivor.
 8. Double-counting prohibition remains active.
 9. Domain ontology is the gate before new domain searches.
-10. Next phase: discover independent empirical domains capable of lower/upper/interior constraints.
-11. Domain discovery is system-wide: astronomical and non-astronomical real physical systems are equally admissible candidates.
-12. Hard LLM epistemic containment Law added: training prior, context completion, and model familiarity cannot become canonical evidence without an admissible evidence path.
-13. AXControl artifact contract ported from the canonical AXControl source and activated for generated implementation artifacts.
+10. Domain discovery is system-wide: astronomical and non-astronomical real physical systems are equally admissible candidates.
+11. Hard LLM epistemic containment Law added.
+12. AXControl artifact contract ported and activated.
+13. Universal Root-Cause Inference Law activated.
+14. G6 external audit resolved G6 as an unresolved WC-DM coupling/model-identification gap; no G6 constraint admitted.
+15. Current physical resume point is G3 full `K_z(R,z)` source/relation/provenance audit.
+16. Method-hardening program added; it does not alter the physical survivor or resume point.
 
 ## System-wide domain principle
 
@@ -99,30 +109,28 @@ Candidate physical systems include:
 
 `astronomical ∪ laboratory ∪ atomic ∪ molecular ∪ particle ∪ condensed-matter ∪ precision-measurement ∪ solar-system ∪ other real physical systems`.
 
-A domain enters only through:
-
-`real physical system → observable → measurement → provenance → validated coupling → falsifiable constraint`.
-
 A computational environment may reproduce controlled conditions for analysis, but computation is not evidence by itself and cannot manufacture a physical coupling absent a real measurement anchor.
 
-## Forbidden state transitions
+## Forbidden transitions
 
 - `x=0.4` as an input target.
-- Turning model output into evidence.
-- Treating robustness as a new independent domain.
-- Combining correlated datasets as independent likelihoods.
-- Calling interval half-width a statistical sigma without derivation.
-- Quietly changing `q(x)` or other canonical mappings to preserve survival.
-- Restricting domain discovery to astronomy merely because the current constraints are astronomical.
-- Treating simulation output as empirical evidence without a real-world measurement anchor.
-- Promoting LLM training prior or context completion into canonical evidence.
-- Reading downstream content before the hard Law gate passes.
-- Generating canonical implementation artifacts without the AXControl header and traceability contract.
+- Model output → evidence.
+- Robustness → independent evidence.
+- Correlated datasets → independent likelihoods.
+- Interval half-width → statistical sigma without derivation.
+- Silent canonical mapping changes.
+- Astronomy-only domain restriction.
+- Simulation → empirical evidence without measurement anchor.
+- LLM training prior/context completion → canonical evidence.
+- Downstream content before Law gate.
+- Generated canonical artifact without AXControl traceability contract.
+- Missing coupling → invented coupling.
+- Empty intersection → silent rescue by model/data mutation.
 
 ## Continuation law
 
-After the hard Law gate passes, before any new numerical squeeze:
+After the hard Law gate passes:
 
-`candidate domain → provenance audit → coupling audit → constraint construction → falsification test → independence audit → intersection`.
+`GAP → REQUIRED OBJECT → SOURCE → PROVENANCE → COUPLING → ADMISSION → COMPUTATION → FALSIFICATION → DEPENDENCY → INTERSECTION → VERIFY → SAVE → COMMIT`.
 
-If a candidate fails, record the failure rather than replacing the candidate with a target-friendly alternative.
+If a candidate fails, record the failure and classify the gap; do not replace it with a target-friendly alternative.
