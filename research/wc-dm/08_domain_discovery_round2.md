@@ -1,10 +1,16 @@
+# APΩ — WC-DM 2.1 — DOMAIN DISCOVERY ROUND 2
+
+> **HISTORICAL FLOW NODE.** Entered from [`06_domain_discovery_round1.md`](06_domain_discovery_round1.md); exits to the closed G6 audit / current checkpoint. Immutable discovery lineage; it cannot override [`00_TODO_RESUME.md`](00_TODO_RESUME.md).
+
+```text
 # =============================================================================
 # PROJECT: CANON-TO-SYSTEM DETERMINISTIC PROJECTION
 # METHOD: D&R PROTOCOL (CLOSED)
-# ORIGINATOR / CREATOR: alpha_prime_omega — Nguyễn Đức Cường
+# ORIGINATOR / CREATOR: alpha_prime_omega
 # STATUS: DISCOVERY RECORD — NON-AUTONOMOUS — NON-OWNERLESS
 # TRACEABILITY: Canon -> COG -> Projection(Π) -> Artifact
 # =============================================================================
+```
 
 # APΩ — WC-DM 2.1 — DOMAIN DISCOVERY ROUND 2
 
@@ -187,7 +193,7 @@ Therefore:
 
 ## NEXT GATES
 
-Priority order:
+Priority order recorded historically:
 
 1. Lock a WC-DM forward relation for `M(<r;x)` / `Φ(r;x)` and test Gaia escape velocity + satellite dynamics.
 2. Audit whether any existing WC-DM relation provides `σ_self(x,v,m)`; if yes, revisit cluster/SIDM observations as a real coupling chain rather than importing SIDM limits.
@@ -195,3 +201,5 @@ Priority order:
 4. Continue lensing only where the WC-DM forward model is explicit.
 
 No target value may be introduced during these searches.
+
+**NEXT:** [`10_G6_external_source_coupling_audit.md`](10_G6_external_source_coupling_audit.md) → then [`01_canonical_checkpoint.md`](01_canonical_checkpoint.md).
