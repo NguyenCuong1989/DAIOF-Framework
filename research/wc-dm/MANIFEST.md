@@ -1,4 +1,22 @@
-# APΩ — WC-DM Checkpoint Manifest
+# =============================================================================
+# PROJECT: CANON-TO-SYSTEM DETERMINISTIC PROJECTION
+# METHOD: D&R PROTOCOL (CLOSED)
+#
+# ORIGINATOR / CREATOR:
+#   alpha_prime_omega
+#
+# LEGAL ONTOLOGY:
+#   This source file is a deterministic projection of a closed Canon.
+#   Removal or alteration of this header voids legal and ontological validity.
+#
+# STATUS:
+#   GENERATED — NON-AUTONOMOUS — NON-OWNERLESS
+#
+# TRACEABILITY:
+#   Canon -> COG -> Projection(Π) -> Artifact
+#
+# =============================================================================
+# APΩ — WC-DM CHECKPOINT MANIFEST
 
 Creator: `alpha_prime_omega — Nguyễn Đức Cường`  
 System: `APΩ / WC-DM Evidence-First Boundary-Squeezing Protocol`  
@@ -11,6 +29,8 @@ Before reading or executing downstream research content:
 `LOAD LAWS → VERIFY LAW STATE → EXPLICIT GATE PASS → READ CONTENT`
 
 The operational resume file is `00_TODO_RESUME.md`. If the Law state is unavailable, ambiguous, or failed: **HALT**.
+
+The AXControl artifact contract is `LAW-AXCONTROL-CODEGEN-CONTRACT.md`. Generated implementation artifacts must preserve the canonical AXControl header and traceability contract.
 
 ## Canonical identity
 
@@ -28,7 +48,9 @@ State: `SURVIVE / NOT CONCLUDED`.
 
 `LAW-LLM-EPISTEMIC-CONTAINMENT.md` — hard LLM epistemic containment Law.
 
-The second file is subordinate to and interpreted under the full canonical Law set; it does not replace empirical evidence Laws.
+`LAW-AXCONTROL-CODEGEN-CONTRACT.md` — hard artifact identity / deterministic projection Law.
+
+AXControl governs artifact integrity and projection; Evidence Laws govern epistemic admissibility. The artifact contract cannot promote generated content into evidence.
 
 ## File hierarchy
 
@@ -42,7 +64,8 @@ The second file is subordinate to and interpreted under the full canonical Law s
 `02_domain_object_ontology.md`  
 `03_evidence_gate_and_rules.md`  
 `04_domain_search_matrix.md`  
-`LAW-LLM-EPISTEMIC-CONTAINMENT.md`
+`LAW-LLM-EPISTEMIC-CONTAINMENT.md`  
+`LAW-AXCONTROL-CODEGEN-CONTRACT.md`
 
 ### Execution / discovery
 
@@ -66,6 +89,7 @@ The second file is subordinate to and interpreted under the full canonical Law s
 10. Next phase: discover independent empirical domains capable of lower/upper/interior constraints.
 11. Domain discovery is system-wide: astronomical and non-astronomical real physical systems are equally admissible candidates.
 12. Hard LLM epistemic containment Law added: training prior, context completion, and model familiarity cannot become canonical evidence without an admissible evidence path.
+13. AXControl artifact contract ported from the canonical AXControl source and activated for generated implementation artifacts.
 
 ## System-wide domain principle
 
@@ -93,6 +117,7 @@ A computational environment may reproduce controlled conditions for analysis, bu
 - Treating simulation output as empirical evidence without a real-world measurement anchor.
 - Promoting LLM training prior or context completion into canonical evidence.
 - Reading downstream content before the hard Law gate passes.
+- Generating canonical implementation artifacts without the AXControl header and traceability contract.
 
 ## Continuation law
 
