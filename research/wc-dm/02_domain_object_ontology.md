@@ -1,5 +1,7 @@
 # APΩ — Domain Object Ontology
 
+> **FLOW NODE 5/12** — entered from [`01_canonical_checkpoint.md`](01_canonical_checkpoint.md); exits to [`03_evidence_gate_and_rules.md`](03_evidence_gate_and_rules.md).
+
 ## P0 — Supreme propositions
 
 **P0.1** `REALITY > THEORY`.
@@ -188,3 +190,5 @@ Priority is not given to a domain because it is theoretically fashionable or bec
 `observable → measurement → provenance → validated coupling → falsifiable constraint`.
 
 The objective is to maximize independent boundary information on all sides of the current survivor while avoiding target-fitting and double-counting.
+
+**NEXT NODE:** [`03_evidence_gate_and_rules.md`](03_evidence_gate_and_rules.md).
