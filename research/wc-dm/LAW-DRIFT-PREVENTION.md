@@ -1,5 +1,7 @@
 # APΩ — WC-DM DRIFT PREVENTION LAW
 
+> **FLOW NODE 2/12** — entered from [`00_TODO_RESUME.md`](00_TODO_RESUME.md); exits to [`MANIFEST.md`](MANIFEST.md). This is the first mandatory law gate.
+
 **Status: HARD / CANONICAL**
 
 ## L0 — NO DRIFT
@@ -119,3 +121,5 @@ Current:
 ## MASTER LAW
 
 **DO NOT ASK WHAT CAN BE DONE NEXT. ASK WHAT THE CURRENT CANONICAL STATE LEGALLY PERMITS NEXT.**
+
+**NEXT NODE:** [`MANIFEST.md`](MANIFEST.md).
