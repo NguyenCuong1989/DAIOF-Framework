@@ -1,88 +1,100 @@
-# APΩ — Evidence Gate and Iron Rules
+# APΩ — Canonical Evidence Laws
 
-## 0. Supreme rule
+**Creator:** `alpha_prime_omega — Nguyễn Đức Cường`  
+**System:** `APΩ / WC-DM Evidence-First Boundary-Squeezing Protocol`  
+**Status:** `HARD / FAIL-CLOSED / CANONICAL`
 
-`EMPIRICAL EVIDENCE IS THE FOUNDATION.`
+> This document contains **LAWS**, not advisory rules. A Law violation invalidates the affected reasoning chain until repaired and re-gated.
+
+## LAW 0 — EMPIRICAL EVIDENCE IS THE FOUNDATION
 
 No special evidentiary authority is granted to consensus, authority, reputation, citation count, standards, popular theory, elegant models, or attractive fits.
 
-## 1. Theory is testable
+`REALITY > THEORY`
+
+## LAW 1 — THEORY IS TESTABLE
 
 `THEORY != EVIDENCE`.
 
-When a theory component conflicts with validated empirical evidence, retain the evidence and remove or revise the conflicting theory component. Never alter the data to save the theory.
+When a theory component conflicts with validated empirical evidence, retain the evidence and reject, revise, or quarantine the conflicting theory component. Never alter data to save theory.
 
-## 2. Domain decomposition
+## LAW 2 — DOMAIN DECOMPOSITION
 
 `D = E_empirical + I_inferred + M_model + A_assumption`.
 
 Remove invalid components; do not discard an entire domain automatically.
 
-## 3. Datum gate
+## LAW 3 — DATUM GATE
 
 `observable → measurement → provenance → unit → uncertainty`.
 
 Missing provenance or measurement path → `QUARANTINE`.
 
-## 4. Inference boundary
+## LAW 4 — INFERENCE BOUNDARY
 
 `measured != inferred != model prediction`.
 
-A prediction `P(g)` never becomes evidence merely because computation reproduces it.
+`P(g) ↛ E`.
 
-## 5. Mathematics
+A prediction never becomes evidence merely because computation reproduces it.
 
-Math operates only after evidence and relations are locked. Checks: units, domain, hidden assumptions, reproducibility, non-circularity.
+## LAW 5 — MATHEMATICS FOLLOWS EVIDENCE
 
-## 6. Computation
+Mathematics operates only after evidence and relations are locked. Required checks: units, domain, hidden assumptions, reproducibility, and non-circularity.
 
-Code may calculate, scan, solve, propagate uncertainty, test sensitivity/stability, and intersect constraints. Code cannot create evidence.
+## LAW 6 — COMPUTATION CANNOT CREATE EVIDENCE
 
-## 7. Constraint mechanics
+Code may calculate, scan, solve, propagate uncertainty, test sensitivity/stability, and intersect constraints.
 
-For each domain:
+`COMPUTATION != EVIDENCE`.
+
+## LAW 7 — CONSTRAINT MECHANICS
+
+For each admissible domain:
 
 `G_{i+1} = G_i ∩ G_i^constraint`.
 
-A domain receives constraining authority only if there is an auditable path:
+Constraining authority requires an auditable path:
 
 `observable → coupling to g_dark → constraint`.
 
-## 8. No preselection
+## LAW 8 — NO PRESELECTION
 
-Forbidden workflow:
+Forbidden:
 
 `g=0.4 → build model → fit → declare g=0.4`.
 
-Required workflow:
+Required:
 
 `data → constraints → intersection → g_dark`.
 
-## 9. Failure is valid
+## LAW 9 — FAILURE IS VALID
 
-`G=empty` → candidate is dead. No rescue by changing data, uncertainty, subset selection, definitions, or hidden assumptions.
+`G = ∅ → DEAD`.
 
-`G!=empty` → continue searching for more constraints.
+No rescue by changing data, uncertainty, subset selection, definitions, or hidden assumptions.
 
-## 10. Robustness
+`G != ∅ → SURVIVE ONLY; CONTINUE SEARCHING`.
 
-Required tests where applicable: suspect-data deletion, alternative binning, leave-one-out, uncertainty perturbation, numerical resolution, boundary-condition variation, and alternative admissible preprocessing.
+## LAW 10 — ROBUSTNESS
 
-Survives a specific test → robust to that test only. It is not automatically globally robust.
+Where applicable: suspect-data deletion, alternative binning, leave-one-out, uncertainty perturbation, numerical resolution, boundary-condition variation, and alternative admissible preprocessing.
 
-## 11. No double counting
+Survival through a specific test means robustness **to that test only**.
 
-Shared dataset or shared information must not be counted as independent evidence. Use covariance/joint likelihood or downgrade one analysis to robustness.
+## LAW 11 — NO DOUBLE COUNTING
 
-## 12. Provenance is computational input
+Shared dataset or shared information shall not be counted as independent evidence. Use covariance/joint likelihood or downgrade one analysis to robustness.
+
+## LAW 12 — PROVENANCE IS PART OF THE CALCULATION
 
 Required lineage:
 
 `source → raw → conversion → equation → calculated value → C(g)`.
 
-Lost lineage → no sign-off.
+Lost lineage → `NO SIGN-OFF`.
 
-## 13. Uncertainty taxonomy
+## LAW 13 — UNCERTAINTY TAXONOMY
 
 Keep separate:
 
@@ -91,21 +103,27 @@ Keep separate:
 - model uncertainty
 - numerical uncertainty
 
-Do not call `(g_max-g_min)/2` a 1-sigma interval without a statistical derivation and stated coverage criterion.
+`(g_max-g_min)/2` shall not be called `1σ` without statistical derivation and stated coverage.
 
-## 14. Falsifiability
+## LAW 14 — FALSIFIABILITY
 
-A valid constraint must be able to reject some candidate `g` values. An always-pass test is not an effective constraint.
+A valid constraint must be able to reject some candidate `g` values. An always-pass test is `NON-INFORMATIVE`.
 
-## 15. Theory disputes
+## LAW 15 — THEORY DISPUTES
 
-Ask: what was measured, what follows directly from measurement, and what is interpretation/model? Admit only the justified component.
+Separate:
 
-## 16. Conceptual integrity — no category substitution
+1. what was measured;
+2. what follows directly from measurement;
+3. interpretation/model.
 
-`REALITY != OBSERVABLE != MEASUREMENT != INFERENCE != MODEL != ASSUMPTION != THEORY != COMPUTATION`.
+Admit only the justified component.
 
-No implicit type conversion is permitted. A statement must retain its original epistemic type throughout the pipeline.
+## LAW 16 — CONCEPTUAL INTEGRITY / NO CATEGORY SUBSTITUTION
+
+`REALITY != OBSERVABLE != MEASUREMENT != INFERENCE != MODEL != ASSUMPTION != THEORY != COMPUTATION != LLM PRIOR`.
+
+No implicit epistemic type conversion is permitted.
 
 Forbidden substitutions include:
 
@@ -119,43 +137,48 @@ Forbidden substitutions include:
 - `ASSUMPTION → FACT`
 - `MODEL-DEPENDENT CONSTRAINT → THEORY-INDEPENDENT CONSTRAINT`
 - `CORRELATION → INDEPENDENCE`
-- `INTERVAL HALF-WIDTH → 1σ` without statistical derivation
+- `INTERVAL HALF-WIDTH → 1σ` without derivation
+- `LLM PRIOR → FACT/EVIDENCE`
 
-If an inference step changes epistemic type, the conversion must be explicit, justified, and provenance-traceable. Otherwise the result is a `TYPE VIOLATION`.
+Any type-changing step must be explicit, justified, and provenance-traceable. Otherwise: `TYPE VIOLATION`.
 
-On `TYPE VIOLATION`:
+## LAW 17 — HARD READING GATE
 
-1. halt the affected inference chain;
-2. trace back to the first type-changing step;
-3. restore the original evidence/model/assumption labels;
-4. quarantine downstream results dependent on the violation;
-5. resume only after the ontology and provenance are repaired.
+`LOAD LAWS → VERIFY LAW STATE → EXPLICIT GATE PASS → READ/SEARCH DOWNSTREAM CONTENT`.
 
-## 17. HARD READING GATE — RULES BEFORE CONTENT
-
-Reading the rules is itself a gate transition.
-
-`RULE_READ → CONTENT_READ = FORBIDDEN`
-
-After the evidence rules have been loaded/read, downstream research content MUST NOT be read, searched, inferred from, or executed in the same uncontrolled transition.
-
-Required sequence:
-
-`LOAD RULES → VERIFY RULE STATE → EXPLICIT GATE PASS → READ/SEARCH DOWNSTREAM CONTENT`.
-
-If the rule state is not verified, or the explicit gate pass is absent:
+If Law state is unavailable, ambiguous, or failed:
 
 `HALT + DO NOT READ FURTHER`.
 
-This gate applies to canonical research files, domain candidates, source material, execution records, computations, and continuation checkpoints.
+The gate applies to canonical files, domain candidates, source material, execution records, computations, and continuation checkpoints.
 
-The purpose is to prevent downstream content from silently changing the admissibility rules under which it is evaluated.
+## LAW 18 — LLM EPISTEMIC CONTAINMENT
 
-## 18. Locked inference order
+The complete hard containment law is canonicalized in `LAW-LLM-EPISTEMIC-CONTAINMENT.md`.
 
-`REALITY → OBSERVABLE → MEASUREMENT+PROVENANCE → VALIDATED RELATION → MATHEMATICS → COMPUTATION → BOUND → G_i → intersection → g_dark`.
+Core invariants:
 
-## 19. Final rule
+`LLM TRAINING PRIOR != CANONICAL EVIDENCE`
+
+`CONTEXT != CANONICAL AUTHORITY`
+
+`PROVENANCE > MEMORY`
+
+`CANONICAL STATE > CONTEXT COMPLETION`
+
+`LLM REASONING != EPISTEMIC AUTHORITY`
+
+The LLM may explore candidates, domains, relations, computations, counterexamples, and falsification tests, but it may not expand evidentiary authority by itself.
+
+An unverified LLM prior remains `UNVERIFIED PRIOR` and cannot self-upgrade into evidence, fact, measurement, or validated relation.
+
+Any context drift, prior contamination, unauthorized theory injection, or provenance break triggers `HALT → TRACE → RESTORE TYPES → QUARANTINE DEPENDENTS → REPAIR → RE-GATE`.
+
+## LAW 19 — LOCKED INFERENCE ORDER
+
+`REALITY → OBSERVABLE → MEASUREMENT+PROVENANCE → VALIDATED RELATION → MATHEMATICS → COMPUTATION → BOUND → G_i → INTERSECTION → g_dark`.
+
+## LAW 20 — FINAL SUBMISSION LAW
 
 Empirical evidence does not serve theory. Theory serves empirical evidence.
 
