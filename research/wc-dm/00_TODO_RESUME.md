@@ -1,16 +1,8 @@
-# =============================================================================
-# PROJECT: CANON-TO-SYSTEM DETERMINISTIC PROJECTION
-# METHOD: D&R PROTOCOL (CLOSED)
-# ORIGINATOR / CREATOR: alpha_prime_omega — Nguyễn Đức Cường
-# STATUS: GENERATED — NON-AUTONOMOUS — NON-OWNERLESS
-# TRACEABILITY: Canon -> COG -> Projection(Π) -> Artifact
-# =============================================================================
-
 # APΩ — WC-DM 2.1 — SINGLE RESUME TODO
 
-Creator: **alpha_prime_omega — Nguyễn Đức Cường**
-System: **APΩ / WC-DM Evidence-First Boundary-Squeezing Protocol**
-Checkpoint: **2026-08-24**
+Creator: **alpha_prime_omega — Nguyễn Đức Cường**  
+System: **APΩ / WC-DM Evidence-First Boundary-Squeezing Protocol**  
+Checkpoint: **2026-08-24**  
 Purpose: **Một file duy nhất để mở trước khi tiếp tục công việc.**
 
 ## 0. CANONICAL STATE — LOCKED
@@ -27,9 +19,7 @@ Current survivor:
 
 `SURVIVE — g_dark CHƯA ĐƯỢC KẾT LUẬN`
 
-Forbidden target inputs:
-
-`x=0.4`, `x=0.4018`, `x=0.4019`.
+Forbidden target inputs: `x=0.4`, `x=0.4018`, `x=0.4019`.
 
 Canonical object is the admissible region, not its center.
 
@@ -40,16 +30,6 @@ Canonical object is the admissible region, not its center.
 Mandatory order:
 
 `LOAD LAWS → VERIFY LAW STATE → EXPLICIT GATE PASS → READ/SEARCH → COMPUTE`
-
-Law stack:
-
-1. `03_evidence_gate_and_rules.md`
-2. `LAW-LLM-EPISTEMIC-CONTAINMENT.md`
-3. `LAW-AXCONTROL-CODEGEN-CONTRACT.md`
-4. `02_domain_object_ontology.md`
-5. `MANIFEST.md`
-
-Failure of Law state → **HALT**.
 
 Core invariants:
 
@@ -74,9 +54,7 @@ Core invariants:
 - Constraint must falsify part of the domain.
 - Consensus/authority/citation/standard has no automatic evidentiary authority.
 - Generated artifacts cannot create Canon.
-- Missing creator binding / AXControl traceability → `INVALID_ARTIFACT`.
 - No target-friendly domain selection.
-- Domain discovery is not restricted to astronomy.
 - Simulation/computation is not physical evidence without measurement anchoring.
 
 Canonical evidence pipeline:
@@ -87,267 +65,126 @@ Canonical evidence pipeline:
 
 ## 2. LOCKED LINEAGE — STEPS ALREADY COMPLETED
 
-### Step 1 — Iron-law protocol
-Evidence-first protocol locked.
-
-### Step 2 — Physical gate
-`G_physical = (0.387,0.795)`.
-
-`S_max(x)` and `σ_self(x)` source/dependency audit remains open.
-
-### Step 3 — TF/local-density gate
-`n_S/n_h ≈ 4.34`.
-
-`G_density ≈ [0.1515,0.4167]`.
-
-Gate only; not final `x`.
-
-### Step 4 — 903 Cepheids / Gaia DR3 rotation curve
-Full 12 bins, `6<R<18 kpc`:
-
-`G_RC,full=(0.3928,0.4107)`.
-
-Execution-record best point: `x≈0.4018`.
-
-Not automatically source-verified evidence.
-
-### Step 5 — Robustness exclusion
-Remove `10<R<16 kpc`:
-
-`G_RC,excl=(0.3870,0.4167)`.
-
-Survivor remains alive. This is robustness for the executed deletion test only.
-
-### Step 6 — Local K_z
-`G_Kz=(0.1548,0.5573)` execution record.
-
-Does not narrow the current survivor. `K_z^obs` must remain distinct from WC-DM model mapping.
-
-### Step 7 — Gaia 3D endpoint check
-Endpoint execution did not narrow `G_RC,full`.
-
-Not yet a full-profile `R,z` likelihood.
-
-### Step 8 — Double-count audit
-No related constraints may be treated as independent likelihoods until sample overlap, observable correlation, shared systematic, processing and model dependency are audited.
-
-### Step 9 — Domain Object Ontology
-`P0/O1/E3/I6/M8/A9/C10`, direction objects, independence objects and candidate schema locked.
-
-### Step 10 — AXControl integration
-`LAW-AXCONTROL-CODEGEN-CONTRACT.md` integrated.
-
-### Step 11 — LLM epistemic containment
-Locked:
-
-`LLM TRAINING PRIOR != CANONICAL EVIDENCE`
-
-`CANONICAL STATE > CONTEXT COMPLETION`
-
-`HALT > UNVERIFIED CONTINUATION`
-
-`QUARANTINE > UNTRACED CLAIM`
+1. **Iron-law protocol:** evidence-first protocol locked.
+2. **Physical gate:** `G_physical=(0.387,0.795)` execution record; `S_max(x)` and `σ_self(x)` audit open.
+3. **TF/local-density:** `n_S/n_h≈4.34`; `G_density≈[0.1515,0.4167]`.
+4. **903 Cepheids / Gaia DR3 RC:** `G_RC,full=(0.3928,0.4107)` execution record.
+5. **Robustness exclusion:** remove `10<R<16 kpc`; `G_RC,excl=(0.3870,0.4167)`.
+6. **Local K_z:** `G_Kz=(0.1548,0.5573)` execution record; no narrowing.
+7. **Gaia 3D endpoint:** no narrowing; full `R,z` likelihood not executed.
+8. **Double-count audit:** active; independence not assumed.
+9. **Domain Object Ontology:** `P0/O1/E3/I6/M8/A9/C10`, direction and independence objects locked.
+10. **AXControl integration:** locked.
+11. **LLM epistemic containment:** locked.
 
 Detailed lineage: `01_canonical_checkpoint.md`.
 
 ---
 
-## 3. DOMAIN DISCOVERY ROUND 1 — COMPLETE
+## 3. DOMAIN DISCOVERY STATUS
 
-Round 1 found candidates but admitted no new numerical constraint.
+Round 1 and Round 2 found candidates but admitted **no new numerical Gi**.
 
-- Galactic satellite dynamics → `AUDIT / CANDIDATE`.
-- Direct detection/sub-GeV scattering → `QUARANTINE — COUPLING UNLOCKED`.
-- Independent satellite estimators → correlation branch.
-- Gravitational lensing → `CANDIDATE — COUPLING AUDIT REQUIRED`.
-- Atomic/molecular precision → `SEARCH CONTINUES`.
+Candidates include satellite/escape-velocity dynamics, direct detection, lensing, atomic/precision, cluster, gravity/lab, transients/timing and cosmological observables.
 
-Detailed record: `06_domain_discovery_round1.md`.
+No candidate may intersect until the WC-DM coupling gate is passed.
 
 ---
 
-## 4. DOMAIN DISCOVERY ROUND 2 — COMPLETE
+## 4. GAP-FIRST LAW — LOCKED OPERATING MODE
 
-Round 2 performed source discovery and coupling audit. **No new numerical Gi admitted.**
+Every new action must follow:
 
-### D-09 — Direct detection
+`GAP → REQUIRED OBJECT → SOURCE → COUPLING → CONSTRAINT`
 
-Empirical source: SENSEI SNOLAB, arXiv:2312.13342.
+No GAP → no branch.
 
-Observed low-energy electron/nuclear event data and published sub-GeV DM limits exist.
+Priority:
 
-Gate:
+`G6 → G3 → G4 → G5 → G1 → G2 → G7`
 
-`event spectrum → σ_limit → σ_WC-DM(x,m)`
+State machine:
 
-The final WC-DM relation is not source-locked in the current codebase.
+`DISCOVERED → SOURCE LOCKED → COUPLING LOCKED → ADMISSIBLE → COMPUTED → FALSIFIED/VALIDATED`
 
-Status: **`QUARANTINE — COUPLING UNLOCKED`**.
+No stage may be skipped.
 
-Direction: `NONE`.
-
-Intersection: **FORBIDDEN**.
-
-### D-10 — Atomic / molecular / precision metrology
-
-Empirical sources include optical-clock/cavity comparisons, space-time-separated atomic clocks/cavities, atomic-transition spectroscopy and 229Th nuclear-line spectroscopy.
-
-These experiments constrain specific SM couplings of ultralight DM, not the WC-DM `x` object directly.
-
-Required chain:
-
-`x → WC-DM portal/operator → SM coupling → measured frequency shift`
-
-Not source-locked.
-
-Status: **`QUARANTINE — COUPLING UNLOCKED`**.
-
-Direction: `NONE`.
-
-Intersection: **FORBIDDEN**.
-
-### D-06 — Gravitational lensing
-
-Empirical lensing observables exist. Published SIDM/SFDM analyses produce model-specific bounds, but their parameter mapping cannot be renamed `x`.
-
-Status: **`CANDIDATE — COUPLING AUDIT REQUIRED`**.
-
-Direction: `NONE`.
-
-Intersection: **FORBIDDEN**.
-
-### D-01/D-07 — Gaia escape velocity / satellite-halo dynamics
-
-Roche et al., Gaia DR3, arXiv:2402.00108 provides an independent observable channel: 6D stellar kinematics and an escape-velocity profile over roughly `4–11 kpc`.
-
-Potential chain:
-
-`6D phase space → v_esc(r) → Φ(r) / M(<r) → WC-DM M(<r;x) → C(x)`
-
-The final WC-DM mass-profile coupling is not source-locked.
-
-Status: **`AUDIT / CANDIDATE`**.
-
-Direction: `NONE` pending coupling.
-
-Independence: not assumed; Gaia/systematic/tracer/potential correlations require audit.
-
-Intersection: **FORBIDDEN pending coupling + covariance audit**.
-
-Detailed Round-2 record: `08_domain_discovery_round2.md`.
+Target fitting is forbidden: `x=0.4` is never an input.
 
 ---
 
-## 5. ROUND-2 VERDICT
+## 5. G6 — MASS / SELF-INTERACTION COUPLING AUDIT
 
-No new empirical numerical constraint has passed the full admission gate.
+**Execution status: BLOCKED — COUPLING GAP CONFIRMED.**
 
-This is a valid negative result.
+Required objects:
 
-Canonical state remains:
+- `S_max(x)`
+- `σ_self(x)` or `σ_self(x,v,m)`
 
-`G_full=(0.3928,0.4107)`
+Search performed in the accessible WC-DM codebase records for these relations and associated numerical boundary `0.795`.
 
-`G_cons=(0.3870,0.4167)`
+Result: **no source-locked canonical forward relation was found.**
 
-`SURVIVE — g_dark NOT CONCLUDED`
+Therefore:
 
-No domain was discarded wholesale. Empirical components remain classified separately from model mappings and assumptions.
+`CouplingValidated = FALSE`
 
----
+`Computation = FORBIDDEN`
 
-## 6. CURRENT 360° DOMAIN MAP
+`Constraint = FORBIDDEN`
 
-| Domain | Observable | Current status | Boundary | Can intersect? |
-|---|---|---|---|---|
-| RC / Cepheids | `V_c(R)` | AUDIT | `(0.3928,0.4107)` execution record | existing |
-| RC robustness | `V_c(R)` subset | ROBUSTNESS | `(0.3870,0.4167)` | no; not independent |
-| K_z | `K_z(R,z)` | AUDIT | `(0.1548,0.5573)` execution record | not yet source-audited |
-| Gaia 3D | `v_phi`, gradients | AUDIT | none yet | no new bound |
-| Direct detection | recoil/electron events | QUARANTINE | none | no |
-| Atomic/precision | transition/frequency data | QUARANTINE | none | no |
-| Lensing | shear/convergence/mass | CANDIDATE | none | no |
-| Escape velocity | `v_esc(r)` | AUDIT/CANDIDATE | none | no |
-| Satellite dynamics | 6D phase space | AUDIT/CANDIDATE | none | no |
-| Cluster dynamics | dispersion/lensing/X-ray/SZ | CANDIDATE | none | no |
-| Lab/solar-system gravity | precision gravity observables | CANDIDATE | none | no |
-| Transients/timing | timing/kinematics | CANDIDATE | none | no |
-| Cosmological observables | individually auditable observables | CANDIDATE | none | no |
+`Intersection = FORBIDDEN`
 
-Objective:
+The prior numerical statements `x>0.387` and `x<0.795` remain **creator-supplied execution records pending source audit**, not newly admitted empirical evidence.
 
-`maximize independent boundary information`
+Generic `σ_self/m ≤ 1 cm²/g` cannot be renamed into an `x` constraint without the WC-DM forward relation.
 
-Directions:
+Full execution record: `09_gap_first_G6_mass_self_interaction_audit.md`.
 
-`LOWER: x>a`
+### No-drift condition
 
-`UPPER: x<b`
-
-`INTERIOR: a<x<b`
-
-`EXTERIOR_EXCLUSION: x<a OR x>b`
+G6 remains the **first unresolved GAP**. Do not skip to G3 merely because G6 is blocked.
 
 ---
 
-## 7. SOURCE-AUDIT BACKLOG
+## 6. REMAINING GAPS
 
-1. Verify raw 903-Cepheid table/bin values.
-2. Verify source equations and exact extraction.
-3. Verify `q(x)` provenance and model status.
-4. Verify baryonic baseline construction.
-5. Verify `K_z` normalization/sign/units/source definition.
-6. Verify Gaia-3D source, gradient definition and full `R,z` relation.
-7. Quantify sample overlap/covariance.
-8. Audit `S_max(x)` and `σ_self(x)` dependencies.
-9. Do not upgrade execution records to evidence merely because code runs.
-10. Lock the WC-DM forward mass-profile relation for `M(<r;x)` / `Φ(r;x)` before admitting escape-velocity/satellite constraints.
-11. Lock any WC-DM forward self-interaction relation `σ_self(x,v,m)` before importing cluster/SIDM observational bounds.
-12. Search for a source-locked WC-DM portal/operator relation before using atomic/particle measurements.
+### G6 — FIRST OPEN GAP
 
----
+Lock source/equation provenance for:
 
-## 8. NEXT EXECUTION ORDER — ROUND 3
+`S_max(x)` and `σ_self(x,v,m)`.
 
-### TODO-01 — Mass-profile coupling
+If absent from the canonical source record, preserve **COUPLING GAP** and do not invent a relation.
 
-Search the codebase and source record for a canonical WC-DM relation:
+### G3
 
-`x → M(<r;x)` or `x → Φ(r;x)`.
+`K_z(R,z)` full profile: source, units, sign, normalization, relation and full constraint.
 
-If absent: record **COUPLING GAP**. Do not invent it.
+### G4
 
-### TODO-02 — Gaia escape velocity / satellite dynamics
+Gaia 3D full `R,z` relation and likelihood; endpoint gradient is insufficient.
 
-If coupling passes:
+### G5
 
-`raw observable → provenance → relation → C(x) → falsification → independence → Gi`.
+Sample overlap, observable correlation, shared systematic, processing and model dependency.
 
-If `Gi` is non-empty, intersect.
+### G1
 
-### TODO-03 — Self-interaction coupling
+Exact `x → M(<r;x)` or `x → Φ(r;x)`.
 
-Search for exact WC-DM:
+### G2
 
-`σ_self(x,v,m)`.
+Exact `x → σ_SI/self` forward relation.
 
-If locked, re-open cluster/SIDM observational domain using the actual measured limits, not imported model conclusions.
+### G7
 
-### TODO-04 — Particle / atomic portal
-
-Search for exact WC-DM relation from `x` to an observable SM interaction. Without this, keep particle and atomic domains quarantined.
-
-### TODO-05 — Lensing
-
-Proceed only if a WC-DM forward mass/structure relation is source-locked.
-
-### TODO-06 — After every execution unit
-
-Update this file immediately and commit the checkpoint.
+Only after the above: independent lower/upper/interior boundaries from genuinely new evidence channels.
 
 ---
 
-## 9. FORBIDDEN TRANSITIONS
+## 7. FORBIDDEN TRANSITIONS
 
 - `x=0.4 → fit → claim`.
 - Published generic DM bound → rename as `g_dark` bound.
@@ -359,20 +196,19 @@ Update this file immediately and commit the checkpoint.
 - Missing coupling → invented coupling.
 - Empty intersection → rescue by changing data/model silently.
 - LLM prior → canonical fact.
+- Skipping an earlier unresolved GAP because a later domain looks promising.
 
 ---
 
-## 10. RESUME COMMAND
+## 8. RESUME COMMAND
 
-On a new session, load **this file first**.
+On a new session:
 
-Then:
-
-`LAW GATE → VERIFY CANONICAL STATE → READ REFERENCED RECORD → EXECUTE ONLY NEXT TODO → SAVE → COMMIT → UPDATE THIS FILE`.
+`LOAD 00_TODO_RESUME → LAW GATE → VERIFY CANONICAL STATE → READ 09... → EXECUTE ONLY G6 → SAVE → COMMIT → UPDATE THIS FILE`
 
 Current resume point:
 
-`ROUND 3 / TODO-01 — LOCK WC-DM MASS-PROFILE COUPLING`
+`ROUND 3 / G6 — LOCK WC-DM MASS / SELF-INTERACTION COUPLING`
 
 Canonical state remains:
 
