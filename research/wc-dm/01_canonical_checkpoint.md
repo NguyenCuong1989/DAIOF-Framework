@@ -139,9 +139,45 @@ The half-widths must not be called `1 sigma` unless derived from an explicit sta
 
 `g_dark` is **not yet authorized as a final reported value**.
 
-## Step 11 — next gates
+## Step 11 — G6 root-cause audit
 
-1. Full `K_z(R,z)` profile.
-2. Gaia-3D `R,z` dependence rather than a single gradient check.
-3. Locked canonical `q(x)` for the current model variant; any changed mapping becomes a separate model variant.
-4. Search additional empirical domains before attempting further target-centered fitting.
+The original physical gate included:
+
+`G_physical = (0.387, 0.795) g_crit`.
+
+A dedicated internal codebase audit found no source-locked WC-DM forward relation for:
+
+`x → S_max(x)`
+
+or:
+
+`x → sigma_self(x,v,m)`.
+
+An external literature audit then confirmed that genuine SIDM/self-interaction limits exist, including Bullet Cluster and group/cluster constraints on quantities such as `sigma/m` or `sigma_T/m`. However, those sources are tied to their stated SIDM quantities/models and do not supply the required WC-DM-specific mapping to `x = g_dark/g_crit`.
+
+Therefore:
+
+`Adm_C(G6) = 0`
+
+`Computation(G6) = FORBIDDEN`
+
+`Constraint(G6) = FORBIDDEN`
+
+No new `G_i` was admitted. G6 is classified as a **COUPLING / MODEL-IDENTIFICATION GAP**, not as falsification and not as absence of empirical SIDM data.
+
+Full audit records:
+
+- `09_gap_first_G6_mass_self_interaction_audit.md`
+- `10_G6_external_source_coupling_audit.md`
+
+## Step 12 — next authorized gate
+
+Proceed to:
+
+**G3 — Full `K_z(R,z)` source / provenance / validated-relation audit.**
+
+Order:
+
+`SOURCE → PROVENANCE → RELATION → COUPLING → ADMISSION → COMPUTATION`
+
+No numerical `G_3` is permitted until the coupling gate passes.
