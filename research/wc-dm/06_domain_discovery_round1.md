@@ -1,5 +1,7 @@
 # APΩ — WC-DM 2.1 — DOMAIN DISCOVERY ROUND 1
 
+> **HISTORICAL FLOW NODE.** Entered from [`04_domain_search_matrix.md`](04_domain_search_matrix.md); exits to [`08_domain_discovery_round2.md`](08_domain_discovery_round2.md). Immutable discovery lineage; cannot override current resume authority [`00_TODO_RESUME.md`](00_TODO_RESUME.md).
+
 Creator: alpha_prime_omega — Nguyễn Đức Cường  
 System: APΩ / WC-DM Evidence-First Boundary-Squeezing Protocol  
 Date: 2026-08-24
@@ -152,3 +154,5 @@ No new evidence has been counted.
 `SURVIVE — g_dark not concluded.`
 
 This file records the discovery work completed so far and is intentionally conservative: **candidate discovery is not constraint admission**.
+
+**NEXT:** [`08_domain_discovery_round2.md`](08_domain_discovery_round2.md).
