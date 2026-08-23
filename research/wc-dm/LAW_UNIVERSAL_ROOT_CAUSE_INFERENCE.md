@@ -1,7 +1,9 @@
 # APΩ — UNIVERSAL ROOT-CAUSE INFERENCE LAW
 ## AXCONTROL v3 × EVIDENCE-FIRST
 
-**Status:** CANONICAL LAW / LOCKED
+> **FLOW NODE 7/12** — entered from [`03_evidence_gate_and_rules.md`](03_evidence_gate_and_rules.md); exits to [`04_domain_search_matrix.md`](04_domain_search_matrix.md).
+
+**Status:** CANONICAL LAW / LOCKED  
 **Scope:** All WC-DM research inference, audit, computation, constraint admission, falsification, and checkpoint transitions.
 
 ---
@@ -316,3 +318,5 @@ No stage may be skipped.
 > **EMPTY INTERSECTION → CHẾT**
 
 This law governs the research process. It does not itself constitute physical evidence or a physical theory.
+
+**NEXT NODE:** [`04_domain_search_matrix.md`](04_domain_search_matrix.md).
