@@ -131,11 +131,31 @@ On `TYPE VIOLATION`:
 4. quarantine downstream results dependent on the violation;
 5. resume only after the ontology and provenance are repaired.
 
-## 17. Locked inference order
+## 17. HARD READING GATE — RULES BEFORE CONTENT
+
+Reading the rules is itself a gate transition.
+
+`RULE_READ → CONTENT_READ = FORBIDDEN`
+
+After the evidence rules have been loaded/read, downstream research content MUST NOT be read, searched, inferred from, or executed in the same uncontrolled transition.
+
+Required sequence:
+
+`LOAD RULES → VERIFY RULE STATE → EXPLICIT GATE PASS → READ/SEARCH DOWNSTREAM CONTENT`.
+
+If the rule state is not verified, or the explicit gate pass is absent:
+
+`HALT + DO NOT READ FURTHER`.
+
+This gate applies to canonical research files, domain candidates, source material, execution records, computations, and continuation checkpoints.
+
+The purpose is to prevent downstream content from silently changing the admissibility rules under which it is evaluated.
+
+## 18. Locked inference order
 
 `REALITY → OBSERVABLE → MEASUREMENT+PROVENANCE → VALIDATED RELATION → MATHEMATICS → COMPUTATION → BOUND → G_i → intersection → g_dark`.
 
-## 18. Final rule
+## 19. Final rule
 
 Empirical evidence does not serve theory. Theory serves empirical evidence.
 
