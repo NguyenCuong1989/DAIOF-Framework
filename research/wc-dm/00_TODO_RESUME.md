@@ -8,397 +8,376 @@
 
 # APΩ — WC-DM 2.1 — SINGLE RESUME TODO
 
-Creator: **alpha_prime_omega — Nguyễn Đức Cường**  
-System: **APΩ / WC-DM Evidence-First Boundary-Squeezing Protocol**  
-Checkpoint: **2026-08-24**  
+Creator: **alpha_prime_omega — Nguyễn Đức Cường**
+System: **APΩ / WC-DM Evidence-First Boundary-Squeezing Protocol**
+Checkpoint: **2026-08-24**
 Purpose: **Một file duy nhất để mở trước khi tiếp tục công việc.**
 
+## 0. CANONICAL STATE — LOCKED
+
+Unknown:
+
+`x = g_dark / g_crit`
+
+Current survivor:
+
+`G_full = (0.3928,0.4107)`
+
+`G_cons = (0.3870,0.4167)`
+
+`SURVIVE — g_dark CHƯA ĐƯỢC KẾT LUẬN`
+
+Forbidden target inputs:
+
+`x=0.4`, `x=0.4018`, `x=0.4019`.
+
+Canonical object is the admissible region, not its center.
+
 ---
 
-## 0. CANONICAL STATE — KHÔNG ĐƯỢC THAY ĐỔI ÂM THẦM
+## 1. HARD LAW GATE — FIRST OPERATION
 
-Unknown: `x = g_dark / g_crit`
+Mandatory order:
 
-`G_full = (0.3928, 0.4107)`  
-`G_cons = (0.3870, 0.4167)`
-
-State: **`SURVIVE — g_dark CHƯA ĐƯỢC KẾT LUẬN`**
-
-`x=0.4`, `x=0.4018`, `x=0.4019` không được làm input target. Canonical object hiện tại là **miền sống sót**, không phải một giá trị trung tâm.
-
----
-
-## 1. HARD LAW GATE — PHẢI PASS TRƯỚC KHI ĐỌC / SEARCH / TÍNH
-
-Bắt buộc:
-
-`LOAD LAWS → VERIFY LAW STATE → EXPLICIT GATE PASS → READ/SEARCH CONTENT`
+`LOAD LAWS → VERIFY LAW STATE → EXPLICIT GATE PASS → READ/SEARCH → COMPUTE`
 
 Law stack:
 
-1. `03_evidence_gate_and_rules.md` — Evidence Laws.
-2. `LAW-LLM-EPISTEMIC-CONTAINMENT.md` — LLM epistemic containment.
-3. `LAW-AXCONTROL-CODEGEN-CONTRACT.md` — artifact identity / deterministic projection.
-4. `02_domain_object_ontology.md` — epistemic object typing.
-5. `MANIFEST.md` — state / lineage / forbidden transitions.
+1. `03_evidence_gate_and_rules.md`
+2. `LAW-LLM-EPISTEMIC-CONTAINMENT.md`
+3. `LAW-AXCONTROL-CODEGEN-CONTRACT.md`
+4. `02_domain_object_ontology.md`
+5. `MANIFEST.md`
 
-Nếu Law state thiếu, mơ hồ, bị thay đổi hoặc không pass: **HALT**.
+Failure of Law state → **HALT**.
 
-Không được đọc downstream content để tự suy ra Law state.
+Core invariants:
 
----
-
-## 2. LUẬT SẮT — EXECUTION INVARIANTS
-
-1. **THỰC CHỨNG LÀ NỀN.**
-2. `REALITY > THEORY`.
-3. `EVIDENCE != INTERPRETATION`.
-4. `THEORY != EVIDENCE`.
-5. `COMPUTATION != EVIDENCE`.
-6. LLM training prior/context completion không có evidentiary authority.
-7. Không sửa dữ liệu để cứu nghiệm.
-8. Không phủ nhận toàn bộ domain; tách `E / I / M / A`.
-9. Datum phải qua `observable → measurement → provenance → unit → uncertainty`.
-10. Không biến `inferred` thành `measured`.
-11. Model prediction không tự trở thành evidence.
-12. Mọi constraint phải có coupling auditable tới `x`.
-13. Không chọn `x` trước rồi fit ngược.
-14. `G = ∅` → **CHẾT**; `G != ∅` → **KÌM TIẾP**.
-15. Robustness test != independent evidence.
-16. Không double-count sample / observable / systematic / processing / model dependency.
-17. Mất lineage → **NO SIGN / QUARANTINE**.
-18. Không gọi half-width là `1σ` nếu chưa có statistical derivation.
-19. Constraint phải có khả năng falsify một phần miền.
-20. Consensus / authority / citation / standard không tự cấp evidentiary authority.
-21. Generated artifact không có quyền tự tạo Canon.
-22. Mất creator binding / AXControl traceability → `INVALID_ARTIFACT`.
-23. Không đưa domain vào chỉ vì domain đó “có vẻ hợp” với target.
-24. Không giới hạn domain discovery vào thiên văn; mọi hệ vật lý thực đều có thể là candidate.
-25. Simulation/computational environment chỉ là công cụ; không tự tạo physical evidence nếu thiếu measurement anchor.
+- **THỰC CHỨNG LÀ NỀN.**
+- `REALITY > THEORY`.
+- `EVIDENCE != INTERPRETATION`.
+- `THEORY != EVIDENCE`.
+- `COMPUTATION != EVIDENCE`.
+- LLM training prior/context completion has no evidentiary authority.
+- Never modify data to save a survivor.
+- Never reject an entire domain because one component fails; split `E/I/M/A`.
+- Datum gate: `observable → measurement → provenance → unit → uncertainty`.
+- Inference never becomes measurement by repetition.
+- Model prediction never becomes evidence by computation.
+- Every constraint requires auditable coupling to `x`.
+- Never choose `x` before constraint generation.
+- `G=∅` → **CHẾT**; `G≠∅` → **KÌM TIẾP**.
+- Robustness ≠ independent evidence.
+- No double-counting of sample/observable/systematic/processing/model dependency.
+- Missing lineage → `NO SIGN / QUARANTINE`.
+- Half-width ≠ `1σ` without statistical derivation.
+- Constraint must falsify part of the domain.
+- Consensus/authority/citation/standard has no automatic evidentiary authority.
+- Generated artifacts cannot create Canon.
+- Missing creator binding / AXControl traceability → `INVALID_ARTIFACT`.
+- No target-friendly domain selection.
+- Domain discovery is not restricted to astronomy.
+- Simulation/computation is not physical evidence without measurement anchoring.
 
 Canonical evidence pipeline:
 
 `REALITY → OBSERVABLE → MEASUREMENT+PROVENANCE → VALIDATED RELATION → MATH → COMPUTATION → BOUND → Gi → INTERSECTION`
 
-Canonical artifact pipeline:
-
-`CANON → COG → Projection(Π) → Artifact`
-
 ---
 
-## 3. CANONICAL LINEAGE ĐÃ KHÓA
+## 2. LOCKED LINEAGE — STEPS ALREADY COMPLETED
 
-### Bước 1 — Iron-law protocol
-Evidence-first protocol đã khóa.
+### Step 1 — Iron-law protocol
+Evidence-first protocol locked.
 
-### Bước 2 — Physical gate
-`G_physical = (0.387, 0.795)`
+### Step 2 — Physical gate
+`G_physical = (0.387,0.795)`.
 
-Dependency audit của `S_max(x)` và `σ_self(x)` vẫn cần hoàn thiện ở source audit cuối.
+`S_max(x)` and `σ_self(x)` source/dependency audit remains open.
 
-### Bước 3 — TF/local-density gate
-`n_S / n_h ≈ 4.34`  
-`G_density ≈ [0.1515, 0.4167]`
+### Step 3 — TF/local-density gate
+`n_S/n_h ≈ 4.34`.
 
-Đây là gate, không phải nghiệm cuối.
+`G_density ≈ [0.1515,0.4167]`.
 
-### Bước 4 — 903 Cepheids / Gaia DR3 rotation curve
-Full 12 bins, `6 < R < 18 kpc`:
+Gate only; not final `x`.
 
-`G_RC,full = (0.3928, 0.4107)`
+### Step 4 — 903 Cepheids / Gaia DR3 rotation curve
+Full 12 bins, `6<R<18 kpc`:
 
-Execution-record best point: `x ≈ 0.4018`.
+`G_RC,full=(0.3928,0.4107)`.
 
-Chưa được tự động nâng thành source-verified evidence.
+Execution-record best point: `x≈0.4018`.
 
-### Bước 5 — Robustness: loại `10 < R < 16 kpc`
-`G_RC,excl = (0.3870, 0.4167)`
+Not automatically source-verified evidence.
 
-Kết quả sống. Chỉ gọi là robustness đối với test đã thực hiện.
+### Step 5 — Robustness exclusion
+Remove `10<R<16 kpc`:
 
-### Bước 6 — Local `K_z`
-`G_Kz = (0.1548, 0.5573)`
+`G_RC,excl=(0.3870,0.4167)`.
 
-Không thu hẹp `G_RC,full`. `K_z^model` là model relation; không đánh đồng với `K_z^obs`.
+Survivor remains alive. This is robustness for the executed deletion test only.
 
-### Bước 7 — Gaia 3D endpoint check
-Execution record hiện tại không thu hẹp `G_RC,full`. Endpoint comparison chưa phải full-profile likelihood.
+### Step 6 — Local K_z
+`G_Kz=(0.1548,0.5573)` execution record.
 
-### Bước 8 — Double-count audit
-Không coi các constraint liên quan là independent likelihoods khi sample overlap, observable correlation, shared systematics, processing hoặc model dependency chưa được kiểm.
+Does not narrow the current survivor. `K_z^obs` must remain distinct from WC-DM model mapping.
 
-### Bước 9 — Domain Object Ontology
-Đã khóa `P0 / O1 / E3 / I6 / M8 / A9 / C10`, direction objects, independence objects và candidate-domain schema.
+### Step 7 — Gaia 3D endpoint check
+Endpoint execution did not narrow `G_RC,full`.
 
-### Bước 10 — AXControl integration
-Đã port canonical AXControl Codegen Contract vào `LAW-AXCONTROL-CODEGEN-CONTRACT.md`.
+Not yet a full-profile `R,z` likelihood.
 
-Source AXControl: `NguyenCuong1989/axcontrol/CANONICAL_CODEGEN_LAW.md`.
+### Step 8 — Double-count audit
+No related constraints may be treated as independent likelihoods until sample overlap, observable correlation, shared systematic, processing and model dependency are audited.
 
-### Bước 11 — LLM epistemic containment
-Đã khóa hard Law:
+### Step 9 — Domain Object Ontology
+`P0/O1/E3/I6/M8/A9/C10`, direction objects, independence objects and candidate schema locked.
 
-`LLM TRAINING PRIOR != CANONICAL EVIDENCE`  
-`CANONICAL STATE > CONTEXT COMPLETION`  
-`HALT > UNVERIFIED CONTINUATION`  
+### Step 10 — AXControl integration
+`LAW-AXCONTROL-CODEGEN-CONTRACT.md` integrated.
+
+### Step 11 — LLM epistemic containment
+Locked:
+
+`LLM TRAINING PRIOR != CANONICAL EVIDENCE`
+
+`CANONICAL STATE > CONTEXT COMPLETION`
+
+`HALT > UNVERIFIED CONTINUATION`
+
 `QUARANTINE > UNTRACED CLAIM`
 
-LLM được phép **explore**, nhưng không được tự mở rộng evidentiary authority.
+Detailed lineage: `01_canonical_checkpoint.md`.
 
 ---
 
-## 4. DOMAIN DISCOVERY 360° — ROUND 1 ĐÃ THỰC HIỆN
+## 3. DOMAIN DISCOVERY ROUND 1 — COMPLETE
 
-**Round 1 chỉ discovery, chưa admission và chưa intersection.**
+Round 1 found candidates but admitted no new numerical constraint.
 
-### D-01 — Milky Way satellite dynamics
+- Galactic satellite dynamics → `AUDIT / CANDIDATE`.
+- Direct detection/sub-GeV scattering → `QUARANTINE — COUPLING UNLOCKED`.
+- Independent satellite estimators → correlation branch.
+- Gravitational lensing → `CANDIDATE — COUPLING AUDIT REQUIRED`.
+- Atomic/molecular precision → `SEARCH CONTINUES`.
 
-Observable: 6D phase-space satellite measurements.  
-Potential coupling: `phase space → gravitational potential / enclosed mass → WC-DM M(<r;x) → C(x)`.
+Detailed record: `06_domain_discovery_round1.md`.
 
-Status: **`AUDIT / CANDIDATE`**.
+---
 
-Điểm nghẽn: WC-DM 2.1 chưa có coupling source-locked từ observable tới `x`.
+## 4. DOMAIN DISCOVERY ROUND 2 — COMPLETE
 
-### D-02 — Direct dark-matter detection / sub-GeV scattering
+Round 2 performed source discovery and coupling audit. **No new numerical Gi admitted.**
 
-Observable: low-energy recoil/event spectrum.  
-Potential coupling: `event spectrum → scattering-rate limit → σ(parameter) → WC-DM σ(x,m)`.
+### D-09 — Direct detection
+
+Empirical source: SENSEI SNOLAB, arXiv:2312.13342.
+
+Observed low-energy electron/nuclear event data and published sub-GeV DM limits exist.
+
+Gate:
+
+`event spectrum → σ_limit → σ_WC-DM(x,m)`
+
+The final WC-DM relation is not source-locked in the current codebase.
 
 Status: **`QUARANTINE — COUPLING UNLOCKED`**.
 
-Exact WC-DM scattering relation chưa source-lock.
+Direction: `NONE`.
 
-### D-03 — Independent satellite estimators
+Intersection: **FORBIDDEN**.
 
-Giữ như correlation-audit branch, **không phải independent domain mới**.
+### D-10 — Atomic / molecular / precision metrology
 
-Status: **`CORRELATION AUDIT REQUIRED`**.
+Empirical sources include optical-clock/cavity comparisons, space-time-separated atomic clocks/cavities, atomic-transition spectroscopy and 229Th nuclear-line spectroscopy.
 
-### D-04 — Gravitational lensing
+These experiments constrain specific SM couplings of ultralight DM, not the WC-DM `x` object directly.
 
-Observable: strong/weak lensing mass observables.
+Required chain:
+
+`x → WC-DM portal/operator → SM coupling → measured frequency shift`
+
+Not source-locked.
+
+Status: **`QUARANTINE — COUPLING UNLOCKED`**.
+
+Direction: `NONE`.
+
+Intersection: **FORBIDDEN**.
+
+### D-06 — Gravitational lensing
+
+Empirical lensing observables exist. Published SIDM/SFDM analyses produce model-specific bounds, but their parameter mapping cannot be renamed `x`.
 
 Status: **`CANDIDATE — COUPLING AUDIT REQUIRED`**.
 
-Published warm-DM particle limits không được dùng làm WC-DM constraint nếu mapping chưa khóa.
+Direction: `NONE`.
 
-### D-05 — Atomic / molecular precision
+Intersection: **FORBIDDEN**.
 
-Observable: transition frequencies, spectroscopy, clocks, precision shifts.
+### D-01/D-07 — Gaia escape velocity / satellite-halo dynamics
 
-Status: **`SEARCH CONTINUES`**.
+Roche et al., Gaia DR3, arXiv:2402.00108 provides an independent observable channel: 6D stellar kinematics and an escape-velocity profile over roughly `4–11 kpc`.
 
-Chỉ admissible khi tồn tại coupling cụ thể: `observable → measurement → validated coupling → C(x)`.
+Potential chain:
 
-### Round-1 negative result
+`6D phase space → v_esc(r) → Φ(r) / M(<r) → WC-DM M(<r;x) → C(x)`
 
-**Chưa có constraint số mới được phép intersect với `G_current`.**
+The final WC-DM mass-profile coupling is not source-locked.
 
-Đây là kết quả hợp lệ. Canonical state không đổi:
+Status: **`AUDIT / CANDIDATE`**.
 
-`G_full = (0.3928,0.4107)`  
-`G_cons = (0.3870,0.4167)`  
+Direction: `NONE` pending coupling.
+
+Independence: not assumed; Gaia/systematic/tracer/potential correlations require audit.
+
+Intersection: **FORBIDDEN pending coupling + covariance audit**.
+
+Detailed Round-2 record: `08_domain_discovery_round2.md`.
+
+---
+
+## 5. ROUND-2 VERDICT
+
+No new empirical numerical constraint has passed the full admission gate.
+
+This is a valid negative result.
+
+Canonical state remains:
+
+`G_full=(0.3928,0.4107)`
+
+`G_cons=(0.3870,0.4167)`
+
 `SURVIVE — g_dark NOT CONCLUDED`
 
-Chi tiết discovery: `06_domain_discovery_round1.md`.
+No domain was discarded wholesale. Empirical components remain classified separately from model mappings and assumptions.
 
 ---
 
-## 5. DOMAIN SEARCH — PHẠM VI TOÀN HỆ THỐNG
+## 6. CURRENT 360° DOMAIN MAP
 
-Không giả định `g_dark` chỉ có quyền xuất hiện trong thiên văn.
+| Domain | Observable | Current status | Boundary | Can intersect? |
+|---|---|---|---|---|
+| RC / Cepheids | `V_c(R)` | AUDIT | `(0.3928,0.4107)` execution record | existing |
+| RC robustness | `V_c(R)` subset | ROBUSTNESS | `(0.3870,0.4167)` | no; not independent |
+| K_z | `K_z(R,z)` | AUDIT | `(0.1548,0.5573)` execution record | not yet source-audited |
+| Gaia 3D | `v_phi`, gradients | AUDIT | none yet | no new bound |
+| Direct detection | recoil/electron events | QUARANTINE | none | no |
+| Atomic/precision | transition/frequency data | QUARANTINE | none | no |
+| Lensing | shear/convergence/mass | CANDIDATE | none | no |
+| Escape velocity | `v_esc(r)` | AUDIT/CANDIDATE | none | no |
+| Satellite dynamics | 6D phase space | AUDIT/CANDIDATE | none | no |
+| Cluster dynamics | dispersion/lensing/X-ray/SZ | CANDIDATE | none | no |
+| Lab/solar-system gravity | precision gravity observables | CANDIDATE | none | no |
+| Transients/timing | timing/kinematics | CANDIDATE | none | no |
+| Cosmological observables | individually auditable observables | CANDIDATE | none | no |
 
-Candidate domains:
-
-1. Galactic dynamics.
-2. Independent stellar tracers.
-3. Gravitational lensing.
-4. Galactic halo / satellite structure.
-5. Cluster dynamics + lensing/X-ray/SZ.
-6. Particle experiments.
-7. Atomic / molecular precision measurements.
-8. Quantum / condensed matter, **chỉ khi coupling vật lý cụ thể tồn tại**.
-9. Solar-system / laboratory gravity.
-10. Astrophysical transients / timing.
-11. Precision time-domain measurements.
-12. Cosmological observables, chỉ sau khi observable/relation có thể audit mà không biến toàn bộ cosmological theory thành evidence.
-
-### Search law
-
-Không tìm `domain ủng hộ x ≈ 0.4`.
-
-Phải tìm:
-
-`observable thực chứng nào có coupling vật lý auditable tới x và có khả năng tạo LOWER / UPPER / INTERIOR constraint?`
-
-**Tìm domain trước. Tính sau.**
-
----
-
-## 6. CANDIDATE DOMAIN GATE — 8 CÂU BẮT BUỘC
-
-1. Observable là gì?
-2. Ai đo?
-3. Raw measurement ở đâu?
-4. Uncertainty/systematic là gì?
-5. Relation từ observable tới `x` là gì?
-6. Relation là empirical hay model?
-7. Constraint loại được khoảng nào của `x`?
-8. Independence với evidence hiện tại ở mức nào?
-
-Failure state:
-
-- Không có coupling → `DOMAIN REJECT`.
-- Không có raw/provenance → `QUARANTINE`.
-- Không loại được miền nào → `NON-INFORMATIVE`.
-- Independence chưa rõ → `DO NOT COMBINE`.
-
-Candidate schema:
-
-`D_j = (O_j, M_j, P_j, R_j, C_j, G_j, Δ_j)`
-
----
-
-## 7. 360° BOUNDARY OBJECTIVE
-
-Mục tiêu không phải tăng số domain mà là:
+Objective:
 
 `maximize independent boundary information`
 
-Admissible directions:
+Directions:
 
-- `LOWER`: `x > a`
-- `UPPER`: `x < b`
-- `INTERIOR`: `a < x < b`
-- `EXTERIOR EXCLUSION`: `x < a OR x > b`
+`LOWER: x>a`
 
-Robustness branch **không bao giờ** được tính là independent domain mới.
+`UPPER: x<b`
 
----
+`INTERIOR: a<x<b`
 
-## 8. ADMISSION PIPELINE — CHỈ KHI COUPLING PASS
-
-Với domain admissible:
-
-1. Khóa raw data/source.
-2. Khóa unit + uncertainty + systematic.
-3. Khóa relation và provenance của relation.
-4. Phân loại `empirical / inferred / model / assumption`.
-5. Chạy computation độc lập.
-6. Falsification test.
-7. Xác định `G_i`.
-8. Audit sample/systematic/model correlation.
-9. Chỉ sau đó: `G_next = G_current ∩ G_i`.
-
-Nếu `G_next = ∅`: **CHẾT — không cứu nghiệm.**
-
-Nếu `G_next != ∅`: **SURVIVE — tìm kìm tiếp.**
+`EXTERIOR_EXCLUSION: x<a OR x>b`
 
 ---
 
-## 9. SOURCE-AUDIT BACKLOG — KẾT QUẢ CŨ
+## 7. SOURCE-AUDIT BACKLOG
 
-- Verify raw 903-Cepheid table/bin values.
-- Verify source equations và exact extraction.
-- Verify `q(x)` provenance/model status.
-- Verify baryonic baseline construction.
-- Verify `K_z` normalization, sign, units và source definition.
-- Verify Gaia-3D source, gradient definition và full `R,z` relation.
-- Quantify covariance / sample overlap.
-- Audit `S_max(x)` và `σ_self(x)` dependencies.
-- Không nâng execution record thành evidence chỉ vì code chạy ổn định.
-
----
-
-## 10. NEXT TODO — THỨ TỰ THỰC THI
-
-### TODO-01 — Continue domain discovery
-
-Ưu tiên domain thật sự khác observable với RC/Cepheid hiện tại:
-
-1. Particle/direct detection — khóa exact `σ(x,m)` nếu framework có relation.
-2. Atomic/molecular/precision — chỉ candidate có coupling cụ thể.
-3. Gravitational lensing — tìm observable có thể map tới WC-DM structure.
-4. Satellite dynamics — hoàn thiện potential/mass coupling.
-5. Cluster dynamics/lensing — chỉ nếu coupling tới `x` không cần theory injection.
-6. Laboratory / solar-system / precision gravity — tìm direct observable coupling.
-
-### TODO-02 — Mỗi candidate chỉ được tiến một bước
-
-`DISCOVER → SOURCE LOCK → COUPLING AUDIT → ADMISSION GATE`
-
-Không nhảy thẳng sang fit.
-
-### TODO-03 — Khi candidate PASS
-
-Tạo `G_i`, chạy falsification, audit independence, rồi intersect.
-
-### TODO-04 — Khi candidate FAIL
-
-Ghi failure reason vào discovery register. Không thay candidate bằng target-friendly candidate.
-
-### TODO-05 — Sau mỗi bước
-
-Cập nhật **chính file `00_TODO_RESUME.md`** và commit ngay để checkpoint luôn phản ánh trạng thái mới nhất.
+1. Verify raw 903-Cepheid table/bin values.
+2. Verify source equations and exact extraction.
+3. Verify `q(x)` provenance and model status.
+4. Verify baryonic baseline construction.
+5. Verify `K_z` normalization/sign/units/source definition.
+6. Verify Gaia-3D source, gradient definition and full `R,z` relation.
+7. Quantify sample overlap/covariance.
+8. Audit `S_max(x)` and `σ_self(x)` dependencies.
+9. Do not upgrade execution records to evidence merely because code runs.
+10. Lock the WC-DM forward mass-profile relation for `M(<r;x)` / `Φ(r;x)` before admitting escape-velocity/satellite constraints.
+11. Lock any WC-DM forward self-interaction relation `σ_self(x,v,m)` before importing cluster/SIDM observational bounds.
+12. Search for a source-locked WC-DM portal/operator relation before using atomic/particle measurements.
 
 ---
 
-## 11. CẤM TRONG VÒNG TIẾP THEO
+## 8. NEXT EXECUTION ORDER — ROUND 3
 
-- Không chọn `x=0.4` trước.
-- Không search target-friendly evidence.
-- Không dùng consensus/authority/citation làm evidence authority.
-- Không biến model assumption thành measurement.
-- Không biến inference thành observation.
-- Không cộng robustness như evidence mới.
-- Không double-count.
-- Không thay `q(x)` âm thầm.
-- Không gọi interval width là statistical sigma nếu chưa chứng minh.
-- Không mở domain để trang trí.
-- Không numerical squeeze khi coupling/provenance gate chưa pass.
-- Không để LLM training prior/context completion tự điền missing state.
-- Không đọc downstream content trước Law Gate.
-- Không tạo canonical implementation artifact thiếu AXControl header/traceability.
-- Không coi simulation/code-generated environment là empirical evidence nếu thiếu real measurement anchor.
+### TODO-01 — Mass-profile coupling
 
----
+Search the codebase and source record for a canonical WC-DM relation:
 
-## 12. RESUME COMMAND — PHIÊN MỚI
+`x → M(<r;x)` or `x → Φ(r;x)`.
 
-**Mở file này trước.** Sau đó chỉ đọc các file canonical cần thiết:
+If absent: record **COUPLING GAP**. Do not invent it.
 
-- `01_canonical_checkpoint.md`
-- `02_domain_object_ontology.md`
-- `03_evidence_gate_and_rules.md`
-- `04_domain_search_matrix.md`
-- `LAW-LLM-EPISTEMIC-CONTAINMENT.md`
-- `LAW-AXCONTROL-CODEGEN-CONTRACT.md`
-- `05_execution_record.md`
-- `06_domain_discovery_round1.md`
-- `07_domain_candidate_register.md`
-- `MANIFEST.md`
+### TODO-02 — Gaia escape velocity / satellite dynamics
 
-Sau Law Gate, state bắt buộc:
+If coupling passes:
 
-`G_current = (0.3928,0.4107)`  
-`G_cons = (0.3870,0.4167)`  
-`SURVIVE / NOT CONCLUDED`
+`raw observable → provenance → relation → C(x) → falsification → independence → Gi`.
 
-Việc đầu tiên: **DOMAIN DISCOVERY 360°**. Không bắt đầu bằng `x≈0.4`.
+If `Gi` is non-empty, intersect.
+
+### TODO-03 — Self-interaction coupling
+
+Search for exact WC-DM:
+
+`σ_self(x,v,m)`.
+
+If locked, re-open cluster/SIDM observational domain using the actual measured limits, not imported model conclusions.
+
+### TODO-04 — Particle / atomic portal
+
+Search for exact WC-DM relation from `x` to an observable SM interaction. Without this, keep particle and atomic domains quarantined.
+
+### TODO-05 — Lensing
+
+Proceed only if a WC-DM forward mass/structure relation is source-locked.
+
+### TODO-06 — After every execution unit
+
+Update this file immediately and commit the checkpoint.
 
 ---
 
-## 13. CHECKPOINT INTEGRITY
+## 9. FORBIDDEN TRANSITIONS
 
-Base checkpoint commit: `5d48309fa415cd8e496799fef1b52d3fdd43a1b9`  
-AXControl integration commit: `8cdd9bbd37feb662179447573486cc2209a35d69`  
-Manifest activation commit: `c5ae23ab622ffdaa35e3ecf6a6b754acfa54c167`
-
-This file is the operational continuation layer. It does **not** upgrade creator-supplied execution results into independently verified evidence.
+- `x=0.4 → fit → claim`.
+- Published generic DM bound → rename as `g_dark` bound.
+- Theory consensus → evidence.
+- Model prediction → measurement.
+- Inference → observation.
+- Robustness → independent evidence.
+- Shared dataset → independent likelihood.
+- Missing coupling → invented coupling.
+- Empty intersection → rescue by changing data/model silently.
+- LLM prior → canonical fact.
 
 ---
 
-## 14. CURRENT CHECKPOINT — ONE-LINE STATE
+## 10. RESUME COMMAND
 
-`APΩ / WC-DM 2.1 | LAW GATE ACTIVE | G_full=(0.3928,0.4107) | G_cons=(0.3870,0.4167) | SURVIVE | NOT CONCLUDED | ROUND-1: NO NEW ADMISSIBLE CONSTRAINT | NEXT: DOMAIN DISCOVERY 360°`
+On a new session, load **this file first**.
+
+Then:
+
+`LAW GATE → VERIFY CANONICAL STATE → READ REFERENCED RECORD → EXECUTE ONLY NEXT TODO → SAVE → COMMIT → UPDATE THIS FILE`.
+
+Current resume point:
+
+`ROUND 3 / TODO-01 — LOCK WC-DM MASS-PROFILE COUPLING`
+
+Canonical state remains:
+
+`G_full=(0.3928,0.4107)`
+
+`G_cons=(0.3870,0.4167)`
+
+`SURVIVE — g_dark NOT CONCLUDED`.
