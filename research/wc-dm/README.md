@@ -4,9 +4,11 @@
 
 Production flow starts at [`00_TODO_RESUME.md`](00_TODO_RESUME.md). The canonical chain is enforced there and in [`MANIFEST.md`](MANIFEST.md).
 
-## Flow
+## Canonical document flow
 
-`00_TODO_RESUME` → `LAW-DRIFT-PREVENTION` → `MANIFEST` → `01_CHECKPOINT` → `02_ONTOLOGY` → `03_EVIDENCE` → `ROOT-CAUSE LAW` → `04_DISCOVERY` → `ACTIVE GAP` → `05_EXECUTION` → `CHECKPOINT` → `RESUME`.
+`00_TODO_RESUME` → `LAW-DRIFT-PREVENTION` → `MANIFEST` → `01_CHECKPOINT` → `02_ONTOLOGY` → `03_EVIDENCE` → `LAW-LLM-CONTAINMENT` → `LAW-AXCONTROL` → `ROOT-CAUSE LAW` → `04_DISCOVERY` → `ACTIVE GAP` → `05_EXECUTION` → `CHECKPOINT` → `RESUME`.
+
+Historical discovery branches remain linked but cannot override the active path.
 
 If a mandatory law/state is unavailable, ambiguous, contradictory, or unknown: **HALT**.
 
@@ -30,7 +32,7 @@ Every physical inference follows:
 
 Every execution follows:
 
-`GAP → REQUIRED OBJECT → SOURCE → PROVENANCE → COUPLING → ADMISSION → COMPUTATION → FALSIFICATION → DEPENDENCY → INTERSECTION → VERIFY → SAVE → COMMIT`
+`GAP → REQUIRED OBJECT → SOURCE → PROVENANCE → COUPLING → ADMISSION → COMPUTATION → FALSIFICATION → DEPENDENCY → INTERSECTION → VERIFY → SAVE → COMMIT → RESUME`
 
 Hard invariants:
 
@@ -42,14 +44,19 @@ Hard invariants:
 ## Document roles
 
 - [`00_TODO_RESUME.md`](00_TODO_RESUME.md) — resume authority.
+- [`LAW-DRIFT-PREVENTION.md`](LAW-DRIFT-PREVENTION.md) — first anti-drift gate.
 - [`MANIFEST.md`](MANIFEST.md) — authority/document graph.
 - [`01_canonical_checkpoint.md`](01_canonical_checkpoint.md) — canonical state and lineage.
 - [`02_domain_object_ontology.md`](02_domain_object_ontology.md) — object typing.
 - [`03_evidence_gate_and_rules.md`](03_evidence_gate_and_rules.md) — evidence admission.
-- [`LAW_UNIVERSAL_ROOT_CAUSE_INFERENCE.md`](LAW_UNIVERSAL_ROOT_CAUSE_INFERENCE.md) — inference pipeline.
+- [`LAW-LLM-EPISTEMIC-CONTAINMENT.md`](LAW-LLM-EPISTEMIC-CONTAINMENT.md) — LLM epistemic containment.
+- [`LAW-AXCONTROL-CODEGEN-CONTRACT.md`](LAW-AXCONTROL-CODEGEN-CONTRACT.md) — artifact projection integrity.
+- [`LAW_UNIVERSAL_ROOT_CAUSE_INFERENCE.md`](LAW_UNIVERSAL_ROOT_CAUSE_INFERENCE.md) — root-cause inference pipeline.
 - [`04_domain_search_matrix.md`](04_domain_search_matrix.md) — discovery only.
-- `10_G6_external_source_coupling_audit.md` — G6 audit; G3 is now first open gap.
+- [`07_domain_candidate_register.md`](07_domain_candidate_register.md) — candidate subgraph.
+- [`10_G6_external_source_coupling_audit.md`](10_G6_external_source_coupling_audit.md) — closed G6 audit.
+- [`05_execution_record.md`](05_execution_record.md) — execution/evidence boundary.
 
-Historical records (`06_*`, `08_*`) are lineage only. Superseded records cannot override current state.
+Historical records: [`06_domain_discovery_round1.md`](06_domain_discovery_round1.md) → [`08_domain_discovery_round2.md`](08_domain_discovery_round2.md). They preserve lineage and cannot override current state.
 
 **Next:** follow [`00_TODO_RESUME.md`](00_TODO_RESUME.md), not chat context.
