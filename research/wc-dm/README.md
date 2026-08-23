@@ -1,82 +1,89 @@
-# WC-DM 2.1 — Evidence-First Boundary-Squeezing Research Record
+# WC-DM 2.1 — Production Research Record
 
-Creator: alpha_prime_omega — Nguyễn Đức Cường  
-System: APΩ / WC-DM Evidence-First Boundary-Squeezing Protocol  
-Checkpoint date: 2026-08-24  
-Status: **SURVIVE — `g_dark` is not yet an admissible reported value.**
+**System:** APΩ / WC-DM Evidence-First Boundary-Squeezing Protocol  
+**Status:** `SURVIVE — g_dark NOT CONCLUDED`  
+**Canonical unknown:** `x = g_dark / g_crit`  
+**Current survivor:** `G_full=(0.3928,0.4107)`; `G_cons=(0.3870,0.4167)`
 
-## 0. ENTRY GATE — READ THIS FIRST
+## 0. Production entrypoint
 
-The operational entry point is:
+For a new session, read exactly in this order:
 
-`00_TODO_RESUME.md`
+`00_TODO_RESUME.md → LAW-DRIFT-PREVENTION.md → MANIFEST.md → FIRST OPEN GAP`
 
-Required sequence:
+If any mandatory law/state is unavailable, ambiguous, contradictory, or unknown: `HALT`.
 
-`RULE LOAD → RULE STATE VERIFY → GATE PASS → CONTENT READ → EXECUTION`
+`00_TODO_RESUME.md` is the operational resume authority. `MANIFEST.md` is the integrity and authority map. Historical records are lineage, not current state authority.
 
-No downstream research content may be read or acted upon before the rule state is loaded and verified. A failed or missing gate means **HALT**.
+## 1. Canonical laws
 
-This is a hard reading-control rule, not a recommendation.
+1. `03_evidence_gate_and_rules.md` — empirical/evidence admissibility.
+2. `LAW-LLM-EPISTEMIC-CONTAINMENT.md` — LLM epistemic containment.
+3. `LAW-AXCONTROL-CODEGEN-CONTRACT.md` — artifact/projection integrity.
+4. `LAW_UNIVERSAL_ROOT_CAUSE_INFERENCE.md` — root-cause, gap-first, coupling, falsification, dependency.
+5. `LAW-DRIFT-PREVENTION.md` — hard anti-drift transition and resume control.
 
-## 1. Purpose
+No lower layer may weaken a higher evidentiary or anti-drift law. These laws govern research procedure; they are not physical evidence.
 
-Persistent research record for the WC-DM 2.1 `g_dark` investigation. The directory separates empirical evidence, inference, model mappings, assumptions, constraints, robustness tests, execution records, and candidate future domains.
+## 2. Research ontology
 
-## 2. Current canonical state
+Every object remains explicitly typed:
 
-- Normalized unknown: `x = g_dark / g_crit`.
-- Full rotation-curve survivor: `(0.3928, 0.4107) x`.
-- Conservative survivor after excluding `10 < R < 16 kpc`: `(0.3870, 0.4167) x`.
-- State: `SURVIVE / NOT CONCLUDED`.
-- Fixed values `x=0.4`, `0.4018`, `0.4019` are forbidden as input targets.
+`E | I | M | A | C | G | D`
 
-## 3. File hierarchy / authority
+Core order:
 
-### A. Operational control
+`REALITY → OBSERVABLE → MEASUREMENT → PROVENANCE → VALIDATED RELATION → INFERENCE → COUPLING → CONSTRAINT → G → INTERSECTION`
 
-- `00_TODO_RESUME.md` — **single resume file**; current state, mandatory next actions, gates, and forbidden transitions.
-- `MANIFEST.md` — integrity/state manifest and continuation rules.
+Forbidden promotions include theory/model/code/computation/LLM prior → evidence and target → input.
 
-### B. Canonical reasoning framework
+## 3. Current physical state
 
-- `01_canonical_checkpoint.md` — numbered research lineage and canonical survivor state.
-- `02_domain_object_ontology.md` — formal ontology and proposition IDs.
-- `03_evidence_gate_and_rules.md` — admissibility, provenance, uncertainty, falsification, independence, anti-double-count, and hard reading rules.
-- `04_domain_search_matrix.md` — 360° candidate-domain discovery framework.
+- `x=0.4`, `0.4018`, `0.4019` are forbidden target inputs.
+- `G_full=(0.3928,0.4107)` remains the strongest recorded survivor.
+- `G_cons=(0.3870,0.4167)` remains the conservative survivor.
+- `g_dark` has **not** been identified or concluded.
+- No newly discovered domain has been admitted as a numerical constraint after the coupling gate.
 
-### C. Execution / discovery records
+## 4. Execution law
 
-- `05_execution_record.md` — creator-supplied execution results, separated from source verification.
-- `06_domain_discovery_round1.md` — first domain-discovery record.
-- `07_domain_candidate_register.md` — normalized register for all future candidate domains.
+Every action must be justified by one open gap and follow:
 
-## 4. Authority separation
+`GAP → REQUIRED OBJECT → SOURCE → PROVENANCE → COUPLING → ADMISSION → COMPUTATION → FALSIFICATION → DEPENDENCY → INTERSECTION → VERIFY → SAVE → COMMIT`
 
-The repository preserves three distinct states:
+Hard invariants:
 
-1. **SOURCE-VERIFIED** — directly traceable to auditable external measurement/source material.
-2. **CREATOR-EXECUTION** — computation/execution supplied by the creator but not yet independently source-audited.
-3. **MODEL/ASSUMPTION** — mapping or assumption requiring explicit dependency labeling.
+`NO_NEW_GAP → NO_NEW_BRANCH`  
+`NO_NEW_EVIDENCE → NO_NEW_CONSTRAINT`  
+`NO_NEW_VALIDATED_RELATION → NO_NEW_COMPUTATION`  
+`UNKNOWN → HALT`  
+`¬CouplingValidated → ¬Computation → ¬Constraint`
 
-Repository presence never upgrades a lower state into a higher state.
+## 5. Current resume point
 
-## 5. Canonical rule
+**FIRST OPEN GAP: G3 — full `K_z(R,z)` source / relation / provenance / coupling audit.**
 
-**Empiricism is the foundation.** Theory, computation, consensus, authority, citation, standard, or fit quality do not acquire evidentiary authority merely by acceptance or mathematical convenience.
+G6 is classified as an unresolved WC-DM coupling/model-identification gap and must not be reopened without genuinely new source evidence addressing the missing coupling.
 
-`Theory ≠ Evidence`  
-`Computation ≠ Evidence`  
-`Model prediction ≠ Measurement`
+G3 must be read-only first. Endpoint-only information is insufficient for a full-profile constraint. No physical computation is permitted until the G3 coupling gate passes.
 
-## 6. Next operation
+## 6. Canonical research records
 
-After the entry gate passes, the next research operation is **DOMAIN DISCOVERY 360°**:
+- `01_canonical_checkpoint.md` — lineage and locked physical state.
+- `02_domain_object_ontology.md` — formal object ontology.
+- `04_domain_search_matrix.md` — 360° discovery matrix.
+- `05_execution_record.md` — creator execution records, separated from source verification.
+- `06_domain_discovery_round1.md` — historical discovery.
+- `07_domain_candidate_register.md` — candidate register.
+- `08_domain_discovery_round2.md` — historical discovery.
+- `10_G6_external_source_coupling_audit.md` — authoritative G6 external coupling audit.
 
-`candidate domain → observable → provenance → coupling → constraint → falsification → independence → intersection`
+Historical records do not override current canonical state.
 
-Search for domains with real observables capable of producing **LOWER / UPPER / INTERIOR** constraints. Do not search for evidence that merely supports `x≈0.4`.
+## 7. Production integrity
 
-## 7. Provenance status
+`SPECIFIED ≠ IMPLEMENTED ≠ VERIFIED ≠ CLOSED`
 
-Current execution results remain explicitly labeled as creator-supplied execution records unless a source audit promotes them. Raw tables, source equations, covariance, sample overlap, and preprocessing remain audit targets.
+A gap is closed only when its required source/object/coupling/audit artifact exists and closure is recorded in the canonical checkpoint and resume state.
+
+Every completed action must update the relevant audit record and resume state, then commit to Git. Conversation state alone is never canonical.
