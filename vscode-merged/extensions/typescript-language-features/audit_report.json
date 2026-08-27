@@ -1,0 +1,52 @@
+{
+  "auditReportVersion": 2,
+  "vulnerabilities": {
+    "@nevware21/ts-utils": {
+      "name": "@nevware21/ts-utils",
+      "severity": "high",
+      "isDirect": false,
+      "via": [
+        {
+          "source": 1119462,
+          "name": "@nevware21/ts-utils",
+          "dependency": "@nevware21/ts-utils",
+          "title": "@nevware21/ts-utils: Prototype Pollution in objDeepCopy/objCopyProps via for...in without hasOwnProperty",
+          "url": "https://github.com/advisories/GHSA-x7j8-49r8-mr43",
+          "severity": "high",
+          "cwe": [
+            "CWE-1321"
+          ],
+          "cvss": {
+            "score": 0,
+            "vectorString": null
+          },
+          "range": "<=0.13.0"
+        }
+      ],
+      "effects": [],
+      "range": "<=0.13.0",
+      "nodes": [
+        "node_modules/@nevware21/ts-utils"
+      ],
+      "fixAvailable": true
+    }
+  },
+  "metadata": {
+    "vulnerabilities": {
+      "info": 0,
+      "low": 0,
+      "moderate": 0,
+      "high": 1,
+      "critical": 0,
+      "total": 1
+    },
+    "dependencies": {
+      "prod": 23,
+      "dev": 3,
+      "optional": 0,
+      "peer": 0,
+      "peerOptional": 0,
+      "total": 25
+    }
+  }
+}
