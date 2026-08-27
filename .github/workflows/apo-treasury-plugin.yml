@@ -1,0 +1,27 @@
+name: APΩ Treasury Plugin
+
+on:
+  push:
+    branches:
+      - feat/apo-treasury-plugin-runtime
+  pull_request:
+    paths:
+      - 'apps/apo-treasury-plugin/**'
+      - 'docs/APO_TREASURY_PLUGIN_**'
+      - '.github/workflows/apo-treasury-plugin.yml'
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: apps/apo-treasury-plugin
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm install
+      - run: npm run typecheck
+      - run: npm test
+      - run: npm run build
