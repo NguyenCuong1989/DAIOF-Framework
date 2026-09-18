@@ -18,6 +18,41 @@
       "type": "CROSS_REPOSITORY_RELATION",
       "status": "UNKNOWN",
       "rule": "promote only from explicit file/reference/commit evidence"
+    },
+    {
+      "from": "github:NguyenCuong1989/andy",
+      "to": "github:NguyenCuong1989/DAIOF-Framework",
+      "type": "CONTENT_MATCH",
+      "evidence": "GitHub code search query DAIOF-Framework returned vendored DAIOF-Framework paths inside andy",
+      "status": "OBSERVED"
+    },
+    {
+      "from": "github:NguyenCuong1989/hyperai1989",
+      "to": "github:NguyenCuong1989/dr_protocol_workspace",
+      "type": "CONTENT_MATCH",
+      "evidence": "GitHub code search query alpha_prime_omega returned matching source artifacts in both repositories",
+      "status": "OBSERVED"
+    },
+    {
+      "from": "github:NguyenCuong1989/dr_protocol_workspace",
+      "to": "github:NguyenCuong1989/DAIOF-Framewor",
+      "type": "CONTENT_MATCH",
+      "evidence": "GitHub code search query alpha_prime_omega returned matching artifacts in both repositories",
+      "status": "OBSERVED"
+    },
+    {
+      "from": "github:NguyenCuong1989/trust_of_copilot-c8aae4ab",
+      "to": "github:NguyenCuong1989/DAIOF-Framewor",
+      "type": "CONTENT_MATCH",
+      "evidence": "GitHub code search query alpha_prime_omega returned matching artifacts in both repositories",
+      "status": "OBSERVED"
+    },
+    {
+      "from": "github:NguyenCuong1989/axcontrol",
+      "to": "github:NguyenCuong1989/my_too_test",
+      "type": "CROSS_REFERENCE_SEARCH_HIT",
+      "evidence": "GitHub code search for axcontrol returned canon artifacts in my_too_test",
+      "status": "OBSERVED"
     }
   ],
   "nodes": [
@@ -813,5 +848,6 @@
       "semantic_role": "UNCLASSIFIED",
       "relation_evidence": "repository ownership metadata only"
     }
-  ]
+  ],
+  "edge_count": 7
 }
