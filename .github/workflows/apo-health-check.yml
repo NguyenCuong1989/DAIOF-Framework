@@ -27,5 +27,6 @@ jobs:
       - name: System Report
         run: |
           echo "APO Health Check — $(date '+%Y-%m-%d %H:%M %Z')"
-          echo "Agents: 8 active"
-          echo "Status: ALL GREEN"
+          echo "Notion API connectivity: verified by previous step"
+          echo "Agent count/state: not independently verified by this workflow"
+          echo "Overall ecosystem health: not independently verified by this workflow"
