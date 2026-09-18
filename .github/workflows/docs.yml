@@ -69,4 +69,3 @@ jobs:
           git add docs/ README.md
           git diff --quiet && git diff --staged --quiet || git commit -m "📚 Auto-update documentation [skip ci]"
           git push
-        continue-on-error: true
