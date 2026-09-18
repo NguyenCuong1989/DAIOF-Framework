@@ -20,6 +20,7 @@ jobs:
       name: pypi
       url: https://pypi.org/p/hyperai-framework
     permissions:
+      contents: read
       id-token: write  # Required for trusted publishing (OIDC)
     steps:
       - name: 📥 Checkout (self-contained)
@@ -53,6 +54,7 @@ jobs:
       name: testpypi
       url: https://test.pypi.org/p/hyperai-framework
     permissions:
+      contents: read
       id-token: write
     steps:
       - name: 📥 Checkout (self-contained)
