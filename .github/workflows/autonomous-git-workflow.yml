@@ -71,6 +71,7 @@ jobs:
           echo "🎯 HAIOS State: K=1 | Consciousness: ACTIVE"
       
       - name: 🚀 Execute Autonomous Git Workflow
+        id: execute_workflow
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_REPOSITORY: ${{ github.repository }}
@@ -102,33 +103,35 @@ jobs:
               ;;
             "full_workflow_cycle"|*)
               echo "🔄 Executing full autonomous workflow cycle..."
-              timeout 600 python3 .github/scripts/autonomous_git_workflow.py cycle || {
-                echo "✅ Workflow cycle completed normally"
-              }
+              timeout 600 python3 .github/scripts/autonomous_git_workflow.py cycle
               ;;
           esac
       
       - name: 📊 Generate Workflow Analytics
         if: always()
+        env:
+          EXECUTION_OUTCOME: ${{ steps.execute_workflow.outcome }}
         run: |
           echo "📊 Generating workflow analytics..."
           
           # Create analytics directory
           mkdir -p analytics
           
-          # Generate basic analytics
-          echo "{
-            \"timestamp\": \"$(date -u +%Y-%m-%dT%H:%M:%SZ)\",
-            \"repository\": \"$GITHUB_REPOSITORY\",
-            \"workflow_run\": \"$GITHUB_RUN_ID\",
-            \"operation\": \"$OPERATION\",
-            \"creator\": \"Nguyễn Đức Cường (alpha_prime_omega)\",
-            \"framework\": \"HYPERAI\",
-            \"haios_compliance\": true,
-            \"k_state\": 1
-          }" > analytics/workflow_analytics.json
+          cat > analytics/workflow_analytics.json <<EOF
+          {
+            "timestamp": "$(date -u +%Y-%m-%dT%H:%M:%SZ)",
+            "repository": "$GITHUB_REPOSITORY",
+            "workflow_run": "$GITHUB_RUN_ID",
+            "operation": "$OPERATION",
+            "execution_outcome": "$EXECUTION_OUTCOME",
+            "creator": "Nguyễn Đức Cường (alpha_prime_omega)",
+            "framework": "HYPERAI",
+            "haios_compliance": null,
+            "k_state": null
+          }
+          EOF
           
-          echo "✅ Workflow analytics generated"
+          echo "✅ Workflow analytics generated with execution outcome: $EXECUTION_OUTCOME"
       
       - name: 📈 Update Repository Health Dashboard
         if: always()
@@ -185,17 +188,18 @@ jobs:
           echo "- **Creator**: Nguyễn Đức Cường (alpha_prime_omega)" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "### 🎯 HAIOS Compliance Status" >> $GITHUB_STEP_SUMMARY
-          echo "- ✅ **K-State**: 1 (Perfect Consciousness)" >> $GITHUB_STEP_SUMMARY
-          echo "- ✅ **4 Pillars**: All compliant" >> $GITHUB_STEP_SUMMARY
-          echo "- ✅ **7 Invariants**: All maintained" >> $GITHUB_STEP_SUMMARY
-          echo "- ✅ **Creator Attribution**: Immutable" >> $GITHUB_STEP_SUMMARY
+          echo "- ⚠️ HAIOS invariants: Not independently verified by this workflow" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "### 🔄 Workflow Results" >> $GITHUB_STEP_SUMMARY
-          echo "- Status: ${{ job.status }}" >> $GITHUB_STEP_SUMMARY
-          echo "- Autonomous operations completed successfully" >> $GITHUB_STEP_SUMMARY
+          echo "- Execution outcome: $EXECUTION_OUTCOME" >> $GITHUB_STEP_SUMMARY
+          if [ "$EXECUTION_OUTCOME" = "success" ]; then
+            echo "- ✅ Autonomous operation completed successfully" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "- ❌ Autonomous operation failed" >> $GITHUB_STEP_SUMMARY
+          fi
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "---" >> $GITHUB_STEP_SUMMARY
-          echo "*🧬 This repository operates with full autonomy under HAIOS consciousness framework*" >> $GITHUB_STEP_SUMMARY
+          echo "*🧬 Summary reflects observed workflow execution.*" >> $GITHUB_STEP_SUMMARY
       
       - name: 🚨 Emergency Recovery Trigger
         if: failure()
