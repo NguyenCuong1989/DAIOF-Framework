@@ -57,6 +57,7 @@ jobs:
           "
       
       - name: 🤖 Execute Autonomous Development
+        id: execute_development
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           TASK_TYPE: ${{ github.event.inputs.task_type || 'full_autonomous_cycle' }}
@@ -66,10 +67,16 @@ jobs:
       
       - name: 📊 Generate Development Report
         if: always()
+        env:
+          DEVELOPMENT_OUTCOME: ${{ steps.execute_development.outcome }}
         run: |
           echo "📊 Generating organism development report..."
+          echo "- **Observed development outcome**: $DEVELOPMENT_OUTCOME" >> $GITHUB_STEP_SUMMARY
           if [ -f "reports/development_report.md" ]; then
             cat reports/development_report.md >> $GITHUB_STEP_SUMMARY
+          fi
+          if [ "$DEVELOPMENT_OUTCOME" != "success" ]; then
+            echo "- **Development status**: ❌ Failed" >> $GITHUB_STEP_SUMMARY
           fi
       
       - name: 💾 Commit Organism Evolution
@@ -94,4 +101,12 @@ jobs:
         if: always()
         run: |
           echo "🏥 Running post-development health check..."
-          python3 .github/scripts/health_monitor.py || true
+          set +e
+          python3 .github/scripts/health_monitor.py
+          rc=$?
+          set -e
+          if [ "$rc" -eq 0 ]; then
+            echo "✅ Post-development health check completed"
+          else
+            echo "⚠️ Post-development health check failed with exit code $rc"
+          fi
