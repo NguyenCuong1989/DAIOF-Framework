@@ -1,5 +1,8 @@
 name: Build Alpha Omega PDF
 
+permissions:
+  contents: read
+
 on:
   push:
     branches: ['main', 'master', 'stable']
