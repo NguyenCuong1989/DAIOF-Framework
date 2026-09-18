@@ -69,32 +69,43 @@ jobs:
       
       - name: 🔍 Scan for NPM Vulnerabilities
         id: npm_audit
-        continue-on-error: true
         run: |
           echo "🔍 Scanning for npm vulnerabilities..."
-          
-          # Find all package.json files
-          find . -name "package.json" -not -path "*/node_modules/*" | while read pkg; do
+          found=false
+
+          while IFS= read -r pkg; do
+            [ -n "$pkg" ] || continue
             DIR=$(dirname "$pkg")
-            echo "📦 Checking: $DIR"
-            
-            cd "$DIR"
-            
-            # Check if node_modules exists
-            if [ -d "node_modules" ]; then
-              npm audit --json > audit_report.json 2>&1 || true
-              
-              VULNS=$(cat audit_report.json | grep -o '"vulnerabilities"' | wc -l)
-              
-              if [ "$VULNS" -gt 0 ]; then
-                echo "⚠️ Found vulnerabilities in $DIR"
-                echo "npm_vulns_found=true" >> $GITHUB_OUTPUT
-              fi
+            LOCK="$DIR/package-lock.json"
+
+            if [ ! -f "$LOCK" ]; then
+              echo "⚠️ Skipping $DIR: package-lock.json is required for npm audit"
+              continue
             fi
-            
+
+            echo "📦 Checking: $DIR"
+            cd "$DIR"
+
+            audit_rc=0
+            npm audit --json > audit_report.json 2>&1 || audit_rc=$?
+            vuln_count=$(python3 -c 'import json,sys; print(len((json.load(open(sys.argv[1], encoding="utf-8")).get("vulnerabilities") or {})))' audit_report.json)
+
+            if [ "$vuln_count" -gt 0 ]; then
+              echo "⚠️ npm vulnerabilities found: $vuln_count"
+              found=true
+            elif [ "$audit_rc" -ne 0 ]; then
+              echo "::error::npm audit execution failed for $DIR (exit $audit_rc)"
+              cat audit_report.json
+              exit "$audit_rc"
+            else
+              echo "✅ npm audit reports no known vulnerabilities"
+            fi
+
             cd - > /dev/null
-          done
-      
+          done < <(find . -name "package.json" -not -path "*/node_modules/*" | sort)
+
+          echo "npm_vulns_found=$found" >> "$GITHUB_OUTPUT"
+
       - name: 🔧 Auto-fix NPM Vulnerabilities
         if: steps.npm_audit.outputs.npm_vulns_found == 'true'
         run: |
@@ -127,41 +138,80 @@ jobs:
       
       - name: 🔍 Scan for Python Vulnerabilities
         id: python_audit
-        continue-on-error: true
         run: |
-          echo "🔍 Scanning for Python vulnerabilities..."
-          
-          pip install safety pip-audit 2>&1 || true
-          
-          find . -name "requirements.txt" -not -path "*/venv/*" | while read req; do
-            DIR=$(dirname "$req")
-            echo "🐍 Checking: $DIR"
-            
-            # Run safety check
-            safety check -r "$req" --json > safety_report.json 2>&1 || true
-            
-            # Run pip-audit
-            pip-audit -r "$req" --format json > pip_audit_report.json 2>&1 || true
-          done
-      
+          set -e
+          python3 -m pip install --quiet --upgrade pip-audit
+          found=false
+
+          while IFS= read -r req; do
+            [ -n "$req" ] || continue
+            echo "🐍 Checking: $req"
+
+            rc=0
+            pip-audit -r "$req" --format json > "$(dirname "$req")/pip_audit_report.json" 2>&1 || rc=$?
+
+            case "$rc" in
+              0)
+                echo "✅ pip-audit reports no known vulnerabilities"
+                ;;
+              1)
+                echo "⚠️ pip-audit found known vulnerabilities in $req"
+                found=true
+                ;;
+              *)
+                echo "::error::pip-audit execution failed for $req (exit $rc)"
+                cat "$(dirname "$req")/pip_audit_report.json"
+                exit "$rc"
+                ;;
+            esac
+          done < <(find . -name "requirements.txt" -not -path "*/venv/*" | sort)
+
+          echo "python_vulns_found=$found" >> "$GITHUB_OUTPUT"
+
       - name: 🔧 Auto-fix Python Vulnerabilities
         if: steps.python_audit.outputs.python_vulns_found == 'true'
-        continue-on-error: true
+        id: python_fix
         run: |
-          echo "🔧 Applying autonomous Python vulnerability fixes..."
-          
-          find . -name "requirements.txt" -not -path "*/venv/*" | while read req; do
-            DIR=$(dirname "$req")
-            echo "🔧 Fixing: $DIR"
-            
-            cd "$DIR"
-            
-            # Try pip-audit auto-fix
-            pip-audit -r requirements.txt --fix || true
-            
-            cd - > /dev/null
-          done
-      
+          set -e
+          fix_attempted=false
+          fix_verified=true
+
+          while IFS= read -r req; do
+            [ -n "$req" ] || continue
+            echo "🔧 Fixing: $req"
+            fix_attempted=true
+
+            rc=0
+            pip-audit -r "$req" --fix || rc=$?
+
+            case "$rc" in
+              0)
+                ;;
+              1)
+                echo "⚠️ pip-audit completed but vulnerabilities remain after fix attempt"
+                fix_verified=false
+                ;;
+              *)
+                echo "::error::pip-audit --fix failed for $req (exit $rc)"
+                exit "$rc"
+                ;;
+            esac
+
+            verify_rc=0
+            pip-audit -r "$req" --format json > "$(dirname "$req")/pip_audit_verify.json" 2>&1 || verify_rc=$?
+            if [ "$verify_rc" -eq 1 ]; then
+              echo "⚠️ Remaining Python vulnerabilities after fix: $req"
+              fix_verified=false
+            elif [ "$verify_rc" -ne 0 ]; then
+              echo "::error::pip-audit verification failed for $req (exit $verify_rc)"
+              cat "$(dirname "$req")/pip_audit_verify.json"
+              exit "$verify_rc"
+            fi
+          done < <(find . -name "requirements.txt" -not -path "*/venv/*" | sort)
+
+          echo "fix_attempted=$fix_attempted" >> "$GITHUB_OUTPUT"
+          echo "fix_verified=$fix_verified" >> "$GITHUB_OUTPUT"
+
       - name: 🧹 Clean Up Stale Branches
         continue-on-error: true
         run: |
