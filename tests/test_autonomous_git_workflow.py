@@ -163,6 +163,52 @@ class TestAutonomousGitWorkflow(unittest.TestCase):
         # Verify K-State tracking
         self.assertIn('k_state', content)
 
+    def test_governance_evidence_gate_fails_closed(self):
+        """Mutation governance must fail closed when canonical evidence is rejected."""
+        try:
+            from autonomous_git_workflow import AutonomousGitWorkflow
+        except ImportError as e:
+            self.skipTest(f"Cannot import module (missing dependencies): {e}")
+
+        workflow = object.__new__(AutonomousGitWorkflow)
+        workflow.repo_path = Path(__file__).parent.parent
+        workflow.logger = MagicMock()
+
+        rejected = MagicMock(returncode=1, stdout="", stderr="workflow_manifest.json drift detected")
+        with patch("autonomous_git_workflow.subprocess.run", return_value=rejected) as run:
+            self.assertFalse(workflow._check_governance_evidence())
+
+        args = run.call_args.args[0]
+        self.assertEqual(args[-2:], ["governance_gate.py", "validate"])
+
+    def test_haios_compliance_cannot_pass_from_self_scores_alone(self):
+        """Perfect local K-state/pillar values must not authorize mutation by themselves."""
+        try:
+            from autonomous_git_workflow import AutonomousGitWorkflow
+        except ImportError as e:
+            self.skipTest(f"Cannot import module (missing dependencies): {e}")
+
+        workflow = object.__new__(AutonomousGitWorkflow)
+        workflow.k_state = 1
+        workflow.pillars_scores = {
+            "an_toan": 10.0,
+            "duong_dai": 10.0,
+            "tin_vao_so_lieu": 10.0,
+            "han_che_rui_ro": 10.0,
+        }
+        workflow.haios_config = {
+            "pillars": {
+                "an_toan": {"min": 7.0},
+                "duong_dai": {"min": 7.0},
+                "tin_vao_so_lieu": {"min": 7.0},
+                "han_che_rui_ro": {"min": 7.0},
+            }
+        }
+        workflow.logger = MagicMock()
+        workflow._check_governance_evidence = MagicMock(return_value=False)
+
+        self.assertFalse(workflow._check_haios_compliance())
+
     def test_workflow_cycle_structure(self):
         """Test that workflow cycle has proper structure"""
         try:
