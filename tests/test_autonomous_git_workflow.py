@@ -74,6 +74,39 @@ class TestAutonomousGitWorkflow(unittest.TestCase):
         self.assertIn('"state":', result.stdout)
         self.assertIn('"branch":', result.stdout)
 
+    def test_pull_command_dispatches_to_autonomous_pull(self):
+        """Test the CLI pull command reaches the pull operation."""
+        try:
+            from autonomous_git_workflow import main, AutonomousGitWorkflow
+        except ImportError as e:
+            self.skipTest(f"Cannot import module (missing dependencies): {e}")
+
+        with patch("autonomous_git_workflow.AutonomousGitWorkflow") as workflow_cls:
+            workflow = workflow_cls.return_value
+            workflow.autonomous_pull.return_value = True
+            with patch.object(sys, "argv", ["autonomous_git_workflow.py", "pull"]):
+                main()
+
+            workflow.autonomous_pull.assert_called_once()
+            workflow.autonomous_push.assert_not_called()
+
+    def test_push_command_propagates_failure(self):
+        """Test the CLI push command returns failure instead of falling into continuous mode."""
+        try:
+            from autonomous_git_workflow import main
+        except ImportError as e:
+            self.skipTest(f"Cannot import module (missing dependencies): {e}")
+
+        with patch("autonomous_git_workflow.AutonomousGitWorkflow") as workflow_cls:
+            workflow = workflow_cls.return_value
+            workflow.autonomous_push.return_value = False
+            with patch.object(sys, "argv", ["autonomous_git_workflow.py", "push"]):
+                with self.assertRaises(SystemExit) as raised:
+                    main()
+
+            self.assertEqual(raised.exception.code, 1)
+            workflow.autonomous_push.assert_called_once()
+
     def test_uncommitted_changes_detection(self):
         """Test that uncommitted changes are properly detected"""
         # Create a temporary file to simulate uncommitted changes

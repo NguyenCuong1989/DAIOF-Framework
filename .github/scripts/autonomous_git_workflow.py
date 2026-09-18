@@ -1528,12 +1528,25 @@ def main():
     if single_mode:
         args = args[1:]
 
-    if args and args[0] in {'status', 'cycle'}:
+    if args and args[0] in {'status', 'cycle', 'pull', 'push'}:
         workflow = AutonomousGitWorkflow()
-        if args[0] == 'status':
+        command = args[0]
+
+        if command == 'status':
             print(json.dumps(workflow.get_git_status(), indent=2))
-        else:
+            return
+
+        if command == 'cycle':
             print(json.dumps(workflow.execute_workflow_cycle(), indent=2))
+            return
+
+        if command == 'pull':
+            success = workflow.autonomous_pull()
+        else:
+            success = workflow.autonomous_push()
+
+        if not success:
+            raise SystemExit(1)
         return
 
     if single_mode:
