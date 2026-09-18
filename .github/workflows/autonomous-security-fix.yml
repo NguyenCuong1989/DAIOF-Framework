@@ -205,26 +205,38 @@ jobs:
         run: |
           git config user.name "DAIOF Autonomous Security Fix"
           git config user.email "security-fix@daiof-framework.dev"
-          
-          # Check for changes
-          if [ -n "$(git status --porcelain)" ]; then
-            echo "📝 Committing autonomous security fixes..."
-            
-            git add -A
-            
-            # Generate detailed commit message
+
+          # Only dependency files are eligible for an autonomous security-fix commit.
+          mapfile -t SECURITY_FILES < <(
+            git status --porcelain=v1 |
+            awk '{print substr($0,4)}' |
+            grep -E '(^|/)(package\.json|package-lock\.json|requirements\.txt)$' || true
+          )
+
+          if [ "${#SECURITY_FILES[@]}" -gt 0 ]; then
+            echo "📝 Committing recognized autonomous dependency fixes:"
+            printf '  - %s\n' "${SECURITY_FILES[@]}"
+
+            git add -- "${SECURITY_FILES[@]}"
+
+            if git diff --cached --quiet; then
+              echo "ℹ️ No eligible dependency changes remain staged"
+              echo "changes_committed=false" >> $GITHUB_OUTPUT
+              exit 0
+            fi
+
             TIMESTAMP=$(date -u +"%Y-%m-%d %H:%M UTC")
             FIX_TYPE="${{ github.event.inputs.fix_type || 'all_fixes' }}"
-            
-            git commit -m "🛡️ Autonomous Security Fix: $TIMESTAMP - Type: $FIX_TYPE - Framework: HYPERAI - Creator: Nguyễn Đức Cường (alpha_prime_omega) - Applied npm/python3 fixes - Convergence D_{k+1} ≤ D_k maintained - Verification: 4287"
-            
+
+            git commit -m "🛡️ Autonomous Security Fix: $TIMESTAMP - Type: $FIX_TYPE"
+
             echo "changes_committed=true" >> $GITHUB_OUTPUT
-            echo "✅ Autonomous fixes committed"
+            echo "✅ Recognized autonomous dependency fixes committed"
           else
-            echo "ℹ️ No security issues found - system optimal"
+            echo "ℹ️ No recognized dependency files changed; generated artifacts are not committed"
             echo "changes_committed=false" >> $GITHUB_OUTPUT
           fi
-      
+
       - name: 🚀 Create Pull Request for Review (gh CLI, no external action)
         if: steps.commit_fixes.outputs.changes_committed == 'true'
         env:
