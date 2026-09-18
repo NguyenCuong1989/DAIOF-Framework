@@ -1,0 +1,212 @@
+{
+  "schema": "APO-RUNTIME-SKILL-TOOL-GRAPH-1.0",
+  "generated_at": "2026-09-18",
+  "authority": "GitHub source evidence",
+  "inference": false,
+  "unknown_preserved": true,
+  "nodes": [
+    {
+      "id": "repo:NguyenCuong1989/hyperai1989",
+      "kind": "REPOSITORY"
+    },
+    {
+      "id": "component:hyperai1989/cognee-mcp",
+      "kind": "MCP_SERVER",
+      "path": "components/cognee/cognee-mcp/src/server.py"
+    },
+    {
+      "id": "component:hyperai1989/cognee-mcp-client",
+      "kind": "MCP_CLIENT",
+      "path": "components/cognee/cognee-mcp/src/client.py"
+    },
+    {
+      "id": "skill:knowledge_ingestion",
+      "kind": "SKILL"
+    },
+    {
+      "id": "skill:repository_codification",
+      "kind": "SKILL"
+    },
+    {
+      "id": "skill:developer_rules",
+      "kind": "SKILL"
+    },
+    {
+      "id": "skill:data_inspection",
+      "kind": "SKILL"
+    },
+    {
+      "id": "skill:data_lifecycle",
+      "kind": "SKILL"
+    },
+    {
+      "id": "skill:graph_reset",
+      "kind": "SKILL"
+    },
+    {
+      "id": "tool:cognee/cognee_add_developer_rules",
+      "kind": "MCP_TOOL"
+    },
+    {
+      "id": "tool:cognee/cognify",
+      "kind": "MCP_TOOL"
+    },
+    {
+      "id": "tool:cognee/codify",
+      "kind": "MCP_TOOL"
+    },
+    {
+      "id": "tool:cognee/search",
+      "kind": "MCP_TOOL"
+    },
+    {
+      "id": "tool:cognee/get_developer_rules",
+      "kind": "MCP_TOOL"
+    },
+    {
+      "id": "tool:cognee/list_data",
+      "kind": "MCP_TOOL"
+    },
+    {
+      "id": "tool:cognee/delete",
+      "kind": "MCP_TOOL"
+    },
+    {
+      "id": "tool:cognee/prune",
+      "kind": "MCP_TOOL"
+    },
+    {
+      "id": "tool:cognee/cognify_status",
+      "kind": "MCP_TOOL"
+    },
+    {
+      "id": "tool:cognee/codify_status",
+      "kind": "MCP_TOOL"
+    }
+  ],
+  "edges": [
+    {
+      "from": "repo:NguyenCuong1989/hyperai1989",
+      "to": "component:hyperai1989/cognee-mcp",
+      "type": "CONTAINS",
+      "evidence": "server.py"
+    },
+    {
+      "from": "repo:NguyenCuong1989/hyperai1989",
+      "to": "component:hyperai1989/cognee-mcp-client",
+      "type": "CONTAINS",
+      "evidence": "client.py"
+    },
+    {
+      "from": "component:hyperai1989/cognee-mcp",
+      "to": "tool:cognee/cognify",
+      "type": "EXPOSES",
+      "evidence": "@mcp.tool() async def cognify"
+    },
+    {
+      "from": "component:hyperai1989/cognee-mcp",
+      "to": "tool:cognee/codify",
+      "type": "EXPOSES",
+      "evidence": "@mcp.tool() async def codify"
+    },
+    {
+      "from": "component:hyperai1989/cognee-mcp",
+      "to": "tool:cognee/search",
+      "type": "EXPOSES",
+      "evidence": "@mcp.tool() async def search"
+    },
+    {
+      "from": "component:hyperai1989/cognee-mcp-client",
+      "to": "tool:cognee/prune",
+      "type": "CALLS",
+      "evidence": "ClientSession.call_tool(\"prune\")"
+    },
+    {
+      "from": "component:hyperai1989/cognee-mcp-client",
+      "to": "tool:cognee/codify",
+      "type": "CALLS",
+      "evidence": "ClientSession.call_tool(\"codify\")"
+    },
+    {
+      "from": "component:hyperai1989/cognee-mcp-client",
+      "to": "tool:cognee/search",
+      "type": "CALLS",
+      "evidence": "ClientSession.call_tool(\"search\")"
+    },
+    {
+      "from": "skill:knowledge_ingestion",
+      "to": "tool:cognee/cognify",
+      "type": "USES"
+    },
+    {
+      "from": "skill:knowledge_ingestion",
+      "to": "tool:cognee/cognify_status",
+      "type": "USES"
+    },
+    {
+      "from": "skill:knowledge_ingestion",
+      "to": "tool:cognee/search",
+      "type": "USES"
+    },
+    {
+      "from": "skill:repository_codification",
+      "to": "tool:cognee/codify",
+      "type": "USES"
+    },
+    {
+      "from": "skill:repository_codification",
+      "to": "tool:cognee/codify_status",
+      "type": "USES"
+    },
+    {
+      "from": "skill:repository_codification",
+      "to": "tool:cognee/search",
+      "type": "USES"
+    },
+    {
+      "from": "skill:developer_rules",
+      "to": "tool:cognee/cognee_add_developer_rules",
+      "type": "USES"
+    },
+    {
+      "from": "skill:developer_rules",
+      "to": "tool:cognee/get_developer_rules",
+      "type": "USES"
+    },
+    {
+      "from": "skill:data_inspection",
+      "to": "tool:cognee/list_data",
+      "type": "USES"
+    },
+    {
+      "from": "skill:data_inspection",
+      "to": "tool:cognee/search",
+      "type": "USES"
+    },
+    {
+      "from": "skill:data_lifecycle",
+      "to": "tool:cognee/list_data",
+      "type": "USES"
+    },
+    {
+      "from": "skill:data_lifecycle",
+      "to": "tool:cognee/delete",
+      "type": "USES"
+    },
+    {
+      "from": "skill:data_lifecycle",
+      "to": "tool:cognee/cognify_status",
+      "type": "USES"
+    },
+    {
+      "from": "skill:graph_reset",
+      "to": "tool:cognee/prune",
+      "type": "USES"
+    },
+    {
+      "from": "skill:graph_reset",
+      "to": "tool:cognee/cognify_status",
+      "type": "USES"
+    }
+  ]
+}
