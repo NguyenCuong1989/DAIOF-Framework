@@ -20,6 +20,7 @@ Source: `NguyenCuong1989/hyperai1989/components/cognee/cognee-mcp/src/server.py`
 8. `prune`
 9. `cognify_status`
 10. `codify_status`
+11. `save_interaction`
 
 ## Skill chains
 
@@ -28,6 +29,9 @@ Source: `NguyenCuong1989/hyperai1989/components/cognee/cognee-mcp/src/server.py`
 
 ### Repository Codification
 `codify → codify_status → search`
+
+### Interaction Memory
+`save_interaction → cognify_status → search`
 
 ### Developer Rules
 `cognee_add_developer_rules → get_developer_rules`
