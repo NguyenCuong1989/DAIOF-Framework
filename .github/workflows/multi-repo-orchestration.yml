@@ -84,21 +84,18 @@ jobs:
           case "$OPERATION" in
             "emergency_scan")
               echo "🚨 EMERGENCY SCAN MODE - Scanning all repositories for critical issues..."
-              timeout 1800 python3 .github/scripts/autonomous_git_workflow.py || {
-                echo "✅ Emergency scan completed"
-              }
+              timeout 1800 python3 .github/scripts/autonomous_git_workflow.py
+              test $? -eq 0
               ;;
             "health_audit")
               echo "🏥 HEALTH AUDIT MODE - Comprehensive ecosystem health assessment..."
-              timeout 1800 python3 .github/scripts/autonomous_git_workflow.py || {
-                echo "✅ Health audit completed"
-              }
+              timeout 1800 python3 .github/scripts/autonomous_git_workflow.py
+              test $? -eq 0
               ;;
             "pilot_deployment")
               echo "✈️ PILOT DEPLOYMENT MODE - Deploying auxiliary pilots to target repositories..."
-              timeout 1800 python3 .github/scripts/autonomous_git_workflow.py || {
-                echo "✅ Pilot deployment completed"
-              }
+              timeout 1800 python3 .github/scripts/autonomous_git_workflow.py
+              test $? -eq 0
               ;;
             "full_orchestration"|*)
               echo "🔄 FULL ORCHESTRATION MODE - Complete ecosystem control..."
@@ -107,9 +104,8 @@ jobs:
               echo "⏱️ Continuous operation: 24/7 autonomous control"
 
               # Run continuous multi-repository orchestration
-              timeout 3600 python3 .github/scripts/autonomous_git_workflow.py || {
-                echo "✅ Multi-repository orchestration cycle completed"
-              }
+              timeout 3600 python3 .github/scripts/autonomous_git_workflow.py
+              test $? -eq 0
               ;;
           esac
 
@@ -143,16 +139,14 @@ jobs:
         run: |
           echo "📈 Updating global ecosystem health dashboard..."
 
-          # This would update a global dashboard across all repositories
-          echo "✅ Global health dashboard synchronized"
+          echo "⚠️ Global health dashboard synchronization is not implemented; no success claim emitted."
 
       - name: 💾 Autonomous Ecosystem Commit & Sync
         if: success()
         run: |
           echo "💾 Synchronizing ecosystem changes..."
 
-          # This would handle cross-repository synchronization if needed
-          echo "✅ Ecosystem synchronization completed"
+          echo "⚠️ Cross-repository synchronization is not implemented; no success claim emitted."
 
       - name: 🎯 Generate Orchestration Summary
         if: always()
@@ -212,6 +206,4 @@ jobs:
         run: |
           echo "🌐 Synchronizing orchestration state across repositories..."
 
-          # This would synchronize state across all repositories in the ecosystem
-          echo "✅ Cross-repository synchronization completed"
-          echo "✈️ Auxiliary pilots updated and synchronized"
+          echo "⚠️ Cross-repository state synchronization is not implemented; no success claim emitted."
