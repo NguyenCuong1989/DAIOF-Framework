@@ -1290,7 +1290,7 @@ class AutonomousGitWorkflow:
             return False
 
     def _check_governance_evidence(self) -> bool:
-        """Require the canonical repository governance gate before mutation."""
+        """Regenerate canonical governance evidence and fail closed on any invariant error."""
         gate = self.repo_path / 'tools' / 'governance' / 'governance_gate.py'
         if not gate.exists():
             self.logger.error('❌ Governance gate is missing; mutation denied')
@@ -1298,25 +1298,25 @@ class AutonomousGitWorkflow:
 
         try:
             result = subprocess.run(
-                ['python3', str(gate), 'validate'],
+                ['python3', str(gate), 'generate'],
                 cwd=self.repo_path,
                 capture_output=True,
                 text=True,
                 timeout=60,
             )
         except Exception as exc:
-            self.logger.error(f'❌ Governance evidence check failed to execute: {exc}')
+            self.logger.error(f'❌ Governance evidence generation failed to execute: {exc}')
             return False
 
         if result.returncode != 0:
             detail = (result.stderr or result.stdout or '').strip()
             self.logger.error(
                 '❌ Governance gate rejected mutation%s',
-                f': {detail[-2000:]}' if detail else '',
+                f': {detail[-3000:]}' if detail else '',
             )
             return False
 
-        self.logger.info('✅ Canonical governance gate passed')
+        self.logger.info('✅ Canonical governance evidence regenerated and validated')
         return True
 
     def _check_haios_compliance(self) -> bool:
