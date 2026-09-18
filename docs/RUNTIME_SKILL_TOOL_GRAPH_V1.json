@@ -246,6 +246,20 @@
       "to": "tool:cognee/search",
       "type": "USES",
       "evidence": "explicit composition in SKILL_TOOL_CHAIN_V1"
+    },
+    {
+      "from": "component:hyperai1989/cognee-mcp-client",
+      "to": "tool:cognee/save_interaction",
+      "type": "CALLS",
+      "status": "UNKNOWN",
+      "basis": "repository search found no direct ClientSession.call_tool(\"save_interaction\", ...)"
+    },
+    {
+      "from": "component:hyperai1989/cognee-mcp-client",
+      "to": "tool:cognee/cognify_status",
+      "type": "CALLS",
+      "status": "UNKNOWN",
+      "basis": "repository search found no direct ClientSession.call_tool(\"cognify_status\", ...)"
     }
   ]
 }
