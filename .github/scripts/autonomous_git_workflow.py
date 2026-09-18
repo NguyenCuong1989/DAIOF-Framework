@@ -1089,10 +1089,30 @@ class AutonomousGitWorkflow:
         else:
             return f"🔄 Repository update: {file_count} files modified - Continuous improvement"
 
+    def _get_push_refspec(self) -> str:
+        """Return an explicit remote refspec even when HEAD is detached."""
+        branch_result = subprocess.run(
+            ['git', 'symbolic-ref', '--quiet', '--short', 'HEAD'],
+            cwd=self.repo_path,
+            capture_output=True,
+            text=True,
+        )
+        branch = (branch_result.stdout or '').strip()
+        if branch:
+            return f'HEAD:refs/heads/{branch}'
+
+        github_ref = os.environ.get('GITHUB_REF', '')
+        if github_ref.startswith('refs/heads/'):
+            return f'HEAD:{github_ref}'
+
+        raise RuntimeError(
+            'Detached HEAD has no branch target and GITHUB_REF is not a branch ref; '
+            'refusing autonomous push.'
+        )
+
     def autonomous_push(self) -> bool:
-        """Thực hiện push tự trị với conflict resolution"""
+        """Thực hiện push tự trị với explicit branch targeting and conflict resolution."""
         try:
-            # Check if we have commits to push
             result = subprocess.run(
                 ['git', 'log', 'origin/main..HEAD', '--oneline'],
                 cwd=self.repo_path,
@@ -1104,9 +1124,10 @@ class AutonomousGitWorkflow:
                 self.logger.info("ℹ️ No commits to push")
                 return True
 
-            # Attempt push
+            push_refspec = self._get_push_refspec()
+
             push_result = subprocess.run(
-                ['git', 'push', 'origin', 'HEAD'],
+                ['git', 'push', 'origin', push_refspec],
                 cwd=self.repo_path,
                 capture_output=True,
                 text=True
@@ -1116,15 +1137,14 @@ class AutonomousGitWorkflow:
                 self.logger.info("✅ Autonomous push completed successfully")
                 self._update_health_metrics('push_success')
                 return True
-            else:
-                # Handle push failure (likely conflicts)
-                if 'non-fast-forward' in push_result.stderr or 'Updates were rejected' in push_result.stderr:
-                    self.logger.warning("⚠️ Push rejected - attempting conflict resolution")
-                    return self._resolve_push_conflicts()
-                else:
-                    self.logger.error(f"❌ Push failed: {push_result.stderr}")
-                    self._update_health_metrics('push_failure')
-                    return False
+
+            if 'non-fast-forward' in push_result.stderr or 'Updates were rejected' in push_result.stderr:
+                self.logger.warning("⚠️ Push rejected - attempting conflict resolution")
+                return self._resolve_push_conflicts()
+
+            self.logger.error(f"❌ Push failed: {push_result.stderr}")
+            self._update_health_metrics('push_failure')
+            return False
 
         except Exception as e:
             self.logger.error(f"❌ Autonomous push failed: {e}")
@@ -1148,7 +1168,7 @@ class AutonomousGitWorkflow:
             if rebase_result.returncode == 0:
                 # Rebase successful, push
                 push_result = subprocess.run(
-                    ['git', 'push', 'origin', 'HEAD'],
+                    ['git', 'push', 'origin', self._get_push_refspec()],
                     cwd=self.repo_path,
                     check=True
                 )
@@ -1168,7 +1188,7 @@ class AutonomousGitWorkflow:
 
                 if merge_result.returncode == 0:
                     push_result = subprocess.run(
-                        ['git', 'push', 'origin', 'HEAD'],
+                        ['git', 'push', 'origin', self._get_push_refspec()],
                         cwd=self.repo_path,
                         check=True
                     )
