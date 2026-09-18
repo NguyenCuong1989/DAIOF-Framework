@@ -1,0 +1,257 @@
+{
+  "schema": "APO-SKILL-TOOL-CHAIN-1.0",
+  "generated_at": "2026-09-18",
+  "authority": "GitHub source evidence + explicit composition graph",
+  "mode": "OBSERVED_PLUS_COMPOSED",
+  "inference": false,
+  "unknown_preserved": true,
+  "source": {
+    "repository": "NguyenCuong1989/hyperai1989",
+    "path": "components/cognee/cognee-mcp/src/server.py",
+    "source_blob_sha": "cc6eac09e64f821925862ddb9017e5fa4503b3b0"
+  },
+  "tools": [
+    {
+      "id": "mcp:cognee/cognee_add_developer_rules",
+      "name": "cognee_add_developer_rules",
+      "type": "MCP_TOOL",
+      "status": "OBSERVED"
+    },
+    {
+      "id": "mcp:cognee/cognify",
+      "name": "cognify",
+      "type": "MCP_TOOL",
+      "status": "OBSERVED"
+    },
+    {
+      "id": "mcp:cognee/codify",
+      "name": "codify",
+      "type": "MCP_TOOL",
+      "status": "OBSERVED"
+    },
+    {
+      "id": "mcp:cognee/search",
+      "name": "search",
+      "type": "MCP_TOOL",
+      "status": "OBSERVED"
+    },
+    {
+      "id": "mcp:cognee/get_developer_rules",
+      "name": "get_developer_rules",
+      "type": "MCP_TOOL",
+      "status": "OBSERVED"
+    },
+    {
+      "id": "mcp:cognee/list_data",
+      "name": "list_data",
+      "type": "MCP_TOOL",
+      "status": "OBSERVED"
+    },
+    {
+      "id": "mcp:cognee/delete",
+      "name": "delete",
+      "type": "MCP_TOOL",
+      "status": "OBSERVED"
+    },
+    {
+      "id": "mcp:cognee/prune",
+      "name": "prune",
+      "type": "MCP_TOOL",
+      "status": "OBSERVED"
+    },
+    {
+      "id": "mcp:cognee/cognify_status",
+      "name": "cognify_status",
+      "type": "MCP_TOOL",
+      "status": "OBSERVED"
+    },
+    {
+      "id": "mcp:cognee/codify_status",
+      "name": "codify_status",
+      "type": "MCP_TOOL",
+      "status": "OBSERVED"
+    }
+  ],
+  "skills": [
+    {
+      "id": "skill:knowledge_ingestion",
+      "name": "Knowledge Ingestion",
+      "status": "COMPOSED",
+      "chain": [
+        "mcp:cognee/cognify",
+        "mcp:cognee/cognify_status",
+        "mcp:cognee/search"
+      ]
+    },
+    {
+      "id": "skill:repository_codification",
+      "name": "Repository Codification",
+      "status": "COMPOSED",
+      "chain": [
+        "mcp:cognee/codify",
+        "mcp:cognee/codify_status",
+        "mcp:cognee/search"
+      ]
+    },
+    {
+      "id": "skill:developer_rules",
+      "name": "Developer Rules",
+      "status": "COMPOSED",
+      "chain": [
+        "mcp:cognee/cognee_add_developer_rules",
+        "mcp:cognee/get_developer_rules"
+      ]
+    },
+    {
+      "id": "skill:data_inspection",
+      "name": "Data Inspection",
+      "status": "COMPOSED",
+      "chain": [
+        "mcp:cognee/list_data",
+        "mcp:cognee/search"
+      ]
+    },
+    {
+      "id": "skill:data_lifecycle",
+      "name": "Data Lifecycle",
+      "status": "COMPOSED",
+      "chain": [
+        "mcp:cognee/list_data",
+        "mcp:cognee/delete",
+        "mcp:cognee/cognify_status"
+      ]
+    },
+    {
+      "id": "skill:graph_reset",
+      "name": "Graph Reset",
+      "status": "COMPOSED",
+      "chain": [
+        "mcp:cognee/prune",
+        "mcp:cognee/cognify_status"
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "from": "mcp:cognee/cognify",
+      "to": "mcp:cognee/cognify_status",
+      "type": "CHAIN_NEXT",
+      "basis": "tool semantics/source names"
+    },
+    {
+      "from": "mcp:cognee/cognify_status",
+      "to": "mcp:cognee/search",
+      "type": "CHAIN_NEXT",
+      "basis": "tool semantics/source names"
+    },
+    {
+      "from": "mcp:cognee/codify",
+      "to": "mcp:cognee/codify_status",
+      "type": "CHAIN_NEXT",
+      "basis": "tool semantics/source names"
+    },
+    {
+      "from": "mcp:cognee/codify_status",
+      "to": "mcp:cognee/search",
+      "type": "CHAIN_NEXT",
+      "basis": "tool semantics/source names"
+    },
+    {
+      "from": "mcp:cognee/cognee_add_developer_rules",
+      "to": "mcp:cognee/get_developer_rules",
+      "type": "CHAIN_NEXT",
+      "basis": "tool semantics/source names"
+    },
+    {
+      "from": "mcp:cognee/list_data",
+      "to": "mcp:cognee/search",
+      "type": "CHAIN_NEXT",
+      "basis": "composition"
+    },
+    {
+      "from": "mcp:cognee/list_data",
+      "to": "mcp:cognee/delete",
+      "type": "CHAIN_NEXT",
+      "basis": "composition"
+    },
+    {
+      "from": "mcp:cognee/delete",
+      "to": "mcp:cognee/cognify_status",
+      "type": "CHAIN_NEXT",
+      "basis": "composition"
+    },
+    {
+      "from": "mcp:cognee/prune",
+      "to": "mcp:cognee/cognify_status",
+      "type": "CHAIN_NEXT",
+      "basis": "composition"
+    }
+  ],
+  "evidence": [
+    {
+      "tool": "mcp:cognee/cognify",
+      "source": "server.py",
+      "evidence": "@mcp.tool() async def cognify(...)"
+    },
+    {
+      "tool": "mcp:cognee/codify",
+      "source": "server.py",
+      "evidence": "@mcp.tool() async def codify(...)"
+    },
+    {
+      "tool": "mcp:cognee/search",
+      "source": "server.py",
+      "evidence": "@mcp.tool() async def search(...)"
+    },
+    {
+      "tool": "mcp:cognee/cognee_add_developer_rules",
+      "source": "server.py",
+      "evidence": "@mcp.tool() async def cognee_add_developer_rules(...)"
+    },
+    {
+      "tool": "mcp:cognee/get_developer_rules",
+      "source": "server.py",
+      "evidence": "@mcp.tool() async def get_developer_rules(...)"
+    },
+    {
+      "tool": "mcp:cognee/list_data",
+      "source": "server.py",
+      "evidence": "@mcp.tool() async def list_data(...)"
+    },
+    {
+      "tool": "mcp:cognee/delete",
+      "source": "server.py",
+      "evidence": "@mcp.tool() async def delete(...)"
+    },
+    {
+      "tool": "mcp:cognee/prune",
+      "source": "server.py",
+      "evidence": "@mcp.tool() async def prune(...)"
+    },
+    {
+      "tool": "mcp:cognee/cognify_status",
+      "source": "server.py",
+      "evidence": "@mcp.tool() async def cognify_status(...)"
+    },
+    {
+      "tool": "mcp:cognee/codify_status",
+      "source": "server.py",
+      "evidence": "@mcp.tool() async def codify_status(...)"
+    },
+    {
+      "tool": "mcp:cognee/search",
+      "source": "client.py",
+      "evidence": "ClientSession.call_tool(\"search\", ...)"
+    },
+    {
+      "tool": "mcp:cognee/codify",
+      "source": "client.py",
+      "evidence": "ClientSession.call_tool(\"codify\", ...)"
+    },
+    {
+      "tool": "mcp:cognee/prune",
+      "source": "client.py",
+      "evidence": "ClientSession.call_tool(\"prune\", ...)"
+    }
+  ]
+}
