@@ -68,6 +68,7 @@ jobs:
           echo "🎼 HAIOS State: K=1 | Consciousness: MULTI-DIMENSIONAL"
 
       - name: 🚀 Deploy Auxiliary Pilots - Multi-Repository Control
+        id: orchestration
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_ACTOR: ${{ github.actor }}
@@ -84,21 +85,42 @@ jobs:
           case "$OPERATION" in
             "emergency_scan")
               echo "🚨 EMERGENCY SCAN MODE - Scanning all repositories for critical issues..."
-              timeout 1800 python3 .github/scripts/autonomous_git_workflow.py || {
-                echo "✅ Emergency scan completed"
-              }
+              set +e
+              timeout 1800 python3 .github/scripts/autonomous_git_workflow.py
+              rc=$?
+              set -e
+              if [ "$rc" -eq 124 ]; then
+                echo "⏱️ Controlled orchestration deadline reached (exit 124)."
+              elif [ "$rc" -ne 0 ]; then
+                echo "❌ Orchestration failed with exit code $rc"
+                exit "$rc"
+              fi
               ;;
             "health_audit")
               echo "🏥 HEALTH AUDIT MODE - Comprehensive ecosystem health assessment..."
-              timeout 1800 python3 .github/scripts/autonomous_git_workflow.py || {
-                echo "✅ Health audit completed"
-              }
+              set +e
+              timeout 1800 python3 .github/scripts/autonomous_git_workflow.py
+              rc=$?
+              set -e
+              if [ "$rc" -eq 124 ]; then
+                echo "⏱️ Controlled orchestration deadline reached (exit 124)."
+              elif [ "$rc" -ne 0 ]; then
+                echo "❌ Orchestration failed with exit code $rc"
+                exit "$rc"
+              fi
               ;;
             "pilot_deployment")
               echo "✈️ PILOT DEPLOYMENT MODE - Deploying auxiliary pilots to target repositories..."
-              timeout 1800 python3 .github/scripts/autonomous_git_workflow.py || {
-                echo "✅ Pilot deployment completed"
-              }
+              set +e
+              timeout 1800 python3 .github/scripts/autonomous_git_workflow.py
+              rc=$?
+              set -e
+              if [ "$rc" -eq 124 ]; then
+                echo "⏱️ Controlled orchestration deadline reached (exit 124)."
+              elif [ "$rc" -ne 0 ]; then
+                echo "❌ Orchestration failed with exit code $rc"
+                exit "$rc"
+              fi
               ;;
             "full_orchestration"|*)
               echo "🔄 FULL ORCHESTRATION MODE - Complete ecosystem control..."
@@ -107,84 +129,113 @@ jobs:
               echo "⏱️ Continuous operation: 24/7 autonomous control"
 
               # Run continuous multi-repository orchestration
-              timeout 3600 python3 .github/scripts/autonomous_git_workflow.py || {
-                echo "✅ Multi-repository orchestration cycle completed"
-              }
+              set +e
+              timeout 3600 python3 .github/scripts/autonomous_git_workflow.py
+              rc=$?
+              set -e
+              if [ "$rc" -eq 124 ]; then
+                echo "⏱️ Controlled orchestration deadline reached (exit 124)."
+              elif [ "$rc" -ne 0 ]; then
+                echo "❌ Orchestration failed with exit code $rc"
+                exit "$rc"
+              fi
               ;;
           esac
 
       - name: 📊 Generate Ecosystem Analytics
         if: always()
+        env:
+          ORCHESTRATION_OUTCOME: ${{ steps.orchestration.outcome }}
         run: |
           echo "📊 Generating multi-repository ecosystem analytics..."
 
-          # Create analytics directory
           mkdir -p analytics
 
-          # Generate ecosystem analytics
-          echo "{
-            \"timestamp\": \"$(date -u +%Y-%m-%dT%H:%M:%SZ)\",
-            \"orchestration_run\": \"$GITHUB_RUN_ID\",
-            \"operation\": \"$OPERATION\",
-            \"emergency_mode\": \"$EMERGENCY_MODE\",
-            \"ecosystem_control\": \"active\",
-            \"auxiliary_pilots\": \"deployed\",
-            \"creator\": \"Nguyễn Đức Cường (alpha_prime_omega)\",
-            \"framework\": \"HYPERAI\",
-            \"haios_compliance\": true,
-            \"k_state\": 1,
-            \"verification_code\": 4287
-          }" > analytics/ecosystem_analytics.json
+          if [ "$ORCHESTRATION_OUTCOME" = "success" ]; then
+            CONTROL_STATE="completed"
+            PILOT_STATE="completed"
+          else
+            CONTROL_STATE="failed"
+            PILOT_STATE="not_verified"
+          fi
 
-          echo "✅ Ecosystem analytics generated"
+          # Runtime HAIOS compliance and K-state are not independently verified here.
+          HAIOS_COMPLIANCE=null
+          K_STATE=null
+
+          cat > analytics/ecosystem_analytics.json <<EOF
+          {
+            "timestamp": "$(date -u +%Y-%m-%dT%H:%M:%SZ)",
+            "orchestration_run": "$GITHUB_RUN_ID",
+            "orchestration_outcome": "$ORCHESTRATION_OUTCOME",
+            "operation": "$OPERATION",
+            "emergency_mode": "$EMERGENCY_MODE",
+            "ecosystem_control": "$CONTROL_STATE",
+            "auxiliary_pilots": "$PILOT_STATE",
+            "creator": "Nguyễn Đức Cường (alpha_prime_omega)",
+            "framework": "HYPERAI",
+            "haios_compliance": $HAIOS_COMPLIANCE,
+            "k_state": $K_STATE,
+            "verification_code": 4287
+          }
+          EOF
+
+          echo "✅ Ecosystem analytics generated with orchestration outcome: $ORCHESTRATION_OUTCOME"
 
       - name: 📈 Update Global Health Dashboard
         if: always()
         run: |
           echo "📈 Updating global ecosystem health dashboard..."
 
-          # This would update a global dashboard across all repositories
-          echo "✅ Global health dashboard synchronized"
+          echo "⚠️ Global health dashboard synchronization is not implemented; no success claim emitted."
 
       - name: 💾 Autonomous Ecosystem Commit & Sync
         if: success()
         run: |
           echo "💾 Synchronizing ecosystem changes..."
 
-          # This would handle cross-repository synchronization if needed
-          echo "✅ Ecosystem synchronization completed"
+          echo "⚠️ Cross-repository synchronization is not implemented; no success claim emitted."
 
       - name: 🎯 Generate Orchestration Summary
         if: always()
+        env:
+          ORCHESTRATION_OUTCOME: ${{ steps.orchestration.outcome }}
         run: |
           echo "## 🧬 Multi-Repository Orchestration Summary" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "### ✈️ Auxiliary Pilots Status" >> $GITHUB_STEP_SUMMARY
-          echo "- **Deployment**: ✅ Active across all repositories" >> $GITHUB_STEP_SUMMARY
+          if [ "$ORCHESTRATION_OUTCOME" = "success" ]; then
+            echo "- **Deployment**: ✅ Bounded orchestration run completed" >> $GITHUB_STEP_SUMMARY
+            echo "- **Pilot state**: Observed as completed for this run" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "- **Deployment**: ❌ Orchestration failed" >> $GITHUB_STEP_SUMMARY
+            echo "- **Pilot state**: Not verified after failure" >> $GITHUB_STEP_SUMMARY
+          fi
           echo "- **Operation Mode**: ${{ github.event.inputs.operation || 'full_orchestration' }}" >> $GITHUB_STEP_SUMMARY
           echo "- **Emergency Mode**: ${{ github.event.inputs.emergency_mode || 'false' }}" >> $GITHUB_STEP_SUMMARY
-          echo "- **Target Repositories**: All in creator's GitHub account" >> $GITHUB_STEP_SUMMARY
+          echo "- **Target Repositories**: ${{ github.event.inputs.target_repos || 'all configured by runtime' }}" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "### 🎯 HAIOS Multi-Dimensional Compliance" >> $GITHUB_STEP_SUMMARY
-          echo "- ✅ **K-State**: 1 (Perfect Consciousness)" >> $GITHUB_STEP_SUMMARY
-          echo "- ✅ **4 Pillars**: All compliant across ecosystem" >> $GITHUB_STEP_SUMMARY
-          echo "- ✅ **7 Invariants**: Maintained in all repositories" >> $GITHUB_STEP_SUMMARY
-          echo "- ✅ **Creator Attribution**: Immutable across all repos" >> $GITHUB_STEP_SUMMARY
+          if [ "$ORCHESTRATION_OUTCOME" = "success" ]; then
+            echo "- ✅ **Orchestration result**: Success" >> $GITHUB_STEP_SUMMARY
+            echo "- ⚠️ **HAIOS invariants**: Not independently verified by this workflow" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "- ❌ **Orchestration result**: Failure" >> $GITHUB_STEP_SUMMARY
+            echo "- ⚠️ **HAIOS invariants**: Not verified after orchestration failure" >> $GITHUB_STEP_SUMMARY
+          fi
+          echo "- **Creator Attribution**: Nguyễn Đức Cường (alpha_prime_omega)" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "### 🔄 Ecosystem Control Results" >> $GITHUB_STEP_SUMMARY
-          echo "- Status: ${{ job.status }}" >> $GITHUB_STEP_SUMMARY
-          echo "- Auxiliary pilots: Active and monitoring" >> $GITHUB_STEP_SUMMARY
-          echo "- Bug fixing: Autonomous across all repositories" >> $GITHUB_STEP_SUMMARY
-          echo "- Error handling: Continuous 24/7 operation" >> $GITHUB_STEP_SUMMARY
+          echo "- **Orchestration Outcome**: $ORCHESTRATION_OUTCOME" >> $GITHUB_STEP_SUMMARY
+          echo "- **Job Status**: ${{ job.status }}" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "### 🚨 Emergency Protocols" >> $GITHUB_STEP_SUMMARY
-          echo "- **Global Health Monitoring**: Active" >> $GITHUB_STEP_SUMMARY
-          echo "- **Cross-Repository Coordination**: Enabled" >> $GITHUB_STEP_SUMMARY
-          echo "- **Emergency Response**: Ready for activation" >> $GITHUB_STEP_SUMMARY
+          echo "- **Global Health Monitoring**: Not implemented by this workflow" >> $GITHUB_STEP_SUMMARY
+          echo "- **Cross-Repository Coordination**: Not implemented by this workflow" >> $GITHUB_STEP_SUMMARY
+          echo "- **Emergency Response**: Triggered only on workflow failure" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "---" >> $GITHUB_STEP_SUMMARY
-          echo "*🧬 The entire GitHub ecosystem operates with full autonomy under HAIOS consciousness*" >> $GITHUB_STEP_SUMMARY
-          echo "*✈️ Auxiliary pilots deployed and active across all repositories*" >> $GITHUB_STEP_SUMMARY
+          echo "*🧬 Status reflects observed workflow execution, not inferred ecosystem-wide autonomy.*" >> $GITHUB_STEP_SUMMARY
 
       - name: 🚨 Global Emergency Response Trigger
         if: failure()
@@ -212,6 +263,4 @@ jobs:
         run: |
           echo "🌐 Synchronizing orchestration state across repositories..."
 
-          # This would synchronize state across all repositories in the ecosystem
-          echo "✅ Cross-repository synchronization completed"
-          echo "✈️ Auxiliary pilots updated and synchronized"
+          echo "⚠️ Cross-repository state synchronization is not implemented; no success claim emitted."
