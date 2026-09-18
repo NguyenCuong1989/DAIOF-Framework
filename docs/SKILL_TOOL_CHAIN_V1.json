@@ -36,6 +36,12 @@
       "status": "OBSERVED"
     },
     {
+      "id": "mcp:cognee/save_interaction",
+      "name": "save_interaction",
+      "type": "MCP_TOOL",
+      "status": "OBSERVED"
+    },
+    {
       "id": "mcp:cognee/get_developer_rules",
       "name": "get_developer_rules",
       "type": "MCP_TOOL",
@@ -90,6 +96,16 @@
       "chain": [
         "mcp:cognee/codify",
         "mcp:cognee/codify_status",
+        "mcp:cognee/search"
+      ]
+    },
+    {
+      "id": "skill:interaction_memory",
+      "name": "Interaction Memory",
+      "status": "COMPOSED",
+      "chain": [
+        "mcp:cognee/save_interaction",
+        "mcp:cognee/cognify_status",
         "mcp:cognee/search"
       ]
     },
@@ -157,6 +173,18 @@
       "basis": "tool semantics/source names"
     },
     {
+      "from": "mcp:cognee/save_interaction",
+      "to": "mcp:cognee/cognify_status",
+      "type": "CHAIN_NEXT",
+      "basis": "server.py launches background cognify and directs status inspection"
+    },
+    {
+      "from": "mcp:cognee/cognify_status",
+      "to": "mcp:cognee/search",
+      "type": "CHAIN_NEXT",
+      "basis": "composition"
+    },
+    {
       "from": "mcp:cognee/cognee_add_developer_rules",
       "to": "mcp:cognee/get_developer_rules",
       "type": "CHAIN_NEXT",
@@ -207,6 +235,11 @@
       "tool": "mcp:cognee/cognee_add_developer_rules",
       "source": "server.py",
       "evidence": "@mcp.tool() async def cognee_add_developer_rules(...)"
+    },
+    {
+      "tool": "mcp:cognee/save_interaction",
+      "source": "server.py",
+      "evidence": "@mcp.tool(name=\"save_interaction\", ...) async def save_interaction(...)"
     },
     {
       "tool": "mcp:cognee/get_developer_rules",
