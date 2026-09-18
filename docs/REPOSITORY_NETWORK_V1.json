@@ -130,6 +130,27 @@
       "type": "GIT_REMOTE",
       "evidence": "raw_memories.md records git remote origin https://github.com/NguyenCuong1989/nguyencuong_2509.git",
       "status": "OBSERVED"
+    },
+    {
+      "from": "github:NguyenCuong1989/my_too_test",
+      "to": "github:NguyenCuong1989/DAIOF-Framework",
+      "type": "WORKSPACE_BUILD_REFERENCE",
+      "evidence": ".vscode/tasks.json uses DAIOF-Framework/Dockerfile and context; .vscode/launch.json points package/localRoot; workflow builds DAIOF-Framework",
+      "status": "OBSERVED"
+    },
+    {
+      "from": "github:NguyenCuong1989/dr_protocol_workspace",
+      "to": "github:NguyenCuong1989/DAIOF-Framework",
+      "type": "KNOWLEDGE_REFERENCE",
+      "evidence": "CON_KNOWLEDGE_MAP.json records /Users/andy/DAIOF-Framework and its source directories",
+      "status": "OBSERVED"
+    },
+    {
+      "from": "github:NguyenCuong1989/axcontrol",
+      "to": "github:NguyenCuong1989/alpha_prime_omega",
+      "type": "IDENTITY_REFERENCE",
+      "evidence": "OPS_GLOBAL_CANON.md and CANONICAL_CODEGEN_LAW.md declare alpha_prime_omega; target repository node is not verified",
+      "status": "UNKNOWN_TARGET"
     }
   ],
   "nodes": [
@@ -926,5 +947,5 @@
       "relation_evidence": "repository ownership metadata only"
     }
   ],
-  "edge_count": 18
+  "edge_count": 21
 }
