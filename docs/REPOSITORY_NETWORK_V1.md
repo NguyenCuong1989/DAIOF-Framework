@@ -41,3 +41,8 @@ Repository co-ownership is **not** treated as semantic linkage. A cross-reposito
 - These are evidence edges, not claims of runtime dependency or semantic equivalence.
 
 Machine-readable registry: `docs/REPOSITORY_NETWORK_V1.json`.
+
+## Newly verified edges
+- `my_too_test → DAIOF-Framework`: `.gitmodules` declares `DAIOF-Framework` as a Git submodule (`SUBMODULE`).
+- `dr_protocol_workspace → andy`: `user_preferences.md` explicitly records `NguyenCuong1989/andy` as the active Git repository (`REFERENCE`).
+- `memories → nguyencuong_2509`: `raw_memories.md` records the repository's Git remote (`GIT_REMOTE`).
