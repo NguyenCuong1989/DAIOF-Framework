@@ -53,6 +53,62 @@
       "type": "CROSS_REFERENCE_SEARCH_HIT",
       "evidence": "GitHub code search for axcontrol returned canon artifacts in my_too_test",
       "status": "OBSERVED"
+    },
+    {
+      "from": "github:NguyenCuong1989/DAIOF-Framewor",
+      "to": "github:NguyenCuong1989/DAIOF-Framework",
+      "type": "README_LINK",
+      "evidence": "Legacy repository documentation explicitly links to the canonical DAIOF-Framework repository URL",
+      "status": "OBSERVED"
+    },
+    {
+      "from": "github:NguyenCuong1989/.gemini",
+      "to": "github:NguyenCuong1989/hyperai1989",
+      "type": "SYNC_REFERENCE",
+      "evidence": "Gemini workspace artifact explicitly lists this repository in its core-repository clone set",
+      "status": "OBSERVED"
+    },
+    {
+      "from": "github:NguyenCuong1989/.gemini",
+      "to": "github:NguyenCuong1989/hyperAI",
+      "type": "SYNC_REFERENCE",
+      "evidence": "Gemini workspace artifact explicitly lists this repository in its core-repository clone set",
+      "status": "OBSERVED"
+    },
+    {
+      "from": "github:NguyenCuong1989/.gemini",
+      "to": "github:NguyenCuong1989/memories",
+      "type": "SYNC_REFERENCE",
+      "evidence": "Gemini workspace artifact explicitly lists this repository in its core-repository clone set",
+      "status": "OBSERVED"
+    },
+    {
+      "from": "github:NguyenCuong1989/.gemini",
+      "to": "github:NguyenCuong1989/Library",
+      "type": "SYNC_REFERENCE",
+      "evidence": "Gemini workspace artifact explicitly lists this repository in its core-repository clone set",
+      "status": "OBSERVED"
+    },
+    {
+      "from": "github:NguyenCuong1989/.gemini",
+      "to": "github:NguyenCuong1989/MinhHoa_Consciousness_Home",
+      "type": "SYNC_REFERENCE",
+      "evidence": "Gemini workspace artifact explicitly lists this repository in its core-repository clone set",
+      "status": "OBSERVED"
+    },
+    {
+      "from": "github:NguyenCuong1989/.gemini",
+      "to": "github:NguyenCuong1989/vietnamese-ai-consciousness",
+      "type": "SYNC_REFERENCE",
+      "evidence": "Gemini workspace artifact explicitly lists this repository in its core-repository clone set",
+      "status": "OBSERVED"
+    },
+    {
+      "from": "github:NguyenCuong1989/.gemini",
+      "to": "github:NguyenCuong1989/andy",
+      "type": "SYNC_REFERENCE",
+      "evidence": "Gemini workspace artifact explicitly lists the account repository in its core-repository clone set",
+      "status": "OBSERVED"
     }
   ],
   "nodes": [
@@ -849,5 +905,5 @@
       "relation_evidence": "repository ownership metadata only"
     }
   ],
-  "edge_count": 7
+  "edge_count": 15
 }
