@@ -45,6 +45,7 @@ jobs:
           pip install PyGithub pyyaml black isort pylint
       
       - name: 🔄 Run Real-Time Task Generator
+        id: task_generator
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           INTERVAL: ${{ github.event.inputs.interval || '10' }}
@@ -53,10 +54,8 @@ jobs:
           echo "🧬 Starting Real-Time Autonomous Task Generator"
           echo "⏱️  Interval: ${INTERVAL}s | Duration: ${DURATION}min"
           
-          # Run for specified duration
-          timeout ${DURATION}m python3 .github/scripts/realtime_task_generator.py || {
-            echo "✅ Task generator completed normally"
-          }
+          # Run for specified duration and preserve non-zero results.
+          timeout ${DURATION}m python3 .github/scripts/realtime_task_generator.py
       
       - name: 💾 Commit Generated Changes
         if: success()
@@ -84,6 +83,8 @@ jobs:
       
       - name: 📈 Report to Summary
         if: always()
+        env:
+          GENERATOR_OUTCOME: ${{ steps.task_generator.outcome }}
         run: |
           echo "## 🔄 Real-Time Task Generation Report" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
@@ -92,8 +93,13 @@ jobs:
           if [ -f ".github/scripts/metrics_dashboard.py" ]; then
             echo "### 📊 Task Execution Summary" >> $GITHUB_STEP_SUMMARY
             echo "" >> $GITHUB_STEP_SUMMARY
-            echo "✅ Real-time task generator executed successfully" >> $GITHUB_STEP_SUMMARY
-            echo "📁 Task logs available in logs/ directory" >> $GITHUB_STEP_SUMMARY
+            echo "**Observed generator outcome**: $GENERATOR_OUTCOME" >> $GITHUB_STEP_SUMMARY
+            if [ "$GENERATOR_OUTCOME" = "success" ]; then
+              echo "✅ Real-time task generator completed" >> $GITHUB_STEP_SUMMARY
+            else
+              echo "❌ Real-time task generator failed" >> $GITHUB_STEP_SUMMARY
+            fi
+            echo "📁 Task logs available in logs/ directory when produced" >> $GITHUB_STEP_SUMMARY
           fi
 
   # Separate job for longer running tasks (runs less frequently)
