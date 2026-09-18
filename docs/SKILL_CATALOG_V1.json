@@ -1,0 +1,47 @@
+{
+  "schema": "APO-SKILL-CATALOG-1.0",
+  "generated_at": "2026-09-18",
+  "authority": "GitHub source evidence",
+  "mode": "READ_ONLY_OBSERVATION",
+  "inference": false,
+  "unknown_preserved": true,
+  "entries": [
+    {
+      "id": "NguyenCuong1989/.gemini:skill-repair",
+      "repo": "NguyenCuong1989/.gemini",
+      "path": "skills/skill-repair/SKILL.md",
+      "sha": "07a2a068a0d19dec493529ca063525d4a94dc553",
+      "status": "OBSERVED",
+      "role": "repair_and_manifest_update"
+    },
+    {
+      "id": "NguyenCuong1989/memories:daily-bug-scan-preflight",
+      "repo": "NguyenCuong1989/memories",
+      "path": "skills/daily-bug-scan-preflight/SKILL.md",
+      "sha": "4de3f5ad80897da6f7b3a1f67a865959c58cc8c2",
+      "status": "OBSERVED",
+      "role": "evidence_backed_commit_triage"
+    },
+    {
+      "id": "NguyenCuong1989/memories:hyperai-readonly-heartbeat",
+      "repo": "NguyenCuong1989/memories",
+      "path": "skills/hyperai-readonly-heartbeat/SKILL.md",
+      "sha": "f3e8a152e2f1e661e2746a8a8542b7ea19b0482d",
+      "status": "OBSERVED",
+      "role": "readonly_runtime_heartbeat"
+    },
+    {
+      "id": "NguyenCuong1989/memories:slot-local-runtime-template",
+      "repo": "NguyenCuong1989/memories",
+      "path": "skills/slot-local-runtime-template/SKILL.md",
+      "sha": "261b710e566bef91caf562ab3f168a1edd6496d8",
+      "status": "OBSERVED",
+      "role": "local_runtime_validation"
+    }
+  ],
+  "rules": [
+    "SKILL.md source is evidence of skill contract, not proof of execution.",
+    "disable-model-invocation and allowed-tools are preserved as observed metadata.",
+    "Do not infer cross-repo runtime linkage without direct reference or invocation evidence."
+  ]
+}
