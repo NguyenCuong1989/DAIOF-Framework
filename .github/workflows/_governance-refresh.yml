@@ -1,0 +1,41 @@
+name: Governance Manifest Refresh (temporary)
+
+on:
+  push:
+    branches:
+      - codex/governance-manifest-refresh-20260918
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout branch
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git init -q .
+          git remote add origin "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          git fetch -q --depth 1 origin "${GITHUB_REF}"
+          git checkout -q FETCH_HEAD
+
+      - name: Prepare canonical generator
+        run: |
+          python3 --version
+          python3 -m pip install -q pyyaml
+
+      - name: Generate canonical governance manifest
+        run: |
+          set -e
+          git rm -q .github/workflows/_governance-refresh.yml
+          python3 tools/governance/governance_gate.py generate
+
+      - name: Commit canonical manifest
+        run: |
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git config user.name "github-actions[bot]"
+          git add governance/workflow_manifest.json
+          git diff --cached --quiet || git commit -m "chore(governance): refresh canonical workflow manifest"
+          git push origin HEAD
