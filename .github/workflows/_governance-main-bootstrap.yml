@@ -1,0 +1,41 @@
+name: One-shot Governance Manifest Bootstrap
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: daiof-runtime
+    steps:
+      - name: Checkout main
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git init -q .
+          git remote add origin "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          git fetch -q --depth 1 origin main
+          git checkout -q FETCH_HEAD
+
+      - name: Generate canonical manifest and self-remove
+        run: |
+          set +e
+          git rm -q .github/workflows/_governance-main-bootstrap.yml
+          python3 -m pip install --quiet pyyaml
+          python3 tools/governance/governance_gate.py generate
+          rc=$?
+          set -e
+
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git config user.name "github-actions[bot]"
+          git add governance/workflow_manifest.json .github/workflows/_governance-main-bootstrap.yml
+          if ! git diff --cached --quiet; then
+            git commit -m "chore(governance): refresh canonical workflow manifest"
+            git push origin HEAD:main
+          fi
+
+          exit "$rc"
