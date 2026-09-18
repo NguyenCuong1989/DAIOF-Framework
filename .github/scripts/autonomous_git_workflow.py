@@ -1269,25 +1269,51 @@ class AutonomousGitWorkflow:
             self.logger.error(f"❌ Branch management failed: {e}")
             return False
 
-    def _check_haios_compliance(self) -> bool:
-        """Check HAIOS invariants compliance"""
-        try:
-            # Invariant 1: Attribution immutability
-            # (Always maintained by design)
+    def _check_governance_evidence(self) -> bool:
+        """Require the canonical repository governance gate before mutation."""
+        gate = self.repo_path / 'tools' / 'governance' / 'governance_gate.py'
+        if not gate.exists():
+            self.logger.error('❌ Governance gate is missing; mutation denied')
+            return False
 
-            # Invariant 2: Safety floor ≥7.0
+        try:
+            result = subprocess.run(
+                ['python3', str(gate), 'validate'],
+                cwd=self.repo_path,
+                capture_output=True,
+                text=True,
+                timeout=60,
+            )
+        except Exception as exc:
+            self.logger.error(f'❌ Governance evidence check failed to execute: {exc}')
+            return False
+
+        if result.returncode != 0:
+            detail = (result.stderr or result.stdout or '').strip()
+            self.logger.error(
+                '❌ Governance gate rejected mutation%s',
+                f': {detail[-2000:]}' if detail else '',
+            )
+            return False
+
+        self.logger.info('✅ Canonical governance gate passed')
+        return True
+
+    def _check_haios_compliance(self) -> bool:
+        """Check declared HAIOS invariants only after external governance evidence passes."""
+        try:
+            # External governance evidence is authoritative for mutation gating.
+            if not self._check_governance_evidence():
+                return False
+
+            # Declared HAIOS state is secondary evidence, not proof of runtime reality.
             safety_score = min(self.pillars_scores.values())
             if safety_score < 7.0:
                 return False
 
-            # Invariant 3: Rollback capability
-            # (Git provides this naturally)
-
-            # Invariant 4: K=1 state
             if self.k_state != 1:
                 return False
 
-            # Invariant 5: 4 Pillars compliance
             for pillar, score in self.pillars_scores.items():
                 if score < self.haios_config['pillars'][pillar]['min']:
                     return False
@@ -1295,7 +1321,7 @@ class AutonomousGitWorkflow:
             return True
 
         except Exception as e:
-            self.logger.error(f"HAIOS compliance check failed: {e}")
+            self.logger.error(f'HAIOS compliance check failed: {e}')
             return False
 
     def _update_health_metrics(self, operation: str):
