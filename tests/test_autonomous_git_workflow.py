@@ -194,7 +194,7 @@ class TestAutonomousGitWorkflow(unittest.TestCase):
         with patch("autonomous_git_workflow.subprocess.run", return_value=detached),              patch.dict(os.environ, {"GITHUB_REF": "refs/heads/main"}, clear=False):
             self.assertEqual(
                 workflow._get_push_refspec(),
-                "HEAD:refs/heads/refs/heads/main",
+                "HEAD:refs/heads/main",
             )
 
     def test_governance_evidence_gate_fails_closed(self):
