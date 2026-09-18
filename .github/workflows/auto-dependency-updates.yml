@@ -66,19 +66,20 @@ jobs:
           diff requirements.txt.bak requirements.txt || true
       
       - name: ✅ Run Tests
+        id: run_tests
         if: steps.check_updates.outputs.has_updates == 'true'
         run: |
           # Install updated dependencies
           pip install -r requirements.txt
           
-          # Run tests if they exist
+          # Run tests if they exist; a failure blocks PR creation.
           if [ -d "tests" ]; then
             pip install pytest
-            pytest || echo "Tests failed, will not create PR"
+            pytest
           fi
       
       - name: 🔀 Create Pull Request (gh CLI, no external action)
-        if: steps.check_updates.outputs.has_updates == 'true'
+        if: steps.check_updates.outputs.has_updates == 'true' && steps.run_tests.outcome == 'success'
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
