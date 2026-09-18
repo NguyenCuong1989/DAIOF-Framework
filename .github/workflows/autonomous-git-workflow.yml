@@ -133,17 +133,18 @@ jobs:
           echo "✅ Workflow analytics generated with execution outcome: $EXECUTION_OUTCOME"
       
       - name: 📈 Update Repository Health Dashboard
+        id: health_dashboard
         if: always()
+        env:
+          EXECUTION_OUTCOME: ${{ steps.execute_workflow.outcome }}
         run: |
           echo "📈 Updating health dashboard..."
+          python3 .github/scripts/health_monitor.py
           
-          # Run health check
-          python3 .github/scripts/health_monitor.py || true
-          
-          # Update dashboard if it exists
           if [ -f "DASHBOARD.md" ]; then
-            echo "✅ Health dashboard updated"
+            echo "✅ Health dashboard file present"
           fi
+
       
       - name: 💾 Autonomous Commit & Push Changes
         if: success()
@@ -151,28 +152,33 @@ jobs:
           git config user.name "DAIOF Autonomous Git Workflow"
           git config user.email "git-workflow@daiof-framework.dev"
           
-          # Check for changes
-          if [ -n "$(git status --porcelain)" ]; then
-            echo "📝 Committing autonomous workflow changes..."
-            
-            git add -A
-            
-            # Generate commit message
-            TIMESTAMP=$(date -u +"%Y-%m-%d %H:%M UTC")
-            OPERATION="${{ github.event.inputs.operation || 'full_workflow_cycle' }}"
-            
-            COMMIT_MSG="🧬 Autonomous Git Workflow: $TIMESTAMP - Operation: $OPERATION - Self-maintaining repository - HAIOS Compliant | Framework: HYPERAI | Creator: Nguyễn Đức Cường (alpha_prime_omega)"
-            
-            git commit -m "$COMMIT_MSG"
-            
-            # Push changes
-            git push origin HEAD
-            
-            echo "✅ Autonomous commit and push completed"
-            echo "📊 Changes successfully synchronized to remote repository"
-          else
-            echo "ℹ️  No changes to commit - repository state optimal"
+          # Only workflow-owned evidence artifacts are eligible for wrapper commit.
+          files=()
+          if [ -f "analytics/workflow_analytics.json" ]; then
+            files+=("analytics/workflow_analytics.json")
           fi
+          while IFS= read -r file; do
+            files+=("$file")
+          done < <(find metrics -maxdepth 1 -type f -name 'health_report_*.json' -print 2>/dev/null | sort)
+
+          if [ "${#files[@]}" -gt 0 ]; then
+            git add -- "${files[@]}"
+          fi
+
+          if git diff --cached --quiet; then
+            echo "ℹ️ No workflow-owned evidence changes to commit"
+            exit 0
+          fi
+
+          TIMESTAMP=$(date -u +"%Y-%m-%d %H:%M UTC")
+          OPERATION="${{ github.event.inputs.operation || 'full_workflow_cycle' }}"
+          COMMIT_MSG="🧬 Autonomous Git Workflow: $TIMESTAMP - Operation: $OPERATION - Evidence artifacts only"
+
+          git commit -m "$COMMIT_MSG"
+          git push origin HEAD
+          
+          echo "✅ Workflow-owned evidence committed and pushed"
+
       
       - name: 🎯 Generate Operation Summary
         if: always()
