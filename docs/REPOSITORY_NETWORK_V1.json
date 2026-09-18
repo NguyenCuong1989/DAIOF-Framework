@@ -109,6 +109,27 @@
       "type": "SYNC_REFERENCE",
       "evidence": "Gemini workspace artifact explicitly lists the account repository in its core-repository clone set",
       "status": "OBSERVED"
+    },
+    {
+      "from": "github:NguyenCuong1989/my_too_test",
+      "to": "github:NguyenCuong1989/DAIOF-Framework",
+      "type": "SUBMODULE",
+      "evidence": "`.gitmodules` declares path DAIOF-Framework with URL https://github.com/NguyenCuong1989/DAIOF-Framework.git",
+      "status": "OBSERVED"
+    },
+    {
+      "from": "github:NguyenCuong1989/dr_protocol_workspace",
+      "to": "github:NguyenCuong1989/andy",
+      "type": "REFERENCE",
+      "evidence": "user_preferences.md records active Git repository NguyenCuong1989/andy",
+      "status": "OBSERVED"
+    },
+    {
+      "from": "github:NguyenCuong1989/memories",
+      "to": "github:NguyenCuong1989/nguyencuong_2509",
+      "type": "GIT_REMOTE",
+      "evidence": "raw_memories.md records git remote origin https://github.com/NguyenCuong1989/nguyencuong_2509.git",
+      "status": "OBSERVED"
     }
   ],
   "nodes": [
@@ -905,5 +926,5 @@
       "relation_evidence": "repository ownership metadata only"
     }
   ],
-  "edge_count": 15
+  "edge_count": 18
 }
