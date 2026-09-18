@@ -1,4 +1,8 @@
 name: APO Health Check
+
+permissions:
+  contents: read
+
 on:
   schedule:
     - cron: '0 */4 * * *'
