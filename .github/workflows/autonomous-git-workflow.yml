@@ -175,9 +175,16 @@ jobs:
           COMMIT_MSG="🧬 Autonomous Git Workflow: $TIMESTAMP - Operation: $OPERATION - Evidence artifacts only"
 
           git commit -m "$COMMIT_MSG"
-          git push origin HEAD
+
+          TARGET_REF="${GITHUB_REF:-}"
+          if [[ "$TARGET_REF" != refs/heads/* ]]; then
+            echo "❌ Refusing autonomous wrapper push: GITHUB_REF is not a branch ref"
+            exit 1
+          fi
+
+          git push origin "HEAD:$TARGET_REF"
           
-          echo "✅ Workflow-owned evidence committed and pushed"
+          echo "✅ Workflow-owned evidence committed and pushed to $TARGET_REF"
 
       
       - name: 🎯 Generate Operation Summary
