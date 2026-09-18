@@ -82,6 +82,14 @@
     {
       "id": "tool:cognee/codify_status",
       "kind": "MCP_TOOL"
+    },
+    {
+      "id": "skill:interaction_memory",
+      "kind": "SKILL"
+    },
+    {
+      "id": "tool:cognee/save_interaction",
+      "kind": "MCP_TOOL"
     }
   ],
   "edges": [
@@ -207,6 +215,37 @@
       "from": "skill:graph_reset",
       "to": "tool:cognee/cognify_status",
       "type": "USES"
+    },
+    {
+      "from": "component:hyperai1989/cognee-mcp",
+      "to": "tool:cognee/save_interaction",
+      "type": "EXPOSES",
+      "evidence": "@mcp.tool(name=\"save_interaction\", ...) async def save_interaction"
+    },
+    {
+      "from": "component:hyperai1989/cognee-mcp-client",
+      "to": "tool:cognee/save_interaction",
+      "type": "CALLS",
+      "status": "UNKNOWN",
+      "evidence": "No direct ClientSession.call_tool(\"save_interaction\", ...) observed in fetched client.py"
+    },
+    {
+      "from": "skill:interaction_memory",
+      "to": "tool:cognee/save_interaction",
+      "type": "USES",
+      "evidence": "explicit composition in SKILL_TOOL_CHAIN_V1"
+    },
+    {
+      "from": "skill:interaction_memory",
+      "to": "tool:cognee/cognify_status",
+      "type": "USES",
+      "evidence": "server.py launches background cognify and directs status inspection"
+    },
+    {
+      "from": "skill:interaction_memory",
+      "to": "tool:cognee/search",
+      "type": "USES",
+      "evidence": "explicit composition in SKILL_TOOL_CHAIN_V1"
     }
   ]
 }
