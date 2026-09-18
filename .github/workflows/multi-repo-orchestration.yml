@@ -98,13 +98,29 @@ jobs:
               ;;
             "health_audit")
               echo "🏥 HEALTH AUDIT MODE - Comprehensive ecosystem health assessment..."
+              set +e
               timeout 1800 python3 .github/scripts/autonomous_git_workflow.py
-              test $? -eq 0
+              rc=$?
+              set -e
+              if [ "$rc" -eq 124 ]; then
+                echo "⏱️ Controlled orchestration deadline reached (exit 124)."
+              elif [ "$rc" -ne 0 ]; then
+                echo "❌ Orchestration failed with exit code $rc"
+                exit "$rc"
+              fi
               ;;
             "pilot_deployment")
               echo "✈️ PILOT DEPLOYMENT MODE - Deploying auxiliary pilots to target repositories..."
+              set +e
               timeout 1800 python3 .github/scripts/autonomous_git_workflow.py
-              test $? -eq 0
+              rc=$?
+              set -e
+              if [ "$rc" -eq 124 ]; then
+                echo "⏱️ Controlled orchestration deadline reached (exit 124)."
+              elif [ "$rc" -ne 0 ]; then
+                echo "❌ Orchestration failed with exit code $rc"
+                exit "$rc"
+              fi
               ;;
             "full_orchestration"|*)
               echo "🔄 FULL ORCHESTRATION MODE - Complete ecosystem control..."
@@ -136,16 +152,16 @@ jobs:
           mkdir -p analytics
 
           if [ "$ORCHESTRATION_OUTCOME" = "success" ]; then
-            CONTROL_STATE="active"
-            PILOT_STATE="deployed"
-            HAIOS_COMPLIANCE=true
-            K_STATE=1
+            CONTROL_STATE="completed"
+            PILOT_STATE="completed"
           else
             CONTROL_STATE="failed"
             PILOT_STATE="not_verified"
-            HAIOS_COMPLIANCE=false
-            K_STATE=null
           fi
+
+          # Runtime HAIOS compliance and K-state are not independently verified here.
+          HAIOS_COMPLIANCE=null
+          K_STATE=null
 
           cat > analytics/ecosystem_analytics.json <<EOF
           {
