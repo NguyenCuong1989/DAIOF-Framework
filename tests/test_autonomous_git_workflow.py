@@ -163,6 +163,40 @@ class TestAutonomousGitWorkflow(unittest.TestCase):
         # Verify K-State tracking
         self.assertIn('k_state', content)
 
+    def test_push_refspec_uses_current_branch(self):
+        """Push must target an explicit branch when HEAD is attached."""
+        try:
+            from autonomous_git_workflow import AutonomousGitWorkflow
+        except ImportError as e:
+            self.skipTest(f"Cannot import module (missing dependencies): {e}")
+
+        workflow = object.__new__(AutonomousGitWorkflow)
+        workflow.repo_path = Path(__file__).parent.parent
+        branch = MagicMock(returncode=0, stdout="feature/test\n", stderr="")
+
+        with patch("autonomous_git_workflow.subprocess.run", return_value=branch):
+            self.assertEqual(
+                workflow._get_push_refspec(),
+                "HEAD:refs/heads/feature/test",
+            )
+
+    def test_push_refspec_uses_github_ref_when_detached(self):
+        """Detached CI checkouts must resolve their branch target from GITHUB_REF."""
+        try:
+            from autonomous_git_workflow import AutonomousGitWorkflow
+        except ImportError as e:
+            self.skipTest(f"Cannot import module (missing dependencies): {e}")
+
+        workflow = object.__new__(AutonomousGitWorkflow)
+        workflow.repo_path = Path(__file__).parent.parent
+        detached = MagicMock(returncode=1, stdout="", stderr="detached")
+
+        with patch("autonomous_git_workflow.subprocess.run", return_value=detached),              patch.dict(os.environ, {"GITHUB_REF": "refs/heads/main"}, clear=False):
+            self.assertEqual(
+                workflow._get_push_refspec(),
+                "HEAD:refs/heads/refs/heads/main",
+            )
+
     def test_governance_evidence_gate_fails_closed(self):
         """Mutation governance must fail closed when canonical evidence is rejected."""
         try:
