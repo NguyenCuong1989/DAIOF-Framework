@@ -35,4 +35,9 @@ NguyenCuong1989
 ## Rule
 Repository co-ownership is **not** treated as semantic linkage. A cross-repository edge becomes material only when a source artifact, import/reference, synchronization record, workflow, commit provenance, or other direct evidence establishes it.
 
+## Evidence now recorded
+- `DAIOF-Framewor → DAIOF-Framework`: explicit repository URLs in legacy documentation (`README_LINK`).
+- `.gemini → hyperai1989`, `hyperAI`, `memories`, `Library`, `MinhHoa_Consciousness_Home`, `vietnamese-ai-consciousness`, `andy`: explicit repository entries in a Gemini core-repository clone set (`SYNC_REFERENCE`).
+- These are evidence edges, not claims of runtime dependency or semantic equivalence.
+
 Machine-readable registry: `docs/REPOSITORY_NETWORK_V1.json`.
