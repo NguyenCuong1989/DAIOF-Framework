@@ -305,18 +305,18 @@ jobs:
           **Creator**: Nguyễn Đức Cường (alpha_prime_omega)
 
           ### 🔧 Execution
-          - NPM vulnerability scan executed
-          - Python vulnerability scan executed
-          - Any applied changes require downstream verification
+          - NPM vulnerability audit: ${{ steps.npm_audit.outcome }}
+          - Python vulnerability audit: ${{ steps.python_audit.outcome }}
+          - Python fix verification: ${{ steps.python_fix.outputs.fix_verified || 'not applicable' }}
 
-          ### 📊 Verification
-          - K-State: not independently verified by this workflow
-          - Convergence status: not independently verified
+          ### 📊 Verification Boundary
+          - HAIOS/K-state: not independently verified by this workflow
+          - Convergence status: not independently verified by this workflow
+          - Downstream review is required before merge
 
           ---
           *Automatically created by the DAIOF Autonomous Security Fix System*" \
-            --label security --label automated --label autonomous --label haios-compliant || \
-          gh pr edit "$branch" --add-label "security,automated,autonomous,haios-compliant" || true
+            --label security --label automated --label autonomous
       
       - name: 🎯 Generate Summary
         if: always()
