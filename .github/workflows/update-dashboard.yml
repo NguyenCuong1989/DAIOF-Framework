@@ -1,5 +1,8 @@
 name: 📊 Update Metrics Dashboard
 
+permissions:
+  contents: write
+
 on:
 #   schedule:
     # Run every 6 hours
