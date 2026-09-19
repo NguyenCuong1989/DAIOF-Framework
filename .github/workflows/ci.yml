@@ -78,6 +78,9 @@ jobs:
           python3 tests/test_doctrine_compliance.py
           echo 'Doctrine compliance verified'
 
+      - name: Generate canonical governance evidence
+        run: python3 tools/governance/governance_gate.py generate
+
       - name: Run tests
         env:
           PYTHONPATH: ${{ github.workspace }}
