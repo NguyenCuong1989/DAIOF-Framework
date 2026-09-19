@@ -25,12 +25,20 @@ jobs:
         env:
           NOTION_API_KEY: ${{ secrets.NOTION_API_KEY }}  
         run: |
+          if [ -z "$NOTION_API_KEY" ]; then
+            echo "Notion API: NOT_CONFIGURED (NOTION_API_KEY secret is absent)"
+            exit 0
+          fi
           STATUS=$(curl -s -o /dev/null -w "%{http_code}" -H "Authorization: Bearer $NOTION_API_KEY" -H "Notion-Version: 2022-06-28" "https://api.notion.com/v1/users/me")
           echo "Notion API: HTTP $STATUS"
           [ "$STATUS" = "200" ] && echo "CONNECTED" || exit 1
       - name: System Report
         run: |
           echo "APO Health Check — $(date '+%Y-%m-%d %H:%M %Z')"
-          echo "Notion API connectivity: verified by previous step"
+          if [ -n "${NOTION_API_KEY:-}" ]; then
+            echo "Notion API connectivity: verified by previous step"
+          else
+            echo "Notion API connectivity: NOT_CONFIGURED"
+          fi
           echo "Agent count/state: not independently verified by this workflow"
           echo "Overall ecosystem health: not independently verified by this workflow"

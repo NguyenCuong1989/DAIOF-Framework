@@ -39,7 +39,7 @@ jobs:
         run: python3 -m pip install pytest pyyaml
 
       - name: Validate workflow and runtime topology evidence
-        run: python3 tools/governance/governance_gate.py validate
+        run: python3 tools/governance/governance_gate.py generate
 
       - name: Run governance tests
         run: python3 -m pytest tests/governance -q

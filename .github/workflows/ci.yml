@@ -10,6 +10,9 @@ on:
 permissions:
   contents: read
 
+env:
+  PYTHONPATH: ${{ github.workspace }}:${{ github.workspace }}/src
+
 jobs:
   test:
     name: Test on Python ${{ matrix.python-version }}
@@ -75,9 +78,12 @@ jobs:
           python3 tests/test_doctrine_compliance.py
           echo 'Doctrine compliance verified'
 
+      - name: Generate canonical governance evidence
+        run: python3 tools/governance/governance_gate.py generate
+
       - name: Run tests
         env:
-          PYTHONPATH: ${{ github.workspace }}
+          PYTHONPATH: ${{ github.workspace }}:${{ github.workspace }}/src
         run: |
           python3 -m pytest tests/ -v \
             --cov=digital_ai_organism_framework \

@@ -68,4 +68,8 @@ jobs:
           git config --local user.name "github-actions[bot]"
           git add docs/ README.md
           git diff --quiet && git diff --staged --quiet || git commit -m "📚 Auto-update documentation [skip ci]"
-          git push
+          if [ "${GITHUB_REF_TYPE:-}" != "branch" ]; then
+            echo "Refusing documentation push: GITHUB_REF_TYPE=${GITHUB_REF_TYPE:-unknown}"
+            exit 1
+          fi
+          git push origin "HEAD:${GITHUB_REF_NAME}"

@@ -12,6 +12,9 @@ on:
 permissions:
   contents: read
 
+env:
+  PYTHONPATH: ${{ github.workspace }}:${{ github.workspace }}/src
+
 jobs:
   build:
 
@@ -53,6 +56,8 @@ jobs:
         flake8 digital_ai_organism_framework.py haios_core.py haios_runtime.py scripts tools tests --count --select=E9,F63,F7,F82 --show-source --statistics
         # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
         flake8 digital_ai_organism_framework.py haios_core.py haios_runtime.py scripts tools tests --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+    - name: Generate canonical governance evidence
+      run: python3 tools/governance/governance_gate.py generate
     - name: Test with pytest
       run: |
-        PYTHONPATH="$GITHUB_WORKSPACE:${PYTHONPATH:-}" pytest tests/ -q
+        PYTHONPATH="$GITHUB_WORKSPACE:$GITHUB_WORKSPACE/src:${PYTHONPATH:-}" pytest tests/ -q
