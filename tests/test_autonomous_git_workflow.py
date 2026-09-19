@@ -213,7 +213,8 @@ class TestAutonomousGitWorkflow(unittest.TestCase):
             self.assertFalse(workflow._check_governance_evidence())
 
         args = run.call_args.args[0]
-        self.assertEqual(args[-2:], ["governance_gate.py", "generate"])
+        self.assertEqual(Path(args[-2]).name, "governance_gate.py")
+        self.assertEqual(args[-1], "generate")
 
     def test_haios_compliance_cannot_pass_from_self_scores_alone(self):
         """Perfect local K-state/pillar values must not authorize mutation by themselves."""
