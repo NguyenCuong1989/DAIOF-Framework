@@ -83,7 +83,7 @@ jobs:
 
       - name: Run tests
         env:
-          PYTHONPATH: ${{ github.workspace }}
+          PYTHONPATH: ${{ github.workspace }}:${{ github.workspace }}/src
         run: |
           python3 -m pytest tests/ -v \
             --cov=digital_ai_organism_framework \
