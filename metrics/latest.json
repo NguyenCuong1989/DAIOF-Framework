@@ -1,17 +1,17 @@
 {
-  "timestamp": "2025-10-30T21:59:10.335515",
-  "health_score": 100,
+  "timestamp": "2026-09-20T03:30:57.899623",
+  "health_score": 80,
   "git_metrics": {
-    "total_commits": 38,
-    "weekly_commits": 38,
-    "contributors": 2,
-    "last_commit": "2025-10-30 21:27:42 +0700",
-    "commit_frequency": 5.428571428571429
+    "total_commits": 1,
+    "weekly_commits": 1,
+    "contributors": 1,
+    "last_commit": "2026-09-20 10:30:45 +0700",
+    "commit_frequency": 0.14285714285714285
   },
   "code_metrics": {
-    "python_files": 16,
-    "total_lines": 5992,
-    "workflows": 13,
-    "avg_file_size": 374
+    "python_files": 192,
+    "total_lines": 43667,
+    "workflows": 28,
+    "avg_file_size": 227
   }
 }
