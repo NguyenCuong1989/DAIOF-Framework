@@ -49,9 +49,20 @@ jobs:
           if git diff --quiet; then
             echo "No changes to commit"
           else
-            git add DASHBOARD.md metrics/ NETWORK_REPORT.md
+            git add DASHBOARD.md NETWORK_REPORT.md
+            if [ -f metrics/latest.json ]; then
+              git add -f metrics/latest.json
+            fi
+            if git diff --cached --quiet; then
+              echo "No tracked dashboard changes to commit"
+              exit 0
+            fi
             git commit -m "📊 Auto-update metrics dashboard - $(date '+%Y-%m-%d %H:%M')"
-            git push
+            if [ "${GITHUB_REF_TYPE:-}" != "branch" ]; then
+              echo "Refusing dashboard push: GITHUB_REF_TYPE=${GITHUB_REF_TYPE:-unknown}"
+              exit 1
+            fi
+            git push origin "HEAD:${GITHUB_REF_NAME}"
             echo "✅ Dashboard updated and pushed"
           fi
       

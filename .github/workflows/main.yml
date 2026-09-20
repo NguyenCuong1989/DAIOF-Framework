@@ -3,6 +3,9 @@ name: DAIOF Main CI
 permissions:
   contents: read
 
+env:
+  PYTHONPATH: ${{ github.workspace }}:${{ github.workspace }}/src
+
 on:
   push:
     branches: [ main, develop ]
@@ -65,5 +68,10 @@ jobs:
           pip install -r requirements.txt
           pip install pytest pytest-cov
 
+      - name: 🧬 Generate canonical governance evidence
+        run: python3 tools/governance/governance_gate.py generate
+
       - name: 🧪 Run tests with coverage
+        env:
+          PYTHONPATH: ${{ github.workspace }}:${{ github.workspace }}/src
         run: pytest tests/ -v --cov=src --cov-report=xml --cov-report=term

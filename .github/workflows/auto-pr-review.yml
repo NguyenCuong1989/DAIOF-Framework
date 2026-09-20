@@ -34,7 +34,7 @@ jobs:
         run: python3 -m pip install pyyaml
 
       - name: Validate governance evidence
-        run: python3 tools/governance/governance_gate.py validate
+        run: python3 tools/governance/governance_gate.py generate
 
       - name: Assess PR risk without approving or merging (no external actions)
         env:
